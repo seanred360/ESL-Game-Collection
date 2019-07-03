@@ -1,0 +1,6 @@
+Game: Mario & Sonic at the Sochi 2014 Olympic Winter Games
+Subject: Donkey Kong
+Copyright: Nintendo, Sega
+Model Ripper: Random Talking Bush
+Hosting Permissions: The Models Resource
+Notes: Special thanks to ItsEasyActually for the model importing script.

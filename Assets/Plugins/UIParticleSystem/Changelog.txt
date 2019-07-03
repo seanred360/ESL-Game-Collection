@@ -1,0 +1,41 @@
+Version 1.0:
+-Release of UI Particle System
+
+Version 1.01:
+-Improved documentation
+-Added clipping mode (if user wants to make clipping for particle inside or outside of mask)
+-Fixed issue with saving updated parameters on scene
+
+Version 1.02:
+-Fixed errors on edit inspector parameters in runtime
+
+Version 1.03 
+-Added scene view improvements which allow to see how particles are cut in game mode
+
+Version 1.04
+-Added Soft particle support
+
+Version 1.05
+-Added RectTransSizeFollower
+
+Version 1.06
+-Added Particle shader with distortion effect
+
+Version 1.07
+-Added to distortion shader toggle for alpha masking
+
+Version 1.14
+-Added HDR support for Particle shader
+-Added Intensity control for Particle shader
+-Added support for sliced Image mode
+-Fixed depth in case of multiple overlapping images
+
+Version 1.15
+-Added Unity 2018.1 support
+-Added error box on bad setup of canvas
+
+Version 1.16
+-Fix error in OnCanvasCameraPreRender for 2018.2
+
+Version 1.17
+-Fix for sprite Multiple mode

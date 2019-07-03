@@ -1,0 +1,7 @@
+(Scale) [Rotation] <Transform>
+----------------------------------------------------------------------------------------------------
+CAPPY PLACEMENT (Relative to local position of "Cap" bone, or "JointRoot" for Cap-Throw models):
+
+Diddy Kong Hat: (1, 1, 1) [-25, 0, 0] <0, 11, 28>
+Diddy Kong Hat (Cap Throw): (1.5, 1.5, 1.5) [-30, 0, 0] <0, -6, 39>
+----------------------------------------------------------------------------------------------------

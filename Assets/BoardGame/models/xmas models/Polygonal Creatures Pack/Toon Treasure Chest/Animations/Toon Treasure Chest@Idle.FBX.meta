@@ -1,0 +1,215 @@
+fileFormatVersion: 2
+guid: 4e629fbfee0d73a45b1cecaf9d4300ac
+timeCreated: 1464085995
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Rig
+    100002: RigCover
+    100004: RigCoverGizmo
+    100006: RigLLeg1
+    100008: RigLLeg2
+    100010: RigLLegAnkle
+    100012: RigLLegFoot1
+    100014: RigLLegFoot2
+    100016: RigLLegPlatform
+    100018: RigPelvis
+    100020: RigPelvisGizmo
+    100022: RigRLeg1
+    100024: RigRLeg2
+    100026: RigRLegAnkle
+    100028: RigRLegFoot1
+    100030: RigRLegFoot2
+    100032: RigRLegPlatform
+    100034: RigTongue1
+    100036: RigTongue1Gizmo
+    100038: RigTongue2
+    100040: RigTongue2Gizmo
+    100042: RigTongue3
+    100044: RigTongue3Gizmo
+    100046: RigTongue4
+    100048: RigTongue4Gizmo
+    100050: RigTongue5
+    100052: RigTongue5Gizmo
+    100054: Toon Treasure Chest
+    100056: //RootNode
+    400000: Rig
+    400002: RigCover
+    400004: RigCoverGizmo
+    400006: RigLLeg1
+    400008: RigLLeg2
+    400010: RigLLegAnkle
+    400012: RigLLegFoot1
+    400014: RigLLegFoot2
+    400016: RigLLegPlatform
+    400018: RigPelvis
+    400020: RigPelvisGizmo
+    400022: RigRLeg1
+    400024: RigRLeg2
+    400026: RigRLegAnkle
+    400028: RigRLegFoot1
+    400030: RigRLegFoot2
+    400032: RigRLegPlatform
+    400034: RigTongue1
+    400036: RigTongue1Gizmo
+    400038: RigTongue2
+    400040: RigTongue2Gizmo
+    400042: RigTongue3
+    400044: RigTongue3Gizmo
+    400046: RigTongue4
+    400048: RigTongue4Gizmo
+    400050: RigTongue5
+    400052: RigTongue5Gizmo
+    400054: Toon Treasure Chest
+    400056: //RootNode
+    4300000: Toon Treasure Chest
+    7400000: Idle
+    9500000: //RootNode
+    13700000: Toon Treasure Chest
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: RigCoverGizmo
+        weight: 1
+      - path: RigLLegPlatform
+        weight: 1
+      - path: RigPelvis
+        weight: 1
+      - path: RigPelvis/RigCover
+        weight: 1
+      - path: RigPelvis/RigLLeg1
+        weight: 1
+      - path: RigPelvis/RigLLeg1/RigLLeg2
+        weight: 1
+      - path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle
+        weight: 1
+      - path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle/RigLLegFoot1
+        weight: 1
+      - path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle/RigLLegFoot1/RigLLegFoot2
+        weight: 1
+      - path: RigPelvis/RigRLeg1
+        weight: 1
+      - path: RigPelvis/RigRLeg1/RigRLeg2
+        weight: 1
+      - path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle
+        weight: 1
+      - path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle/RigRLegFoot1
+        weight: 1
+      - path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle/RigRLegFoot1/RigRLegFoot2
+        weight: 1
+      - path: RigPelvis/RigTongue1
+        weight: 1
+      - path: RigPelvis/RigTongue1/RigTongue2
+        weight: 1
+      - path: RigPelvis/RigTongue1/RigTongue2/RigTongue3
+        weight: 1
+      - path: RigPelvis/RigTongue1/RigTongue2/RigTongue3/RigTongue4
+        weight: 1
+      - path: RigPelvis/RigTongue1/RigTongue2/RigTongue3/RigTongue4/RigTongue5
+        weight: 1
+      - path: RigPelvisGizmo
+        weight: 1
+      - path: RigRLegPlatform
+        weight: 1
+      - path: RigTongue1Gizmo
+        weight: 1
+      - path: RigTongue2Gizmo
+        weight: 1
+      - path: RigTongue3Gizmo
+        weight: 1
+      - path: RigTongue4Gizmo
+        weight: 1
+      - path: RigTongue5Gizmo
+        weight: 1
+      - path: Toon Treasure Chest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

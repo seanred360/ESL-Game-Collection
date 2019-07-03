@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: f0e6a115b056d744092676ea0891a92c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: bone_root
+    100002: cheeck_L
+    100004: cheeck_R
+    100006: DonkeyKong
+    100008: DonkeyKong_Eye_Close_01
+    100010: DonkeyKong_Eye_Close_02
+    100012: DonkeyKong_Eye_Pattern_01
+    100014: DonkeyKong_Teeth
+    100016: //RootNode
+    100018: Hair
+    100020: Head
+    100022: Hips
+    100024: Jaw
+    100026: LeftArm
+    100028: LeftArmRoll
+    100030: LeftFoot
+    100032: LeftForeArm
+    100034: LeftHand
+    100036: LeftHandIndex1
+    100038: LeftHandIndex2
+    100040: LeftHandIndex3
+    100042: LeftHandItem
+    100044: LeftHandMiddle1
+    100046: LeftHandMiddle2
+    100048: LeftHandMiddle3
+    100050: LeftHandPinky1
+    100052: LeftHandPinky2
+    100054: LeftHandPinky3
+    100056: LeftHandRing1
+    100058: LeftHandRing2
+    100060: LeftHandRing3
+    100062: LeftHandRoll
+    100064: LeftHandThumb1
+    100066: LeftHandThumb2
+    100068: LeftHandThumb3
+    100070: LeftLeg
+    100072: LeftShoulder
+    100074: LeftToeBase
+    100076: LeftUpLeg
+    100078: Mayu_L0
+    100080: Mayu_L1
+    100082: Mayu_R0
+    100084: Mayu_R1
+    100086: Mouth_LB1
+    100088: Mouth_LB2
+    100090: Mouth_LB3
+    100092: Mouth_LT1
+    100094: Mouth_LT2
+    100096: Mouth_LT3
+    100098: Mouth_RB1
+    100100: Mouth_RB2
+    100102: Mouth_RB3
+    100104: Mouth_RT1
+    100106: Mouth_RT2
+    100108: Mouth_RT3
+    100110: Neck
+    100112: Necktie0
+    100114: Necktie1
+    100116: Necktie2
+    100118: NecktieRoot
+    100120: Pelvis
+    100122: pos_center
+    100124: RightArm
+    100126: RightArmRoll
+    100128: RightFoot
+    100130: RightForeArm
+    100132: RightHand
+    100134: RightHandIndex1
+    100136: RightHandIndex2
+    100138: RightHandIndex3
+    100140: RightHandItem
+    100142: RightHandMiddle1
+    100144: RightHandMiddle2
+    100146: RightHandMiddle3
+    100148: RightHandPinky1
+    100150: RightHandPinky2
+    100152: RightHandPinky3
+    100154: RightHandRing1
+    100156: RightHandRing2
+    100158: RightHandRing3
+    100160: RightHandRoll
+    100162: RightHandThumb1
+    100164: RightHandThumb2
+    100166: RightHandThumb3
+    100168: RightLeg
+    100170: RightShoulder
+    100172: RightToeBase
+    100174: RightUpLeg
+    100176: rot_center
+    100178: Spine
+    100180: Spine1
+    100182: TeethA
+    100184: TeethB
+    100186: Tongue
+    400000: bone_root
+    400002: cheeck_L
+    400004: cheeck_R
+    400006: DonkeyKong
+    400008: DonkeyKong_Eye_Close_01
+    400010: DonkeyKong_Eye_Close_02
+    400012: DonkeyKong_Eye_Pattern_01
+    400014: DonkeyKong_Teeth
+    400016: //RootNode
+    400018: Hair
+    400020: Head
+    400022: Hips
+    400024: Jaw
+    400026: LeftArm
+    400028: LeftArmRoll
+    400030: LeftFoot
+    400032: LeftForeArm
+    400034: LeftHand
+    400036: LeftHandIndex1
+    400038: LeftHandIndex2
+    400040: LeftHandIndex3
+    400042: LeftHandItem
+    400044: LeftHandMiddle1
+    400046: LeftHandMiddle2
+    400048: LeftHandMiddle3
+    400050: LeftHandPinky1
+    400052: LeftHandPinky2
+    400054: LeftHandPinky3
+    400056: LeftHandRing1
+    400058: LeftHandRing2
+    400060: LeftHandRing3
+    400062: LeftHandRoll
+    400064: LeftHandThumb1
+    400066: LeftHandThumb2
+    400068: LeftHandThumb3
+    400070: LeftLeg
+    400072: LeftShoulder
+    400074: LeftToeBase
+    400076: LeftUpLeg
+    400078: Mayu_L0
+    400080: Mayu_L1
+    400082: Mayu_R0
+    400084: Mayu_R1
+    400086: Mouth_LB1
+    400088: Mouth_LB2
+    400090: Mouth_LB3
+    400092: Mouth_LT1
+    400094: Mouth_LT2
+    400096: Mouth_LT3
+    400098: Mouth_RB1
+    400100: Mouth_RB2
+    400102: Mouth_RB3
+    400104: Mouth_RT1
+    400106: Mouth_RT2
+    400108: Mouth_RT3
+    400110: Neck
+    400112: Necktie0
+    400114: Necktie1
+    400116: Necktie2
+    400118: NecktieRoot
+    400120: Pelvis
+    400122: pos_center
+    400124: RightArm
+    400126: RightArmRoll
+    400128: RightFoot
+    400130: RightForeArm
+    400132: RightHand
+    400134: RightHandIndex1
+    400136: RightHandIndex2
+    400138: RightHandIndex3
+    400140: RightHandItem
+    400142: RightHandMiddle1
+    400144: RightHandMiddle2
+    400146: RightHandMiddle3
+    400148: RightHandPinky1
+    400150: RightHandPinky2
+    400152: RightHandPinky3
+    400154: RightHandRing1
+    400156: RightHandRing2
+    400158: RightHandRing3
+    400160: RightHandRoll
+    400162: RightHandThumb1
+    400164: RightHandThumb2
+    400166: RightHandThumb3
+    400168: RightLeg
+    400170: RightShoulder
+    400172: RightToeBase
+    400174: RightUpLeg
+    400176: rot_center
+    400178: Spine
+    400180: Spine1
+    400182: TeethA
+    400184: TeethB
+    400186: Tongue
+    2100000: body_b
+    2100002: skin
+    2100004: skin.1
+    2100006: body_vtw
+    2100008: skin.2
+    2100010: body_v
+    2100012: body_vtw.1
+    2100014: skin.3
+    2100016: body_vpw
+    2100018: body_vt2
+    2100020: body_a
+    2100022: eye_l
+    2100024: eye_r
+    2100026: body_b.1
+    4300000: DonkeyKong_Teeth
+    4300002: DonkeyKong_Eye_Pattern_01
+    4300004: DonkeyKong_Eye_Close_02
+    4300006: DonkeyKong_Eye_Close_01
+    4300008: DonkeyKong
+    7400000: Salsa Dancing
+    9500000: //RootNode
+    13700000: DonkeyKong
+    13700002: DonkeyKong_Eye_Close_01
+    13700004: DonkeyKong_Eye_Close_02
+    13700006: DonkeyKong_Eye_Pattern_01
+    13700008: DonkeyKong_Teeth
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_a
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_b
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_b.1
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_v
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_vpw
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_vt2
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_vtw
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_vtw.1
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye_l
+    second: {fileID: 2100000, guid: 40b5b00322199ca4d9f4b44c10e67aa9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye_r
+    second: {fileID: 2100000, guid: 40b5b00322199ca4d9f4b44c10e67aa9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skin
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skin.1
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skin.2
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skin.3
+    second: {fileID: 2100000, guid: 8c06ea52968aa51428aedafe6995779e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Salsa Dancing
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 1138
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

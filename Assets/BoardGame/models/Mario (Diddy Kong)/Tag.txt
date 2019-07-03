@@ -1,0 +1,6 @@
+Game: Super Mario Odyssey
+Subject: Mario (Diddy Kong)
+Copyright: Nintendo
+Model Rippers: Random Talking Bush and SciresM
+Hosting Permissions: The Models Resource
+Note: The ears are scaled up in-game... but I'm not sure what the actual multiplier is for that.

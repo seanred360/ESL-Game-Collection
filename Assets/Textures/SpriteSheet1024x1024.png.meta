@@ -1,0 +1,800 @@
+fileFormatVersion: 2
+guid: 660f8213b01eb2246ad049385aaebb42
+timeCreated: 1508418585
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Gift
+    21300002: Dart
+    21300004: Starfish
+    21300006: Boot
+    21300008: Mushroom
+    21300010: Tomato
+    21300012: Hook
+    21300014: Can
+    21300016: Bottle
+    21300018: Jalapeno
+    21300020: Cresent
+    21300022: Can
+    21300024: Horseshoe
+    21300026: Log
+    21300028: Cucumber
+    21300030: Bomb
+    21300032: Octopus
+    21300034: Pumpkin
+    21300036: Octopus
+    21300038: Pepper
+    21300040: Egg
+    21300042: Broccoli
+    21300044: Cabbage
+    21300046: Elephant
+    21300048: Star
+    21300050: Onion
+    21300052: ZombieHead
+    21300054: Avocado
+    21300056: Badge
+    21300058: Cow
+    21300060: Koala
+    21300062: Cow
+    21300064: Frog
+    21300066: Fish
+    21300068: Carrot
+    21300070: Cloud
+    21300072: Bottle
+    21300074: Egg
+    21300076: Cheese
+    21300078: Tree
+    21300080: Mirror
+    21300082: Coin
+    21300084: Snowman
+    21300086: Feather
+    21300088: Mirror
+    21300090: Tree
+    21300092: Gift
+    21300094: Star
+    21300096: Dynamite
+    21300098: Cucumber
+    21300100: Log
+    21300102: Horseshoe
+    21300104: Pumpkin
+    21300106: Coin
+    21300108: Boot
+    21300110: Fish
+    21300112: Mushroom
+    21300114: Tomato
+    21300116: Elephant
+    21300118: Koala
+    21300120: Avocado
+    21300122: Onion
+    21300124: Anchor
+    21300126: Cabbage
+    21300128: Radish
+    21300130: Carrot
+    21300132: Frog
+    21300134: Jalapeno
+    21300136: Bellpepper
+    21300138: House
+    21300140: Hook
+    21300142: Wing
+    21300144: Bubble
+    21300146: Dart
+    21300148: Shield
+    21300150: Ghost
+    21300152: Cheese
+    21300154: Seashell
+    21300156: Bucket
+    21300158: Hat
+    21300160: Crystal
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: 2
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+  - buildTarget: Standalone
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gift
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 870
+        width: 147
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Star
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 873
+        width: 152
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bomb
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 867
+        width: 152
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Dynamite
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 107
+        width: 163
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Cucumber
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 961
+        width: 154
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Log
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 731
+        width: 154
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Horseshoe
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 848
+        width: 104
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Can
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 847
+        width: 76
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bottle
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 7
+        width: 203
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Pumpkin
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 714
+        width: 162
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Coin
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 722
+        width: 127
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Boot
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 737
+        width: 161
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Fish
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 714
+        width: 168
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Mushroom
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 798
+        width: 97
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Tomato
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 918
+        width: 97
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Elephant
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 535
+        width: 185
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Koala
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 535
+        width: 158
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avocado
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 570
+        width: 93
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Octopus
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 548
+        width: 207
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Onion
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 668
+        width: 106
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Egg
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 533
+        width: 86
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Broccoli
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 213
+        width: 123
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Anchor
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 373
+        width: 148
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Cabbage
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 380
+        width: 162
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Radish
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 412
+        width: 215
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Carrot
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 810
+        width: 206
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Frog
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 525
+        width: 219
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jalapeno
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 343
+        width: 135
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Badge
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 412
+        width: 113
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Cow
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 364
+        width: 223
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bellpepper
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 373
+        width: 103
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: House
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 239
+        width: 179
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Hook
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 242
+        width: 87
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wing
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 242
+        width: 109
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bubble
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 236
+        width: 137
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Dart
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 17
+        width: 165
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Shield
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 104
+        width: 162
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Ghost
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 223
+        width: 187
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Cheese
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 284
+        width: 131
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Tree
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 4
+        width: 132
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Seashell
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 107
+        width: 128
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bucket
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 112
+        width: 155
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Snowman
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 9
+        width: 152
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Feather
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 659
+        width: 169
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Mirror
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 897
+        width: 205
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Hat
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 7
+        width: 193
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Crystal
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 14
+        width: 86
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: eb0537ce51aafbc46b27030654e5f71c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: eiszapf
+    100002: fenster
+    100004: fensterdek
+    100006: //RootNode
+    100008: Hausdach
+    100010: kugel
+    100012: Mandeln
+    100014: Mauern
+    100016: Obj_000001
+    100018: ring
+    100020: saeule
+    100022: stangen
+    100024: turmdach
+    100026: zuckergus1
+    400000: eiszapf
+    400002: fenster
+    400004: fensterdek
+    400006: //RootNode
+    400008: Hausdach
+    400010: kugel
+    400012: Mandeln
+    400014: Mauern
+    400016: Obj_000001
+    400018: ring
+    400020: saeule
+    400022: stangen
+    400024: turmdach
+    400026: zuckergus1
+    2100000: 'Material #1'
+    2100002: Mandeln
+    2100004: plate
+    2100006: zucker
+    2100008: widnows
+    2100010: Ring
+    2300000: eiszapf
+    2300002: fenster
+    2300004: fensterdek
+    2300006: Hausdach
+    2300008: kugel
+    2300010: Mandeln
+    2300012: Mauern
+    2300014: Obj_000001
+    2300016: ring
+    2300018: saeule
+    2300020: stangen
+    2300022: turmdach
+    2300024: zuckergus1
+    3300000: eiszapf
+    3300002: fenster
+    3300004: fensterdek
+    3300006: Hausdach
+    3300008: kugel
+    3300010: Mandeln
+    3300012: Mauern
+    3300014: Obj_000001
+    3300016: ring
+    3300018: saeule
+    3300020: stangen
+    3300022: turmdach
+    3300024: zuckergus1
+    4300000: Hausdach
+    4300002: Mandeln
+    4300004: Mauern
+    4300006: Obj_000001
+    4300008: eiszapf
+    4300010: fenster
+    4300012: fensterdek
+    4300014: kugel
+    4300016: ring
+    4300018: saeule
+    4300020: stangen
+    4300022: turmdach
+    4300024: zuckergus1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mandeln
+    second: {fileID: 2100000, guid: 74e31d9f1599d834d95afd7853ffca70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #1'
+    second: {fileID: 2100000, guid: cd909922f1928874b8fb4efce71fba6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ring
+    second: {fileID: 2100000, guid: 420eaae38e342c847910ccc9627519e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plate
+    second: {fileID: 2100000, guid: 8c860b9ac64e1ff4a818b39bf9100531, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: widnows
+    second: {fileID: 2100000, guid: a2c7ef71cead9dc47b7ccab08a834b79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: zucker
+    second: {fileID: 2100000, guid: d5ed3f0a88fcdce4ab0d71003d01e744, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1874 @@
+fileFormatVersion: 2
+guid: dfa8a223898665d4eab0167db7cc3b7b
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: seanThinking sheet_0
+    21300002: seanThinking sheet_1
+    21300004: seanThinking sheet_2
+    21300006: seanThinking sheet_3
+    21300008: seanThinking sheet_4
+    21300010: seanThinking sheet_5
+    21300012: seanThinking sheet_6
+    21300014: seanThinking sheet_7
+    21300016: seanThinking sheet_8
+    21300018: seanThinking sheet_9
+    21300020: seanThinking sheet_10
+    21300022: seanThinking sheet_11
+    21300024: seanThinking sheet_12
+    21300026: seanThinking sheet_13
+    21300028: seanThinking sheet_14
+    21300030: seanThinking sheet_15
+    21300032: seanThinking sheet_16
+    21300034: seanThinking sheet_17
+    21300036: seanThinking sheet_18
+    21300038: seanThinking sheet_19
+    21300040: seanThinking sheet_20
+    21300042: seanThinking sheet_21
+    21300044: seanThinking sheet_22
+    21300046: seanThinking sheet_23
+    21300048: seanThinking sheet_24
+    21300050: seanThinking sheet_25
+    21300052: seanThinking sheet_26
+    21300054: seanThinking sheet_27
+    21300056: seanThinking sheet_28
+    21300058: seanThinking sheet_29
+    21300060: seanThinking sheet_30
+    21300062: seanThinking sheet_31
+    21300064: seanThinking sheet_32
+    21300066: seanThinking sheet_33
+    21300068: seanThinking sheet_34
+    21300070: seanThinking sheet_35
+    21300072: seanThinking sheet_36
+    21300074: seanThinking sheet_37
+    21300076: seanThinking sheet_38
+    21300078: seanThinking sheet_39
+    21300080: seanThinking sheet_40
+    21300082: seanThinking sheet_41
+    21300084: seanThinking sheet_42
+    21300086: seanThinking sheet_43
+    21300088: seanThinking sheet_44
+    21300090: seanThinking sheet_45
+    21300092: seanThinking sheet_46
+    21300094: seanThinking sheet_47
+    21300096: seanThinking sheet_48
+    21300098: seanThinking sheet_49
+    21300100: seanThinking sheet_50
+    21300102: seanThinking sheet_51
+    21300104: seanThinking sheet_52
+    21300106: seanThinking sheet_53
+    21300108: seanThinking sheet_54
+    21300110: seanThinking sheet_55
+    21300112: seanThinking sheet_56
+    21300114: seanThinking sheet_57
+    21300116: seanThinking sheet_58
+    21300118: seanThinking sheet_59
+    21300120: seanThinking sheet_60
+    21300122: seanThinking sheet_61
+    21300124: seanThinking sheet_62
+    21300126: seanThinking sheet_63
+    21300128: seanThinking sheet_64
+    21300130: seanThinking sheet_65
+    21300132: seanThinking sheet_66
+    21300134: seanThinking sheet_67
+    21300136: seanThinking sheet_68
+    21300138: seanThinking sheet_69
+    21300140: seanThinking sheet_70
+    21300142: seanThinking sheet_71
+    21300144: seanThinking sheet_72
+    21300146: seanThinking sheet_73
+    21300148: seanThinking sheet_74
+    21300150: seanThinking sheet_75
+    21300152: seanThinking sheet_76
+    21300154: seanThinking sheet_77
+    21300156: seanThinking sheet_78
+    21300158: seanThinking sheet_79
+    21300160: seanThinking sheet_80
+    21300162: seanThinking sheet_81
+    21300164: seanThinking sheet_82
+    21300166: seanThinking sheet_83
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: seanThinking sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0bae8f9fc359de47ad4dcceb75b769c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1920
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc54a5f6a8d204419506ae27828f8b2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_2
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1920
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d62a6c7818772419780ff0229c87be
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_3
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1920
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d257c8628a7af974cba2aca8975bd58b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_4
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1920
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fde1cc1d75e76429d554c2e6bcf0bd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1800
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f136bacba3c52484995392fe450f133f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_6
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1800
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdcaad830e8a5646bbcd6284800eac5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_7
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1800
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196512cbc5488da4d9fea8d228990952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_8
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1800
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d4e6c48c151854987d0218d65179d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_9
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1800
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89e5351fbf1fd341a49dae02471539a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1680
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6604954597d92d4449b7046e1a2196b8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_11
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1680
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804d31b14cf92154495fbcc65e551064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_12
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1680
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3336341502f65ec4c97aa35455540cd1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_13
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1680
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda7222be0c6f524c828da2af5d2b1c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_14
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1680
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b0ec59314a38c4f9cf74478ead1237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1560
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f950fc7207d4644c80ecc6cb492195b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_16
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1560
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 389feca5e6a982d4182a2811d6657a6c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_17
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1560
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d332045c3957d4cb4360e8238ac4a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_18
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1560
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f5e1926bc7ace04b97b792276468cbc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_19
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1560
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a936d66f50d5f204284180923f111823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3e319a846b64b4d8ff5c94978f1711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_21
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1440
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d2ea1212e983340b0e9ad97599c3c7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_22
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1440
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a389d78f1a3c6a408c04cb940e1dbbc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_23
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1440
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa70f60661424d408e614bca6a9e3d2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_24
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1440
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b111b7c4065f8f459ed2c593ee91fde
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1320
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2725523aa8146042a3a91bfe0f99956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_26
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1320
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca6d53bc7d0bd148a1a1f0bf7653264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_27
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1320
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a577634bc0eed5b4586f38e890d2a691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_28
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1320
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 117dd736ffe10a14da2d047e43139ec2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_29
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1320
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0b4c711e4944d49920c643df8b3549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727c161fc3676a643a3b7f50f0eb6687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_31
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1200
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae80cf3e266f3c47b9e1452c40418ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_32
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1200
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7637750173fbf6a45b87b4a1678c2b44
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_33
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1200
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4b79f572f9c884283f929ce0bfb39a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_34
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1200
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ab5c4847177804485cb74d58e9a279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1080
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78bba8a2bf4245c4899e63f307d43805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_36
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1080
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73b93ace40ead14e880030e74dff227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_37
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1080
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d605c7225bc84b40a7367f97b3ad64b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_38
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 1080
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db1a8bc16750e1488367d002fbae404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_39
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1080
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa7c1ef25b558f4bbca6ae233559c0a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ddcd57c10029824caa09f69140ab1c7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_41
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 960
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988bdb979db22cd4f826a219b4dbe44d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_42
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 960
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13932472e8f091f40bcd4489deaaf838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_43
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 960
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b32c8531468fd48af1e9217d389e59
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_44
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 960
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f403f593d75026c4ab944b4a14cd1c4f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 840
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59b28e43902e5e4e8045203b2c206e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_46
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 840
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a83b029136699fc4ba0bb104587a144e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_47
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 840
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a0b67700816ba45ab84ed8c800e1d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_48
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 840
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04dc2e1290f6c774ca5747daa3c7ec24
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_49
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 840
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2ff5226b29f3d64a90b46e9580b2e8c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a879018477bb79c43a05fc16ad68f5df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_51
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 720
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63251624c972a441a57df75862f3d47
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_52
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 720
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f4f2d06e177054c988e060b3fae9f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_53
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 720
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4bd14d964fb024db980816175ee567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_54
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 720
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ed682c1eb08784f8069e1c3f4ce0d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa44f70887628d148ae85e3c23bed68c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_56
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 600
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a15cf4fea992ec45953fa5f1d6cc043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_57
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 600
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6ba0c36ef93f04f97836bb074b1ad0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_58
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 600
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 424231c8b2711bf40bddf80f21dbb091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_59
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 600
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60c127a141fc5ba418c6ba99b56b5af5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcea3b2d023b6b4cb13ba9468417dc4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_61
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 480
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e36ec95dd26ecf146bd147f23b55e206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_62
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 480
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb7e7aba9029af49b0bcbd43529e7ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_63
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 480
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 915d1a35812f6114c90a62d07a51da6d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_64
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 480
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f5c952c50f3f44faf3d56d60c87bad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9961f0754b4d8d4faeaa0d54457b5ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_66
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 360
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e9933c84ddc0654797736af0d3897fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_67
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 360
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d8960a3738809a438696c48f60492e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_68
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 360
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0673c79212c32914aa880123aa774a55
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_69
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 360
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff4c947d5fb80948a1768b4b6a0468d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfeaa17d00b82094daaa1a62ccba39f7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_71
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 240
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4946178fc537cb9418c9dee27da80380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_72
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 240
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 410978b7f0becd34f8e0900b5ccbcd7b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_73
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 240
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c1969d07b642614bb629f06d4fa10ee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_74
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 240
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e92955e7f0bc3047a72edb09da6e086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_75
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0307c78c9ded5264f82bae8533b6f072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_76
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 120
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a69aa393222426f4698ee8acd81c2589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_77
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 120
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5c3e2d47550fa45ba8746dafbff42c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_78
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 120
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c5d48d49d15ee438c7de7ffd0d3168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_79
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 120
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df3519d7731c994e81f3ed2308ef861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e8d9510f0cef84db2404c6e49de15e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_81
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 0
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63613370c3651f44dab94421f130792f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_82
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 0
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a1167d05f623f741b5e57b7ecc5882f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: seanThinking sheet_83
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 0
+        width: 161
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9215841a71646a944a5d74e6c0221c9e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1646a798c1ad2194ebb5f0a149137b93
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
