@@ -361,7 +361,7 @@ namespace TwoOfAKindGame
                     if (soundSelect) soundSource.GetComponent<AudioSource>().PlayOneShot(soundSelect);
 
                     // If this button has a sound assingned to it, play it
-                    if (selectedObject.GetComponent<TOKPlaySound>()) selectedObject.GetComponent<TOKPlaySound>().PlaySoundCurrent();
+                    if (selectedObject.GetComponent<HSGPlaySound>()) selectedObject.GetComponent<HSGPlaySound>().PlaySound();
                 }
 
                 // Play the sound associated with this card name
@@ -387,7 +387,7 @@ namespace TwoOfAKindGame
                     if (soundSelect) soundSource.GetComponent<AudioSource>().PlayOneShot(soundSelect);
 
                     // If this button has a sound assingned to it, play it
-                    if (selectedObject.GetComponent<TOKPlaySound>()) selectedObject.GetComponent<TOKPlaySound>().PlaySoundCurrent();
+                    if (selectedObject.GetComponent<HSGPlaySound>()) selectedObject.GetComponent<HSGPlaySound>().PlaySound();
                 }
                 
                 if (firstObject == selectedObject) //If we click on the same object that we already selected, unselect it and set it back to idle state ( in animation )

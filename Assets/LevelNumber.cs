@@ -16,6 +16,21 @@ public class LevelNumber : MonoBehaviour
     [Tooltip("The time this instance of the music source has been in the game")]
     internal float instanceTime = 0;
 
+    private void Awake()
+    {
+        //Find all the music objects in the scene
+        GameObject[] levelObjects = GameObject.FindGameObjectsWithTag(objectTag);
+
+        //Keep only the music object which has been in the game for more than 0 seconds
+        if (levelObjects.Length > 1)
+        {
+            foreach (var levelObject in levelObjects)
+            {
+                if (levelObject.GetComponent<LevelNumber>().instanceTime <= 0) Destroy(gameObject);
+            }
+        }
+    }
+
     void Start()
     {
         //Don't destroy this object when loading a new scene

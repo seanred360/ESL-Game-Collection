@@ -159,7 +159,6 @@ namespace BoardGame
         {
             ohYesDialogueBox.GetComponent<Button>().interactable = true;
             ohNoDialogueBox.GetComponent<Button>().interactable = true;
-            Debug.Log("can close the button");
         }
     }
 }

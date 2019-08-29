@@ -37,7 +37,8 @@ namespace MatchingGameTemplate
 		{
             if(levelName == "")
             {
-                levelName = LevelNumber.menuPath;
+                //levelName = LevelNumber.menuPath;
+                levelName = "KBMainMenu";
             }
 
 		    // If there is a gamecontroller in the scene, assign it to the variable
