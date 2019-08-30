@@ -131,7 +131,8 @@ namespace FindTheObject
 
         void Awake()
         {
-            babyMode = LevelNumber.babyMode;
+            //babyMode = LevelNumber.babyMode;
+            babyMode = LevelData.Singleton.babyMode;
             // Activate the pause canvas early on, so it can detect info about sound volume state
             if (pauseCanvas) pauseCanvas.gameObject.SetActive(true);
         }

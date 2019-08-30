@@ -15,10 +15,10 @@ namespace ScrambledImageGame
 
         void Awake()
         {
-            _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
             if (_imagePath == "0")
                 _imagePath = "KBA/u1";
-            Debug.Log(_imagePath);
 
             object[] sprites = Resources.LoadAll(_imagePath, typeof(Sprite));
             loadedSprites = new Sprite[sprites.Length];

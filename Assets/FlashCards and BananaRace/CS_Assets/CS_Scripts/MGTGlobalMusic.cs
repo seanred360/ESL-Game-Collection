@@ -60,7 +60,7 @@ namespace MatchingGameTemplate
             currentScene = SceneManager.GetActiveScene().name;
 
             // only play this music on the main menus
-            if ((currentScene == "KBAMainMenu") || (currentScene == "KBBMainMenu") || (currentScene == "RootMenu"))
+            if ((currentScene == "KBMainMenu") || (currentScene == "KBBMainMenu") || (currentScene == "RootMenu"))
                 Destroy(gameObject);
         }
     }

@@ -13,9 +13,8 @@ namespace TwoOfAKindGame
 
         void Awake()
         {
-            _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-
-            Debug.Log(_imagePath);
+            //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
 
             object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
             pairsImage = new Sprite[textures.Length];

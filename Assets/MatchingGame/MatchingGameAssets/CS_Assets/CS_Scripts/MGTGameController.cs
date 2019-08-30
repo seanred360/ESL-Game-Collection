@@ -144,9 +144,6 @@ namespace MatchingGameTemplate
         public GameObject bowser;//sean
         private Animator bowserAnimator;//sean
 
-
-
-
         // The button that will restart the game after game over
         public string confirmButton = "Submit";
 
@@ -158,16 +155,6 @@ namespace MatchingGameTemplate
         // A general use index
         internal int index = 0;
 
-        public string _imagePath;
-        public Sprite[] loadedSprites;
-
-        private void Awake()
-        {
-            
-
-         
-
-        }
         /// <summary>
         /// Start is only called once in the lifetime of the behaviour.
         /// The difference between Awake and Start is that Start is only called if the script instance is enabled.

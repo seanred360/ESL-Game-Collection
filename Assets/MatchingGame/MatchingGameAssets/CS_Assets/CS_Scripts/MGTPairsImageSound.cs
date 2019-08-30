@@ -15,14 +15,13 @@ namespace MatchingGameTemplate
         public Sprite[] loadedSprites;
         string _imagePath;
         public PairImageSound _1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14;
-        int _index;
 
         void Awake()
         {
-            _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
             if (_imagePath == "0")
                 _imagePath = "KBA/u11";
-            Debug.Log(_imagePath);
 
             object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
             loadedSprites = new Sprite[textures.Length];

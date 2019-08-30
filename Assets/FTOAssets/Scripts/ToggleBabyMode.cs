@@ -10,7 +10,8 @@ public class ToggleBabyMode : MonoBehaviour
 
     private void Awake()
     {
-        LevelNumber.babyMode = false;
+        //LevelNumber.babyMode = false;
+        LevelData.Singleton.babyMode = false;
         SetBabyMode();
     }
 
@@ -27,7 +28,8 @@ public class ToggleBabyMode : MonoBehaviour
         GetComponent<Image>().color = newColor;
 
         // Set the value of the sound state to the source object
-        LevelNumber.babyMode = currentState;
+        //LevelNumber.babyMode = currentState;
+        LevelData.Singleton.babyMode = currentState;
     }
 
     /// <summary>

@@ -131,9 +131,8 @@ public class HSGGameController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-
-        Debug.Log(_imagePath);
+        //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
 
         Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
         shapeList = new Sprite[textures.Length];
@@ -282,7 +281,8 @@ public class HSGGameController : MonoBehaviour
                 else Pause(true);
             }
         }
-        babyMode = LevelNumber.babyMode;
+        //babyMode = LevelNumber.babyMode;
+        babyMode = LevelData.Singleton.babyMode;
     }
 
     /// <summary>
