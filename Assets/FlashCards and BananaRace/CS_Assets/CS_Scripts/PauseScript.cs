@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class PauseScript : MonoBehaviour {
 
     internal bool isPaused = false;
-    public Transform pauseCanvas;
+    public GameObject pauseCanvas;
     //internal GameObject buttonBeforePause;
     //internal EventSystem eventSystem;
 
@@ -19,7 +19,7 @@ public class PauseScript : MonoBehaviour {
     void Start()
     {
         // Disable multitouch so that we don't tap two answers at the same time
-        Input.multiTouchEnabled = false;
+        //Input.multiTouchEnabled = false;
 
         // Cache the current event system so we can position the cursor correctly
         //eventSystem = UnityEngine.EventSystems.EventSystem.current;
@@ -49,19 +49,22 @@ public class PauseScript : MonoBehaviour {
 
     public void Unpause()
     {
-        isPaused = false;
+        if (isPaused == true)
+        {
+            isPaused = false;
 
-        //Set timescale back to the current game speed
-        Time.timeScale = 1;
+            //Set timescale back to the current game speed
+            Time.timeScale = 1;
 
-        //Hide the pause screen and show the game screen
-        if (pauseCanvas) pauseCanvas.gameObject.SetActive(false);
+            //Hide the pause screen and show the game screen
+            if (pauseCanvas) pauseCanvas.gameObject.SetActive(false);
 
-        // Select the button that we pressed before pausing
-        //if (eventSystem) eventSystem.SetSelectedGameObject(buttonBeforePause);
+            // Select the button that we pressed before pausing
+            //if (eventSystem) eventSystem.SetSelectedGameObject(buttonBeforePause);
 
-        if (GameObject.FindGameObjectWithTag("ButtonTag1"))
-            ButtonController.EnableButton();
+            if (GameObject.FindGameObjectWithTag("ButtonTag1"))
+                ButtonController.EnableButton();
+        }
     }
 
     public void UnFreezeTime()
