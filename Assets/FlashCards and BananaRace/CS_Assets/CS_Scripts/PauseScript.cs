@@ -12,14 +12,12 @@ public class PauseScript : MonoBehaviour {
 
     void Awake()
     {
-        // Activate the pause canvas early on, so it can detect info about sound volume state
-        
         if (pauseCanvas) pauseCanvas.SetActive(false);
     }
 
     void Start()
     {
-        //Input.multiTouchEnabled = false;
+        Input.multiTouchEnabled = false;
     }
 
     public void Pause(bool showMenu)
@@ -63,5 +61,4 @@ public class PauseScript : MonoBehaviour {
     {
         Time.timeScale = 1;
     }
-
 }
