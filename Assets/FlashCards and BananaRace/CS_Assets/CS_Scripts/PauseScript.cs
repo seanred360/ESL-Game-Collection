@@ -13,18 +13,13 @@ public class PauseScript : MonoBehaviour {
     void Awake()
     {
         // Activate the pause canvas early on, so it can detect info about sound volume state
-        //if (pauseCanvas) pauseCanvas.gameObject.SetActive(true);
+        
+        if (pauseCanvas) pauseCanvas.SetActive(false);
     }
 
     void Start()
     {
-        // Disable multitouch so that we don't tap two answers at the same time
         //Input.multiTouchEnabled = false;
-
-        // Cache the current event system so we can position the cursor correctly
-        //eventSystem = UnityEngine.EventSystems.EventSystem.current;
-
-        //if (pauseCanvas) pauseCanvas.gameObject.SetActive(false);
     }
 
     public void Pause(bool showMenu)
@@ -49,8 +44,6 @@ public class PauseScript : MonoBehaviour {
 
     public void Unpause()
     {
-        if (isPaused == true)
-        {
             isPaused = false;
 
             //Set timescale back to the current game speed
@@ -64,7 +57,6 @@ public class PauseScript : MonoBehaviour {
 
             if (GameObject.FindGameObjectWithTag("ButtonTag1"))
                 ButtonController.EnableButton();
-        }
     }
 
     public void UnFreezeTime()
@@ -72,8 +64,4 @@ public class PauseScript : MonoBehaviour {
         Time.timeScale = 1;
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }

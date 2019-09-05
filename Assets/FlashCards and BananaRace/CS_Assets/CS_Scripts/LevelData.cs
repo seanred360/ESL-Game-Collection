@@ -45,8 +45,11 @@ public sealed class LevelData
     {
         LevelData.Singleton.babyMode = onOff;
     }
-    public void hello()
-    {
 
+    public void QuitGame()
+    {
+        Debug.Log("quit game");
+
+        Application.Quit();
     }
 }
