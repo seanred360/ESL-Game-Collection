@@ -12,6 +12,7 @@ public class PauseScript : MonoBehaviour {
 
     void Awake()
     {
+        pauseCanvas = GameObject.FindGameObjectWithTag("PauseCanvas");
         if (pauseCanvas) pauseCanvas.SetActive(false);
     }
 
@@ -20,7 +21,7 @@ public class PauseScript : MonoBehaviour {
         Input.multiTouchEnabled = false;
     }
 
-    public void Pause(bool showMenu)
+    public void Pause()
     {
         isPaused = true;
 
@@ -31,10 +32,8 @@ public class PauseScript : MonoBehaviour {
         //if (eventSystem) buttonBeforePause = eventSystem.currentSelectedGameObject;
 
         //Show the pause screen and hide the game screen
-        if (showMenu == true)
-        {
-            if (pauseCanvas) pauseCanvas.gameObject.SetActive(true);
-        }
+  
+        if (pauseCanvas) pauseCanvas.gameObject.SetActive(true);
 
         if (GameObject.FindGameObjectWithTag("ButtonTag1"))
             ButtonController.DisableButton();
