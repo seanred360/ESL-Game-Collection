@@ -549,6 +549,7 @@ namespace TwoOfAKindGame
                 timerIcon.gameObject.SetActive(false);
                 timerText.gameObject.SetActive(false);
             }
+            else
             // Update the time only if we have a timer icon canvas assigned
             if (timerIcon)
             {
