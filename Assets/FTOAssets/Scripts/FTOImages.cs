@@ -15,7 +15,7 @@ namespace FindTheObject
 
         void Awake()
         {
-            _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
 
             if (_imagePath == "0")
             {
