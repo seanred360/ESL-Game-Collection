@@ -25,6 +25,8 @@ public class UIParticleDepthObject : MonoBehaviour
     public int ditheringSteps = 255;
     [Range(0f, 1f)]
     public float alphaTestTreshold = 0.05f;
+	[Range(0f, 1f)]
+	public float translucencyFactor = 1f;
 
     public Shader depthRenderShader;
     public Shader cullRenderShader;
@@ -227,6 +229,11 @@ public class UIParticleDepthObject : MonoBehaviour
             mat.EnableKeyword("ALPHAMODE_DITHERING");
             mat.SetFloat("_DitheringStep", 1f / ditheringSteps);
         }
+		else if(alphaMode == UIParticleMaskAlphaMode.Translucency)
+		{
+			mat.EnableKeyword("ALPHAMODE_TRANSLUCENCY");
+			mat.SetFloat("_TranslucencyFactor", translucencyFactor);
+		}
         else
         {
             mat.EnableKeyword("ALPHAMODE_NOALPHA");

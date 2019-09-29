@@ -35,7 +35,12 @@ public class UIParticleDepthObjectEditor : Editor
             if(depthObj.alphaMode == UIParticleMaskAlphaMode.Dithering)
             {
                 depthObj.ditheringSteps = EditorGUILayout.IntSlider("Alpha dithering steps", depthObj.ditheringSteps, 1, 255);
-            }
+			}
+
+			if(depthObj.alphaMode == UIParticleMaskAlphaMode.Translucency)
+			{
+				depthObj.translucencyFactor = EditorGUILayout.Slider("Visibility", depthObj.translucencyFactor, 0f, 1f);
+			}
 
             if(depthObj.renderMode == UIParticleMaskRenderMode.CullingMask)
             {

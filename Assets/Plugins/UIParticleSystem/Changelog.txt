@@ -31,7 +31,7 @@ Version 1.14
 -Fixed depth in case of multiple overlapping images
 
 Version 1.15
--Added Unity 2018.1 support
+-Added Unity 2018.1+ support
 -Added error box on bad setup of canvas
 
 Version 1.16
@@ -39,3 +39,12 @@ Version 1.16
 
 Version 1.17
 -Fix for sprite Multiple mode
+
+Version 1.18
+-Fix added missing editor script for RectTrans follower
+
+Version 1.19
+-Fix compile error on some of IOS Editor Unity versions
+
+Version 1.23
+-Support for semi-transparent/translucent culling masks and depth objects

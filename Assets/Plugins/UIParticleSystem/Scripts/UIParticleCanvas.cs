@@ -20,7 +20,7 @@ public class UIParticleCanvas : MonoBehaviour
     private float minDepth, maxDepth;
     private Vector2 lastScreenSize;
 
-    protected void OnAwake()
+    protected void Awake()
     {
         SetDirty();
         Trans = transform;
@@ -62,13 +62,25 @@ public class UIParticleCanvas : MonoBehaviour
     }
 
     protected void OnDestroy()
-    {
-        if(mask)
+	{
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.delayCall += () =>
+		{
+			if(mask)
+				DestroyImmediate(mask);
+
+			if(maskCamera)
+				DestroyImmediate(maskCamera.gameObject);
+		};
+#else
+		if(mask)
             DestroyImmediate(mask);
 
         if (maskCamera)
             DestroyImmediate(maskCamera.gameObject);
-    }
+#endif
+
+	}
 
     public void SetDirty()
     {

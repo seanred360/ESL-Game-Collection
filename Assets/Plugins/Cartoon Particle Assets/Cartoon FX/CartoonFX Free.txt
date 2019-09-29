@@ -1,6 +1,6 @@
 ﻿Cartoon FX Free, version 1.01
-2018/06/05
-© 2018 - Jean Moreno
+2019/03/20
+© 2019 - Jean Moreno
 =============================
 
 QUICK START
@@ -56,6 +56,10 @@ jean.moreno.public+unity@gmail.com
 
 RELEASE NOTES
 -------------
+1.03
+- Welcome Screen fix for Unity 2019.1
+- Removed 'JMOAssets.dll', became obsolete with the Asset Store update notification system
+
 1.02
 - fixed small API deprecation as of Unity 2017.4+
 

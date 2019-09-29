@@ -16,6 +16,6 @@ namespace UIParticleEnums
 
     public enum UIParticleMaskAlphaMode
     {
-        AlphaTest, Dithering, NoAlpha
+        AlphaTest, Dithering, NoAlpha, Translucency
     }
 }

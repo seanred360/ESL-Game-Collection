@@ -6,18 +6,19 @@
 		_MaskVal("_MaskVal", Range(0,1)) = 0
 		[HideInInspector]_AlphaTestTreshold("_AlphaTestTreshold", Float) = 0
 		[HideInInspector]_DitheringStep("_DitheringStep", Float) = 0
+		[HideInInspector]_TranslucencyFactor("_TranslucencyFactor", Float) = 1
 	}
 	SubShader
 	{
 		Tags { "RenderType"="Opaque" "PreviewType"="Plane" }
-		ColorMask A
+		ColorMask BA
 
 		Pass 
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile ALPHAMODE_NOALPHA ALPHAMODE_ALPHATEST ALPHAMODE_DITHERING
+			#pragma multi_compile ALPHAMODE_NOALPHA ALPHAMODE_ALPHATEST ALPHAMODE_DITHERING ALPHAMODE_TRANSLUCENCY
 			
 			#include "UnityCG.cginc"
 			#include "../UIDepthLib.cginc"
@@ -38,6 +39,9 @@
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 			fixed _MaskVal;
+		#if ALPHAMODE_TRANSLUCENCY
+			fixed _TranslucencyFactor;
+		#endif
 			
 			v2f vert (appdata v)
 			{
@@ -52,7 +56,11 @@
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
 				discardMaskByAlpha(col.a, i.screenPos);
+			#if ALPHAMODE_TRANSLUCENCY
+				return fixed4(0,0,col.a * _TranslucencyFactor,_MaskVal);
+			#else
 				return fixed4(0,0,0,_MaskVal);
+			#endif
 			}
 			ENDCG
 		}

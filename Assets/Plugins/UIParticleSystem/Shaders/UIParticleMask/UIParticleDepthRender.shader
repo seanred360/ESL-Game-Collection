@@ -5,18 +5,19 @@
 		_MainTex("_MainTex", 2D) = "white" {}
 		[HideInInspector]_AlphaTestTreshold("_AlphaTestTreshold", Float) = 0
 		[HideInInspector]_DitheringStep("_DitheringStep", Float) = 0
+		[HideInInspector]_TranslucencyFactor("_TranslucencyFactor", Float) = 1
 	}
 	SubShader
 	{
 		Tags { "RenderType"="Opaque" "PreviewType"="Plane" }
-		ColorMask R
+		ColorMask RG
 
 		Pass
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile ALPHAMODE_NOALPHA ALPHAMODE_ALPHATEST ALPHAMODE_DITHERING
+			#pragma multi_compile ALPHAMODE_NOALPHA ALPHAMODE_ALPHATEST ALPHAMODE_DITHERING ALPHAMODE_TRANSLUCENCY
 
 			#include "UnityCG.cginc"
 			#include "../UIDepthLib.cginc"
@@ -40,6 +41,10 @@
 			float _UIParticleCanvasZMin;
 			float _UIParticleCanvasZMax;
 			
+		#if ALPHAMODE_TRANSLUCENCY
+			fixed _TranslucencyFactor;
+		#endif
+			
 			v2f vert (appdata v)
 			{
 				v2f o;
@@ -55,7 +60,11 @@
 				fixed4 col = tex2D(_MainTex, i.uv);
 				discardMaskByAlpha(col.a, i.screenPos);
 				fixed zDepthVal = saturate((i.worldZPos - _UIParticleCanvasZMin) / (_UIParticleCanvasZMax - _UIParticleCanvasZMin));
+			#if ALPHAMODE_TRANSLUCENCY
+				return fixed4(zDepthVal,col.a * _TranslucencyFactor,0,0);
+			#else
 				return fixed4(zDepthVal,0,0,0);
+			#endif
 			}
 			ENDCG
 		}

@@ -1,7 +1,7 @@
 ﻿#ifndef UI_DEPTH_LIB
 #define UI_DEPTH_LIB
 
-#if defined(ALPHAMODE_NOALPHA) || defined(ALPHAMODE_ALPHATEST) || defined(ALPHAMODE_DITHERING)
+#if defined(ALPHAMODE_ALPHATEST) || defined(ALPHAMODE_DITHERING)
 	uniform fixed _AlphaTestTreshold;//[0-1]
 	uniform fixed _DitheringStep;//(0-1]
 
@@ -26,11 +26,12 @@
 		float2 pos = screenPos.xy / screenPos.w;
 		pos *= _ScreenParams.xy;
 		clip(alpha - thresholdMatrix[fmod(pos.x, 4)] * rowAccess[fmod(pos.y, 4)]);
-	#else //NoAlpha
-		//no cliping
 	#endif
 	}
-
+#else//noalpha and translucency
+	inline void discardMaskByAlpha(fixed alpha, float4 screenPos)
+	{
+    }
 #endif //UI depth mask
 
 

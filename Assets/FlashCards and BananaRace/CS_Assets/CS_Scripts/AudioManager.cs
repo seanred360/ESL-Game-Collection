@@ -8,19 +8,25 @@ using UnityEngine;
         public AudioSource Music;
         public AudioSource SFX;
         public AudioSource Voice;
+        public AudioSource Points;
 
         public float MasterVol = 1;
         public float MusicVol = 1;
         public float SFXVol = 1;
         public float VoiceVol = 1;
+        public float PointsVol = 1;
 
         public int MIndex = 0;
         public int SIndex = 0;
         public int VIndex = 0;
+        public int PIndex = 0;
 
         public AudioClip[] MClips;// music
         public AudioClip[] SClips;// sfx
         public AudioClip[] VClips;// voice
+        public AudioClip[] PClips;
+
+        float audioPitch = 1;
 
         public void PlayMusic()
         {
@@ -62,6 +68,28 @@ using UnityEngine;
                     SFX.ignoreListenerVolume = true;
                     SFX.PlayOneShot(SClips[useIndex], SFXVol);
                 }
+            }
+        }
+
+        public void PlayPointsSound(int useIndex)
+        {
+            if (Points != null && PClips != null)
+            {
+                if (MasterVol <= 1)
+                {
+                    Points.pitch = audioPitch;
+                    Points.clip = PClips[useIndex];
+                    Points.ignoreListenerVolume = false;
+                    Points.PlayOneShot(PClips[useIndex], PointsVol);
+                }
+                else
+                {
+                    Points.pitch = audioPitch;
+                    Points.clip = PClips[useIndex];
+                    Points.ignoreListenerVolume = true;
+                    Points.PlayOneShot(PClips[useIndex], PointsVol);
+                }
+                audioPitch += .1f;
             }
         }
 

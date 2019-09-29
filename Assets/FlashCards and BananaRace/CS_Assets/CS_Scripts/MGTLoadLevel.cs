@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace MatchingGameTemplate
+namespace BombDrawGame
 {
 	/// <summary>
 	/// Includes functions for loading levels and URLs. It's intended for use with UI Buttons
@@ -99,7 +99,7 @@ namespace MatchingGameTemplate
 		/// </summary>
 		public void RestartLevel()
 		{
-			Time.timeScale = 1;
+            Time.timeScale = 1;
 
 			// If there is a sound, play it from the source
 			if ( soundSource && soundLoad )    soundSource.GetComponent<AudioSource>().PlayOneShot(soundLoad);
@@ -107,13 +107,17 @@ namespace MatchingGameTemplate
 			// Execute the function after a delay
 			Invoke("ExecuteRestartLevel", loadDelay);
 		}
-		
-		/// <summary>
-		/// Executes the Load Level function
-		/// </summary>
-		void ExecuteRestartLevel()
+
+        /// <summary>
+        /// Executes the Load Level function
+        /// </summary>
+        void ExecuteRestartLevel()
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Data.Singleton.isGameOver = false;
+            Data.Singleton.isAtMid = false;
+            Data.Singleton.isJumping = false;
+            Data.Singleton.isWalking = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
 		/// <summary>
@@ -121,7 +125,7 @@ namespace MatchingGameTemplate
 		/// </summary>
 		public void StartGame()
 		{
-			if ( gameController )    gameController.SendMessage("StartGame");
+			if ( gameController )    gameController.SendMessage("Reinitialize");
 		}
 	}
 }
