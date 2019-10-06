@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
             clone.GetComponent<Animator>().Play("HitBlock");
             ChangeScore(questionsList.currentQuestion.points);
 
-            if (GetComponent<QuestionsList>().currentQuestion.fact == "bomb")
+            if (GetComponent<QuestionsList>().currentQuestion.isBomb == true)
             {
                 audioManager.PlaySFX(0);
                 StartCoroutine(GameOverRoutine());

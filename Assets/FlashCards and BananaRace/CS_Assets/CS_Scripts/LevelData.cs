@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public sealed class LevelData
 {
     public static LevelData instance;
