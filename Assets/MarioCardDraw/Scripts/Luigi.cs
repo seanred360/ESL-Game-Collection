@@ -15,7 +15,6 @@ public class Luigi : MonoBehaviour
     public float duration = .3f;
     public GameObject collisionParticle;
     public Transform headPos;
-    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +22,6 @@ public class Luigi : MonoBehaviour
         startPos = transform.position;
         anim = GetComponent<Animator>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        audioManager = GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -31,13 +29,13 @@ public class Luigi : MonoBehaviour
         if (CanPlaySFX())
             if (GetComponent<Animator>().GetBool("isWalking") == true)
             {
-                audioManager.PlaySFX(0);
+                GetComponent<AudioManager>().PlaySFX(0);
             }
     }
 
     bool CanPlaySFX()
     {
-        if (audioManager.SFX.GetComponent<AudioSource>().isPlaying)
+        if (GetComponent<AudioManager>().SFX.GetComponent<AudioSource>().isPlaying)
         {
             return false;
         }
@@ -65,7 +63,7 @@ public class Luigi : MonoBehaviour
     {
         if (collision.gameObject.tag == "DisableThis")
         {
-            audioManager.PlaySFX(2);
+            GetComponent<AudioManager>().PlaySFX(2);
             gameController.ChooseACard();
             Instantiate(collisionParticle, headPos.position, Quaternion.identity);
             GetComponent<Animator>().Play("HitHead");
@@ -87,8 +85,8 @@ public class Luigi : MonoBehaviour
     {
         if (Data.Singleton.isAtMid == false)
         {
-            MarioCardDraw.ButtonController.DisableButton();
-            MarioCardDraw.ButtonController.HideStopButton();
+            ButtonController.DisableButton();
+            ButtonController.HideStopButton();
             GetComponent<Animator>().SetBool("isWalking", true);
             GetComponent<Rigidbody2D>().DOMove(destination, timeToWalk).OnComplete(StopWalking);
         }
@@ -99,8 +97,8 @@ public class Luigi : MonoBehaviour
     {
         if (Data.Singleton.isAtMid == true && Data.Singleton.isGameOver == false)
         {
-            MarioCardDraw.ButtonController.DisableButton();
-            MarioCardDraw.ButtonController.HideStopButton();
+            ButtonController.DisableButton();
+            ButtonController.HideStopButton();
             Data.Singleton.isAtMid = false;
             GetComponent<Animator>().SetBool("isWalking", true);
             GetComponent<Rigidbody2D>().DOMove(startPos, timeToWalk).OnComplete(StopWalkingBack);
@@ -109,10 +107,10 @@ public class Luigi : MonoBehaviour
 
     public void Jump()
     {
-        MarioCardDraw.ButtonController.DisableButton();
-        MarioCardDraw.ButtonController.HideStopButton();
+        ButtonController.DisableButton();
+        ButtonController.HideStopButton();
         Data.Singleton.isJumping = true;
-        audioManager.PlaySFX(1);
+        GetComponent<AudioManager>().PlaySFX(1);
         GetComponent<Animator>().SetBool("isJumping", true);
         GetComponent<Rigidbody2D>().DOMoveY(to, duration, false);
     }
@@ -122,7 +120,7 @@ public class Luigi : MonoBehaviour
         Data.Singleton.isWalking = false;
         transform.position = gameController.midPoint.position;
         GetComponent<Animator>().SetBool("isWalking", false);
-        audioManager.SFX.GetComponent<AudioSource>().Stop();
+        GetComponent<AudioManager>().SFX.GetComponent<AudioSource>().Stop();
         Jump();
     }
 
@@ -130,9 +128,9 @@ public class Luigi : MonoBehaviour
     {
         Data.Singleton.isWalking = false;
         GetComponent<Animator>().SetBool("isWalking", false);
-        audioManager.SFX.GetComponent<AudioSource>().Stop();
-        MarioCardDraw.ButtonController.EnableButton();
-        MarioCardDraw.ButtonController.ShowStopButton();
+        GetComponent<AudioManager>().SFX.GetComponent<AudioSource>().Stop();
+        ButtonController.EnableButton();
+        ButtonController.ShowStopButton();
     }
 
     void StopJumping()
@@ -141,8 +139,8 @@ public class Luigi : MonoBehaviour
         GetComponent<Animator>().SetBool("isJumping", false);
         if(Data.Singleton.isGameOver == false)
         {
-            MarioCardDraw.ButtonController.EnableButton();
-            MarioCardDraw.ButtonController.ShowStopButton();
+            ButtonController.EnableButton();
+            ButtonController.ShowStopButton();
         }
     }
 }

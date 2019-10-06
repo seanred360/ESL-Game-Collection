@@ -1,9 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-    public string tag = "ScoreText";
     internal float instanceTime = 0;
 
     private void Awake()
@@ -21,16 +22,8 @@ public class ScoreText : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(SceneManager.GetActiveScene().name != "MarioCardDraw")
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void Start()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        //DontDestroyOnLoad(transform.gameObject);
     }
 }

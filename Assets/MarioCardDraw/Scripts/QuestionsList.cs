@@ -5,9 +5,9 @@ using System.Linq;
 
 public class QuestionsList : MonoBehaviour
 {
-    //public Question[] questions; // put questions here
-    public List<Question> questions;
+    public Question[] questions; // put questions here
     public static List<Question> unansweredQuestions; // send questions to this list
+
     public Question currentQuestion;
     public Question bomb;
     public Sprite bombSprite;
@@ -17,26 +17,27 @@ public class QuestionsList : MonoBehaviour
     public Text factText;
     public Image factImage;
 
-    private void Awake()
-    {
-        string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
-        if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
+    //private void Awake()
+    //{
+    //    string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+    //    if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
 
-        Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-        for (int i = 0; i < textures.Length; i++)
-        {
-            Question question = new Question();
-            question.factSprite = (Sprite)textures[i];
-            question.fact = textures[i].name;
-            question.points = 1;
-            questions.Add(question);
-        }
-        bomb.fact = "OH NO!";
-        bomb.factSprite = bombSprite;
-        bomb.isBomb = true;
-        questions.Add(bomb);
-        questions.Add(bomb);
-    }
+    //    Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
+    //    for (int i = 0; i < textures.Length; i++)
+    //    {
+    //        Question question = new Question();
+    //        question.factSprite = (Sprite)textures[i];
+    //        question.fact = textures[i].name;
+    //        question.points = 1;
+    //        questions.Add(question);
+    //    }
+    //    bomb.fact = "OH NO!";
+    //    bomb.factSprite = bombSprite;
+    //    bomb.isBomb = true;
+    //    questions.Add(bomb);
+    //    questions.Add(bomb);
+    //}
+
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();

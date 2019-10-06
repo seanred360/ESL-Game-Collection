@@ -4,11 +4,7 @@ using UnityEngine.UI;
 public static class ButtonController
 {
     public static GameObject[] objs;
-
-    static void awake()
-    {
-        objs = GameObject.FindGameObjectsWithTag("ButtonTag1");
-    }
+    public static GameObject stopButton;
 
     public static void EnableButton()
     {
@@ -26,5 +22,18 @@ public static class ButtonController
         {
             ButtonTag1.GetComponent<Button>().interactable = false;
         }
+    }
+
+    public static void ShowStopButton()
+    {
+        if (stopButton == null)
+            stopButton = GameObject.FindGameObjectWithTag("StopButton");
+        stopButton.SetActive(true);
+    }
+    public static void HideStopButton()
+    {
+        if (stopButton == null)
+            stopButton = GameObject.FindGameObjectWithTag("StopButton");
+        stopButton.SetActive(false);
     }
 }

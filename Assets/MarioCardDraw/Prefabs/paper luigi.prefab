@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 8511330184875520482}
   - component: {fileID: 8511330184875520483}
   - component: {fileID: 7242972881757951860}
-  - component: {fileID: 8511330184875520492}
+  - component: {fileID: 1279564917515633185}
   - component: {fileID: 8511330184875520493}
   - component: {fileID: 8511330184875520494}
   m_Layer: 0
@@ -652,7 +652,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8511330184875520492
+--- !u!114 &1279564917515633185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -661,13 +661,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8511330185120056693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252841a0b9594334baf04eb2f876e6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 15367698c5cbcfd46b6c876b03fc6c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeToWalk: 2
   to: -2
   duration: 0.3
   collisionParticle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
+  headPos: {fileID: 8511330185120029009}
+  playerNumber: 2
 --- !u!82 &8511330184875520493
 AudioSource:
   m_ObjectHideFlags: 0
