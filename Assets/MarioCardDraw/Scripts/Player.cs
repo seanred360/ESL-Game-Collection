@@ -23,7 +23,6 @@ namespace MarioCardDraw
         // Start is called before the first frame update
         void Start()
         {
-            startPos = transform.position;
             anim = GetComponent<Animator>();
             audioManager = GetComponent<AudioManager>();
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -93,6 +92,7 @@ namespace MarioCardDraw
         {
             if (Data.Singleton.isAtMid == false)
             {
+                startPos = transform.position;// remembers where we began so we can move back later
                 ButtonController.DisableButton();
                 ButtonController.HideStopButton();
                 anim.SetBool("isWalking", true);

@@ -24,11 +24,12 @@ namespace BoardGame
 
         private void Awake()
         {
-             _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-            if(_imagePath == "0")
-            _imagePath = "KBA/u1";
-            Debug.Log(_imagePath);
-
+            string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+            if (_imagePath == "0")
+            {
+                _imagePath = "KBA/u1";
+                Debug.Log("Can't find image path");
+            }
             Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
             loadedSprites = new Sprite[textures.Length];
             for (int i = 0; i < textures.Length; i++)
