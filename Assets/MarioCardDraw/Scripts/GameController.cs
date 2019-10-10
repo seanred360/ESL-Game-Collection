@@ -30,6 +30,9 @@ public class GameController : MonoBehaviour
     int numberToDrop;
     public Canvas curtain;
     public Animator initCurtain;
+    public GameObject greenPipePrefab;
+    public Transform greenPipeSpawn;
+    GameObject greenPipeClone;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,10 +44,6 @@ public class GameController : MonoBehaviour
         players.Add(peach.GetComponent<Player>());
         players.Add(goombella.GetComponent<Player>());
 
-        //if (GameObject.Find("P1ScoreText")) P1ScoreText = GameObject.Find("P1ScoreText").GetComponent<Text>();
-        //if (GameObject.Find("P2ScoreText")) P2ScoreText = GameObject.Find("P2ScoreText").GetComponent<Text>();
-        //if (GameObject.Find("P3ScoreText")) P3ScoreText = GameObject.Find("P3ScoreText").GetComponent<Text>();
-        //if (GameObject.Find("P4ScoreText")) P4ScoreText = GameObject.Find("P4ScoreText").GetComponent<Text>();
         UpdateScore();
         P1ScoreAddText = GameObject.Find("P1ScoreAddText").GetComponent<Text>();
         P1ScoreAddText.gameObject.SetActive(false);
@@ -57,11 +56,6 @@ public class GameController : MonoBehaviour
 
         audioManager = GetComponent<AudioManager>();
         if (Data.Singleton.turn == 1) { currentScoreText = P1ScoreText; currentScore = Data.P1Score; }
-        //else { currentScoreText = P2ScoreText; currentScore = Data.P2Score; }
-        //P1ScoreText.GetComponent<Text>().text = Data.P1Score.ToString();
-        //P2ScoreText.GetComponent<Text>().text = Data.P2Score.ToString();
-        //P3ScoreText.GetComponent<Text>().text = Data.P3Score.ToString();
-        //P4ScoreText.GetComponent<Text>().text = Data.P4Score.ToString();
     }
 
     public void SetNumberOfPlayers( int num)
@@ -290,7 +284,7 @@ public class GameController : MonoBehaviour
             Data.Singleton.isGameOver = true;
             ButtonController.DisableButton();
             ButtonController.HideStopButton();
-            greenPipe.SetActive(true);
+            greenPipeClone = Instantiate(greenPipePrefab, greenPipeSpawn.position,greenPipePrefab.transform.rotation);
             yield return new WaitForSeconds(3f);
             KillPlayer();
             //gameOverCanvas.gameObject.SetActive(true);
@@ -312,9 +306,10 @@ public class GameController : MonoBehaviour
                 //player.MoveBack();
             }
             FinishTurn();
-               greenPipe.transform.Find("PiranhaPlantHead").gameObject.SetActive(false);
-            greenPipe.SetActive(false);
+            //greenPipe.transform.Find("PiranhaPlantHead").gameObject.SetActive(false);
+            //greenPipe.SetActive(false);
             yield return new WaitForSeconds(5f);
+            Destroy(greenPipeClone);
             curtain.gameObject.SetActive(false);
         }
 }
