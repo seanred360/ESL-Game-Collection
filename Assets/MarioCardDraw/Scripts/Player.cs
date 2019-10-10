@@ -10,7 +10,7 @@ namespace MarioCardDraw
         Animator anim;
         AudioManager audioManager;
         Vector2 startPos;
-        public float to = -2f;
+        public float to;
         float jumpPower = 1f;
         int numJumps = 1;
         public float duration = .3f;
@@ -19,10 +19,14 @@ namespace MarioCardDraw
         public int playerNumber;
         bool canHitBlock = true;
         public GameObject scoreUI;
+        BoxCollider2D boxCollider2D;
+        float aspectModifier;
 
         // Start is called before the first frame update
         void Start()
         {
+            boxCollider2D = GetComponent<BoxCollider2D>();
+            Debug.Log(to + "to");
             anim = GetComponent<Animator>();
             audioManager = GetComponent<AudioManager>();
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -53,6 +57,14 @@ namespace MarioCardDraw
             {
                 StopJumping();
             }
+            if (collision.gameObject.tag == "ButtonTag1" && canHitBlock)
+            {
+                audioManager.PlaySFX(2);
+                gameController.ChooseACard();
+                Instantiate(collisionParticle, headPos.position, Quaternion.identity);
+                //anim.Play("HitHead");
+                canHitBlock = false;
+            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
@@ -67,14 +79,14 @@ namespace MarioCardDraw
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "ButtonTag1" && canHitBlock)
-            {
-                audioManager.PlaySFX(2);
-                gameController.ChooseACard();
-                Instantiate(collisionParticle, headPos.position, Quaternion.identity);
-                //anim.Play("HitHead");
-                canHitBlock = false;
-            }
+            //if (collision.gameObject.tag == "ButtonTag1" && canHitBlock)
+            //{
+            //    audioManager.PlaySFX(2);
+            //    gameController.ChooseACard();
+            //    Instantiate(collisionParticle, headPos.position, Quaternion.identity);
+            //    anim.Play("HitHead");
+            //    canHitBlock = false;
+            //}
             if (collision.gameObject.tag == "Mid")
             {
                 Data.Singleton.isAtMid = true;
@@ -120,7 +132,18 @@ namespace MarioCardDraw
             Data.Singleton.isJumping = true;
             audioManager.PlaySFX(1);
             anim.SetBool("isJumping", true);
+            Vector3 colliderCenter = Vector3.Scale(transform.localScale, boxCollider2D.offset);
+            Vector3 colliderPosition = transform.localPosition + colliderCenter;
+            Vector3 colliderSize = Vector3.Scale(transform.localScale, boxCollider2D.size);
+            float colliderBottom = colliderPosition.y - (colliderSize.y / 2);
+            float colliderTop = colliderPosition.y + (colliderSize.y / 2);
+            float colliderLeft = colliderPosition.x - (colliderSize.x / 2);
+            float colliderRight = colliderPosition.x + (colliderSize.x / 2);
+            if (Camera.main.aspect == 4f / 3f) { aspectModifier = .01666667f; }
+            if (Camera.main.aspect == 16f / 9f) { aspectModifier = .02222222f; }
+            to = (Card.bottomPos - colliderTop) * aspectModifier;
             GetComponent<Rigidbody2D>().DOMoveY(to, duration, false);
+            //GetComponent<Rigidbody2D>().DOMoveY(to + GetComponent<BoxCollider2D>().offset.y - GetComponent<BoxCollider2D>().size.y, duration, false);
         }
 
         void StopWalking()
