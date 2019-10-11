@@ -11,6 +11,7 @@ public class QuestionsList : MonoBehaviour
     public Question currentQuestion;
     public Question bomb;
     GameController gameController;
+    public bool isKidsBeginner;
 
     [SerializeField]
     public Text factText;
@@ -18,17 +19,19 @@ public class QuestionsList : MonoBehaviour
 
     private void Awake()
     {
-        string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
-        if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
-
-        Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-        for (int i = 0; i < textures.Length; i++)
+        if(isKidsBeginner)
         {
-            Question question = new Question();
-            question.factSprite = (Sprite)textures[i];
-            question.fact = textures[i].name;
-            question.points = 1;
-            questions.Add(question);
+            string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+            if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
+            Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
+            for (int i = 0; i < textures.Length; i++)
+            {
+                Question question = new Question();
+                question.factSprite = (Sprite)textures[i];
+                question.fact = textures[i].name;
+                question.points = 1;
+                questions.Add(question);
+            }
         }
         questions.Add(bomb);
         questions.Add(bomb);

@@ -26,7 +26,6 @@ namespace MarioCardDraw
         void Start()
         {
             boxCollider2D = GetComponent<BoxCollider2D>();
-            Debug.Log(to + "to");
             anim = GetComponent<Animator>();
             audioManager = GetComponent<AudioManager>();
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -141,7 +140,7 @@ namespace MarioCardDraw
             float colliderRight = colliderPosition.x + (colliderSize.x / 2);
             if (Camera.main.aspect == 4f / 3f) { aspectModifier = .01666667f; }
             if (Camera.main.aspect == 16f / 9f) { aspectModifier = .02222222f; }
-            to = (Card.bottomPos - colliderTop) * aspectModifier;
+            to = (Card.bottomPos) * aspectModifier + 1;
             GetComponent<Rigidbody2D>().DOMoveY(to, duration, false);
             //GetComponent<Rigidbody2D>().DOMoveY(to + GetComponent<BoxCollider2D>().offset.y - GetComponent<BoxCollider2D>().size.y, duration, false);
         }
