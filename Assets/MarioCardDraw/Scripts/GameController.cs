@@ -285,6 +285,7 @@ public class GameController : MonoBehaviour
             ButtonController.DisableButton();
             ButtonController.HideStopButton();
             greenPipeClone = Instantiate(greenPipePrefab, greenPipeSpawn.position,greenPipePrefab.transform.rotation);
+            Destroy(greenPipeClone,10f);
             yield return new WaitForSeconds(3f);
             KillPlayer();
             //gameOverCanvas.gameObject.SetActive(true);
@@ -309,7 +310,6 @@ public class GameController : MonoBehaviour
             //greenPipe.transform.Find("PiranhaPlantHead").gameObject.SetActive(false);
             //greenPipe.SetActive(false);
             yield return new WaitForSeconds(5f);
-            Destroy(greenPipeClone);
             curtain.gameObject.SetActive(false);
         }
 }
