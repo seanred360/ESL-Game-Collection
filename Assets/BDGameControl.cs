@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BDGameControl : MonoBehaviour
 {
+    public List<GameObject> unshuffledBombs;
     public GameObject[] bombs;
     public GameObject[] vocabPics;
     public AudioManager audioManager;
@@ -27,10 +28,9 @@ public class BDGameControl : MonoBehaviour
 
     private void Awake()
     {
-        //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
         if (_imagePath == "0")
-            _imagePath = "KBA/u11";
+            _imagePath = "KBA/u11/words";
  
         object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
         loadedSprites = new Sprite[textures.Length];
@@ -41,7 +41,17 @@ public class BDGameControl : MonoBehaviour
 
         for (int i = 0; i < textures.Length; i++)
         {
-           vocabPics[i].GetComponent<Image>().sprite = loadedSprites[i];
+            vocabPics[i].GetComponent<Image>().sprite = loadedSprites[i];
+        }
+
+        Debug.Log("textures " + loadedSprites.Length + " bombs" + bombs.Length);
+        if(loadedSprites.Length < bombs.Length)
+        {
+            for (int i = loadedSprites.Length + 1; i < bombs.Length; i++)
+            {
+                Debug.Log("i" + i);
+                vocabPics[i].GetComponent<Image>().sprite = loadedSprites[Random.Range(0,loadedSprites.Length)];
+            }
         }
         ShufflePictures();
     }
@@ -57,6 +67,7 @@ public class BDGameControl : MonoBehaviour
     public void PickNumber()
     {
         numberChosen = Random.Range(0, bombs.Length);
+        //numberChosen = 100;
     }
 
     public void CheckAnswer(int useIndex)
@@ -90,12 +101,21 @@ public class BDGameControl : MonoBehaviour
 
     void ShufflePictures() //shuffle the pictures location
     {
-        for (int i = 0; i < bombs.Length; i++)
+        //for (int i = 0; i < bombs.Length; i++)
+        //{
+        //    Vector3 temp = bombs[i].transform.position;
+        //    int randomIndex = Random.Range(0, bombs.Length);
+        //    bombs[i].transform.position = bombs[randomIndex].transform.position;
+        //    bombs[randomIndex].transform.position = temp;
+        //}
+
+        for (int i = 0; i < unshuffledBombs.Count; i++)
         {
-            Vector3 temp = bombs[i].transform.position;
-            int randomIndex = Random.Range(0, bombs.Length);
-            bombs[i].transform.position = bombs[randomIndex].transform.position;
-            bombs[randomIndex].transform.position = temp;
+            Vector3 temp = unshuffledBombs[i].transform.position;
+            int randomIndex = Random.Range(0, unshuffledBombs.Count);
+            unshuffledBombs[i].transform.position = unshuffledBombs[randomIndex].transform.position;
+            unshuffledBombs[randomIndex].transform.position = temp;
+            unshuffledBombs.RemoveAt(i);
         }
     }
 }

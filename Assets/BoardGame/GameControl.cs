@@ -27,6 +27,7 @@ namespace BoardGame
             player1.GetComponent<FollowThePath>().moveAllowed = false;
             player2.GetComponent<FollowThePath>().moveAllowed = false;
 
+            whoWinsTextShadow.gameObject.SetActive(false);
             player1MoveText.gameObject.SetActive(true);
             player2MoveText.gameObject.SetActive(false);
             ohNoDialogueBox.gameObject.SetActive(false);

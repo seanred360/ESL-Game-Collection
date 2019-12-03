@@ -21,7 +21,7 @@ public class QuestionsList : MonoBehaviour
     {
         if(isKidsBeginner)
         {
-            string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+            string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
             if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
             Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
             for (int i = 0; i < textures.Length; i++)

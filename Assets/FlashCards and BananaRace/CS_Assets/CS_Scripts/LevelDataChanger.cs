@@ -14,6 +14,11 @@ public class LevelDataChanger : MonoBehaviour
         LevelData.Singleton.bookName = (name);
     }
 
+    public void ChangeWordGroupToUse(string name)
+    {
+        LevelData.Singleton.wordGroupToUse = (name);
+    }
+
     public void EnableTheButtons()
     {
         ButtonController.EnableButton();
@@ -27,8 +32,14 @@ public class LevelDataChanger : MonoBehaviour
     {
         LevelData.Singleton.babyMode = onOff;
     }
-    public void hello()
-    {
 
+    public void AddWords(bool onOff)
+    {
+        LevelData.Singleton.addWords = onOff;
+    }
+
+    public void AddPhonics(bool onOff)
+    {
+        LevelData.Singleton.addPhonics = onOff;
     }
 }

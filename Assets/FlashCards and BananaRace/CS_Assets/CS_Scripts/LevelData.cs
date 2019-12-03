@@ -5,7 +5,10 @@ public sealed class LevelData
     public int numberOfLevel;
     public string bookName;
     public string menuPath;
+    public string wordGroupToUse;
     public bool babyMode = false;
+    public bool addWords = true;
+    public bool addPhonics = true;
 
     public static LevelData Singleton
     {
@@ -27,6 +30,10 @@ public sealed class LevelData
     public void ChangeBookName(string name)
     {
         bookName = (name);
+    }
+    public void ChangeWordGroupToUse(string name)
+    {
+        wordGroupToUse = (name);
     }
 
     public void EnableTheButtons()

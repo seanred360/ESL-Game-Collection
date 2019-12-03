@@ -19,7 +19,7 @@ namespace MatchingGameTemplate
         void Awake()
         {
             //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
             if (_imagePath == "0")
                 _imagePath = "KBA/u11";
 

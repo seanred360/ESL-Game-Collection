@@ -117,6 +117,7 @@ namespace MatchingGameTemplate
 
         // Is the game over?
         internal bool isGameOver = false;
+         public bool endlessMode;
 
         [Tooltip("The level of the main menu that can be loaded after the game ends")]
         public string mainMenuLevelName = "CS_StartMenu";
@@ -748,6 +749,7 @@ namespace MatchingGameTemplate
                 currentLevel++;
 
                 // Increase the number of pairs in the level
+                if(pairsCount < 4)
                 pairsCount += pairsIncrease;
 
                 // Limit the number of pairs to the maximum value
@@ -762,10 +764,27 @@ namespace MatchingGameTemplate
                 else if (pairsType == "ImageSound") UpdateLevelImageSound();
                 else if (pairsType == "ImageImage") UpdateLevelImageImage();
             }
+            if (endlessMode == true && isGameOver == false)
+            {
+                currentPair = 0;
+                ShuffleList(pairsImageSound);
+                StartCoroutine("UpdateLevel");
+            }
             else // Otherwise if we finished all pairs in the game, go to the Victory screen
             {
                 // Run the victory event
                 StartCoroutine(Victory(0.5f));
+            }
+        }
+
+        public static void ShuffleList(List<PairImageSound> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int r = Random.Range(0, i);
+                PairImageSound tmp = list[i];
+                list[i] = list[r];
+                list[r] = tmp;
             }
         }
 

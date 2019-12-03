@@ -132,7 +132,7 @@ public class HSGGameController : MonoBehaviour
     void Start()
     {
         //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
 
         Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
         shapeList = new Sprite[textures.Length];
