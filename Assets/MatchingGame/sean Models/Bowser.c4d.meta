@@ -113,6 +113,7 @@ ModelImporter:
     100214: Tongue2
     100216: WristL
     100218: WristR
+    100220: CINEMA_4D_Editor
     400000: AllRoot
     400002: ArmL1
     400004: ArmL2
@@ -223,6 +224,8 @@ ModelImporter:
     400214: Tongue2
     400216: WristL
     400218: WristR
+    400220: CINEMA_4D_Editor
+    2000000: CINEMA_4D_Editor
     2100000: HairMT
     2100002: MarioEyeMT
     2100004: EyeMT
@@ -251,37 +254,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BodyMT
-    second: {fileID: 2100000, guid: cea44f914de680d4a9f945e309f9d191, type: 2}
+    second: {fileID: 2100000, guid: 61639a0c1910d85409d483a455eb0d45, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BodyMT.1
-    second: {fileID: 2100000, guid: 7ff775d7757c9e6428f3819ac2b51752, type: 2}
+    second: {fileID: 2100000, guid: 61639a0c1910d85409d483a455eb0d45, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BodyMT.2
-    second: {fileID: 2100000, guid: f86e69df56d0e3646b0b0fd1325423d1, type: 2}
+    second: {fileID: 2100000, guid: 61639a0c1910d85409d483a455eb0d45, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EyeMT
-    second: {fileID: 2100000, guid: a66b381a95701284c9194a1393e096a0, type: 2}
+    second: {fileID: 2100000, guid: a889c2a994b113c42bbafec01cfb1b62, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EyeMT.1
-    second: {fileID: 2100000, guid: 1032584ae22793a47af25b038ddd94b9, type: 2}
+    second: {fileID: 2100000, guid: a889c2a994b113c42bbafec01cfb1b62, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HairMT
-    second: {fileID: 2100000, guid: ab5d0b1eb746296439ecb0745f086487, type: 2}
+    second: {fileID: 2100000, guid: 70b1484faa75ef142b01a4560a37a6ca, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MarioEyeMT
-    second: {fileID: 2100000, guid: adf330247b9b9d448ba02422ffc7d8a6, type: 2}
+    second: {fileID: 2100000, guid: 783f4d875b3bc1d419d1958df5d1501d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

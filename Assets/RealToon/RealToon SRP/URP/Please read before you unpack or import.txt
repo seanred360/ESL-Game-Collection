@@ -1,0 +1,35 @@
+RealToon V5.0.5 (URP)
+===========================================================
+Note:
+===========================================================
+
+Currently only "Default" and "Fade Transparency" are avaiable.
+Tessellation will be coming soon and refraction also.
+
+You can also use this for mobile games.
+
+Currently Shadow for Pointlight is not yet available on URP.
+
+===========================================================
+===========================================================
+
+(To use this you need):
+*Unity 2019.3.0 with URP V7.1.1 or latest Unity & URP Version.
+
+How To Update URP:
+1.Go to Window > Package Manager.
+2.Select "All Packages" then select "Universal RP" and select "Version 7.1.1" or latest.
+3.Click "Update" or "Update To".
+
+===========================================================
+New Options/Features for URP
+===========================================================
+
+- As of this version v5.0.5, none.
+
+===========================================================
+Fixed for URP
+===========================================================
+
+- Compile error when URP package updated to 7.1.1
+- Fixed no spotlight shadow.

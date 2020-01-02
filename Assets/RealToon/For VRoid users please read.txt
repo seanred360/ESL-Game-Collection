@@ -1,0 +1,12 @@
+There is a free helper or tool that will help you setup your VRoid character materials to use RealToon Shader.
+
+Visit the link below to download:
+https://gist.github.com/andreiagmu/3f4439a13c8ca5fc0ca0ff472acb514f
+
+(Recommended RealToon Version 5.0.5 or latest/later versions.)
+
+==============================================================================================================
+==============================================================================================================
+
+This one is to override properties:
+https://gist.github.com/andreiagmu/cfbc947357044ff1aa3b2689b92d1cbe

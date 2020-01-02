@@ -136,10 +136,10 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -377,7 +377,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightShoulder
       parentName: mixamorig:Spine2
-      position: {x: 0.15122573, y: 0.15216015, z: -0.008414359}
+      position: {x: 0.15122575, y: 0.15216015, z: -0.008414359}
       rotation: {x: -0.56467426, y: -0.4142403, z: 0.59697706, w: -0.3913647}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightArm
@@ -392,12 +392,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightHand
       parentName: mixamorig:RightForeArm
-      position: {x: -0, y: 0.3274713, z: 0}
+      position: {x: -0, y: 0.32747132, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftShoulder
       parentName: mixamorig:Spine2
-      position: {x: -0.15122573, y: 0.1517561, z: 0.008277873}
+      position: {x: -0.15122575, y: 0.15175611, z: 0.008277873}
       rotation: {x: 0.5972626, y: -0.39113015, z: 0.5657918, w: 0.4125218}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftArm
@@ -417,7 +417,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Neck
       parentName: mixamorig:Spine2
-      position: {x: -0, y: 0.20394607, z: 2.05086e-10}
+      position: {x: -0, y: 0.20394608, z: 2.05086e-10}
       rotation: {x: 0.012100367, y: 3.9878514e-14, z: 2.2787284e-13, w: 0.9999268}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Head
@@ -427,7 +427,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:HeadTop_End
       parentName: mixamorig:Head
-      position: {x: -0, y: 0.73656815, z: 0.106063984}
+      position: {x: -0, y: 0.73656815, z: 0.10606399}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftUpLeg
@@ -452,7 +452,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:LeftToe_End
       parentName: mixamorig:LeftToeBase
-      position: {x: -0, y: 0.10907681, z: 8.673617e-18}
+      position: {x: -0, y: 0.10907682, z: 8.673617e-18}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightUpLeg

@@ -6,7 +6,7 @@ namespace BoardGame
 {
     public class Dice : MonoBehaviour
     {
-
+        public GameObject p1Cam, p2Cam;
         public Sprite[] diceSides;
         private Image rend;
         public static int whosTurn = 1;
@@ -74,7 +74,8 @@ namespace BoardGame
             for (int i = 0; i <= 20; i++)
             {
                 //GetComponent<AudioSource>().Play();
-                BackRandomDiceSide = Random.Range(0, diceSides.Length);
+                //BackRandomDiceSide = Random.Range(0, diceSides.Length);
+                BackRandomDiceSide = 0;
                 //rend.sprite = diceSides[BackRandomDiceSide];
                 yield return new WaitForSeconds(0.05f);
             }
