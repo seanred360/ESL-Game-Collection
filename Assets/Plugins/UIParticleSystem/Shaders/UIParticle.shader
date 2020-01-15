@@ -23,9 +23,6 @@
 		[Toggle(SOFT_COLLISION_MODE)] _SoftCollisionMode("Enable Soft particle?", Float) = 0
 		_UISoftModeFadeSmooth("Soft particle factor", Range(0,5)) = 1
 			
-		[Space]
-		[Toggle(TRANSLUCENCY_MODE)] _TranslucencyMode("Enable UI Mask Translucency use?", Float) = 0
-
 		[HideInInspector][Toggle(USE_CLIPPING_MASK)] _UseClippingMask("UseClippingMask?", Float) = 0
 		[HideInInspector]_ClippingMaskVal("_ClippingMaskVal", Range(0,1)) = 1
 		[HideInInspector][KeywordEnum(Inside, Outside)] ClippingMode ("Clipping mode", Float) = 0
@@ -47,7 +44,6 @@
 			#pragma shader_feature SOFT_COLLISION_MODE
 			#pragma shader_feature HDR_MODE
 			#pragma shader_feature CLIPPINGMODE_INSIDE CLIPPINGMODE_OUTSIDE
-			#pragma shader_feature TRANSLUCENCY_MODE
 
 			#include "UnityCG.cginc"
 			#include "UIDepthLib.cginc"
@@ -123,29 +119,16 @@
 			precision4 frag (v2f i) : SV_Target
 			{
 			#if !defined(DISABLE_UI_CULLING)
-				fixed4 depthMask = tex2D(_UIDepthTex, i.depthTexUV);
-				fixed translucencyAdd = 0;
+				fixed2 depthMask = tex2D(_UIDepthTex, i.depthTexUV).ra;
+
 				#if USE_CLIPPING_MASK
 					#if CLIPPINGMODE_OUTSIDE
-						clip(abs(_ClippingMaskVal - depthMask.a) - 0.0039/*aprox 1/255*/);
+						clip(abs(_ClippingMaskVal - depthMask.g) - 0.0039/*aprox 1/255*/);
 					#else //inside
-						clip(0.0039/*aprox 1/255*/ - abs(_ClippingMaskVal - depthMask.a));
-					#endif
-					#if defined(TRANSLUCENCY_MODE)
-						translucencyAdd = (1 - depthMask.b) * step(abs(_ClippingMaskVal - depthMask.a), 0.0039/*aprox 1/255*/);
+						clip(0.0039/*aprox 1/255*/ - abs(_ClippingMaskVal - depthMask.g));
 					#endif
 				#endif
 						
-				#if defined(TRANSLUCENCY_MODE)
-					#if SOFT_COLLISION_MODE
-						float depthMaskZ = depthMask.r * (_UIParticleCanvasZMax - _UIParticleCanvasZMin) + _UIParticleCanvasZMin;
-						fixed softAlphaMul = saturate((depthMaskZ - i.worldZPos) * _UISoftModeFadeSmooth);
-						depthMask.g *= step(i.worldZPos, depthMaskZ);
-					#else
-						fixed zDepthVal = saturate((i.worldZPos - _UIParticleCanvasZMin) / (_UIParticleCanvasZMax - _UIParticleCanvasZMin));
-						depthMask.g *= step(depthMask.r, zDepthVal);
-					#endif
-				#else
 				#if SOFT_COLLISION_MODE
 					float depthMaskZ = depthMask.r * (_UIParticleCanvasZMax - _UIParticleCanvasZMin) + _UIParticleCanvasZMin;
 					clip(depthMaskZ - i.worldZPos);
@@ -155,7 +138,6 @@
 					clip(depthMask.r - zDepthVal);
 				#endif
 			#endif
-			#endif
 
 				precision4 col = tex2D(_MainTex, i.uv) * i.color;
 			#if COLORIZE
@@ -164,15 +146,8 @@
 			#if HDR_MODE
 				col.rgb *= _Intensity;
 			#endif
-
-			#if !defined(DISABLE_UI_CULLING)
-				#if defined(SOFT_COLLISION_MODE)
+			#if defined(SOFT_COLLISION_MODE) && !defined(DISABLE_UI_CULLING)
 				col.a *= softAlphaMul;
-				#endif
-
-				#if defined(TRANSLUCENCY_MODE)
-					col.a *= saturate(1.0 - (translucencyAdd + depthMask.g));
-				#endif
 			#endif
 				return col;
 			}

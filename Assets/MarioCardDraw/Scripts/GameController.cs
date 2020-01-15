@@ -236,6 +236,7 @@ public class GameController : MonoBehaviour
                     if (numberDropped >= numberToDrop)
                     {
                         canDropCoins = false;
+                        numberDropped = 0;
                     }
                 }
             }

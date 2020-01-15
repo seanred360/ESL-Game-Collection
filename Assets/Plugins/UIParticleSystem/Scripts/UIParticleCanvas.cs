@@ -62,25 +62,13 @@ public class UIParticleCanvas : MonoBehaviour
     }
 
     protected void OnDestroy()
-	{
-#if UNITY_EDITOR
-		UnityEditor.EditorApplication.delayCall += () =>
-		{
-			if(mask)
-				DestroyImmediate(mask);
-
-			if(maskCamera)
-				DestroyImmediate(maskCamera.gameObject);
-		};
-#else
-		if(mask)
+    {
+        if(mask)
             DestroyImmediate(mask);
 
         if (maskCamera)
             DestroyImmediate(maskCamera.gameObject);
-#endif
-
-	}
+    }
 
     public void SetDirty()
     {
