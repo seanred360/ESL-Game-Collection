@@ -20,7 +20,7 @@ public class GumGameManager : MonoBehaviour
     Sprite[] sprites;
     public List<Sprite> unselectedSprites;
 
-    private void Start()
+    private void Awake()
     {
         m_food = (Object.FindObjectsOfType<Food>() as Food[]).ToList();
 
@@ -39,13 +39,9 @@ public class GumGameManager : MonoBehaviour
         {
             sprites[i] = (Sprite)loadedSprites[i];
             unselectedSprites.Add(sprites[i]);
-            if(i < m_food.Count)
-            {
-                //m_food[i].transform.Find("Text").GetComponent<Text>().text = sprites[i].name;
-                //m_food[i].gameObject.GetComponent<AudioSource>().clip = (Resources.Load<AudioClip>("Sounds/" + sprites[i].name));
-            }
         }
 
+        // shuffle the words list to get different words every game
         for (int i = 0; i < m_food.Count; i++)
         {
             int rand = Random.Range(0, unselectedSprites.Count);

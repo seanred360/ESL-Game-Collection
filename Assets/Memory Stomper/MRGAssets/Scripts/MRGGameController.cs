@@ -125,7 +125,7 @@ namespace MemoryRepeatGame
                 Debug.Log("Can't find the image path");
             }
 
-            PlayerPrefs.DeleteKey(SceneManager.GetActiveScene().name + "HighScore");
+            //PlayerPrefs.DeleteKey(SceneManager.GetActiveScene().name + "HighScore");
             // Activate the pause canvas early on, so it can detect info about sound volume state
             if (pauseCanvas) pauseCanvas.gameObject.SetActive(true);
 
@@ -148,8 +148,6 @@ namespace MemoryRepeatGame
         /// </summary>
         void Start()
         {
-            audioManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioManager>();
-
             // Disable multitouch so that we don't tap two answers at the same time
             Input.multiTouchEnabled = false;
 

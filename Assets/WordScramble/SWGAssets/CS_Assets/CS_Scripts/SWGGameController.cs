@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using ScrambledWordGame.Types;
+using System.Collections.Generic;
 
 namespace ScrambledWordGame
 {
@@ -20,7 +21,7 @@ namespace ScrambledWordGame
         internal string[] words;
 
         [Tooltip("A list of all the words in the game. In this list each word has a text/image hint to accompany it. You can either have a list of word only, or words with hints, but not both")]
-        internal WordWithHints[] wordsWithHints = new WordWithHints[0];
+        public List<WordWithHints> wordsWithHints;
         internal Text textHintObject;
         internal Image imageHintObject;
         internal Button buttonHint;
@@ -269,10 +270,10 @@ namespace ScrambledWordGame
             foreach (Transform letterObject in lettersGrid) letterObject.gameObject.SetActive(false);
 
             //If we have words in the list, continue
-            if ( wordsWithHints.Length > 0 ) 
+            if ( wordsWithHints.Count > 0 ) 
             {
                 // Go through all the words in the list and find the longest word and shortest word
-                for (index = 0; index < wordsWithHints.Length; index++)
+                for (index = 0; index < wordsWithHints.Count; index++)
                 {
                     // If the current word is longer, record its length so we know when the list reaches the end ( longest word )
                     if (wordsWithHints[index].word.Length > longestWordLength) longestWordLength = wordsWithHints[index].word.Length;
@@ -425,16 +426,16 @@ namespace ScrambledWordGame
         /// Shuffles the specified words list, and returns it
         /// </summary>
         /// <param name="words">A list of words</param>
-        WordWithHints[] ShuffleWords(WordWithHints[] words)
+        List<WordWithHints> ShuffleWords(List<WordWithHints> words)
         {
             // Go through all the words and shuffle them
-            for (index = 0; index < wordsWithHints.Length; index++)
+            for (index = 0; index < wordsWithHints.Count; index++)
             {
                 // Hold the word in a temporary variable
                 WordWithHints tempword = wordsWithHints[index];
 
                 // Choose a random index from the question list
-                int randomIndex = UnityEngine.Random.Range(index, wordsWithHints.Length);
+                int randomIndex = UnityEngine.Random.Range(index, wordsWithHints.Count);
 
                 // Assign a random question from the list
                 wordsWithHints[index] = words[randomIndex];
@@ -567,7 +568,7 @@ namespace ScrambledWordGame
             currentWord = "";
 
             // Go through the word list and find the next word for the current letter count
-            for ( index = 0 ; index < wordsWithHints.Length ; index++ )
+            for ( index = 0 ; index < wordsWithHints.Count; index++ )
             {
                 // Check if this "word" is actually a sentence with more than one word
                 if ( wordsWithHints[index].word.Contains(" ") && mixWholeSentences == true )
@@ -746,7 +747,7 @@ namespace ScrambledWordGame
             if ( wordFound == false && currentWord.Length < longestWordLength && wordsCount != 1 )
             {
                 // Timeout for searching
-                int timeout = wordsWithHints.Length;
+                int timeout = wordsWithHints.Count;
 
                 // Keep looking for the next level letters count
                 while (wordFound == false && timeout > 0)

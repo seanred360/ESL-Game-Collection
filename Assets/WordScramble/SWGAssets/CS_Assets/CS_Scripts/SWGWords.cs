@@ -24,13 +24,13 @@ namespace ScrambledWordGame
             if ( gameController && words.Length > 0 )
             {
                 // Set the length of words-with-hints list based on the length of the words list
-                gameController.wordsWithHints = new WordWithHints[words.Length];
+                //gameController.wordsWithHints = new WordWithHints[words.Length];
 
                 // Go through all the words in the old list and assign the words to the new list
-                for (index = 0; index < gameController.wordsWithHints.Length; index++) gameController.wordsWithHints[index] = new WordWithHints();
+                for (index = 0; index < gameController.wordsWithHints.Count; index++) gameController.wordsWithHints[index] = new WordWithHints();
 
                 // Go through all the words in the old list and assign the words to the new list
-                for (index = 0; index < gameController.wordsWithHints.Length; index++) gameController.wordsWithHints[index].word = words[index];
+                for (index = 0; index < gameController.wordsWithHints.Count; index++) gameController.wordsWithHints[index].word = words[index];
             }
         }
 	}

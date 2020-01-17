@@ -31,6 +31,7 @@ public class FoodPicker : MonoBehaviour {
     {
         if ((!gameManager.IsGameOver) && (uneatenFood.Count > 0))
         {
+            foreach (GameObject fd in uneatenFood) { fd.SetActive(true); }
             Debug.Log("picking number");
             numberChosen = Random.Range(0, uneatenFood.Count);
             uneatenFood[numberChosen].GetComponent<AudioSource>().Play();
@@ -42,6 +43,8 @@ public class FoodPicker : MonoBehaviour {
         if (numberChosen == useIndex)
         {
             SelectTrue(useIndex);
+            foreach (GameObject fd in uneatenFood) { fd.SetActive(false); }
+            //eater.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         }
         else
         if (numberChosen != useIndex)

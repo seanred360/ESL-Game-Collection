@@ -12,7 +12,6 @@ public class Eater : MonoBehaviour
     public GameObject gumBubble;
     GumGameManager gameManager;
 
-
     void Start()
     {
         foodPicker = GameObject.FindObjectOfType<FoodPicker>();
