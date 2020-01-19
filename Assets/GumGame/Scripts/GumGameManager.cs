@@ -10,7 +10,7 @@ public class GumGameManager : MonoBehaviour
     public GameObject endScreen;
     FoodPicker foodPicker;
     public List<Food> m_food;
-    public AudioManager endSounds;
+    public AudioManager endSounds,audioManager;
     bool canPlayEndSounds = true;
 
     bool m_isGameOver = false;
@@ -19,6 +19,13 @@ public class GumGameManager : MonoBehaviour
     public string _imagePath;
     Sprite[] sprites;
     public List<Sprite> unselectedSprites;
+
+    internal GameObject timerIcon;
+    internal Image timerBar;
+    internal Text timerText;
+    internal Text timeBonusText;
+    public float time = 10;
+    internal float timeLeft;
 
     private void Awake()
     {
@@ -51,6 +58,31 @@ public class GumGameManager : MonoBehaviour
             m_food[i].gameObject.GetComponent<AudioSource>().clip = (Resources.Load<AudioClip>("Sounds/" + unselectedSprites[rand].name));
             unselectedSprites.RemoveAt(rand);
         }
+        timeLeft = time;
+
+        if (GameObject.Find("TimerIcon"))
+        {
+            timerIcon = GameObject.Find("TimerIcon");
+            if (GameObject.Find("TimerIcon/Bar")) timerBar = GameObject.Find("TimerIcon/Bar").GetComponent<Image>();
+            if (GameObject.Find("TimerIcon/Text")) timerText = GameObject.Find("TimerIcon/Text").GetComponent<Text>();
+
+            if (GameObject.Find("TimeBonusText"))
+            {
+                timeBonusText = GameObject.Find("TimeBonusText").GetComponent<Text>();
+
+                timeBonusText.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (timeLeft > 0)
+        {
+            // Count down the time
+            timeLeft -= Time.deltaTime;
+        }
+        UpdateTime();
     }
 
     public bool AreAllFoodsEaten()
@@ -72,6 +104,40 @@ public class GumGameManager : MonoBehaviour
         endScreen.SetActive(true);
         endSounds.PlayMusic(0);
         endSounds.PlaySFX(Random.Range(0, 2));
+    }
+
+    void UpdateTime()
+    {
+        // Update the time only if we have a timer icon canvas assigned
+        if (timerIcon)
+        {
+            // Update the timer circle, if we have one
+            if (timerBar)
+            {
+                // If the timer is running, display the fill amount left. Otherwise refill the amount back to 100%
+                timerBar.fillAmount = timeLeft / time;
+            }
+
+            // Update the timer text, if we have one
+            if (timerText)
+            {
+                // If the timer is running, display the timer left. Otherwise hide the text
+                timerText.text = Mathf.RoundToInt(timeLeft).ToString();
+            }
+
+            // Time's up!
+            if (timeLeft <= 0)
+            {
+                // Run the game over event
+                Invoke("GameOver" ,1.5f);
+
+                // Play the timer icon Animator
+                if (timerIcon.GetComponent<Animation>()) timerIcon.GetComponent<Animation>().Play();
+
+                //If there is a source and a sound, play it from the source
+                audioManager.PlayPointsSound(0);
+            }
+        }
     }
 
     public void QuitGame()
