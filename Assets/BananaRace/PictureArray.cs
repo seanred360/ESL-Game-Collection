@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PictureArray : MonoBehaviour {
 
-    public GameObject[] pictures;
+    public List<GameObject> pictures;
     public int numberChosen;
     public GameObject soundSource;
     AudioManager audioManager;
@@ -18,20 +19,66 @@ public class PictureArray : MonoBehaviour {
     private bool coroutineAllowed = true;
     private int whosTurn = 1;
 
-    // Use this for initialization
-    void Start () {
+    public string _imagePath;
+    Sprite[] sprites;
+    public List<Sprite> unselectedSprites;
+    public GameObject buttonPrefab;
+    public Transform buttonsHolder;
+
+
+    void Awake()
+    {
+        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+
+        if (_imagePath == "0")
+        {
+            _imagePath = "KBA/u1";
+            Debug.Log("Can't find the image path");
+        }
+
+        if (buttonsHolder == null && GameObject.Find("ButtonsHolder")) buttonsHolder = GameObject.Find("ButtonsHolder").transform;
+
+        Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+        sprites = new Sprite[loadedSprites.Length];
+        for (int i = 0; i < loadedSprites.Length; i++)
+        {
+            sprites[i] = (Sprite)loadedSprites[i];
+            unselectedSprites.Add(sprites[i]);
+        }
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if(i < 8) // 8 is the max number of buttons I want
+            {
+                int rand = Random.Range(0, unselectedSprites.Count);
+                GameObject newButton = Instantiate(buttonPrefab);
+                newButton.transform.SetParent(buttonsHolder, false);
+                newButton.GetComponent<Image>().sprite = unselectedSprites[rand];
+                newButton.GetComponent<AudioSource>().clip = (Resources.Load<AudioClip>("Sounds/" + newButton.GetComponent<Image>().sprite.name));
+                newButton.gameObject.name = newButton.GetComponent<Image>().sprite.name;
+                int index = i;
+                newButton.GetComponent<Button>().onClick.AddListener(delegate () { CheckAnswer(index); });
+                pictures.Add(newButton);
+                unselectedSprites.RemoveAt(rand);
+            }
+        }
+    }
+        // Use this for initialization
+    void Start()
+    {
         particleController = GameObject.FindGameObjectWithTag("ButtonGroup");
         soundSource = GameObject.FindGameObjectWithTag("Sound");
         audioManager = soundSource.GetComponent<AudioManager>();
-        pictures = GameObject.FindGameObjectsWithTag("ButtonTag1");
+        //pictures = GameObject.FindGameObjectsWithTag("ButtonTag1");
     }
 
     public void PickNumber()
     {
         if (GameControl.gameOver == false)
         {
-            numberChosen = Random.Range(0, pictures.Length);
-            audioManager.PlaySFX(numberChosen);
+            numberChosen = Random.Range(0, pictures.Count);
+            pictures[numberChosen].GetComponent<AudioSource>().Play();
+            //audioManager.PlaySFX(numberChosen);
             ButtonController.EnableButton();
             StartCoroutine(ChangePosition());// shuffle the pictures location
         }  
@@ -42,16 +89,17 @@ public class PictureArray : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         audioManager.PlayMusic(0);
         particleController.GetComponent<ParticleController>().EnableMixParticles();
-        for (int i = 0; i < pictures.Length; i++)
+        for (int i = 0; i < pictures.Count; i++)
         {
             Vector3 temp = pictures[i].transform.position;
-            int randomIndex = Random.Range(0, pictures.Length);
+            int randomIndex = Random.Range(0, pictures.Count);
             pictures[i].transform.position = pictures[randomIndex].transform.position;
             pictures[randomIndex].transform.position = temp;
         }
     }
     public void CheckAnswer(int useIndex)
     {
+        Debug.Log(useIndex);
         ButtonController.DisableButton();
         if (numberChosen == useIndex)
         {
