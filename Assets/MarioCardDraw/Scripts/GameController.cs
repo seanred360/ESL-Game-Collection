@@ -282,6 +282,8 @@ public class GameController : MonoBehaviour
 
         IEnumerator GameOverRoutine()
         {
+            audioManager.audioPitch = 1;
+            questionsList.questions = QuestionsList.Shuffle<Question>(questionsList.questions);
             Data.Singleton.isGameOver = true;
             ButtonController.DisableButton();
             ButtonController.HideStopButton();
