@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// Grounding for LimbIK, CCD and/or FABRIK solvers.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page11.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page9.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Grounder/Grounder Quadruped")]
 	public class GrounderQuadruped: Grounder {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page11.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page9.html");
 		}
 		
 		// Open the Script Reference URL

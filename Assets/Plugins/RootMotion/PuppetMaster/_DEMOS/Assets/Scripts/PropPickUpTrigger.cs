@@ -6,7 +6,7 @@ namespace RootMotion.Demos {
 
 	public class PropPickUpTrigger : MonoBehaviour {
 
-		public Prop prop;
+		public PuppetMasterProp prop;
 		public LayerMask characterLayers;
 
 		private CharacterPuppet characterPuppet;
@@ -20,10 +20,10 @@ namespace RootMotion.Demos {
 
 			if (characterPuppet.puppet.state != BehaviourPuppet.State.Puppet) return;
 
-			if (characterPuppet.propRoot == null) return;
-			if (characterPuppet.propRoot.currentProp != null) return;
+			if (characterPuppet.propMuscle == null) return;
+			if (characterPuppet.propMuscle.currentProp != null) return;
 
-			characterPuppet.propRoot.currentProp = prop;
+			characterPuppet.propMuscle.currentProp = prop;
 		}
 	}
 }

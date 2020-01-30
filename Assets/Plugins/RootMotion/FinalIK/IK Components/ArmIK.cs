@@ -2,23 +2,24 @@
 using System.Collections;
 
 namespace RootMotion.FinalIK {
-	
-	// TODO [HelpURL("http://www.root-motion.com/finalikdox/html/page9.html")]
-	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/Arm IK")]
+
+    /// <summary>
+    /// Arm %IK solver component.
+    /// </summary>
+    [HelpURL("http://www.root-motion.com/finalikdox/html/page2.html")]
+    [AddComponentMenu("Scripts/RootMotion.FinalIK/IK/Arm IK")]
 	public class ArmIK : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Debug.Log ("No User Manual page for this component yet, sorry."); // TODO
-			//Application.OpenURL("http://www.root-motion.com/finalikdox/html/page9.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page2.html");
 		}
 		
 		// Open the Script Reference URL
 		[ContextMenu("Scrpt Reference")]
 		protected override void OpenScriptReference() {
-			Debug.Log ("No Script Reference for this component yet, sorry."); // TODO
-			//Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_trigonometric_i_k.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_arm_i_k.html");
 		}
 		
 		// Link to the Final IK Google Group

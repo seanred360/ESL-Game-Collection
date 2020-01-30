@@ -25,8 +25,15 @@ public class FXCollisionBlood : MonoBehaviour {
 			if (m.collision.contacts.Length == 0) return;
 			if (impulse < minCollisionImpulse) return;
 
-			transform.position = m.collision.contacts[0].point;
-			transform.rotation = Quaternion.LookRotation(m.collision.contacts[0].normal);
+            // Do not emit blood from prop contacts with static objects
+            if (puppet.puppetMaster.muscles[m.muscleIndex].props.group == Muscle.Group.Prop && (m.collision.collider.attachedRigidbody == null || m.collision.collider.attachedRigidbody.isKinematic)) return;
+
+#if UNITY_2018_3_OR_NEWER
+            transform.position = m.collision.GetContact(0).point; // Non-GC-allocating way of getting the contact.
+#else
+            transform.position = m.collision.contacts[0].point;
+#endif
+            transform.rotation = Quaternion.LookRotation(m.collision.contacts[0].normal);
 
 			particles.Emit(Mathf.Min(emission + (int)(emissionImpulseAdd * impulse), maxEmission));
 		}

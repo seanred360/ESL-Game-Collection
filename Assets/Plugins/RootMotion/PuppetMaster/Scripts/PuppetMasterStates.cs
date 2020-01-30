@@ -184,11 +184,14 @@ namespace RootMotion.Dynamics {
 			
 			// Set pin weight to 0 to play with joint target rotations only
 			foreach (Muscle m in muscles) {
-				m.state.pinWeightMlp = 0f;
-				m.state.muscleDamperAdd = stateSettings.deadMuscleDamper;
+                if (!m.state.isDisconnected)
+                {
+                    m.state.pinWeightMlp = 0f;
+                    m.state.muscleDamperAdd = stateSettings.deadMuscleDamper;
 
-				m.rigidbody.velocity = m.mappedVelocity;
-				m.rigidbody.angularVelocity = m.mappedAngularVelocity;
+                    m.rigidbody.velocity = m.mappedVelocity;
+                    m.rigidbody.angularVelocity = m.mappedAngularVelocity;
+                }
 			}
 
 			float range = muscles[0].state.muscleWeightMlp - stateSettings.deadMuscleWeight;
@@ -285,7 +288,7 @@ namespace RootMotion.Dynamics {
 			animatorDisabled = false;
 
 			if (targetAnimator != null) {
-				targetAnimator.enabled = to;
+                targetAnimator.enabled = to;
 				//if (to) targetAnimator.Update(0.001f); // Don't do this when getting up, will flicker animated pose for a moment
 			}
 
@@ -354,24 +357,26 @@ namespace RootMotion.Dynamics {
 
 			foreach (Muscle m in muscles) {
 				m.joint.gameObject.SetActive(true);
-				m.rigidbody.isKinematic = kinematic;
+                if (kinematic) m.rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+                m.SetKinematic(kinematic);
 				m.rigidbody.velocity = Vector3.zero;
 				m.rigidbody.angularVelocity = Vector3.zero;
 			}
 
-			internalCollisionsEnabled = true;
-			SetInternalCollisions(internalCollisions);
+            FlagInternalCollisionsForUpdate();
 
-			// Fix target to whatever it was mapped to last frame
-			//SampleTargetMappedState();
-			//FixTargetToSampledState(1f);
+            // Fix target to whatever it was mapped to last frame
+            //SampleTargetMappedState();
+            //FixTargetToSampledState(1f);
 
-			Read();
 
-			foreach (Muscle m in muscles) {
+            Read();
+
+            foreach (Muscle m in muscles) {
 				m.MoveToTarget();
 			}
-		}
+
+        }
 
 		private bool CanFreeze() {
 			foreach (Muscle m in muscles) {

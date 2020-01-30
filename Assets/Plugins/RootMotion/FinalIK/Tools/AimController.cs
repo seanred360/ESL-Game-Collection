@@ -138,16 +138,19 @@ namespace RootMotion.FinalIK {
 		void LateUpdate () {
 			// If target has changed...
 			if (target != lastTarget) {
-				if (lastTarget == null && target != null) {
-					lastPosition = target.position;
-					dir = target.position - pivot;
-					ik.solver.IKPosition = target.position + offset;
-				} else {
-					lastPosition = ik.solver.IKPosition;
-					dir = ik.solver.IKPosition - pivot;
-				}
+                if (lastTarget == null && target != null && ik.solver.IKPositionWeight <= 0f)
+                {
+                    lastPosition = target.position;
+                    dir = target.position - pivot;
+                    ik.solver.IKPosition = target.position + offset;
+                }
+                else
+                {
+                    lastPosition = ik.solver.IKPosition;
+                    dir = ik.solver.IKPosition - pivot;
+                }
 
-				switchWeight = 0f;
+                switchWeight = 0f;
 				lastTarget = target;
 			}
 

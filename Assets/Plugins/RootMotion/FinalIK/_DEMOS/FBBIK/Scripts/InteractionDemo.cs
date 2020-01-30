@@ -17,10 +17,10 @@ namespace RootMotion.Demos {
 		public InteractionObject ball, benchMain, benchHands, button, cigarette, door;
 
 		private bool isSitting;
-
+        
 		// GUI for calling the interactions
 		void OnGUI() {
-			interrupt = GUILayout.Toggle(interrupt, "Interrupt");
+            interrupt = GUILayout.Toggle(interrupt, "Interrupt");
 
 			// While seated
 			if (isSitting) {

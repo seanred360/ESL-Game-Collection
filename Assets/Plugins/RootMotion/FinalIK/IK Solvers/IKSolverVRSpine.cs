@@ -17,41 +17,41 @@ namespace RootMotion.FinalIK {
 		[System.Serializable]
 		public class Spine: BodyPart {
 
-			[Tooltip("The head target.")]
-			/// <summary>
-			/// The head target.
-			/// </summary>
-			public Transform headTarget;
+			[Tooltip("The head target. This should not be the camera Transform itself, but a child GameObject parented to it so you could adjust it's position/rotation  to match the orientation of the head bone. The best practice for setup would be to move the camera to the avatar's eyes, duplicate the avatar's head bone and parent it to the camera. Then assign the duplicate to this slot.")]
+            /// <summary>
+            /// The head target. This should not be the camera Transform itself, but a child GameObject parented to it so you could adjust it's position/rotation to match the orientation of the head bone. The best practice for setup would be to move the camera to the avatar's eyes, duplicate the avatar's head bone and parent it to the camera. Then assign the duplicate to this slot.
+            /// </summary>
+            public Transform headTarget;
 
-			[Tooltip("The pelvis target, useful with seated rigs.")]
-			/// <summary>
-			/// The pelvis target, useful with seated rigs.
-			/// </summary>
-			public Transform pelvisTarget;
+			[Tooltip("The pelvis target (optional), useful for seated rigs or if you had an additional tracker on the backpack or belt are. The best practice for setup would be to duplicate the avatar's pelvis bone and parenting it to the pelvis tracker. Then assign the duplicate to this slot.")]
+            /// <summary>
+            /// The pelvis target (optional), useful for seated rigs or if you had an additional tracker on the backpack or belt are. The best practice for setup would be to duplicate the avatar's pelvis bone and parenting it to the pelvis tracker. Then assign the duplicate to this slot.
+            /// </summary>
+            public Transform pelvisTarget;
 
-			[Tooltip("Positional weight of the head target.")]
-			/// <summary>
-			/// Positional weight of the head target.
-			/// </summary>
-			[Range(0f, 1f)] public float positionWeight = 1f;
+			[Tooltip("Positional weight of the head target. Note that if you have nulled the headTarget, the head will still be pulled to the last position of the headTarget until you set this value to 0.")]
+            /// <summary>
+            /// Positional weight of the head target. Note that if you have nulled the headTarget, the head will still be pulled to the last position of the headTarget until you set this value to 0.
+            /// </summary>
+            [Range(0f, 1f)] public float positionWeight = 1f;
 
-			[Tooltip("Rotational weight of the head target.")]
-			/// <summary>
-			/// Rotational weight of the head target.
-			/// </summary>
-			[Range(0f, 1f)] public float rotationWeight = 1f;
+			[Tooltip("Rotational weight of the head target. Note that if you have nulled the headTarget, the head will still be rotated to the last rotation of the headTarget until you set this value to 0.")]
+            /// <summary>
+            /// Rotational weight of the head target. Note that if you have nulled the headTarget, the head will still be rotated to the last rotation of the headTarget until you set this value to 0.
+            /// </summary>
+            [Range(0f, 1f)] public float rotationWeight = 1f;
 
-			[Tooltip("Positional weight of the pelvis target.")]
-			/// <summary>
-			/// Positional weight of the pelvis target.
-			/// </summary>
-			[Range(0f, 1f)] public float pelvisPositionWeight;
+			[Tooltip("Positional weight of the pelvis target. Note that if you have nulled the pelvisTarget, the pelvis will still be pulled to the last position of the pelvisTarget until you set this value to 0.")]
+            /// <summary>
+            /// Positional weight of the pelvis target. Note that if you have nulled the pelvisTarget, the pelvis will still be pulled to the last position of the pelvisTarget until you set this value to 0.
+            /// </summary>
+            [Range(0f, 1f)] public float pelvisPositionWeight;
 
-			[Tooltip("Rotational weight of the pelvis target.")]
-			/// <summary>
-			/// Rotational weight of the pelvis target.
-			/// </summary>
-			[Range(0f, 1f)] public float pelvisRotationWeight;
+			[Tooltip("Rotational weight of the pelvis target. Note that if you have nulled the pelvisTarget, the pelvis will still be rotated to the last rotation of the pelvisTarget until you set this value to 0.")]
+            /// <summary>
+            /// Rotational weight of the pelvis target. Note that if you have nulled the pelvisTarget, the pelvis will still be rotated to the last rotation of the pelvisTarget until you set this value to 0.
+            /// </summary>
+            [Range(0f, 1f)] public float pelvisRotationWeight;
 
 			[Tooltip("If 'Chest Goal Weight' is greater than 0, the chest will be turned towards this Transform.")]
 			/// <summary>
@@ -59,9 +59,9 @@ namespace RootMotion.FinalIK {
 			/// </summary>
 			public Transform chestGoal;
 
-			[Tooltip("Rotational weight of the chest target.")]
+			[Tooltip("Weight of turning the chest towards the 'Chest Goal'.")]
 			/// <summary>
-			/// Rotational weight of the chest target.
+			/// Weight of turning the chest towards the chestGoal.
 			/// </summary>
 			[Range(0f, 1f)] public float chestGoalWeight;
 
@@ -96,17 +96,17 @@ namespace RootMotion.FinalIK {
 			/// </summary>
 			[Range(0f, 1f)] public float rotateChestByHands = 1f;
 
-			[Tooltip("Clamps chest rotation.")]
-			/// <summary>
-			/// Clamps chest rotation.
-			/// </summary>
-			[Range(0f, 1f)] public float chestClampWeight = 0.5f;
+			[Tooltip("Clamps chest rotation. Value of 0.5 allows 90 degrees of rotation for the chest relative to the head. Value of 0 allows 180 degrees and value of 1 means the chest will be locked relative to the head.")]
+            /// <summary>
+            /// Clamps chest rotation. Value of 0.5 allows 90 degrees of rotation for the chest relative to the head. Value of 0 allows 180 degrees and value of 1 means the chest will be locked relative to the head.
+            /// </summary>
+            [Range(0f, 1f)] public float chestClampWeight = 0.5f;
 
-			[Tooltip("Clamps head rotation.")]
-			/// <summary>
-			/// Clamps head rotation.
-			/// </summary>
-			[Range(0f, 1f)] public float headClampWeight = 0.6f;
+			[Tooltip("Clamps head rotation. Value of 0.5 allows 90 degrees of rotation for the head relative to the headTarget. Value of 0 allows 180 degrees and value of 1 means head rotation will be locked to the target.")]
+            /// <summary>
+            /// Clamps head rotation. Value of 0.5 allows 90 degrees of rotation for the head relative to the headTarget. Value of 0 allows 180 degrees and value of 1 means head rotation will be locked to the target.
+            /// </summary>
+            [Range(0f, 1f)] public float headClampWeight = 0.6f;
 
 			[Tooltip("Moves the body horizontally along -character.forward axis by that value when the player is crouching.")]
 			/// <summary>
@@ -126,10 +126,16 @@ namespace RootMotion.FinalIK {
 			/// </summary>
 			[Range(0f, 180f)] public float maxRootAngle = 25f;
 
-			/// <summary>
-			/// Target position of the head. Will be overwritten if target is assigned.
-			/// </summary>
-			[NonSerialized][HideInInspector] public Vector3 IKPositionHead;
+            [Tooltip("Angular offset for root heading. Adjust this value to turn the root relative to the HMD around the vertical axis. Usefulf for fighting or shooting games where you would sometimes want the avatar to stand at an angled stance.")]
+            /// <summary>
+            /// Angular offset for root heading. Adjust this value to turn the root relative to the HMD around the vertical axis. Usefulf for fighting or shooting games where you would sometimes want the avatar to stand at an angled stance.
+            /// </summary>
+            [Range(-180f, 180f)] public float rootHeadingOffset;
+
+            /// <summary>
+            /// Target position of the head. Will be overwritten if target is assigned.
+            /// </summary>
+            [NonSerialized][HideInInspector] public Vector3 IKPositionHead;
 
 			/// <summary>
 			/// Target rotation of the head. Will be overwritten if target is assigned.
@@ -197,10 +203,10 @@ namespace RootMotion.FinalIK {
 			[NonSerialized][HideInInspector] public Vector3 headPosition;
 
 			public Quaternion anchorRotation { get; private set; }
+            public Quaternion anchorRelativeToHead { get; private set; }
 
-			private Quaternion headRotation = Quaternion.identity;
+            private Quaternion headRotation = Quaternion.identity;
             private Quaternion pelvisRotation = Quaternion.identity;
-			private Quaternion anchorRelativeToHead = Quaternion.identity;
             private Quaternion anchorRelativeToPelvis = Quaternion.identity;
 			private Quaternion pelvisRelativeRotation = Quaternion.identity;
 			private Quaternion chestRelativeRotation = Quaternion.identity;
@@ -267,21 +273,21 @@ namespace RootMotion.FinalIK {
 
 					anchorRelativeToHead = Quaternion.Inverse(headRot) * rotations[0];
                     anchorRelativeToPelvis = Quaternion.Inverse(pelvisRot) * rotations[0];
-					
-					// Forward and up axes
-					pelvisRelativeRotation = Quaternion.Inverse(headRot) * pelvisRot;
-					chestRelativeRotation = Quaternion.Inverse(headRot) * chestRot;
 
-					chestForward = Quaternion.Inverse(chestRot) * (rotations[0] * Vector3.forward);
+                    faceDirection = rotations[0] * Vector3.forward;
 
-					faceDirection = rotations[0] * Vector3.forward;
-
-					IKPositionHead = headPos;
+                    IKPositionHead = headPos;
 					IKRotationHead = headRot;
 					IKPositionPelvis = pelvisPos;
 					IKRotationPelvis = pelvisRot;
 					goalPositionChest = chestPos + rotations[0] * Vector3.forward;
 				}
+
+                // Forward and up axes
+                pelvisRelativeRotation = Quaternion.Inverse(headRot) * pelvisRot;
+                chestRelativeRotation = Quaternion.Inverse(headRot) * chestRot;
+
+                chestForward = Quaternion.Inverse(chestRot) * (rotations[0] * Vector3.forward);
                 
                 bones[0].Read(pelvisPos, pelvisRot);
 				bones[1].Read(spinePos, spineRot);
@@ -339,7 +345,9 @@ namespace RootMotion.FinalIK {
 				headDeltaPosition = headPosition - head.solverPosition;
 				pelvisDeltaRotation = QuaTools.FromToRotation(pelvis.solverRotation, headRotation * pelvisRelativeRotation);
 
-				anchorRotation = pelvisTarget != null ? pelvisRotation * anchorRelativeToPelvis : headRotation * anchorRelativeToHead;
+                if (pelvisRotationWeight <= 0f) anchorRotation = headRotation * anchorRelativeToHead;
+                else if (pelvisRotationWeight > 0f && pelvisRotationWeight < 1f) anchorRotation = Quaternion.Lerp(headRotation * anchorRelativeToHead, pelvisRotation * anchorRelativeToPelvis, pelvisRotationWeight);
+                else if (pelvisRotationWeight >= 1f) anchorRotation = pelvisRotation * anchorRelativeToPelvis;
             }
 
 			private void CalculateChestTargetRotation(VirtualBone rootBone, Arm[] arms) {
@@ -352,58 +360,65 @@ namespace RootMotion.FinalIK {
 			}
 
 			public void Solve(VirtualBone rootBone, Leg[] legs, Arm[] arms) {
-				CalculateChestTargetRotation(rootBone, arms);
+                CalculateChestTargetRotation(rootBone, arms);
 
-				// Root rotation
-				if (maxRootAngle < 180f) {
-					Vector3 faceDirLocal = Quaternion.Inverse(rootBone.solverRotation) * faceDirection;
-					float angle = Mathf.Atan2(faceDirLocal.x, faceDirLocal.z) * Mathf.Rad2Deg;
+                // Root rotation
+                if (maxRootAngle < 180f)
+                {
+                    Vector3 f = faceDirection;
+                    if (rootHeadingOffset != 0f) f = Quaternion.AngleAxis(rootHeadingOffset, Vector3.up) * f;
+                    Vector3 faceDirLocal = Quaternion.Inverse(rootBone.solverRotation) * f;
+                    float angle = Mathf.Atan2(faceDirLocal.x, faceDirLocal.z) * Mathf.Rad2Deg;
 
-					float rotation = 0f;
-					float maxAngle = maxRootAngle;
+                    float rotation = 0f;
+                    float maxAngle = maxRootAngle;
 
-					if (angle > maxAngle) {
-						rotation = angle - maxAngle;
-					}
-					if (angle < -maxAngle) {
-						rotation = angle + maxAngle;
-					}
+                    if (angle > maxAngle)
+                    {
+                        rotation = angle - maxAngle;
+                    }
+                    if (angle < -maxAngle)
+                    {
+                        rotation = angle + maxAngle;
+                    }
 
-					rootBone.solverRotation = Quaternion.AngleAxis(rotation, rootBone.readRotation * Vector3.up) * rootBone.solverRotation;		
-				}
+                    rootBone.solverRotation = Quaternion.AngleAxis(rotation, rootBone.readRotation * Vector3.up) * rootBone.solverRotation;
+                }
 
-				Vector3 animatedPelvisPos = pelvis.solverPosition;
+                Vector3 animatedPelvisPos = pelvis.solverPosition;
 				Vector3 rootUp = rootBone.solverRotation * Vector3.up;
 
                 // Translate pelvis to make the head's position & rotation match with the head target
                 TranslatePelvis(legs, headDeltaPosition, pelvisDeltaRotation);
-
-                FABRIKPass(animatedPelvisPos, rootUp);
-
-                // Bend the spine to look towards chest target rotation
-                Bend(bones, pelvisIndex, chestIndex, chestTargetRotation, chestRotationOffset, chestClampWeight, false, neckStiffness);
                 
-                if (chestGoalWeight > 0f) {
+                FABRIKPass(animatedPelvisPos, rootUp, positionWeight);
+                
+                // Bend the spine to look towards chest target rotation
+                Bend(bones, pelvisIndex, chestIndex, chestTargetRotation, chestRotationOffset, chestClampWeight, false, neckStiffness * rotationWeight);
+                
+                if (LOD < 1 && chestGoalWeight > 0f) {
 					Quaternion c = Quaternion.FromToRotation(bones[chestIndex].solverRotation * chestForward, goalPositionChest - bones[chestIndex].solverPosition) * bones[chestIndex].solverRotation;
-					Bend(bones, pelvisIndex, chestIndex, c, chestRotationOffset, chestClampWeight, false, chestGoalWeight);
+					Bend(bones, pelvisIndex, chestIndex, c, chestRotationOffset, chestClampWeight, false, chestGoalWeight * rotationWeight);
 				}
 
-				InverseTranslateToHead(legs, false, false, Vector3.zero, 1f);
+				InverseTranslateToHead(legs, false, false, Vector3.zero, positionWeight);
 
-				FABRIKPass(animatedPelvisPos, rootUp);
+                if (LOD < 1) FABRIKPass(animatedPelvisPos, rootUp, positionWeight);
 
-				Bend(bones, neckIndex, headIndex, headRotation, headClampWeight, true, 1f);
+                Bend(bones, neckIndex, headIndex, headRotation, headClampWeight, true, rotationWeight);                
 
-                SolvePelvis ();
+                SolvePelvis ();                
             }
 
-			private void FABRIKPass(Vector3 animatedPelvisPos, Vector3 rootUp) {
+			private void FABRIKPass(Vector3 animatedPelvisPos, Vector3 rootUp, float weight) {
                 Vector3 startPos = Vector3.Lerp(pelvis.solverPosition, animatedPelvisPos, maintainPelvisPosition) + pelvisPositionOffset;// - chestPositionOffset;
                 Vector3 endPos = headPosition - chestPositionOffset;
-				//Vector3 startOffset = rootUp * (bones[bones.Length - 1].solverPosition - bones[0].solverPosition).magnitude;
-				Vector3 startOffset =bones[bones.Length - 1].solverPosition - bones[0].solverPosition;
+                //Vector3 startOffset = rootUp * (bones[bones.Length - 1].solverPosition - bones[0].solverPosition).magnitude;
+                Vector3 startOffset = Vector3.zero;// (bones[bones.Length - 1].solverPosition - bones[0].solverPosition) * weight;
 
-				VirtualBone.SolveFABRIK(bones, startPos, endPos, 1f, 1f, 1, mag, startOffset);
+                float dist = Vector3.Distance(bones[0].solverPosition, bones[bones.Length - 1].solverPosition);
+
+				VirtualBone.SolveFABRIK(bones, startPos, endPos, weight, 1f, 1, dist, startOffset);
 			}
 
 			private void SolvePelvis() {
@@ -421,7 +436,7 @@ namespace RootMotion.FinalIK {
                         VirtualBone.SolveTrigonometric(bones, pelvisIndex, chestIndex, headIndex, headPosition, bendNormal, pelvisPositionWeight * 0.6f);
                         VirtualBone.SolveTrigonometric(bones, pelvisIndex, neckIndex, headIndex, headPosition, bendNormal, pelvisPositionWeight * 1f);
                     } else if (hasChest && !hasNeck) {
-                        VirtualBone.SolveTrigonometric(bones, pelvisIndex, spineIndex, headIndex, headPosition, bendNormal, pelvisPositionWeight * 0.75f); // 0.75f
+                        VirtualBone.SolveTrigonometric(bones, pelvisIndex, spineIndex, headIndex, headPosition, bendNormal, pelvisPositionWeight * 0.75f);
 						VirtualBone.SolveTrigonometric(bones, pelvisIndex, chestIndex, headIndex, headPosition, bendNormal, pelvisPositionWeight * 1f);
                     }
                     else if (!hasChest && hasNeck) {
@@ -464,6 +479,8 @@ namespace RootMotion.FinalIK {
 			}
 
 			private void AdjustChestByHands(ref Quaternion chestTargetRotation, Arm[] arms) {
+                if (LOD > 0) return;
+
 				Quaternion h = Quaternion.Inverse(anchorRotation);
 
 				Vector3 pLeft = h * (arms[0].position - headPosition) / sizeMlp;
@@ -507,7 +524,7 @@ namespace RootMotion.FinalIK {
 
 				deltaRotation = QuaTools.ClampRotation(deltaRotation, chestClampWeight, 2);
 
-				Quaternion r = Quaternion.Slerp (Quaternion.identity, deltaRotation, bodyRotStiffness);
+				Quaternion r = Quaternion.Slerp (Quaternion.identity, deltaRotation, bodyRotStiffness * rotationWeight);
 				r = Quaternion.Slerp (r, QuaTools.FromToRotation (pelvis.solverRotation, IKRotationPelvis), pelvisRotationWeight);
 				VirtualBone.RotateAroundPoint(bones, 0, pelvis.solverPosition, pelvisRotationOffset * r);
 
@@ -520,7 +537,7 @@ namespace RootMotion.FinalIK {
 				float backOffset = deltaY * -moveBodyBackWhenCrouching * headHeight;
 				deltaPosition += m * backOffset;
 
-                MovePosition (LimitPelvisPosition(legs, pelvis.solverPosition + deltaPosition * bodyPosStiffness, false));
+                MovePosition (LimitPelvisPosition(legs, pelvis.solverPosition + deltaPosition * bodyPosStiffness * positionWeight, false));
 			}
 
 			// Limit the position of the pelvis so that the feet/toes would remain fixed

@@ -12,8 +12,22 @@ namespace RootMotion.FinalIK {
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Interaction System/Interaction System")]
 	public class InteractionSystem : MonoBehaviour {
 
-		// Open a video tutorial video
-		[ContextMenu("TUTORIAL VIDEO (PART 1: BASICS)")]
+        // Open the User Manual URL
+        [ContextMenu("User Manual")]
+        void OpenUserManual()
+        {
+            Application.OpenURL("http://www.root-motion.com/finalikdox/html/page10.html");
+        }
+
+        // Open the Script Reference URL
+        [ContextMenu("Scrpt Reference")]
+        void OpenScriptReference()
+        {
+            Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_interaction_system.html");
+        }
+
+        // Open a video tutorial video
+        [ContextMenu("TUTORIAL VIDEO (PART 1: BASICS)")]
 		void OpenTutorial1() {
 			Application.OpenURL("https://www.youtube.com/watch?v=r5jiZnsDH3M");
 		}
@@ -594,7 +608,7 @@ namespace RootMotion.FinalIK {
 		private Collider lastCollider, c;
 
 		// Initiate
-		void Start() {
+		public void Start() {
 			if (fullBody == null) fullBody = GetComponent<FullBodyBipedIK>();
 			//Debug.Log(fullBody);
 			if (fullBody == null) {
@@ -689,7 +703,7 @@ namespace RootMotion.FinalIK {
 			if (characterCollider == null) characterCollider = GetComponent<Collider>();
 		}
 		
-		void Update() {
+		public void Update() {
 			if (fullBody == null) return;
 			
 			UpdateTriggerEventBroadcasting();
@@ -754,7 +768,7 @@ namespace RootMotion.FinalIK {
 
 		// Used for using LookAtIK to rotate the spine
 		private void OnPreFBBIK() {
-			if (!enabled) return;
+			//if (!enabled) return;
 			if (fullBody == null) return;
 
 			lookAt.SolveSpine();
@@ -764,7 +778,7 @@ namespace RootMotion.FinalIK {
 
 		// Used for rotating the hands after FBBIK has finished
 		private void OnPostFBBIK() {
-			if (!enabled) return;
+			//if (!enabled) return;
 			if (fullBody == null) return;
 
 			for (int i = 0; i < interactionEffectors.Length; i++) interactionEffectors[i].OnPostFBBIK();
@@ -816,18 +830,6 @@ namespace RootMotion.FinalIK {
 			}
 			
 			return true;
-		}
-
-		// Open the User Manual URL
-		[ContextMenu("User Manual")]
-		private void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page10.html");
-		}
-		
-		// Open the Script Reference URL
-		[ContextMenu("Scrpt Reference")]
-		private void OpenScriptReference() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_interaction_system.html");
 		}
 	}
 }

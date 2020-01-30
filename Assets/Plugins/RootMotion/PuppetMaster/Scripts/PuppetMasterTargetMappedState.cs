@@ -16,86 +16,67 @@ namespace RootMotion.Dynamics {
 		/// The pose that the target will be fixed to if calling FixTargetToSampledState(). This should normally be used only by the Puppet Behaviours.
 		/// </summary>
 		public void SampleTargetMappedState() {
-			if (!CheckIfInitiated()) return;
+            if (!CheckIfInitiated()) return;
 
-			sampleTargetMappedState = true;
-			
-			if (!targetMappedStateStored) {
-				sampleTargetMappedState = true;
-				return;
-				//Debug.LogWarning("Target mapped state has not been stored since the last UpdateTargetChildren was called.");
-			}
-			
-			for (int i = 0; i < targetChildren.Length; i++) {
-				targetSampledPositions[i] = targetMappedPositions[i];
-				targetSampledRotations[i] = targetMappedRotations[i];
-			}
-			
-			targetMappedStateSampled = true;
-		}
+            sampleTargetMappedState = true;
+
+            if (!targetMappedStateStored)
+            {
+                sampleTargetMappedState = true;
+                return;
+            }
+
+            for (int i = 0; i < muscles.Length; i++)
+            {
+                if (i == 0) muscles[i].targetSampledPosition = muscles[i].targetMappedPosition;
+                muscles[i].targetSampledRotation = muscles[i].targetMappedRotation;
+            }
+
+            targetMappedStateSampled = true;
+        }
 
 		/// <summary>
 		/// Blend the target to the pose that was sampled by the last SampleTargetMappedState call. This should normally be used only by the Puppet Behaviours.
 		/// </summary>
 		public void FixTargetToSampledState(float weight) {
-			if (!CheckIfInitiated()) return;
+            if (!CheckIfInitiated()) return;
 
-			if (weight <= 0f) return;
-			
-			if (!targetMappedStateSampled) {
-				//Debug.LogWarning("Target mapped state has not been sampled since the last UpdateTargetChildren was called.", transform);
-				return;
-			}
-			
-			for (int i = 0; i < targetChildren.Length; i++) {
-				if (targetChildren[i] == null) {
-					Debug.LogWarning ("PuppetMaster.UpdateTargetHierarchy() needs to be called when any of the child Transforms of the targetRoot are unparented or removed.", transform);
-					return;
-				}
+            if (weight <= 0f) return;
 
-				if (i == 0) {
-					targetChildren[i].position = Vector3.Lerp(targetChildren[i].position, targetSampledPositions[i], weight);
-					targetChildren[i].rotation = Quaternion.Lerp(targetChildren[i].rotation, targetSampledRotations[i], weight);
-				} else {
+            if (!targetMappedStateSampled)
+            {
+                return;
+            }
 
-					targetChildren[i].position = Vector3.Lerp(targetChildren[i].position, targetSampledPositions[0] + targetSampledRotations[0] * targetSampledPositions[i], weight);
-					targetChildren[i].rotation = Quaternion.Lerp(targetChildren[i].rotation, targetSampledRotations[0] * targetSampledRotations[i], weight);
-				}
-
-			}
-
-			foreach (Muscle m in muscles) m.positionOffset = m.target.position - m.rigidbody.position;
-		}
+            for (int i = 0; i < muscles.Length; i++)
+            {
+                if (i == 0) muscles[i].target.position = Vector3.Lerp(muscles[i].target.position, muscles[i].targetSampledPosition, weight);
+                muscles[i].target.rotation = Quaternion.Lerp(muscles[i].target.rotation, muscles[i].targetSampledRotation, weight);
+            }
+            
+            foreach (Muscle m in muscles) m.positionOffset = m.target.position - m.rigidbody.position;
+        }
 
 		/// <summary>
 		/// Stores the current pose of the target for sampling. This should normally be used only by the Puppet Behaviours.
 		/// </summary>
 		public void StoreTargetMappedState() {
-			if (!CheckIfInitiated()) return;
+            if (!CheckIfInitiated()) return;
 
-			if (!storeTargetMappedState) return;
-			
-			for (int i = 0; i < targetChildren.Length; i++) {
-				if (i == 0) {
-					targetMappedPositions[i] = targetChildren[i].position;
-					targetMappedRotations[i] = targetChildren[i].rotation;
-				} else {
-					targetMappedPositions[i] = Quaternion.Inverse(targetChildren[0].rotation) * (targetChildren[i].position - targetChildren[0].position);
-					targetMappedRotations[i] = Quaternion.Inverse(targetChildren[0].rotation) * targetChildren[i].rotation;
-				}
-			}
-			
-			targetMappedStateStored = true;
-			
-			if (sampleTargetMappedState) SampleTargetMappedState();
-			sampleTargetMappedState = false;
-		}
+            if (!storeTargetMappedState) return;
 
-		private Transform[] targetChildren = new Transform[0];
-		private Vector3[] targetMappedPositions;
-		private Quaternion[] targetMappedRotations;
-		private Vector3[] targetSampledPositions;
-		private Quaternion[] targetSampledRotations;
+            for (int i = 0; i < muscles.Length; i++)
+            {
+                if (i == 0) muscles[i].StoreTargetMappedPosition();
+                muscles[i].StoreTargetMappedRotation();
+            }
+
+            targetMappedStateStored = true;
+
+            if (sampleTargetMappedState) SampleTargetMappedState();
+            sampleTargetMappedState = false;
+        }
+
 		private bool targetMappedStateStored;
 		private bool targetMappedStateSampled;
 		private bool sampleTargetMappedState;
@@ -103,27 +84,28 @@ namespace RootMotion.Dynamics {
 
 		// Should be called each time the puppet structure is changed
 		private void UpdateHierarchies() {
-			targetChildren = new Transform[muscles.Length];
-			for (int i = 0; i < muscles.Length; i++) {
-				targetChildren[i] = muscles[i].target;
+            for (int i = 0; i < muscles.Length; i++) {
+                muscles[i].index = i;
+                if (muscles[i].broadcaster != null) muscles[i].broadcaster.muscleIndex = i;
+                if (muscles[i].jointBreakBroadcaster != null) muscles[i].jointBreakBroadcaster.muscleIndex = i;
 			}
 
-			targetMappedPositions = new Vector3[targetChildren.Length];
-			targetMappedRotations = new Quaternion[targetChildren.Length];
-			targetSampledPositions = new Vector3[targetChildren.Length];
-			targetSampledRotations = new Quaternion[targetChildren.Length];
-			
-			targetMappedStateStored = false;
+            targetMappedStateStored = false;
 			targetMappedStateSampled = false;
 			
 			AssignParentAndChildIndexes();
 			AssignKinshipDegrees();
 			UpdateBroadcasterMuscleIndexes();
 
-			internalCollisionsEnabled = !internalCollisions;
-			SetInternalCollisions(internalCollisions);
-			angularLimitsEnabled = !angularLimits;
-			SetAngularLimits(angularLimits);
+			if (disconnectMuscleFlags.Length != muscles.Length)
+            {
+                Array.Resize(ref disconnectMuscleFlags, muscles.Length);
+                Array.Resize(ref muscleDisconnectModes, muscles.Length);
+                Array.Resize(ref disconnectDeactivateFlags, muscles.Length);
+                Array.Resize(ref reconnectMuscleFlags, muscles.Length);
+            }
+
+            propMuscles = GetComponentsInChildren<PropMuscle>();
 
 			hasProp = HasProp();
 			

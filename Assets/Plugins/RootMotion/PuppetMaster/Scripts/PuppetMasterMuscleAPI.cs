@@ -206,8 +206,6 @@ namespace RootMotion.Dynamics {
 		/// Returns the index of the muscle that has the specified Joint. Returns -1 if not found.
 		/// </summary>
 		public int GetMuscleIndex(ConfigurableJoint joint) {
-			if (!CheckIfInitiated()) return -1;
-
 			if (joint == null) {
 				Debug.LogWarning("Joint is null, can not get muscle index.", transform);
 				return -1;

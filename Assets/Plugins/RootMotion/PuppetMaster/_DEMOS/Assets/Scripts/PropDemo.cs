@@ -8,21 +8,21 @@ namespace RootMotion.Demos {
 	public class PropDemo : MonoBehaviour {
 
 		[Tooltip("The Prop you wish to pick up.")] 
-		public Prop prop;
+		public PuppetMasterProp prop;
 
-		[Tooltip("The PropRoot of the left hand.")] 
-		public PropRoot propRootLeft;
+		[Tooltip("The Prop Muscle of the left hand.")] 
+		public PropMuscle propMuscleLeft;
 
-		[Tooltip("The PropRoot of the right hand.")] 
-		public PropRoot propRootRight;
+		[Tooltip("The Prop Muscle of the right hand.")] 
+		public PropMuscle propMuscleRight;
 
 		[Tooltip("If true, the prop will be picked up when PuppetMaster initiates")]
-		public bool pickUpOnStart;
+		public bool pickUpOnAwake;
 
 		private bool right = true;
 
 		void Start() {
-			if (pickUpOnStart) connectTo.currentProp = prop;
+            if (pickUpOnAwake) connectTo.currentProp = prop;
 		}
 
 		void Update () {
@@ -40,9 +40,6 @@ namespace RootMotion.Demos {
 
 			// Switching prop roots.
 			if (Input.GetKeyDown(KeyCode.S)) {
-				// Dropping/Picking up normally works in the fixed update cycle where joints can be properly connected. Swapping within a single frame can be done by calling PropRoot.DropImmediate();
-				connectTo.DropImmediate();
-
 				// Switch hands
 				right = !right;
 
@@ -51,9 +48,9 @@ namespace RootMotion.Demos {
 			}
 		}
 
-		private PropRoot connectTo {
+		private PropMuscle connectTo {
 			get {
-				return right? propRootRight: propRootLeft;
+				return right? propMuscleRight: propMuscleLeft;
 			}
 		}
 	}

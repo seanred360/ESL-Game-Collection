@@ -1,157 +1,455 @@
 fileFormatVersion: 2
 guid: 1ef35b0974fdaf74b976543b4c619360
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: King Cobra
-    100002: //RootNode
-    100004: Rig
-    100006: RigFeelerL01
-    100008: RigFeelerL01Gizmo
-    100010: RigFeelerL02
-    100012: RigFeelerL02Gizmo
-    100014: RigFeelerL03
-    100016: RigFeelerL03Gizmo
-    100018: RigFeelerR01
-    100020: RigFeelerR01Gizmo
-    100022: RigFeelerR02
-    100024: RigFeelerR02Gizmo
-    100026: RigFeelerR03
-    100028: RigFeelerR03Gizmo
-    100030: RigHead
-    100032: RigHeadGizmo
-    100034: RigJaw
-    100036: RigJawGizmo
-    100038: RigLArm1
-    100040: RigLArm1Gizmo
-    100042: RigLArm2
-    100044: RigLArm2Gizmo
-    100046: RigNeck1
-    100048: RigNeck2
-    100050: RigNeck3
-    100052: RigNeck4
-    100054: RigNeck5
-    100056: RigPelvis
-    100058: RigPelvisGizmo
-    100060: RigRArm1
-    100062: RigRArm1Gizmo
-    100064: RigRArm2
-    100066: RigRArm2Gizmo
-    100068: RigRibcage
-    100070: RigRibcageGizmo
-    100072: RigSpine1
-    100074: RigSpine2
-    100076: RigSpine3
-    100078: RigSpine4
-    100080: RigSpine5
-    100082: RigSpine6
-    100084: RigSpine7
-    100086: RigTail1
-    100088: RigTail10
-    100090: RigTail10Gizmo
-    100092: RigTail11
-    100094: RigTail11Gizmo
-    100096: RigTail1Gizmo
-    100098: RigTail2
-    100100: RigTail2Gizmo
-    100102: RigTail3
-    100104: RigTail3Gizmo
-    100106: RigTail4
-    100108: RigTail4Gizmo
-    100110: RigTail5
-    100112: RigTail5Gizmo
-    100114: RigTail6
-    100116: RigTail6Gizmo
-    100118: RigTail7
-    100120: RigTail7Gizmo
-    100122: RigTail8
-    100124: RigTail8Gizmo
-    100126: RigTail9
-    100128: RigTail9Gizmo
-    100130: RigTongue01
-    100132: RigTongue01Gizmo
-    100134: RigTongue02
-    100136: RigTongue02Gizmo
-    100138: RigTongue03
-    100140: RigTongue03Gizmo
-    100142: RigTongue04
-    100144: RigTongue04Gizmo
-    400000: King Cobra
-    400002: //RootNode
-    400004: Rig
-    400006: RigFeelerL01
-    400008: RigFeelerL01Gizmo
-    400010: RigFeelerL02
-    400012: RigFeelerL02Gizmo
-    400014: RigFeelerL03
-    400016: RigFeelerL03Gizmo
-    400018: RigFeelerR01
-    400020: RigFeelerR01Gizmo
-    400022: RigFeelerR02
-    400024: RigFeelerR02Gizmo
-    400026: RigFeelerR03
-    400028: RigFeelerR03Gizmo
-    400030: RigHead
-    400032: RigHeadGizmo
-    400034: RigJaw
-    400036: RigJawGizmo
-    400038: RigLArm1
-    400040: RigLArm1Gizmo
-    400042: RigLArm2
-    400044: RigLArm2Gizmo
-    400046: RigNeck1
-    400048: RigNeck2
-    400050: RigNeck3
-    400052: RigNeck4
-    400054: RigNeck5
-    400056: RigPelvis
-    400058: RigPelvisGizmo
-    400060: RigRArm1
-    400062: RigRArm1Gizmo
-    400064: RigRArm2
-    400066: RigRArm2Gizmo
-    400068: RigRibcage
-    400070: RigRibcageGizmo
-    400072: RigSpine1
-    400074: RigSpine2
-    400076: RigSpine3
-    400078: RigSpine4
-    400080: RigSpine5
-    400082: RigSpine6
-    400084: RigSpine7
-    400086: RigTail1
-    400088: RigTail10
-    400090: RigTail10Gizmo
-    400092: RigTail11
-    400094: RigTail11Gizmo
-    400096: RigTail1Gizmo
-    400098: RigTail2
-    400100: RigTail2Gizmo
-    400102: RigTail3
-    400104: RigTail3Gizmo
-    400106: RigTail4
-    400108: RigTail4Gizmo
-    400110: RigTail5
-    400112: RigTail5Gizmo
-    400114: RigTail6
-    400116: RigTail6Gizmo
-    400118: RigTail7
-    400120: RigTail7Gizmo
-    400122: RigTail8
-    400124: RigTail8Gizmo
-    400126: RigTail9
-    400128: RigTail9Gizmo
-    400130: RigTongue01
-    400132: RigTongue01Gizmo
-    400134: RigTongue02
-    400136: RigTongue02Gizmo
-    400138: RigTongue03
-    400140: RigTongue03Gizmo
-    400142: RigTongue04
-    400144: RigTongue04Gizmo
-    4300000: King Cobra
-    9500000: //RootNode
-    13700000: King Cobra
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: King Cobra
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Rig
+  - first:
+      1: 100006
+    second: RigFeelerL01
+  - first:
+      1: 100008
+    second: RigFeelerL01Gizmo
+  - first:
+      1: 100010
+    second: RigFeelerL02
+  - first:
+      1: 100012
+    second: RigFeelerL02Gizmo
+  - first:
+      1: 100014
+    second: RigFeelerL03
+  - first:
+      1: 100016
+    second: RigFeelerL03Gizmo
+  - first:
+      1: 100018
+    second: RigFeelerR01
+  - first:
+      1: 100020
+    second: RigFeelerR01Gizmo
+  - first:
+      1: 100022
+    second: RigFeelerR02
+  - first:
+      1: 100024
+    second: RigFeelerR02Gizmo
+  - first:
+      1: 100026
+    second: RigFeelerR03
+  - first:
+      1: 100028
+    second: RigFeelerR03Gizmo
+  - first:
+      1: 100030
+    second: RigHead
+  - first:
+      1: 100032
+    second: RigHeadGizmo
+  - first:
+      1: 100034
+    second: RigJaw
+  - first:
+      1: 100036
+    second: RigJawGizmo
+  - first:
+      1: 100038
+    second: RigLArm1
+  - first:
+      1: 100040
+    second: RigLArm1Gizmo
+  - first:
+      1: 100042
+    second: RigLArm2
+  - first:
+      1: 100044
+    second: RigLArm2Gizmo
+  - first:
+      1: 100046
+    second: RigNeck1
+  - first:
+      1: 100048
+    second: RigNeck2
+  - first:
+      1: 100050
+    second: RigNeck3
+  - first:
+      1: 100052
+    second: RigNeck4
+  - first:
+      1: 100054
+    second: RigNeck5
+  - first:
+      1: 100056
+    second: RigPelvis
+  - first:
+      1: 100058
+    second: RigPelvisGizmo
+  - first:
+      1: 100060
+    second: RigRArm1
+  - first:
+      1: 100062
+    second: RigRArm1Gizmo
+  - first:
+      1: 100064
+    second: RigRArm2
+  - first:
+      1: 100066
+    second: RigRArm2Gizmo
+  - first:
+      1: 100068
+    second: RigRibcage
+  - first:
+      1: 100070
+    second: RigRibcageGizmo
+  - first:
+      1: 100072
+    second: RigSpine1
+  - first:
+      1: 100074
+    second: RigSpine2
+  - first:
+      1: 100076
+    second: RigSpine3
+  - first:
+      1: 100078
+    second: RigSpine4
+  - first:
+      1: 100080
+    second: RigSpine5
+  - first:
+      1: 100082
+    second: RigSpine6
+  - first:
+      1: 100084
+    second: RigSpine7
+  - first:
+      1: 100086
+    second: RigTail1
+  - first:
+      1: 100088
+    second: RigTail10
+  - first:
+      1: 100090
+    second: RigTail10Gizmo
+  - first:
+      1: 100092
+    second: RigTail11
+  - first:
+      1: 100094
+    second: RigTail11Gizmo
+  - first:
+      1: 100096
+    second: RigTail1Gizmo
+  - first:
+      1: 100098
+    second: RigTail2
+  - first:
+      1: 100100
+    second: RigTail2Gizmo
+  - first:
+      1: 100102
+    second: RigTail3
+  - first:
+      1: 100104
+    second: RigTail3Gizmo
+  - first:
+      1: 100106
+    second: RigTail4
+  - first:
+      1: 100108
+    second: RigTail4Gizmo
+  - first:
+      1: 100110
+    second: RigTail5
+  - first:
+      1: 100112
+    second: RigTail5Gizmo
+  - first:
+      1: 100114
+    second: RigTail6
+  - first:
+      1: 100116
+    second: RigTail6Gizmo
+  - first:
+      1: 100118
+    second: RigTail7
+  - first:
+      1: 100120
+    second: RigTail7Gizmo
+  - first:
+      1: 100122
+    second: RigTail8
+  - first:
+      1: 100124
+    second: RigTail8Gizmo
+  - first:
+      1: 100126
+    second: RigTail9
+  - first:
+      1: 100128
+    second: RigTail9Gizmo
+  - first:
+      1: 100130
+    second: RigTongue01
+  - first:
+      1: 100132
+    second: RigTongue01Gizmo
+  - first:
+      1: 100134
+    second: RigTongue02
+  - first:
+      1: 100136
+    second: RigTongue02Gizmo
+  - first:
+      1: 100138
+    second: RigTongue03
+  - first:
+      1: 100140
+    second: RigTongue03Gizmo
+  - first:
+      1: 100142
+    second: RigTongue04
+  - first:
+      1: 100144
+    second: RigTongue04Gizmo
+  - first:
+      4: 400000
+    second: King Cobra
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Rig
+  - first:
+      4: 400006
+    second: RigFeelerL01
+  - first:
+      4: 400008
+    second: RigFeelerL01Gizmo
+  - first:
+      4: 400010
+    second: RigFeelerL02
+  - first:
+      4: 400012
+    second: RigFeelerL02Gizmo
+  - first:
+      4: 400014
+    second: RigFeelerL03
+  - first:
+      4: 400016
+    second: RigFeelerL03Gizmo
+  - first:
+      4: 400018
+    second: RigFeelerR01
+  - first:
+      4: 400020
+    second: RigFeelerR01Gizmo
+  - first:
+      4: 400022
+    second: RigFeelerR02
+  - first:
+      4: 400024
+    second: RigFeelerR02Gizmo
+  - first:
+      4: 400026
+    second: RigFeelerR03
+  - first:
+      4: 400028
+    second: RigFeelerR03Gizmo
+  - first:
+      4: 400030
+    second: RigHead
+  - first:
+      4: 400032
+    second: RigHeadGizmo
+  - first:
+      4: 400034
+    second: RigJaw
+  - first:
+      4: 400036
+    second: RigJawGizmo
+  - first:
+      4: 400038
+    second: RigLArm1
+  - first:
+      4: 400040
+    second: RigLArm1Gizmo
+  - first:
+      4: 400042
+    second: RigLArm2
+  - first:
+      4: 400044
+    second: RigLArm2Gizmo
+  - first:
+      4: 400046
+    second: RigNeck1
+  - first:
+      4: 400048
+    second: RigNeck2
+  - first:
+      4: 400050
+    second: RigNeck3
+  - first:
+      4: 400052
+    second: RigNeck4
+  - first:
+      4: 400054
+    second: RigNeck5
+  - first:
+      4: 400056
+    second: RigPelvis
+  - first:
+      4: 400058
+    second: RigPelvisGizmo
+  - first:
+      4: 400060
+    second: RigRArm1
+  - first:
+      4: 400062
+    second: RigRArm1Gizmo
+  - first:
+      4: 400064
+    second: RigRArm2
+  - first:
+      4: 400066
+    second: RigRArm2Gizmo
+  - first:
+      4: 400068
+    second: RigRibcage
+  - first:
+      4: 400070
+    second: RigRibcageGizmo
+  - first:
+      4: 400072
+    second: RigSpine1
+  - first:
+      4: 400074
+    second: RigSpine2
+  - first:
+      4: 400076
+    second: RigSpine3
+  - first:
+      4: 400078
+    second: RigSpine4
+  - first:
+      4: 400080
+    second: RigSpine5
+  - first:
+      4: 400082
+    second: RigSpine6
+  - first:
+      4: 400084
+    second: RigSpine7
+  - first:
+      4: 400086
+    second: RigTail1
+  - first:
+      4: 400088
+    second: RigTail10
+  - first:
+      4: 400090
+    second: RigTail10Gizmo
+  - first:
+      4: 400092
+    second: RigTail11
+  - first:
+      4: 400094
+    second: RigTail11Gizmo
+  - first:
+      4: 400096
+    second: RigTail1Gizmo
+  - first:
+      4: 400098
+    second: RigTail2
+  - first:
+      4: 400100
+    second: RigTail2Gizmo
+  - first:
+      4: 400102
+    second: RigTail3
+  - first:
+      4: 400104
+    second: RigTail3Gizmo
+  - first:
+      4: 400106
+    second: RigTail4
+  - first:
+      4: 400108
+    second: RigTail4Gizmo
+  - first:
+      4: 400110
+    second: RigTail5
+  - first:
+      4: 400112
+    second: RigTail5Gizmo
+  - first:
+      4: 400114
+    second: RigTail6
+  - first:
+      4: 400116
+    second: RigTail6Gizmo
+  - first:
+      4: 400118
+    second: RigTail7
+  - first:
+      4: 400120
+    second: RigTail7Gizmo
+  - first:
+      4: 400122
+    second: RigTail8
+  - first:
+      4: 400124
+    second: RigTail8Gizmo
+  - first:
+      4: 400126
+    second: RigTail9
+  - first:
+      4: 400128
+    second: RigTail9Gizmo
+  - first:
+      4: 400130
+    second: RigTongue01
+  - first:
+      4: 400132
+    second: RigTongue01Gizmo
+  - first:
+      4: 400134
+    second: RigTongue02
+  - first:
+      4: 400136
+    second: RigTongue02Gizmo
+  - first:
+      4: 400138
+    second: RigTongue03
+  - first:
+      4: 400140
+    second: RigTongue03Gizmo
+  - first:
+      4: 400142
+    second: RigTongue04
+  - first:
+      4: 400144
+    second: RigTongue04Gizmo
+  - first:
+      43: 4300000
+    second: King Cobra
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: King Cobra
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -159,7 +457,7 @@ ModelImporter:
       name: 07 - Default
     second: {fileID: 2100000, guid: 750d79830c071244f828af9b64c5f144, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -192,6 +490,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -199,18 +498,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -219,10 +519,19 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips:
+  - 08e5eddff5ad98f4b9f8070cda08938c
+  - 99e87f76e8d58f648817de05c5604f71
+  - 7b61d0ba113f6b640ba1f57e7fe70f0c
+  - 8c082971c10ee594cb7dcad9ba2c1044
+  - 6fcaf6bf9ec55a54fbd7e8d4bddb106a
+  - 0250cdddd02698a46aec13e13a6c5da9
+  - 89c9f5ae5dd117540b8d06eefea99e9a
+  - 131847bd4f6f81647825097ca084bf21
+  - 683fe174fbd292c4083a6748b7a3f56b
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -232,13 +541,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

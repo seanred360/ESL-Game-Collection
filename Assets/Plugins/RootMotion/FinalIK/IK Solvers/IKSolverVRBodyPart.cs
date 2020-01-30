@@ -6,12 +6,12 @@ using RootMotion;
 namespace RootMotion.FinalIK {
 	
 	/// <summary>
-	/// Hybrid %IK solver designed for mapping a character to a VR headset and 2 hand controllers 
+	/// Hybrid %IK solver designed for mapping a character to a VR headset and 2 hand controllers.
 	/// </summary>
 	public partial class IKSolverVR: IKSolver {
 
 		/// <summary>
-		/// A base class for limbs of all types.
+		/// A base class for all IKSolverVR body parts.
 		/// </summary>
 		[System.Serializable]
 		public abstract class BodyPart {
@@ -30,6 +30,12 @@ namespace RootMotion.FinalIK {
 			protected Vector3 rootPosition;
 			protected Quaternion rootRotation = Quaternion.identity;
 			protected int index = -1;
+            protected int LOD;
+
+            public void SetLOD(int LOD)
+            {
+                this.LOD = LOD;
+            }
 
 			public void Read(Vector3[] positions, Quaternion[] rotations, bool hasChest, bool hasNeck, bool hasShoulders, bool hasToes, bool hasLegs, int rootIndex, int index) {
 				this.index = index;

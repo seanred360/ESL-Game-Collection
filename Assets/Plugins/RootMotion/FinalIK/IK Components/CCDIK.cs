@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// CCD (Cyclic Coordinate Descent) %IK solver component.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page3.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page5.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/CCD IK")]
 	public class CCDIK : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page3.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page5.html");
 		}
 		
 		// Open the Script Reference URL

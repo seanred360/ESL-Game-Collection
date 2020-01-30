@@ -265,24 +265,24 @@ namespace RootMotion.FinalIK {
 		public Vector3 GetLegsPlaneNormal() {
 			if (!initiated) return Vector3.up;
 
-			Vector3 _up = up;
-			Vector3 normal = _up;
-			
+            Vector3 _up = up;
+            Vector3 normal = _up;
+
 			// Go through all the legs, rotate the normal by it's offset
 			for (int i = 0; i < legs.Length; i++) {
 				// Direction from the root to the leg
-				Vector3 legDirection = legs[i].IKPosition - root.position; 
-				
-				// Find the tangent
+				Vector3 legDirection = legs[i].IKPosition - root.position;
+
+                // Find the tangent
 				Vector3 legNormal = _up;
 				Vector3 legTangent = legDirection;
 				Vector3.OrthoNormalize(ref legNormal, ref legTangent);
 				
-				// Find the rotation offset from the tangent to the direction
-				Quaternion fromTo = Quaternion.FromToRotation(legTangent, legDirection);
-
-				// Rotate the normal
-				normal = fromTo * normal;
+                // Find the rotation offset from the tangent to the direction
+                Quaternion fromTo = Quaternion.FromToRotation(legTangent, legDirection);
+                
+                // Rotate the normal
+                normal = fromTo * normal;
 			}
 			
 			return normal;

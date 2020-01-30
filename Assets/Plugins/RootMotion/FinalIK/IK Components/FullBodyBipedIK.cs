@@ -13,7 +13,7 @@ namespace RootMotion.FinalIK {
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page6.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page8.html");
 		}
 		
 		// Open the Script Reference URL

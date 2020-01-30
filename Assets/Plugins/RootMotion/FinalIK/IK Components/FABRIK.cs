@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// Forward and Backward Reaching %IK solver component.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page4.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page6.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/FABRIK")]
 	public class FABRIK : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page4.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page6.html");
 		}
 		
 		// Open the Script Reference URL

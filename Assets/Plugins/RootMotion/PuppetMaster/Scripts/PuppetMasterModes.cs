@@ -7,6 +7,30 @@ namespace RootMotion.Dynamics {
 	// Switching and blending between Modes
 	public partial class PuppetMaster: MonoBehaviour {
 
+        /// <summary>
+        /// Switches this PuppetMaster to PuppetMaster.Mode.Active.
+        /// </summary>
+        public void SwitchToActiveMode()
+        {
+            mode = Mode.Active;
+        }
+
+        /// <summary>
+        /// Switches this PuppetMaster to PuppetMaster.Mode.Kinematic.
+        /// </summary>
+        public void SwitchToKinematicMode()
+        {
+            mode = Mode.Kinematic;
+        }
+
+        /// <summary>
+        /// Switches this PuppetMaster to PuppetMaster.Mode.Disabled.
+        /// </summary>
+        public void SwitchToDisabledMode()
+        {
+            mode = Mode.Disabled;
+        }
+
 		/// <summary>
 		/// Returns true if the PuppetMaster is in the middle of blending from a mode to mode.
 		/// </summary>
@@ -48,13 +72,14 @@ namespace RootMotion.Dynamics {
 			if (isSwitchingMode) return;
 			if (isKilling && mode != Mode.Active) return;
 			if (state != State.Alive && mode != Mode.Active) return;
-			// Enable state switching here or else mapping won't be blended correctly
-			
-			isSwitchingMode = true;
+
+            // Enable state switching here or else mapping won't be blended correctly
+
+            isSwitchingMode = true;
 			
 			if (lastMode == Mode.Disabled) {
-				if (mode == Mode.Kinematic) DisabledToKinematic();
-				else if (mode == Mode.Active) StartCoroutine(DisabledToActive());
+                if (mode == Mode.Kinematic) DisabledToKinematic();
+                else if (mode == Mode.Active) StartCoroutine(DisabledToActive());
 			}
 			
 			else if (lastMode == Mode.Kinematic) {
@@ -73,19 +98,21 @@ namespace RootMotion.Dynamics {
 		// Switch from Disabled to Kinematic mode
 		private void DisabledToKinematic() {
 			foreach (Muscle m in muscles) {
-				m.Reset();
+                if (!m.state.isDisconnected) m.Reset();
 			}
 			
 			foreach (Muscle m in muscles) {
-				m.rigidbody.gameObject.SetActive(true);
-				m.rigidbody.isKinematic = true;
+                if (!m.state.isDisconnected)
+                {
+                    m.rigidbody.gameObject.SetActive(true);
+                    m.SetKinematic(true);
+                }
 			}
 
-			internalCollisionsEnabled = true;
-			SetInternalCollisions(internalCollisions);
-			
-			foreach (Muscle m in muscles) {
-				m.MoveToTarget();
+            FlagInternalCollisionsForUpdate();
+
+            foreach (Muscle m in muscles) {
+                if (!m.state.isDisconnected) m.MoveToTarget();
 			}
 			
 			activeMode = Mode.Kinematic;
@@ -94,33 +121,41 @@ namespace RootMotion.Dynamics {
 
 		// Blend from Disabled to Active mode
 		private IEnumerator DisabledToActive() {
-			foreach (Muscle m in muscles) {
-				if (!m.rigidbody.gameObject.activeInHierarchy) m.Reset();
-			}
-			
-			foreach (Muscle m in muscles) {
-				m.rigidbody.gameObject.SetActive(true);
-				m.rigidbody.isKinematic = false;
-				m.rigidbody.WakeUp();
-				m.rigidbody.velocity = m.mappedVelocity;
-				m.rigidbody.angularVelocity = m.mappedAngularVelocity;
-			}
+            foreach (Muscle m in muscles) {
+                if (!m.state.isDisconnected) m.Reset();
+            }
 
-			internalCollisionsEnabled = true;
-			SetInternalCollisions(internalCollisions);
-
-			Read();
-			
-			foreach (Muscle m in muscles) {
-				m.MoveToTarget();
+            foreach (Muscle m in muscles) {
+                if (!m.state.isDisconnected)
+                {
+                    m.rigidbody.gameObject.SetActive(true);
+                    m.SetKinematic(false);
+                    m.rigidbody.WakeUp();
+                    m.rigidbody.velocity = m.mappedVelocity;
+                    m.rigidbody.angularVelocity = m.mappedAngularVelocity;
+                }
 			}
+            
 
-			UpdateInternalCollisions();
+            FlagInternalCollisionsForUpdate();
 
-			while (mappingBlend < 1f) {
-				mappingBlend = Mathf.Clamp(mappingBlend + Time.deltaTime / blendTime, 0f, 1f);
-				yield return null;
-			}
+            foreach (Muscle m in muscles) {
+                if (!m.state.isDisconnected) m.MoveToTarget();
+            }
+
+            Read();
+
+            if (blendTime > 0f)
+            {
+                while (mappingBlend < 1f)
+                {
+                    mappingBlend = Mathf.Clamp(mappingBlend + Time.deltaTime / blendTime, 0f, 1f);
+                    yield return null;
+                }
+            } else
+            {
+                mappingBlend = 1f;
+            }
 			
 			activeMode = Mode.Active;
 			isSwitchingMode = false;
@@ -129,7 +164,10 @@ namespace RootMotion.Dynamics {
 		// Switch from Kinematic to Disabled
 		private void KinematicToDisabled() {
 			foreach (Muscle m in muscles) {
-				m.rigidbody.gameObject.SetActive(false);
+                if (!m.state.isDisconnected)
+                {
+                    m.rigidbody.gameObject.SetActive(false);
+                }
 			}
 			
 			activeMode = Mode.Disabled;
@@ -139,38 +177,57 @@ namespace RootMotion.Dynamics {
 		// Blend from Kinematic to Active mode
 		private IEnumerator KinematicToActive() {
 			foreach (Muscle m in muscles) {
-				m.rigidbody.isKinematic = false;
-				m.rigidbody.WakeUp();
-				m.rigidbody.velocity = m.mappedVelocity;
-				m.rigidbody.angularVelocity = m.mappedAngularVelocity;
+                if (!m.state.isDisconnected)
+                {
+                    m.SetKinematic(false);
+                    m.rigidbody.WakeUp();
+                    m.rigidbody.velocity = m.mappedVelocity;
+                    m.rigidbody.angularVelocity = m.mappedAngularVelocity;
+                }
 			}
-
-			Read();
 
 			foreach (Muscle m in muscles) {
-				m.MoveToTarget();
+				if (!m.state.isDisconnected) m.MoveToTarget();
 			}
 
-			UpdateInternalCollisions();
+            Read();
 
-			while (mappingBlend < 1f) {
-				mappingBlend = Mathf.Min(mappingBlend + Time.deltaTime / blendTime, 1f);
-				yield return null;
-			}
-			
-			activeMode = Mode.Active;
+            if (blendTime > 0f)
+            {
+                while (mappingBlend < 1f)
+                {
+                    mappingBlend = Mathf.Clamp(mappingBlend + Time.deltaTime / blendTime, 0f, 1f);
+                    yield return null;
+                }
+            }
+            else
+            {
+                mappingBlend = 1f;
+            }
+
+            activeMode = Mode.Active;
 			isSwitchingMode = false;
 		}
 
 		// Blend from Active to Disabled mode
 		private IEnumerator ActiveToDisabled() {
-			while (mappingBlend > 0f) {
-				mappingBlend = Mathf.Max(mappingBlend - Time.deltaTime / blendTime, 0f);
-				yield return null;
-			}
+            if (blendTime > 0f)
+            {
+                while (mappingBlend > 0f)
+                {
+                    mappingBlend = Mathf.Max(mappingBlend - Time.deltaTime / blendTime, 0f);
+                    yield return null;
+                }
+            } else
+            {
+                mappingBlend = 0f;
+            }
 			
 			foreach (Muscle m in muscles) {
-				m.rigidbody.gameObject.SetActive(false);
+                if (!m.state.isDisconnected)
+                {
+                    m.rigidbody.gameObject.SetActive(false);
+                }
 			}
 
 			activeMode = Mode.Disabled;
@@ -179,34 +236,28 @@ namespace RootMotion.Dynamics {
 
 		// Blend from Active to Kinematic mode
 		private IEnumerator ActiveToKinematic() {
-			while (mappingBlend > 0f) {
-				mappingBlend = Mathf.Max(mappingBlend - Time.deltaTime / blendTime, 0f);
-				yield return null;
+            if (blendTime > 0f)
+            {
+                while (mappingBlend > 0f)
+                {
+                    mappingBlend = Mathf.Max(mappingBlend - Time.deltaTime / blendTime, 0f);
+                    yield return null;
+                }
+            } else
+            {
+                mappingBlend = 0f;
+            }
+			
+			foreach (Muscle m in muscles) {
+                if (!m.state.isDisconnected) m.SetKinematic(true);
 			}
 			
 			foreach (Muscle m in muscles) {
-				m.rigidbody.isKinematic = true;
-			}
-			
-			foreach (Muscle m in muscles) {
-				m.MoveToTarget();
+                if (!m.state.isDisconnected) m.MoveToTarget();
 			}
 
 			activeMode = Mode.Kinematic;
 			isSwitchingMode = false;
-		}
-
-		
-		private void UpdateInternalCollisions() {
-			if (!internalCollisions) {
-				for (int i = 0; i < muscles.Length; i++) {
-					for (int i2 = i; i2 < muscles.Length; i2++) {
-						if (i != i2) {
-							muscles[i].IgnoreCollisions(muscles[i2], true);
-						}
-					}
-				}
-			}
 		}
 	}
 }

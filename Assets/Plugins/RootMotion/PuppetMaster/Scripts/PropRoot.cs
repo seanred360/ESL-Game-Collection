@@ -56,6 +56,8 @@ namespace RootMotion.Dynamics {
 		private bool fixedUpdateCalled;
 
 		void Awake() {
+            Debug.LogWarning("PropRoot and Prop system is deprecated. Please see the 'Prop' demo to learn about the new easier and much more performance-efficient PropMuscle and PuppetMasterProp system.", transform);
+
 			// If currentProp has been assigned, it will be picked up AS IS, presuming it is already linked with the joints and held in the right position.
 			// To pick up the prop from ground, assign it after Awake, for example in Start.
 			if (currentProp != null) currentProp.StartPickedUp(this);
@@ -76,9 +78,10 @@ namespace RootMotion.Dynamics {
 			fixedUpdateCalled = true;
 
 			if (currentProp == lastProp) return;
+            if (currentProp != null && !currentProp.initiated) return;
 
-			// Dropping current prop
-			if (currentProp == null) {
+            // Dropping current prop
+            if (currentProp == null) {
 				puppetMaster.RemoveMuscleRecursive(lastProp.muscle, true, false, MuscleRemoveMode.Sever);	
 				lastProp.Drop();
 			}
@@ -102,7 +105,16 @@ namespace RootMotion.Dynamics {
 			prop.transform.rotation = transform.rotation;
 
 			prop.PickUp(this);
-			puppetMaster.AddMuscle(prop.muscle, prop.transform, connectTo, transform, prop.muscleProps, false, prop.forceLayers);
+
+            /*
+            prop.muscleProps.internalCollisionIgnores.muscles = new ConfigurableJoint[prop.internalCollisionIgnores.Length];
+            for (int i = 0; i < prop.internalCollisionIgnores.Length; i++)
+            {
+                prop.muscleProps.internalCollisionIgnores.muscles[i] = puppetMaster.GetMuscle(puppetMaster.targetAnimator.GetBoneTransform(prop.internalCollisionIgnores[i])).joint;
+            }
+            */
+
+            puppetMaster.AddMuscle(prop.muscle, prop.transform, connectTo, transform, prop.muscleProps, false, prop.forceLayers);
 
 			if (prop.additionalPin != null && prop.additionalPinTarget != null) {
 				puppetMaster.AddMuscle(prop.additionalPin, prop.additionalPinTarget, prop.muscle.GetComponent<Rigidbody>(), prop.transform, new Muscle.Props(prop.additionalPinWeight, 0f, 0f, 0f, false, Muscle.Group.Prop), true, prop.forceLayers);

@@ -299,57 +299,66 @@ Make sure collisions between the two layers are disabled in the Edit/Project Set
 
 /*! \page page6 Props
 
-PuppetMaster includes a helpful tool for attaching, detatching and managing physical props - the <b>PropRoot</b> and <b>Prop</b> classes. 
-The former can be thought of as the attachment point on the character, the latter defines some main requirements for the object to be used with that attachment point.
+PuppetMaster includes a helpful tool for attaching, detatching and managing physical props - the <b>PropMuscle</b> and <b>PuppetMasterProp</b> classes. 
+PropMuscle is a special type of muscle that the PuppetMasterProp objects can be attached to.
 For an example of prop usage, please see the "Prop" and "Melee" demo scenes.
+
+<b>Getting Started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/Bkw1gmrDr1I" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+
 
 <b>Prop Setup:</b>
 
 Because of the dual rig structure, the prop needs to be set up so that it's root GameObject is the Muscle with the Rigidbody and ConfigurableJoint components and parented to it the Target along with it's mesh and renderer(s).
-When the prop is picked up, the prop will be split up so that the Muscle will be assigned to the PuppetMaster and the Target to the Target root hierarchy. When the prop is dropped, original hierarchy will be restored.
+When the prop is picked up, the prop will be split up so that the "Mesh Root" will be parented to the Target root hierarchy and the rest of the prop with colliders to the Prop Muscle. When the prop is dropped, original hierarchy will be restored.
+
+When the prop is picked up, the Rigidbody component on it will be destroyed as the PropMuscle already has a Rigidbody. The colliders of the prop will act as compound colliders for the PropMuscle Rigidbody. When the prop is dropped, the original Rigidbody will be restored.
 
 \image html Prop.png
 \image html PropScene.png
 
 <br>
-<b>PropRoot Component:</b>
+<b>PropMuscle component:</b>
 
-As mentioned above, the PropRoot component is the attachment point of a prop (of any kind) and should be parented to the Target hierarchy. 
-For example in the case of a sword held in the right hand, the PropRoot.cs component should be on a GameObject parented to the right hand bone of the (Target) character, positioned at the palm and aligned to the rotation of the hand.
-	- <b>puppetMaster</b> - reference to the PuppetMaster component.
-	- <b>connectTo</b> - if a prop is connected, what will it's joint be connected to?
-	- <b>currentProp</b> - is there a Prop connected to this PropRoot? Simply assign this value to connect, replace or drop props.
+PropMuscle is a special type of muscle, which all prop objects can be attached to. You can create a PropMuscle in the Editor by selecting the PuppetMaster GameObject and clicking on "Add Prop Muscle" on the bottom of the PuppetMaster component. 
+Click on the blue button in the scene representing the PropMuscle and move/rotate it to where you need it to be.
+If your puppet does not have hand muscles and the PropMuscle was attached to the forearm muscle, find the Prop Muscle Target GameObject in the Target Root hierarchy and parent it to the hand bone.
+    - <b>Remove This Prop Muscle</b> - destroy this PropMuscle object.
+	- <b>currentProp</b> - the PuppetMasterProp currently held by this Prop Muscle. To pick up a prop, just assign it as propMuscle.currentProp. To drop, set propMuscle.currentProp to null. Replacing this value with another prop drops any previously held props.
+	- <b>additionalPinOffset</b> - offset of the additional pin from this Prop Muscle in local space.
+    - <b>Add/Remove Additional Pin</b> - adds or removes the additional pin object. Additional Pins help to pin this prop muscle to animation from another point. Without it, the prop muscle would be actuated by Muscle Spring only, which is likely not enough to follow fast swinging animations. Move the additional pin by 'Additional Pin Offset' towards the end of the prop (tip of the sword).
 
-\image html PropRoot.png
+\image html PropMuscle.png
 
-Picking up, dropping and switching props with the PropRoot is done by simply changing the propRoot.currentProp value. When you assign a prop to it by propRoot.currentProp = myProp, any props held by the PropRoot will be dropped and the new myProp will be attached instead.
-If you set currentProp to null, any props held by the PropRoot will be dropped.
+Picking up, dropping and switching props with the PropMuscle is done by simply changing the propMuscle.currentProp value. When you assign a prop to it by propMuscle.currentProp = myProp, any props held by the PropMuscle will be dropped and the new myProp will be attached instead.
+If you set currentProp to null, any props held by the PropMuscle will be dropped and the PropMuscle itself deactivated.
 
 \code
 		// Dropping props
-		propRoot.currentProp = null;
+		propMuscle.currentProp = null;
 
 		// Dropping any props held, picking up myProp
-		propRoot.currentProp = myProp;
+		propMuscle.currentProp = myProp;
 \endcode
 
-When a prop is attached to the PropRoot, it's localPosition and localRotation are set to zero/identity, so when you wish to adjust the prop's holding position or rotation, just adjust the PropRoot.
-
-\image html PropRootHierarchy.png
+When a prop is attached to the PropMuscle, it's localPosition and localRotation are set to zero/identity, so the best practice to adjust prop holding pivot would be to parent the prop to the PropMuscle, set localPosition/Rotation to zero and adjust the positions of the mesh and colliders until they fit perfectly at hand.
 
 <br>
-<b>Prop Component:</b>
+<b>PuppetMasterProp component:</b>
+    - <b>meshRoot</b> - Mesh Root will be parented to Prop Muscle's target when this prop is picked up. To make sure the mesh and the colliders match up, Mesh Root's localPosition/Rotation must be zero.
+    - <b>muscleProps</b> - the muscle properties that will be applied to the Prop Muscle when this prop is picked up.
+    - <b>internalCollisionIgnores</b> - defines which muscles or muscle groups internal collisions will always be ignored with regardless of PuppetMaster.internalCollisions state.
+    - <b>animatedTargetChildren</b> - list of animated bones parented to this muscle's Target, except for the bones that are targets or target children of any child muscles. This is used for stopping animation on those bones when the muscle has been disconnected using PuppetMaster.DisconnectMuscleRecursive(). For example if you disconnected the spine02 muscle, you would want to have spine03 and clavicles in this list to stop them from animating.
+	- <b>forceLayers</b> - if true, this prop's layer will be forced to PuppetMaster layer and target's layer forced to PuppetMaster's Target Root's layer when the prop is picked up.
+    - <b>mass</b> - mass of the prop while picked up. When dropped, mass of the original Rigidbody will be used.
+    - <b>propType</b> - this has no other purpose but helping you distinguish props by PropRoot.currentProp.propType.
+    - <b>pickedUpMaterial</b> - if assigned, sets prop colliders to this PhysicMaterial when picked up. If no materials assigned here, will maintain the original PhysicMaterial.
+	- <b>additionalPinOffsetAdd</b> - adds this to Prop Muscle's 'Additional Pin Offset' when this prop is picked up.
+	- <b>additionalPinWeight</b> - the pin weight of the additional pin. Increasing this weight will make the prop follow animation better, but will increase jitter when colliding with objects.
+	- <b>additionalPinMass</b> - multiplies the mass of the additional pin by this value when this prop is picked up. The Rigidbody on this prop will be destroyed on pick-up and reattached on drop, so it's mass is not used while picked up.
 
-Props used with the PropRoot component need to extend the abstract Prop.cs class. For an example, please see the PropTemplate.cs script.
-	- <b>propType</b> - this has no other purpose but helping you distinguish props by PropRoot.currentProp.propType.
-	- <b>muscle</b> - the Muscle (ConfigurableJoint) of this prop.
-	- <b>muscleProps</b> - the muscle properties that will be applied to the Muscle on pickup.
-
-	- <b>additionalPin</b> - optinal additional pin muscle, useful for long melee weapons that would otherwise require a lot of muscle force and solver iterations to be swinged quickly. Should normally be without any colliders attached.
-	- <b>additionalPinTarget</b> - Target Transform for the additional pin.
-	- <b>additionalPinWeight</b> - the pin weight of the additional pin muscle.
-
-\image html PropTemplate.png
+\image html PuppetMasterProp.png
 
 <br>
 <b>Melee Props:</b>
@@ -357,7 +366,7 @@ Props used with the PropRoot component need to extend the abstract Prop.cs class
 Lengthy melee props are a huge challenge to the PuppetMaster. Swinging them rapidly requires a lot of muscle force and solver iterations to fight the inertia and keep the ragdoll chain intact.
 The longer the chain of Joints linked together, the more inaccurate/unstable the simulation and unfortunatelly those melee props tend to be exactly at the ends of very long Joint chains (pelvis/spine/chest/upper arm/forearm/hand/sword).
 Besides that, as the props are swinged, they have a lot of linear and angular velocity, a very thin collider and therefore can easily skip the victim when it's collider happens to be at the position between two fixed frames.
-It usually takes quite a lot of tweaking and some tricks to get the melee props working right. The Prop component has the "Additional Pin" functionality which can be used to add another Muscle to the prop, helping to pin it to the animation.
+It usually takes quite a lot of tweaking and some tricks to get the melee props working right. PropMuscles have the "Additional Pin" functionality which can be used to add another pinning point to the prop, helping to better pin it to high angular velocity animation.
 
 - make the collider thicker when hitting to decrease collider skipping.
 - use Continuous/Continuous Dynamic collision detection modes to reduce skipping, this however has a big performance cost.
@@ -377,7 +386,7 @@ It usually takes quite a lot of tweaking and some tricks to get the melee props 
 - <b>actionMassMlp</b> - temporarily increase the mass of the Rigidbody when PropMelee.StartAction(float duration) is called.
 - <b>COMOffset</b> - offset to the default center of mass of the Rigidbody (might improve prop handling).
 
-\image html PropMelee.png
+\image html PuppetMasterPropMelee.png
 
   */
 
@@ -633,3 +642,121 @@ You can copy the blend tree from the AnimatorController in the "Falling" demo sc
 \image html BehaviourFall.png
 
  * */
+
+/*! \page page12 Baker
+Baker is a universal tool for recording Humanoid, Generic and Legacy animation clips. Baker.cs is an abstract base class extended by HumanoidBaker.cs and GenericBaker.cs.
+<BR>
+<b>Baker allows you to:</b>
+   - Edit animation clips
+   - bake IK into animation
+   - combine animation layers
+   - bake InteractionSystem interactions
+   - bake ragdoll physics
+   - blend ragdoll physics with animation (PuppetMaster)
+   - bake Timeline
+   - fix Humanoid retargeting problems (hand, foot positions)
+   - bake outsourced Humanoid animation to specific character model to avoid using Foot IK for performance
+   - bake motion capture
+   - reduce animation memory footprint with Baker's advanced keyframe reduction tools
+
+<b>Getting started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/uakZqX1hju0" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+   - Add the HumanoidBaker or GenericBaker component to the same GameObject as your character's Animator.
+   - Click on the button beneath "Save To Folder" to choose a folder for the baked animation clips.
+   - Play the scene.
+   - Click on the bake button.
+
+<b>Animation Clips Mode</b>
+<BR>AnimationClips mode can be used to bake a batch of AnimationClips directly without the need of setting up an AnimatorController. 
+<BR>Set the Baker to "Animation Clips" mode and add some animation clips to the "Animation Clips" array. "Append Name" is a string that will be added to each clip's name for the saved clip. For example if your animation clip names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+
+<b>Animation States Mode</b>
+<BR>AnimationStates mode can be used to bake a batch of Mecanim Animation States. This is useful for when you need to set up a more complex rig with layers and AvatarMasks in Mecanim.
+<BR>Set the Baker to "Animation States" mode and add the Animation State names (only from the base layer) you wish to bake to the "Animation States" array. "Append Name" is a string that will be added to each state's name for the saved clip. For example if your animation state names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+
+<b>Playable Director Mode</b>
+<BR>Bakes a PlayableDirector with a Timeline asset. Set the Baker to "Playable Director" mode and make sure the GameObject has a valid PlayableDirector.
+
+<b>Realtime Mode</b>
+<BR>Useful for baking an arbitrary range of animation, such as ragdoll simulation or an InteractionSystem interaction, in real-time.
+
+\code
+using RootMotion;
+
+public class MyBakingTool {
+
+   public Baker baker;
+   public float bakeDuration = 5f;
+
+   void Start()
+   {
+       baker.mode = Baker.Mode.Realtime;
+       StartCoroutine(BakeDuration(bakeDuration));
+   }
+
+   private IEnumerator BakeDuration(float duration) 
+   {
+       baker.StartBaking();
+
+       yield return new WaitForSeconds(duration);
+       baker.StopBaking();
+   }
+}
+\endcode
+
+
+<b>Keyframe Reduction</b>
+<BR> While developing a mobile game and running low on RAM, the quality of your animation will suffer a lot should you try to increase the keyframe reduction error thresholds in animation import settings.
+The most noticable problem will be with the feet starting to float around in idle animations as there are not enough keyframes to make them appear properly planted. Idle animations are also usually the longest and most memory consuming.
+Unity actually already contains a solution for this problem, but it is simply not implemented in the keyframe reduction options. That solution is the humanoid "Foot IK" system ("Foot IK" toggle in the Animator, previewable by enabling the "IK" toggle in the Animation Preview Window), that is normally used for fixing Humanoid retargeting problems.
+Foot IK works by storing position and rotation channels of the foot bottoms from the original animation clip, then running a pass of IK on the legs of the retargeted character (that has different leg bone lenghts) to properly plant the feet.
+Unity keyfame reduction options do not allow you to define different parameters for those IK curves and so they will be reduced just the same as the muscle channels, causing the feet to float even if you had "Foot IK" enabled.
+
+
+Baker allows you define "Key Reduction Error" and "IK Key Reduction Error" separately, hence apply extreme key reduction to muscle channels that take most of the memory while maintaining normal reduction for the IK channels.
+It also allows you to bake muscle channels at a lower frame rate than the IK channels by increasing the value of "Muscle Frame Rate Div". Those options can help you achieve better animation quality for a memory cost that is multiple times lower.
+The same technique can be used for hand IK, making sure your 2-handed prop animations do not suffer from keyframe reduction.
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/sH7OnpOQCg8" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+
+<b>Changing AnimationClipSettings</b>
+<BR> When you first bake an animation clip, Baker will apply the default settings. If you modified the settings of the animation clip manually and baked again, Baker will maintain those modified settings so you will not have to apply them again.
+
+<b>HumanoidBaker variables</b>
+   - <b>frameRate</b> - in AnimationClips, AnimationStates or PlayableDirector mode - the frame rate at which the animation clip will be sampled. In Realtime mode - the frame rate at which the pose will be sampled. With the latter, the frame rate is not guaranteed if the player is not able to reach it.
+   - <b>keyReductionError</b> - maximum allowed error for keyframe reduction.
+   - <b>IKKeyReductionError</b> - max keyframe reduction error for the Root.Q/T, LeftFoot IK and RightFoot IK channels. Having a larger error value for 'Key Reduction Error' and a smaller one for this enables you to optimize clip data size without the floating feet effect by enabling 'Foot IK' in the Animator.
+   - <b>muscleFrameRateDiv</b> - frame rate divider for the muscle curves. If you had 'Frame Rate' set to 30, and this value set to 3, the muscle curves will be baked at 10 fps. Only the Root Q/T and Hand and Foot IK curves will be baked at 30. This enables you to optimize clip data size without the floating feet effect by enabling 'Foot IK' in the Animator.
+   - <b>bakeHandIK</b> - should the hand IK curves be added to the animation? Disable this if the original hand positions are not important when using the clip on another character via Humanoid retargeting.
+   - <b>mode</b> - AnimationClips mode can be used to bake a batch of AnimationClips directly without the need of setting up an AnimatorController. AnimationStates mode is useful for when you need to set up a more complex rig with layers and AvatarMasks in Mecanim. PlayableDirector mode bakes a Timeline. Realtime mode is for continuous baking of gameplay, ragdoll phsysics or PuppetMaster dynamics.
+   - <b>loop</b> - sets the baked animation clip to loop time and matches the last frame keys with the first. Note that when overwriting a previously baked clip, AnimationClipSettings will be copied from the existing clip.
+   - <b>animationClips</b> - AnimationClips to bake.
+   - <b>animationStates</b> - the name of the AnimationStates (must be on the base layer) to bake in the Animator (Right-click on this component header and select 'Find Animation States' to have Baker fill those in automatically, required that state names match with the names of the clips used in them).
+   - <b>appendName</b> - string that will be added to each clip or animation state name for the saved clip. For example if your animation state/clip names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+   - <b>saveToFolder</b> - the folder to save the baked AnimationClips to.
+
+\image html HumanoidBakerComponent.png
+
+<b>GenericBaker variables</b>
+   - <b>frameRate</b> - in AnimationClips, AnimationStates or PlayableDirector mode - the frame rate at which the animation clip will be sampled. In Realtime mode - the frame rate at which the pose will be sampled. With the latter, the frame rate is not guaranteed if the player is not able to reach it.
+   - <b>keyReductionError</b> - maximum allowed error for keyframe reduction.
+   - <b>markAsLegacy</b> - if true, produced AnimationClips will be marked as Legacy and usable with the Legacy animation system.
+   - <b>root</b> - root Transform of the hierarchy to bake.
+   - <b>rootNode</b> - root node used for root motion.
+   - <b>ignoreList</b> - list of Transforms to ignore, rotation curves will not be baked for these Transforms.
+   - <b>bakePositionList</b> - localPosition curves will be baked for these Transforms only. If you are baking a character, the pelvis bone should be added to this array.
+   - <b>mode</b> - AnimationClips mode can be used to bake a batch of AnimationClips directly without the need of setting up an AnimatorController. AnimationStates mode is useful for when you need to set up a more complex rig with layers and AvatarMasks in Mecanim. PlayableDirector mode bakes a Timeline. Realtime mode is for continuous baking of gameplay, ragdoll phsysics or PuppetMaster dynamics.
+   - <b>loop</b> - sets the baked animation clip to loop time and matches the last frame keys with the first. Note that if you are overwriting a previously baked clip, AnimationClipSettings will be copied from the existing clip.
+   - <b>animationClips</b> - AnimationClips to bake.
+   - <b>animationStates</b> - the name of the AnimationStates (must be on the base layer) to bake in the Animator (Right-click on this component header and select 'Find Animation States' to have Baker fill those in automatically, required that state names match with the names of the clips used in them).
+   - <b>appendName</b> - string that will be added to each clip or animation state name for the saved clip. For example if your animation state/clip names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+   - <b>saveToFolder</b> - the folder to save the baked AnimationClips to.
+
+\image html GenericBakerComponent.png
+
+
+<b>Script References:</b>
+   - <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_humanoid_baker.html">HumanoidBaker</a> 
+   - <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_generic_baker.html">GenericBaker</a> 
+*/

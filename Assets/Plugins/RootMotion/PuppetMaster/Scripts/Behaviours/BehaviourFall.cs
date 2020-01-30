@@ -212,5 +212,16 @@ namespace RootMotion.Dynamics {
 			
 			return Mathf.Infinity;
 		}
-	}
+
+        public override void OnMuscleReconnected(Muscle m)
+        {
+            base.OnMuscleReconnected(m);
+
+            m.state.pinWeightMlp = 0f;
+            m.state.muscleWeightMlp = 1;
+            m.state.muscleDamperMlp = 1;
+            m.state.maxForceMlp = 1;
+            m.state.mappingWeightMlp = 1f;
+        }
+    }
 }

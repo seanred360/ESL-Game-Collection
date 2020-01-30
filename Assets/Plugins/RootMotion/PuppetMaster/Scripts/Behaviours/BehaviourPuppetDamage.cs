@@ -25,23 +25,28 @@ namespace RootMotion.Dynamics {
 			UnPin(hit.muscleIndex, hit.unPin);
 
 			// Add force
-			puppetMaster.muscles[hit.muscleIndex].rigidbody.isKinematic = false;
+			puppetMaster.muscles[hit.muscleIndex].SetKinematic(false);
 			puppetMaster.muscles[hit.muscleIndex].rigidbody.AddForceAtPosition(hit.force, hit.position);
 		}
 
-		// When a muscle collides with something (called by the MuscleCollisionBroadcaster component on the muscle).
-		protected override void OnMuscleCollisionBehaviour(MuscleCollision m) {
-			if (OnCollision != null) OnCollision(m);
+        // When a muscle collides with something (called by the MuscleCollisionBroadcaster component on the muscle).
+        protected override void OnMuscleCollisionBehaviour(MuscleCollision m) {
+            if (OnCollision != null) OnCollision(m);
 
-			// All the conditions for ignoring this
-			if (!enabled) return;
-			if (state == State.Unpinned) return;
-			if (collisions > maxCollisions) return;
-			if (!LayerMaskExtensions.Contains(collisionLayers, m.collision.gameObject.layer)) return;
-			if (masterProps.normalMode == NormalMode.Kinematic && !puppetMaster.isActive && !masterProps.activateOnStaticCollisions && m.collision.gameObject.isStatic) return;
+            // All the conditions for ignoring this
+            if (!enabled) return;
+            if (state == State.Unpinned) return;
+            if (collisions > maxCollisions) return;
+            if (!LayerMaskExtensions.Contains(collisionLayers, m.collision.gameObject.layer)) return;
 
-			// Get the collision impulse on the muscle
-			float cT = collisionThreshold;
+            if (LayerMaskExtensions.Contains(groundLayers, m.collision.gameObject.layer)) {
+                if (state == State.GetUp) return; // Do not damage if contact with ground layers and in getup state
+                if (puppetMaster.muscles[m.muscleIndex].props.group == Muscle.Group.Foot) return; // Do not damage if feet in contact with ground layers
+            }
+            if (masterProps.normalMode == NormalMode.Kinematic && !puppetMaster.isActive && !masterProps.activateOnStaticCollisions && m.collision.gameObject.isStatic) return;
+
+            // Get the collision impulse on the muscle
+            float cT = collisionThreshold;
 			float impulse = GetImpulse(m, ref cT);
 
 			float minImpulseMlp = PuppetMasterSettings.instance != null? (1f + PuppetMasterSettings.instance.currentlyActivePuppets * PuppetMasterSettings.instance.activePuppetCollisionThresholdMlp): 1f;
@@ -50,8 +55,8 @@ namespace RootMotion.Dynamics {
 			if (impulse <= minImpulse) return;
 			collisions ++;
 
-			// Try to find out if it collided with another puppet's muscle
-			if (m.collision.collider.attachedRigidbody != null) {	
+            // Try to find out if it collided with another puppet's muscle
+            if (m.collision.collider.attachedRigidbody != null) {	
 				broadcaster = m.collision.collider.attachedRigidbody.GetComponent<MuscleCollisionBroadcaster>();
 				if (broadcaster != null) {
 					if (broadcaster.muscleIndex < broadcaster.puppetMaster.muscles.Length) {
@@ -64,9 +69,9 @@ namespace RootMotion.Dynamics {
 				}
 			}
 
-			// DO not move this up, the impulse value will be wrong.
-			// Let other scripts know about the collision (even the ones below collision threshold)
-			if (OnCollisionImpulse != null) OnCollisionImpulse(m, impulse);
+            // DO not move this up, the impulse value will be wrong.
+            // Let other scripts know about the collision (even the ones below collision threshold)
+            if (OnCollisionImpulse != null) OnCollisionImpulse(m, impulse);
 
 			// Should we activate the puppet?
 			if (Activate(m.collision, impulse)) puppetMaster.mode = PuppetMaster.Mode.Active;
@@ -128,9 +133,13 @@ namespace RootMotion.Dynamics {
 			float damage = unpin / (props.collisionResistance * cR * stateF);
 			damage *= 1f - puppetMaster.muscles[muscleIndex].state.immunity;
 
-			// Finally apply the damage
-			puppetMaster.muscles[muscleIndex].state.pinWeightMlp -= damage;
-		}
+            // Finally apply the damage
+            //puppetMaster.muscles[muscleIndex].state.pinWeightMlp -= damage;
+            if (!puppetMaster.muscles[muscleIndex].state.isDisconnected)
+            {
+                puppetMaster.muscles[muscleIndex].state.pinWeightMlp = Mathf.Max(puppetMaster.muscles[muscleIndex].state.pinWeightMlp - damage, props.minPinWeight);
+            }
+        }
 		
 		private bool Activate(Collision collision, float impulse) {
 			if (masterProps.normalMode != NormalMode.Kinematic) return false;

@@ -63,6 +63,19 @@ namespace RootMotion {
 		private Vector3 lastUp;
 		private float blockedDistance = 10f, blockedDistanceV;
 
+        public void SetAngles(Quaternion rotation)
+        {
+            Vector3 euler = rotation.eulerAngles;
+            this.x = euler.y;
+            this.y = euler.x;
+        }
+
+        public void SetAngles(float yaw, float pitch)
+        {
+            this.x = yaw;
+            this.y = pitch;
+        }
+
 		// Initiate, set the params to the current transformation of the camera relative to the target
 		protected virtual void Awake () {
 			Vector3 angles = transform.eulerAngles;

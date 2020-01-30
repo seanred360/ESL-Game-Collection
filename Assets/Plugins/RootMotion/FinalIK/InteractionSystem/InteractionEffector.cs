@@ -24,8 +24,8 @@ namespace RootMotion.FinalIK {
 		// Internal values
 		private Poser poser;
 		private IKEffector effector;
-		private float timer, length, weight, fadeInSpeed, defaultPositionWeight, defaultRotationWeight, defaultPull, defaultReach, defaultPush, defaultPushParent, resetTimer;
-		private bool positionWeightUsed, rotationWeightUsed, pullUsed, reachUsed, pushUsed, pushParentUsed;
+		private float timer, length, weight, fadeInSpeed, defaultPositionWeight, defaultRotationWeight, defaultPull, defaultReach, defaultPush, defaultPushParent, defaultBendGoalWeight, resetTimer;
+		private bool positionWeightUsed, rotationWeightUsed, pullUsed, reachUsed, pushUsed, pushParentUsed, bendGoalWeightUsed;
 		private bool pickedUp, defaults, pickUpOnPostFBBIK;
 		private Vector3 pickUpPosition, pausePositionRelative;
 		private Quaternion pickUpRotation, pauseRotationRelative;
@@ -61,6 +61,7 @@ namespace RootMotion.FinalIK {
 			defaultReach = interactionSystem.ik.solver.GetChain(effectorType).reach;
 			defaultPush = interactionSystem.ik.solver.GetChain(effectorType).push;
 			defaultPushParent = interactionSystem.ik.solver.GetChain(effectorType).pushParent;
+            defaultBendGoalWeight = interactionSystem.ik.solver.GetChain(effectorType).bendConstraint.weight;
 		}
 
 		// Interpolate to default values when currently not in interaction
@@ -77,7 +78,8 @@ namespace RootMotion.FinalIK {
 				if (reachUsed) interactionSystem.ik.solver.GetChain(effectorType).reach = Mathf.Lerp(defaultReach, interactionSystem.ik.solver.GetChain(effectorType).reach, resetTimer);
 				if (pushUsed) interactionSystem.ik.solver.GetChain(effectorType).push = Mathf.Lerp(defaultPush, interactionSystem.ik.solver.GetChain(effectorType).push, resetTimer);
 				if (pushParentUsed) interactionSystem.ik.solver.GetChain(effectorType).pushParent = Mathf.Lerp(defaultPushParent, interactionSystem.ik.solver.GetChain(effectorType).pushParent, resetTimer);
-			}
+                if (bendGoalWeightUsed) interactionSystem.ik.solver.GetChain(effectorType).bendConstraint.weight = Mathf.Lerp(defaultBendGoalWeight, interactionSystem.ik.solver.GetChain(effectorType).bendConstraint.weight, resetTimer);
+            }
 
 			// Effector weights
 			if (positionWeightUsed) effector.positionWeight = Mathf.Lerp(defaultPositionWeight, effector.positionWeight, resetTimer);
@@ -90,6 +92,7 @@ namespace RootMotion.FinalIK {
 				pushParentUsed = false;
 				positionWeightUsed = false;
 				rotationWeightUsed = false;
+                bendGoalWeightUsed = false;
 				//poserUsed = false;
 
 				defaults = true;
@@ -162,13 +165,13 @@ namespace RootMotion.FinalIK {
 			}
 
 			// See which InteractionObject.WeightCurve.Types are used
-			//private bool positionWeightUsed, rotationWeightUsed, pullUsed, reachUsed, pushUsed, pushParentUsed, poserUsed;
 			positionWeightUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.PositionWeight);
 			rotationWeightUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.RotationWeight);
 			pullUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.Pull);
 			reachUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.Reach);
 			pushUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.Push);
 			pushParentUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.PushParent);
+            bendGoalWeightUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.BendGoalWeight);
 			//poserUsed = interactionObject.CurveUsed(InteractionObject.WeightCurve.Type.PoserWeight);
 			if (defaults) StoreDefaults();
 
@@ -317,12 +320,14 @@ namespace RootMotion.FinalIK {
 					rigidbody.isKinematic = true;
 				}
 
-				// Ignore collisions between the character and the colliders of the interaction object
-				if (root.GetComponent<Collider>() != null) {
+                // Ignore collisions between the character and the colliders of the interaction object
+                var rootCollider = root.GetComponent<Collider>();
+
+				if (rootCollider != null) {
 					var colliders = interactionObject.targetsRoot.GetComponentsInChildren<Collider>();
 
 					foreach (Collider collider in colliders) {
-						if (!collider.isTrigger) Physics.IgnoreCollision(root.GetComponent<Collider>(), collider);
+						if (!collider.isTrigger && collider.enabled) Physics.IgnoreCollision(rootCollider, collider);
 					}
 				}
 			}

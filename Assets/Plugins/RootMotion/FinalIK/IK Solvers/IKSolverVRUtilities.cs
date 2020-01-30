@@ -179,7 +179,8 @@ namespace RootMotion.FinalIK {
 				if (minNormalizedTargetDistance > 0f) {
 					Vector3 targetDirection = targetPosition - startPosition;
 					float targetLength = targetDirection.magnitude;
-					targetPosition = startPosition + (targetDirection / targetLength) * Mathf.Max(length * minNormalizedTargetDistance, targetLength);
+					Vector3 tP = startPosition + (targetDirection / targetLength) * Mathf.Max(length * minNormalizedTargetDistance, targetLength);
+                    targetPosition = Vector3.Lerp(targetPosition, tP, weight);
 				}
 				
 				// Iterating the solver

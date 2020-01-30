@@ -1,32 +1,63 @@
 fileFormatVersion: 2
 guid: 553b7148672db3548a53c134930f522f
-timeCreated: 1472046799
-licenseType: Store
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Octopus
-    21300002: Fish
-    21300004: Coin
-    21300006: Star
-    21300008: Cow
-    21300010: Bomb
-    21300012: Anchor
-    21300014: Boot
-    21300016: Frog
-    21300018: Gift
-    21300020: Ghost
-    21300022: House
-    21300024: Elephant
-    21300026: Hat
-    21300028: Bottle
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Octopus
+  - first:
+      213: 21300002
+    second: Fish
+  - first:
+      213: 21300004
+    second: Coin
+  - first:
+      213: 21300006
+    second: Star
+  - first:
+      213: 21300008
+    second: Cow
+  - first:
+      213: 21300010
+    second: Bomb
+  - first:
+      213: 21300012
+    second: Anchor
+  - first:
+      213: 21300014
+    second: Boot
+  - first:
+      213: 21300016
+    second: Frog
+  - first:
+      213: 21300018
+    second: Gift
+  - first:
+      213: 21300020
+    second: Ghost
+  - first:
+      213: 21300022
+    second: House
+  - first:
+      213: 21300024
+    second: Elephant
+  - first:
+      213: 21300026
+    second: Hat
+  - first:
+      213: 21300028
+    second: Bottle
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -35,37 +66,60 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Octopus
+    - serializedVersion: 2
+      name: Octopus
       rect:
         serializedVersion: 2
         x: 2
@@ -75,25 +129,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 141.5, y: -31}
-        - {x: 149.5, y: -6}
-        - {x: 149.5, y: 56}
-        - {x: 105.5, y: 59}
-        - {x: 82.5, y: 88}
-        - {x: 48.5, y: 112}
-        - {x: 45.5, y: 113}
-        - {x: -43.5, y: 113}
-        - {x: -126.5, y: 28}
-        - {x: -149.5, y: 0}
-        - {x: -149.5, y: -30}
-        - {x: -122.5, y: -35}
-        - {x: -149.5, y: -110}
-        - {x: -149.5, y: -113}
-        - {x: 20.5, y: -113}
-        - {x: 110.5, y: -80}
-        - {x: 145.5, y: -108}
-    - name: Fish
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish
       rect:
         serializedVersion: 2
         x: 306
@@ -103,23 +150,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 57, y: -3.5}
-        - {x: 58, y: -28.5}
-        - {x: 64, y: -53.5}
-        - {x: 85, y: -71.5}
-        - {x: 122, y: -19.5}
-        - {x: 122, y: -0.5}
-        - {x: 111, y: 50.5}
-        - {x: 8, y: 92.5}
-        - {x: -122, y: 92.5}
-        - {x: -122, y: -92.5}
-        - {x: -39, y: -92.5}
-        - {x: -22, y: -90.5}
-        - {x: 46, y: -23.5}
-        - {x: 57, y: -9.5}
-        - {x: 51, y: 6.5}
-    - name: Coin
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin
       rect:
         serializedVersion: 2
         x: 562
@@ -129,20 +171,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 57, y: 88}
-        - {x: 36, y: 98}
-        - {x: -37, y: 98}
-        - {x: -51, y: 96}
-        - {x: -92, y: 48}
-        - {x: -92, y: -50}
-        - {x: -81, y: -69}
-        - {x: -37, y: -98}
-        - {x: 35, y: -98}
-        - {x: 83, y: -68}
-        - {x: 92, y: -39}
-        - {x: 92, y: 47}
-    - name: Star
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Star
       rect:
         serializedVersion: 2
         x: 778
@@ -152,18 +192,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 102, y: 45}
-        - {x: 26, y: 104}
-        - {x: -24, y: 104}
-        - {x: -109, y: 43}
-        - {x: -109, y: -2}
-        - {x: -78, y: -104}
-        - {x: 74, y: -104}
-        - {x: 77, y: -99}
-        - {x: 109, y: -13}
-        - {x: 109, y: 32}
-    - name: Cow
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cow
       rect:
         serializedVersion: 2
         x: 5
@@ -173,24 +213,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -5, y: -104.5}
-        - {x: 20, y: -112.5}
-        - {x: 60, y: -112.5}
-        - {x: 58, y: -96.5}
-        - {x: 140, y: 2.5}
-        - {x: 149, y: 18.5}
-        - {x: 162, y: 46.5}
-        - {x: 162, y: 64.5}
-        - {x: 138, y: 112.5}
-        - {x: -96, y: 112.5}
-        - {x: -162, y: 44.5}
-        - {x: -162, y: -112.5}
-        - {x: -62, y: -112.5}
-        - {x: -50, y: -94.5}
-        - {x: -50, y: -83.5}
-        - {x: -56, y: -67.5}
-    - name: Bomb
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bomb
       rect:
         serializedVersion: 2
         x: 364
@@ -200,20 +234,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 107, y: 62.5}
-        - {x: 30, y: 97.5}
-        - {x: -54, y: 97.5}
-        - {x: -99, y: 66.5}
-        - {x: -110, y: 34.5}
-        - {x: -110, y: -31.5}
-        - {x: -104, y: -61.5}
-        - {x: -52, y: -97.5}
-        - {x: 21, y: -97.5}
-        - {x: 53, y: -89.5}
-        - {x: 110, y: -19.5}
-        - {x: 110, y: 43.5}
-    - name: Anchor
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anchor
       rect:
         serializedVersion: 2
         x: 604
@@ -223,25 +255,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 73.5, y: 24.5}
-        - {x: 55.5, y: 109.5}
-        - {x: 48.5, y: 110.5}
-        - {x: -29.5, y: 110.5}
-        - {x: -31.5, y: 107.5}
-        - {x: -50.5, y: 74.5}
-        - {x: -49.5, y: 54.5}
-        - {x: -91.5, y: 17.5}
-        - {x: -106.5, y: -5.5}
-        - {x: -106.5, y: -47.5}
-        - {x: -69.5, y: -100.5}
-        - {x: -32.5, y: -110.5}
-        - {x: 36.5, y: -110.5}
-        - {x: 70.5, y: -105.5}
-        - {x: 106.5, y: -47.5}
-        - {x: 106.5, y: 1.5}
-        - {x: 105.5, y: 7.5}
-    - name: Boot
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boot
       rect:
         serializedVersion: 2
         x: 12
@@ -251,19 +276,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 100.5, y: 77}
-        - {x: -62.5, y: 77}
-        - {x: -116.5, y: 18}
-        - {x: -116.5, y: -48}
-        - {x: -108.5, y: -57}
-        - {x: -54.5, y: -77}
-        - {x: 54.5, y: -77}
-        - {x: 115.5, y: -65}
-        - {x: 116.5, y: -64}
-        - {x: 116.5, y: 65}
-        - {x: 115.5, y: 69}
-    - name: Frog
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog
       rect:
         serializedVersion: 2
         x: 300
@@ -273,39 +297,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 125.5, y: -9}
-        - {x: 116.5, y: -2}
-        - {x: 110.5, y: 1}
-        - {x: 99.5, y: 1}
-        - {x: 92.5, y: -2}
-        - {x: 90.5, y: -18}
-        - {x: 56.5, y: -14}
-        - {x: 104.5, y: 4}
-        - {x: 117.5, y: -1}
-        - {x: 144.5, y: 2}
-        - {x: 109.5, y: 72}
-        - {x: 44.5, y: 96}
-        - {x: -59.5, y: 96}
-        - {x: -123.5, y: 54}
-        - {x: -124.5, y: 7}
-        - {x: -116.5, y: 1}
-        - {x: -110.5, y: 1}
-        - {x: -104.5, y: 6}
-        - {x: -61.5, y: -11}
-        - {x: -69.5, y: -38}
-        - {x: -75.5, y: -57}
-        - {x: -91.5, y: -6}
-        - {x: -99.5, y: 3}
-        - {x: -153.5, y: -4}
-        - {x: -158.5, y: -9}
-        - {x: -158.5, y: -94}
-        - {x: -151.5, y: -96}
-        - {x: 137.5, y: -96}
-        - {x: 158.5, y: -76}
-        - {x: 158.5, y: -21}
-        - {x: 146.5, y: 1}
-    - name: Gift
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gift
       rect:
         serializedVersion: 2
         x: 644
@@ -315,23 +318,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 107.5, y: 61.5}
-        - {x: 107.5, y: 73.5}
-        - {x: 42.5, y: 95.5}
-        - {x: -16.5, y: 109.5}
-        - {x: -32.5, y: 109.5}
-        - {x: -107.5, y: 56.5}
-        - {x: -107.5, y: 21.5}
-        - {x: -95.5, y: -19.5}
-        - {x: -93.5, y: -76.5}
-        - {x: -85.5, y: -82.5}
-        - {x: 3.5, y: -109.5}
-        - {x: 24.5, y: -109.5}
-        - {x: 86.5, y: -63.5}
-        - {x: 91.5, y: 18.5}
-        - {x: 102.5, y: 42.5}
-    - name: Ghost
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost
       rect:
         serializedVersion: 2
         x: 14
@@ -341,18 +339,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 25, y: 95.5}
-        - {x: -68, y: 95.5}
-        - {x: -103, y: 58.5}
-        - {x: -136, y: 21.5}
-        - {x: -136, y: -44.5}
-        - {x: -61, y: -95.5}
-        - {x: 63, y: -95.5}
-        - {x: 127, y: -67.5}
-        - {x: 136, y: -52.5}
-        - {x: 136, y: -40.5}
-    - name: House
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: House
       rect:
         serializedVersion: 2
         x: 308
@@ -362,23 +360,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 131.5, y: 18}
-        - {x: 131.5, y: 26}
-        - {x: 68.5, y: 90}
-        - {x: -78.5, y: 90}
-        - {x: -84.5, y: 84}
-        - {x: -130.5, y: 23}
-        - {x: -130.5, y: 15}
-        - {x: -120.5, y: 8}
-        - {x: -112.5, y: 11}
-        - {x: -112.5, y: -89}
-        - {x: -111.5, y: -90}
-        - {x: 120.5, y: -90}
-        - {x: 121.5, y: -89}
-        - {x: 121.5, y: 14}
-        - {x: 124.5, y: 13}
-    - name: Elephant
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elephant
       rect:
         serializedVersion: 2
         x: 637
@@ -388,29 +381,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 76.5, y: -1.5}
-        - {x: 81.5, y: 6.5}
-        - {x: 121.5, y: 61.5}
-        - {x: 106.5, y: 104.5}
-        - {x: 34.5, y: 126.5}
-        - {x: -30.5, y: 126.5}
-        - {x: -61.5, y: 123.5}
-        - {x: -89.5, y: 101.5}
-        - {x: -87.5, y: 79.5}
-        - {x: -74.5, y: 59.5}
-        - {x: -83.5, y: -18.5}
-        - {x: -131.5, y: -38.5}
-        - {x: -133.5, y: -43.5}
-        - {x: -133.5, y: -108.5}
-        - {x: -132.5, y: -113.5}
-        - {x: -121.5, y: -125.5}
-        - {x: -92.5, y: -126.5}
-        - {x: 104.5, y: -126.5}
-        - {x: 120.5, y: -124.5}
-        - {x: 133.5, y: -108.5}
-        - {x: 133.5, y: -36.5}
-    - name: Hat
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hat
       rect:
         serializedVersion: 2
         x: 13
@@ -420,15 +402,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -60, y: 67.5}
-        - {x: -140, y: 4.5}
-        - {x: -140, y: -13.5}
-        - {x: 21, y: -67.5}
-        - {x: 140, y: -67.5}
-        - {x: 140, y: -35.5}
-        - {x: 65, y: 67.5}
-    - name: Bottle
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bottle
       rect:
         serializedVersion: 2
         x: 323
@@ -438,19 +423,29 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 146.5, y: 26.5}
-        - {x: 73.5, y: 37.5}
-        - {x: 38.5, y: 68.5}
-        - {x: -129.5, y: 68.5}
-        - {x: -146.5, y: 46.5}
-        - {x: -146.5, y: -40.5}
-        - {x: -128.5, y: -68.5}
-        - {x: 42.5, y: -68.5}
-        - {x: 133.5, y: -29.5}
-        - {x: 146.5, y: -25.5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

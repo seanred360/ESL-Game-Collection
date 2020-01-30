@@ -173,5 +173,24 @@ namespace RootMotion {
 			Quaternion d = targetRotation * fTarget;
 			return d * Quaternion.Inverse(f);
 		}
-	}
+
+        /// <summary>
+        /// Converts an Euler rotation from 0 to 360 representation to -180 to 180.
+        /// </summary>
+        public static Vector3 ToBiPolar(Vector3 euler)
+        {
+            return new Vector3(ToBiPolar(euler.x), ToBiPolar(euler.y), ToBiPolar(euler.z));
+        }
+
+        /// <summary>
+        /// Converts an angular value from 0 to 360 representation to -180 to 180.
+        /// </summary>
+        public static float ToBiPolar(float angle)
+        {
+            angle = angle % 360f;
+            if (angle >= 180f) return angle - 360f;
+            if (angle <= -180f) return angle + 360f;
+            return angle;
+        }
+    }
 }

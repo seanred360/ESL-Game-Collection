@@ -14,16 +14,22 @@ namespace RootMotion.Demos {
 		public Vector3 offset; // Offset from the default position
 		public float minDelay = 0.2f, maxOffset = 1.0f, stepSpeed = 5.0f, footHeight = 0.15f, velocityPrediction = 0.2f, raycastFocus = 0.1f; // Parameters for stepping
 		public AnimationCurve yOffset;
-
-		public ParticleSystem sand; // FX for sand
+        public Transform foot;
+        public Vector3 footUpAxis;
+        public float footRotationSpeed = 10f;
+        
+        public ParticleSystem sand; // FX for sand
 
 		private IK ik;
 		private float stepProgress = 1f, lastStepTime;
 		private Vector3 defaultPosition;
 		private RaycastHit hit = new RaycastHit();
+        private Quaternion lastFootLocalRotation;
+        private Vector3 smoothHitNormal = Vector3.up;
+        private Vector3 lastStepPosition;
 
-		// Is the leg stepping?
-		public bool isStepping {
+        // Is the leg stepping?
+        public bool isStepping {
 			get {
 				return stepProgress < 1f;
 			}
@@ -43,6 +49,23 @@ namespace RootMotion.Demos {
         {
             // Find the ik component
             ik = GetComponent<IK>();
+
+            if (foot != null)
+            {
+                if (footUpAxis == Vector3.zero) footUpAxis = Quaternion.Inverse(foot.rotation) * Vector3.up;
+                lastFootLocalRotation = foot.localRotation;
+                ik.GetIKSolver().OnPostUpdate += AfterIK;
+            }
+        }
+
+        private void AfterIK()
+        {
+            if (foot == null) return;
+            foot.localRotation = lastFootLocalRotation;
+
+            smoothHitNormal = Vector3.Slerp(smoothHitNormal, hit.normal, Time.deltaTime * footRotationSpeed);
+            Quaternion f = Quaternion.FromToRotation(foot.rotation * footUpAxis, smoothHitNormal);
+            foot.rotation = f * foot.rotation;
         }
 
         void Start() {
@@ -53,12 +76,15 @@ namespace RootMotion.Demos {
 			
 			var points = ik.GetIKSolver().GetPoints();
 			position = points[points.Length - 1].transform.position;
-			
+            lastStepPosition = position;
+
 			hit.point = position;
 
 			// Store the default rest position of the leg
 			defaultPosition = mechSpider.transform.InverseTransformPoint(position + offset * mechSpider.scale);
-		}
+
+            StartCoroutine(Step(position, position));
+        }
 
 		// Find the relaxed grounded positon of the leg relative to the body in world space.
 		private Vector3 GetStepTarget(out bool stepFound, float focus, float distance) {
@@ -78,17 +104,25 @@ namespace RootMotion.Demos {
 			// Raycast to ground the relaxed position
 			if (Physics.Raycast(stepTarget + up * mechSpider.raycastHeight * mechSpider.scale, -up, out hit, mechSpider.raycastHeight * mechSpider.scale + distance, mechSpider.raycastLayers)) stepFound = true;
 
-			return hit.point + mechSpider.transform.up * footHeight * mechSpider.scale;
-		}
-
-        void OnEnable()
-        {
-            StartCoroutine(Step(position, position));
+            //return hit.point + mechSpider.transform.up * footHeight * mechSpider.scale;
+            return hit.point + hit.normal * footHeight * mechSpider.scale;
         }
 
-		void Update () {
-			// if already stepping, do nothing
-			if (isStepping) return;
+        private void UpdatePosition(float distance)
+        {
+            Vector3 up = mechSpider.transform.up;
+            
+            if (Physics.Raycast(lastStepPosition + up * mechSpider.raycastHeight * mechSpider.scale, -up, out hit, mechSpider.raycastHeight * mechSpider.scale + distance, mechSpider.raycastLayers))
+            {
+                position = hit.point + hit.normal * footHeight * mechSpider.scale;
+            }
+        }
+
+        void Update () {
+            UpdatePosition(mechSpider.raycastDistance * mechSpider.scale);
+
+            // if already stepping, do nothing
+            if (isStepping) return;
 
 			// Minimum delay before stepping again
 			if (Time.time < lastStepTime + minDelay) return;
@@ -122,11 +156,13 @@ namespace RootMotion.Demos {
 				
 				position = Vector3.Lerp(stepStartPosition, targetPosition, stepProgress);
 				position += mechSpider.transform.up * yOffset.Evaluate(stepProgress) * mechSpider.scale;
-				
+                lastStepPosition = position;
+
 				yield return null;
 			}
 
 			position = targetPosition;
+            lastStepPosition = position;
 
 			// Emit sand
 			if (sand != null) {

@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// Rotates a hierarchy of bones to face a target
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page8.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page13.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/Look At IK")]
 	public class LookAtIK : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page8.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page13.html");
 		}
 		
 		// Open the Script Reference URL

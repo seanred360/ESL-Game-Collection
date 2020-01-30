@@ -10,17 +10,155 @@ namespace RootMotion.Dynamics {
 		Explode, // Explodes the body part disconnecting all joints
 		Numb, // Removes the muscles, keeps the joints connected, but disables spring and damper forces
 	}
+
+    [System.Serializable]
+    public enum MuscleDisconnectMode
+    {
+        Sever,
+        Explode
+    }
 	
 	// Contains high level API calls for changing the PuppetMaster's muscle structure.
 	public partial class PuppetMaster: MonoBehaviour {
 
-		/// <summary>
-		/// NB! Make sure to call this from FixedUpdate!
-		/// Creates a new muscle for the specified "joint" and targets it to the "target". The joint will be connected to the specified "connectTo" Muscle.
-		/// Note that the joint will be binded to it's current position and rotation relative to the "connectTo", so make sure the added object is positioned correctly when calling this.
-		/// This method allocates memory, avoid using it each frame.
-		/// </summary>
-		public void AddMuscle(ConfigurableJoint joint, Transform target, Rigidbody connectTo, Transform targetParent, Muscle.Props muscleProps = null, bool forceTreeHierarchy = false, bool forceLayers = true) {
+        #region Public API
+
+        /// <summary>
+        /// Adds a PropMuscle to the puppet at runtime. If Vector3.zero passed for additionalPinOffset, additional pin will not be added.
+        /// </summary>
+        public bool AddPropMuscle(ConfigurableJoint addPropMuscleTo, Vector3 position, Quaternion rotation, Vector3 additionalPinOffset, Transform targetParent = null, PuppetMasterProp initiateWithProp = null)
+        {
+            if (!initiated)
+            {
+                Debug.LogError("Can not add Prop Muscle to PuppetMaster that has not been initiated! Please use Start() instead of Awake() or PuppetMaster.OnPostInitiate delegate to call AddPropMuscle.", transform);
+                return false;
+            }
+
+            if (addPropMuscleTo != null)
+            {
+                bool isFlat = HierarchyIsFlat();
+
+                var addToMuscle = GetMuscle(addPropMuscleTo);
+                if (addToMuscle != null)
+                {
+                    GameObject go = new GameObject("Prop Muscle " + addPropMuscleTo.name);
+                    go.layer = addPropMuscleTo.gameObject.layer;
+                    go.transform.parent = isFlat ? transform : addPropMuscleTo.transform;
+                    go.transform.position = position;
+                    go.transform.rotation = rotation;
+
+                    go.AddComponent<Rigidbody>();
+
+                    GameObject target = new GameObject("Prop Muscle Target " + addPropMuscleTo.name);
+                    target.gameObject.layer = addToMuscle.target.gameObject.layer;
+                    target.transform.parent = targetParent != null? targetParent: addToMuscle.target;
+                    target.transform.position = go.transform.position;
+                    target.transform.rotation = go.transform.rotation;
+
+                    ConfigurableJoint joint = go.AddComponent<ConfigurableJoint>();
+                    joint.xMotion = ConfigurableJointMotion.Locked;
+                    joint.yMotion = ConfigurableJointMotion.Locked;
+                    joint.zMotion = ConfigurableJointMotion.Locked;
+                    joint.angularXMotion = ConfigurableJointMotion.Locked;
+                    joint.angularYMotion = ConfigurableJointMotion.Locked;
+                    joint.angularZMotion = ConfigurableJointMotion.Locked;
+
+                    Muscle.Props props = new Muscle.Props();
+                    props.group = Muscle.Group.Prop;
+
+                    AddMuscle(joint, target.transform, addPropMuscleTo.GetComponent<Rigidbody>(), targetParent != null ? targetParent : addToMuscle.target, props, false, true);
+
+                    muscles[muscles.Length - 1].isPropMuscle = true;
+
+                    var propMuscle = go.AddComponent<PropMuscle>();
+                    propMuscle.puppetMaster = this;
+                    propMuscle.additionalPinOffset = additionalPinOffset;
+                    propMuscle.currentProp = initiateWithProp;
+                    if (additionalPinOffset != Vector3.zero) propMuscle.AddAdditionalPin();
+
+                    Array.Resize(ref propMuscles, propMuscles.Length + 1);
+                    propMuscles[propMuscles.Length - 1] = propMuscle;
+                    propMuscle.OnInitiate();
+                    
+                    return true;
+                }
+                else
+                {
+                    Debug.LogError("Can't add Prop Muscle to a ConfigurableJoint that is not in the list of PuppetMaster.muscles.", transform);
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.LogError("Please assign the ConfigurableJoint of the muscle you wish to add the Prop Muscle to.", transform);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Is the muscle scheduled for disconnecting?
+        /// </summary>
+        public bool IsDisconnecting(int muscleIndex)
+        {
+            return disconnectMuscleFlags[muscleIndex];
+        }
+
+        /// <summary>
+        /// Is the muscle scheduled for reconnecting
+        /// </summary>
+        public bool IsReconnecting(int muscleIndex)
+        {
+            return reconnectMuscleFlags[muscleIndex];
+        }
+
+        /// <summary>
+        /// Disconnects muscle from index. In Sever mode, the muscle and it's children will be disconnected in one piece (cutting limb off). In Explode mode the muscle and all it's children will be cut off. If Deactivate is true, the disconnected muscle GameObjects will be deactivated.
+        /// </summary>
+        public void DisconnectMuscleRecursive(int index, MuscleDisconnectMode disconnectMode = MuscleDisconnectMode.Sever, bool deactivate = false)
+        {
+            if (index < 0 || index >= muscles.Length)
+            {
+                Debug.LogError("PuppetMaster.DisconnectMuscleRecursive() called with out of range index: " + index, transform);
+                return;
+            }
+
+            disconnectMuscleFlags[index] = true;
+            muscleDisconnectModes[index] = disconnectMode;
+            disconnectDeactivateFlags[index] = deactivate;
+        }
+
+        /// <summary>
+        /// Reconnects all muscles starting from the specified index.
+        /// </summary>
+        public void ReconnectMuscleRecursive(int index)
+        {
+            if (index < 0 || index >= muscles.Length)
+            {
+                Debug.LogError("PuppetMaster.ReconnectMuscleRecursive() called with out of range index: " + index, transform);
+                return;
+            }
+
+            if (index > 0) index = GetHighestDisconnectedParentIndex(index);
+
+            reconnectMuscleFlags[index] = true;
+
+            // Disable reconnecting muscles, so they could be reset on actual reconnect
+            if (muscles[index].state.resetFlag) muscles[index].joint.gameObject.SetActive(false);
+
+            for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+            {
+                int childIndex = muscles[index].childIndexes[i];
+                if (muscles[childIndex].state.resetFlag) muscles[childIndex].joint.gameObject.SetActive(false);
+            }
+        }
+        
+        /// <summary>
+        /// NB! Make sure to call this from FixedUpdate!
+        /// Creates a new muscle for the specified "joint" and targets it to the "target". The joint will be connected to the specified "connectTo" Muscle.
+        /// Note that the joint will be binded to it's current position and rotation relative to the "connectTo", so make sure the added object is positioned correctly when calling this.
+        /// This method allocates memory, avoid using it each frame.
+        /// </summary>
+        public void AddMuscle(ConfigurableJoint joint, Transform target, Rigidbody connectTo, Transform targetParent, Muscle.Props muscleProps = null, bool forceTreeHierarchy = false, bool forceLayers = true) {
 			if (!CheckIfInitiated()) return;
 
 			if (!initiated) {
@@ -90,12 +228,13 @@ namespace RootMotion.Dynamics {
 			// Ignore internal collisions
 			if (!internalCollisions) {
 				for (int i = 0; i < muscles.Length; i++) {
-					muscle.IgnoreCollisions(muscles[i], true);
+					muscle.IgnoreInternalCollisions(muscles[i]);
 				}
 			}
 			
 			Array.Resize(ref muscles, muscles.Length + 1);
 			muscles[muscles.Length - 1] = muscle;
+            muscle.index = muscles.Length - 1;
 			
 			// Update angular limit ignoring
 			muscle.IgnoreAngularLimits(!angularLimits);
@@ -123,231 +262,160 @@ namespace RootMotion.Dynamics {
 			rebuildFlag = true;
 		}
 
-		/// <summary>
-		/// Removes the muscle with the specified joint and all muscles connected to it from PuppetMaster management. This will not destroy the body part/prop, but just release it from following the target.
-		/// If you call RemoveMuscleRecursive on an upper arm muscle, the entire arm will be disconnected from the rest of the body.
-		/// </summary>
-		/// <param name="joint">The joint of the muscle (and the muscles connected to it) to remove.</param>
-		/// <param name="attachTarget">If set to <c>true</c> , the target Transform of the first muscle will be parented to the disconnected limb.</param>
-		/// <param name="blockTargetAnimation">If set to <c>true</c>, will add AnimationBlocker.cs to the removed target bones. That will override animation that would otherwise still be writing on those bones.</param>
-		/// <param name="removeMode">Remove mode. Sever cuts the body part by disconnecting the first joint. Explode explodes the body part disconnecting all joints. Numb removes the muscles from PuppetMaster management, keeps the joints connected and disables spring and damper forces.</param>
-		public void RemoveMuscleRecursive(ConfigurableJoint joint, bool attachTarget, bool blockTargetAnimation = false, MuscleRemoveMode removeMode = MuscleRemoveMode.Sever) {
-			if (!CheckIfInitiated()) return;
-			
-			if (joint == null) {
-				Debug.LogWarning("RemoveMuscleRecursive was called with a null 'joint' reference.", transform);
-				return;
-			}
-			
-			if (!ContainsJoint(joint)) {
-				Debug.LogWarning("No Muscle with the specified joint was found, can not remove muscle.", transform);
-				return;
-			}
+        /// <summary>
+        /// Removes the muscle with the specified joint and all muscles connected to it from PuppetMaster management. This will not destroy the body part/prop, but just release it from following the target.
+        /// If you call RemoveMuscleRecursive on an upper arm muscle, the entire arm will be disconnected from the rest of the body.
+        /// </summary>
+        /// <param name="joint">The joint of the muscle (and the muscles connected to it) to remove.</param>
+        /// <param name="attachTarget">If set to <c>true</c> , the target Transform of the first muscle will be parented to the disconnected limb.</param>
+        /// <param name="blockTargetAnimation">If set to <c>true</c>, will add AnimationBlocker.cs to the removed target bones. That will override animation that would otherwise still be writing on those bones.</param>
+        /// <param name="removeMode">Remove mode. Sever cuts the body part by disconnecting the first joint. Explode explodes the body part disconnecting all joints. Numb removes the muscles from PuppetMaster management, keeps the joints connected and disables spring and damper forces.</param>
+        public void RemoveMuscleRecursive(ConfigurableJoint joint, bool attachTarget, bool blockTargetAnimation = false, MuscleRemoveMode removeMode = MuscleRemoveMode.Sever)
+        {
+            if (!CheckIfInitiated()) return;
 
-			int index = GetMuscleIndex(joint);
-			Muscle[] newMuscles = new Muscle[muscles.Length - (muscles[index].childIndexes.Length + 1)];
-			
-			int added = 0;
-			for (int i = 0; i < muscles.Length; i++) {
-				if (i != index && !muscles[index].childFlags[i]) {
-					newMuscles[added] = muscles[i];
-					added ++;
-				} else {
-					if (muscles[i].broadcaster != null) {
-						muscles[i].broadcaster.enabled = false;
-						Destroy(muscles[i].broadcaster);
-					}
-					if (muscles[i].jointBreakBroadcaster != null) {
-						muscles[i].jointBreakBroadcaster.enabled = false;
-						Destroy(muscles[i].jointBreakBroadcaster);
-					}
-				}
-			}
+            if (joint == null)
+            {
+                Debug.LogWarning("RemoveMuscleRecursive was called with a null 'joint' reference.", transform);
+                return;
+            }
 
-			switch(removeMode) {
-			case MuscleRemoveMode.Sever:
-				DisconnectJoint(muscles[index].joint);
+            if (!ContainsJoint(joint))
+            {
+                Debug.LogWarning("No Muscle with the specified joint was found, can not remove muscle.", transform);
+                return;
+            }
 
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					KillJoint(muscles[muscles[index].childIndexes[i]].joint);
-				}
-				break;
-			case MuscleRemoveMode.Explode:
-				DisconnectJoint(muscles[index].joint);
+            int index = GetMuscleIndex(joint);
+            Muscle[] newMuscles = new Muscle[muscles.Length - (muscles[index].childIndexes.Length + 1)];
 
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					DisconnectJoint(muscles[muscles[index].childIndexes[i]].joint);
-				}
-				break;
-			case MuscleRemoveMode.Numb:
-				KillJoint(muscles[index].joint);
+            int added = 0;
+            for (int i = 0; i < muscles.Length; i++)
+            {
+                if (i != index && !muscles[index].childFlags[i])
+                {
+                    newMuscles[added] = muscles[i];
+                    added++;
+                }
+                else
+                {
+                    if (muscles[i].broadcaster != null)
+                    {
+                        muscles[i].broadcaster.enabled = false;
+                        Destroy(muscles[i].broadcaster);
+                    }
+                    if (muscles[i].jointBreakBroadcaster != null)
+                    {
+                        muscles[i].jointBreakBroadcaster.enabled = false;
+                        Destroy(muscles[i].jointBreakBroadcaster);
+                    }
+                }
+            }
 
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					KillJoint(muscles[muscles[index].childIndexes[i]].joint);
-				}
-				break;
-			}
+            switch (removeMode)
+            {
+                case MuscleRemoveMode.Sever:
+                    DisconnectJoint(muscles[index].joint);
 
-			muscles[index].transform.parent = null;
-			
-			for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-				if (removeMode == MuscleRemoveMode.Explode || muscles[muscles[index].childIndexes[i]].transform.parent == transform) {
-					muscles[muscles[index].childIndexes[i]].transform.parent = null;
-				}
-			}
-			
+                    for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+                    {
+                        KillJoint(muscles[muscles[index].childIndexes[i]].joint);
+                    }
+                    break;
+                case MuscleRemoveMode.Explode:
+                    DisconnectJoint(muscles[index].joint);
 
-			foreach (BehaviourBase b in behaviours) {
-				b.OnMuscleRemoved(muscles[index]);
-				
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					var c = muscles[muscles[index].childIndexes[i]];
-					b.OnMuscleRemoved(c);
-				}
-			}
-			
-			if (attachTarget) {
-				muscles[index].target.parent = muscles[index].transform;
-				muscles[index].target.position = muscles[index].transform.position;
-				muscles[index].target.rotation = muscles[index].transform.rotation * muscles[index].targetRotationRelative;
-				
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					var c = muscles[muscles[index].childIndexes[i]];
-					c.target.parent = c.transform;
-					c.target.position = c.transform.position;
-					c.target.rotation = c.transform.rotation;
-				}
-			}
-			
-			if (blockTargetAnimation) {
-				muscles[index].target.gameObject.AddComponent<AnimationBlocker>();
-				
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					var c = muscles[muscles[index].childIndexes[i]];
-					c.target.gameObject.AddComponent<AnimationBlocker>();
-				}
-			}
+                    for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+                    {
+                        DisconnectJoint(muscles[muscles[index].childIndexes[i]].joint);
+                    }
+                    break;
+                case MuscleRemoveMode.Numb:
+                    KillJoint(muscles[index].joint);
 
-			if (OnMuscleRemoved != null) OnMuscleRemoved(muscles[index]);
-			for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-				var c = muscles[muscles[index].childIndexes[i]];
-				if (OnMuscleRemoved != null) OnMuscleRemoved(c);
-			}
+                    for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+                    {
+                        KillJoint(muscles[muscles[index].childIndexes[i]].joint);
+                    }
+                    break;
+            }
 
-			// Enable collisions between the new muscles and the removed colliders
-			if (!internalCollisionsEnabled) {
-				foreach (Muscle newMuscle in newMuscles) {
-					foreach (Collider newMuscleCollider in newMuscle.colliders) {
-						foreach (Collider removedMuscleCollider in muscles[index].colliders) {
-							Physics.IgnoreCollision(newMuscleCollider, removedMuscleCollider, false);
-						}
+            muscles[index].transform.parent = null;
 
-						for (int childMuscleIndex = 0; childMuscleIndex < muscles[index].childIndexes.Length; childMuscleIndex++) {
-							foreach (Collider childMuscleCollider in muscles[childMuscleIndex].colliders) {
-								Physics.IgnoreCollision(newMuscleCollider, childMuscleCollider, false);
-							}
-						}
-					}
-				}
-			}
-			
-			muscles = newMuscles;
-			
-			UpdateHierarchies();
-		}
-		
-		/// <summary>
-		/// Removes the muscle with the specified joint and all muscles connected to it from PuppetMaster management. This will not destroy the body part/prop, but just release it from following the target.
-		/// If you call RemoveMuscleRecursive on an upper arm muscle, the entire arm will be disconnected from the rest of the body.
-		/// If attachTarget is true, the target Transform of the first muscle will be parented to the disconnected limb.
-		/// This method allocates some memory, avoid using it each frame.
-		/// </summary>
-		/*
-		public void RemoveMuscleRecursive(ConfigurableJoint joint, bool attachTarget, bool blockTargetAnimation = false, bool detachChildren = false, bool detachJoint = true) {
-			if (!CheckIfInitiated()) return;
-			
-			if (joint == null) {
-				Debug.LogWarning("RemoveMuscleRecursive was called with a null 'joint' reference.", transform);
-				return;
-			}
-			
-			if (!ContainsJoint(joint)) {
-				Debug.LogWarning("No Muscle with the specified joint was found, can not remove muscle.", transform);
-				return;
-			}
+            for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+            {
+                if (removeMode == MuscleRemoveMode.Explode || muscles[muscles[index].childIndexes[i]].transform.parent == transform)
+                {
+                    muscles[muscles[index].childIndexes[i]].transform.parent = null;
+                }
+            }
 
-			int index = GetMuscleIndex(joint);
-			Muscle[] newMuscles = new Muscle[muscles.Length - (muscles[index].childIndexes.Length + 1)];
 
-			int added = 0;
-			for (int i = 0; i < muscles.Length; i++) {
-				if (i != index && !muscles[index].childFlags[i]) {
-					newMuscles[added] = muscles[i];
-					added ++;
-				} else {
-					if (muscles[i].broadcaster != null) Destroy(muscles[i].broadcaster);
-					if (muscles[i].jointBreakBroadcaster != null) Destroy(muscles[i].jointBreakBroadcaster);
-				}
-			}
+            foreach (BehaviourBase b in behaviours)
+            {
+                b.OnMuscleRemoved(muscles[index]);
 
-			if (detachJoint) DisconnectJoint(muscles[index].joint);
-			else KillJoint(muscles[index].joint);
+                for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+                {
+                    var c = muscles[muscles[index].childIndexes[i]];
+                    b.OnMuscleRemoved(c);
+                }
+            }
 
-			if (detachChildren) {
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					if (detachJoint) DisconnectJoint(muscles[muscles[index].childIndexes[i]].joint);
-					else KillJoint(muscles[muscles[index].childIndexes[i]].joint);
-				}
-			}
+            if (attachTarget)
+            {
+                muscles[index].target.parent = muscles[index].transform;
+                muscles[index].target.position = muscles[index].transform.position;
+                muscles[index].target.rotation = muscles[index].transform.rotation * muscles[index].targetRotationRelative;
 
-			muscles[index].transform.parent = null;
+                for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+                {
+                    var c = muscles[muscles[index].childIndexes[i]];
+                    c.target.parent = c.transform;
+                    c.target.position = c.transform.position;
+                    c.target.rotation = c.transform.rotation;
+                }
+            }
 
-			for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-				if (detachChildren || muscles[muscles[index].childIndexes[i]].transform.parent == transform) muscles[muscles[index].childIndexes[i]].transform.parent = null;
-			}
+            if (blockTargetAnimation)
+            {
+                var blocker = muscles[index].target.gameObject.GetComponent<AnimationBlocker>();
+                if (blocker == null) blocker = muscles[index].target.gameObject.AddComponent<AnimationBlocker>();
+                
+                for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+                {
+                    var c = muscles[muscles[index].childIndexes[i]];
 
-			foreach (BehaviourBase b in behaviours) {
-				b.OnMuscleRemoved(muscles[index]);
+                    blocker = c.target.gameObject.GetComponent<AnimationBlocker>();
+                    if (blocker == null) blocker = c.target.gameObject.AddComponent<AnimationBlocker>();
+                }
+            }
 
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					var c = muscles[muscles[index].childIndexes[i]];
-					b.OnMuscleRemoved(c);
-				}
-			}
-			
-			if (attachTarget) {
-				muscles[index].target.parent = muscles[index].transform;
-				muscles[index].target.position = muscles[index].transform.position;
-				muscles[index].target.rotation = muscles[index].transform.rotation * muscles[index].targetRotationRelative;
+            if (OnMuscleRemoved != null) OnMuscleRemoved(muscles[index]);
+            for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+            {
+                var c = muscles[muscles[index].childIndexes[i]];
+                if (OnMuscleRemoved != null) OnMuscleRemoved(c);
+            }
 
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					var c = muscles[muscles[index].childIndexes[i]];
-					c.target.parent = c.transform;
-					c.target.position = c.transform.position;
-					c.target.rotation = c.transform.rotation;
-				}
-			}
+            // Enable collisions between the new muscles and the removed colliders
+            if (!internalCollisionsEnabled)
+            {
+                foreach (Muscle newMuscle in newMuscles)
+                {
+                    newMuscle.ResetInternalCollisions(muscles[index], false);
 
-			if (blockTargetAnimation) {
-				muscles[index].target.gameObject.AddComponent<AnimationBlocker>();
-				
-				for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-					var c = muscles[muscles[index].childIndexes[i]];
-					c.target.gameObject.AddComponent<AnimationBlocker>();
-				}
-			}
+                    for (int childMuscleIndex = 0; childMuscleIndex < muscles[index].childIndexes.Length; childMuscleIndex++)
+                    {
+                        newMuscle.ResetInternalCollisions(muscles[childMuscleIndex], false);
+                    }
+                }
+            }
 
-			if (OnMuscleRemoved != null) OnMuscleRemoved(muscles[index]);
-			for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
-				var c = muscles[muscles[index].childIndexes[i]];
-				if (OnMuscleRemoved != null) OnMuscleRemoved(c);
-			}
-			
-			muscles = newMuscles;
-			
-			UpdateHierarchies();
-		}
-		*/
+            muscles = newMuscles;
+
+            UpdateHierarchies();
+        }
 
 		/// <summary>
 		/// NB! Make sure to call this from FixedUpdate!
@@ -433,7 +501,307 @@ namespace RootMotion.Dynamics {
 			}
 		}
 
-		private void AddIndexesRecursive(int index, ref int[] indexes) {
+        /// <summary>
+		/// Moves all muscles to the positions and rotations of their targets.
+		/// </summary>
+		[ContextMenu("Fix Muscle Positions and Rotations")]
+        public void FixMusclePositionsAndRotations()
+        {
+            foreach (Muscle m in muscles)
+            {
+                if (m.joint != null && m.target != null)
+                {
+                    m.joint.transform.position = m.target.position;
+                    m.joint.transform.rotation = m.target.rotation;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Are all the muscles parented to the PuppetMaster Transform?
+        /// </summary>
+        public bool HierarchyIsFlat()
+        {
+            foreach (Muscle m in muscles)
+            {
+                if (m.joint.transform.parent != transform) return false;
+            }
+            return true;
+        }
+
+        #endregion Public API
+
+        private int GetHighestDisconnectedParentIndex(int index)
+        {
+            for (int i = muscles[index].parentIndexes.Length - 1; i > -1; i--)
+            {
+                int parentIndex = muscles[index].parentIndexes[i];
+                if (muscles[parentIndex].state.isDisconnected) return parentIndex;
+            }
+
+            return index;
+        }
+
+        private void ProcessDisconnects()
+        {
+            for (int i = 0; i < disconnectMuscleFlags.Length; i++)
+            {
+                if (disconnectMuscleFlags[i]) OnDisconnectMuscleRecursive(i, muscleDisconnectModes[i], disconnectDeactivateFlags[i]);
+            }
+
+            for (int i = 0; i < disconnectMuscleFlags.Length; i++)
+            {
+                disconnectMuscleFlags[i] = false;
+                disconnectDeactivateFlags[i] = false;
+            }
+        }
+
+        private void ProcessReconnects()
+        {
+            for (int i = 0; i < reconnectMuscleFlags.Length; i++)
+            {
+                if (reconnectMuscleFlags[i]) OnReconnectMuscleRecursive(i);
+            }
+
+            for (int i = 0; i < reconnectMuscleFlags.Length; i++)
+            {
+                reconnectMuscleFlags[i] = false;
+            }
+        }
+
+        private void OnDisconnectMuscleRecursive(int index, MuscleDisconnectMode disconnectMode = MuscleDisconnectMode.Sever, bool deactivate = false)
+        {
+            // Reset flags
+            if (!muscles[index].joint.gameObject.activeInHierarchy || deactivate) muscles[index].state.resetFlag = true;
+            for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+            {
+                int childIndex = muscles[index].childIndexes[i];
+                if (!muscles[childIndex].joint.gameObject.activeInHierarchy || deactivate) muscles[childIndex].state.resetFlag = true;
+            }
+
+            // Disconnect individual muscles
+            DisconnectMuscle(muscles[index], true, deactivate);
+
+            for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+            {
+                int childIndex = muscles[index].childIndexes[i];
+                bool alreadyDone = disconnectMode == MuscleDisconnectMode.Sever && muscles[childIndex].state.isDisconnected;
+                if (disconnectMode == MuscleDisconnectMode.Explode && muscles[childIndex].joint.xMotion != ConfigurableJointMotion.Free) alreadyDone = false;
+
+                if (!alreadyDone)
+                {
+                    DisconnectMuscle(muscles[childIndex], disconnectMode == MuscleDisconnectMode.Explode, deactivate);
+                }
+            }
+
+            // Disconnect the last muscle too if all others removed
+            if (!muscles[0].state.isDisconnected)
+            {
+                bool lastMuscle = true;
+
+                for (int i = 1; i < muscles.Length; i++)
+                {
+                    if (!muscles[i].state.isDisconnected)
+                    {
+                        lastMuscle = false;
+                        break;
+                    }
+
+                    if (lastMuscle)
+                    {
+                        DisconnectMuscleRecursive(0, MuscleDisconnectMode.Sever);
+                    }
+                }
+            }
+        }
+
+        private void DisconnectMuscle(Muscle m, bool sever, bool deactivate)
+        {
+            m.state.pinWeightMlp = 0f;
+            m.state.muscleWeightMlp = 0f;
+            m.state.muscleDamperAdd = 0f;
+            m.state.muscleDamperMlp = 0f;
+            m.state.mappingWeightMlp = 0f;
+            m.state.maxForceMlp = 0f;
+            m.state.immunity = 0f;
+            m.state.impulseMlp = 1f;
+
+            if (sever)
+            {
+                m.joint.xMotion = ConfigurableJointMotion.Free;
+                m.joint.yMotion = ConfigurableJointMotion.Free;
+                m.joint.zMotion = ConfigurableJointMotion.Free;
+
+                m.IgnoreAngularLimits(true);
+
+                if (!hierarchyIsFlat)
+                {
+                    m.joint.transform.parent = transform;
+                }
+            }
+            else
+            {
+                m.IgnoreAngularLimits(false);
+            }
+
+            bool applyMappedVelocity = !m.joint.gameObject.activeInHierarchy || m.rigidbody.isKinematic;
+            if (activeState == State.Frozen) applyMappedVelocity = false;
+
+            // In case disconnecting in disabled mode
+            if (!m.joint.gameObject.activeInHierarchy && !deactivate)
+            {
+                m.MoveToTarget();
+                m.joint.gameObject.SetActive(true);
+            }
+
+            m.SetKinematic(false);
+            JointDrive slerpDrive = new JointDrive();
+            slerpDrive.positionSpring = 0f;
+            slerpDrive.maximumForce = 0f;
+            slerpDrive.positionDamper = 0f;
+            m.joint.slerpDrive = slerpDrive;
+
+            // Enable internal collisions with the disconnected muscle
+            if (!deactivate)
+            {
+                for (int i = 0; i < muscles.Length; i++)
+                {
+                    if (muscles[i] != m && !muscles[i].state.isDisconnected)
+                    {
+                        foreach (Collider c1 in m.colliders)
+                        {
+                            foreach (Collider c2 in muscles[i].colliders)
+                            {
+                                if (c1.enabled && c2.enabled) Physics.IgnoreCollision(c1, c2, false);
+                            }
+                        }
+                    }
+                }
+
+                if (applyMappedVelocity)
+                {
+                    m.rigidbody.velocity = m.mappedVelocity;
+                    m.rigidbody.angularVelocity = m.mappedAngularVelocity;
+                }
+            }
+            else
+            {
+                m.joint.gameObject.SetActive(false);
+            }
+
+            if (m.isPropMuscle)
+            {
+                var propMuscle = m.joint.GetComponent<PropMuscle>();
+                if (propMuscle.activeProp != null) propMuscle.currentProp = null;
+            }
+
+            m.state.isDisconnected = true;
+
+            foreach (BehaviourBase b in behaviours) b.OnMuscleDisconnected(m);
+            if (OnMuscleDisconnected != null) OnMuscleDisconnected(m);
+        }
+
+        private void OnReconnectMuscleRecursive(int index)
+        {
+            // Special case for reconnecting the entire puppet
+            if (index == 0)
+            {
+                state = State.Alive;
+
+                foreach (Muscle m in muscles)
+                {
+                    m.state.isDisconnected = false;
+                    m.FixTargetTransforms();
+                }
+
+                foreach (Muscle m in muscles)
+                {
+                    m.Reset();
+                    m.Read();
+                    m.ClearVelocities();
+                }
+            }
+
+            ReconnectMuscle(muscles[index]);
+
+            for (int i = 0; i < muscles[index].childIndexes.Length; i++)
+            {
+                int childIndex = muscles[index].childIndexes[i];
+                ReconnectMuscle(muscles[childIndex]);
+            }
+        }
+
+        private void ReconnectMuscle(Muscle m)
+        {
+            m.state.isDisconnected = false;
+
+            if (activeState != State.Frozen && !m.isPropMuscle)
+            {
+                m.target.position = m.targetAnimatedPosition;
+                m.target.rotation = m.targetAnimatedWorldRotation;
+            }
+
+            if (m != muscles[0])
+            {
+                m.joint.xMotion = ConfigurableJointMotion.Locked;
+                m.joint.yMotion = ConfigurableJointMotion.Locked;
+                m.joint.zMotion = ConfigurableJointMotion.Locked;
+
+                if (!hierarchyIsFlat && m.joint.connectedBody != null)
+                {
+                    m.transform.parent = m.joint.connectedBody.transform;
+                }
+            }
+
+            bool disable = false;
+            if (m.joint.connectedBody != null && !m.joint.connectedBody.gameObject.activeInHierarchy) disable = true;
+            if (m.joint.connectedBody == null)
+            {
+                if (activeMode == Mode.Disabled || activeState == State.Frozen) disable = true;
+            }
+
+            if (disable)
+            {
+                m.joint.gameObject.SetActive(false);
+            }
+            else
+            {
+                if (!m.joint.gameObject.activeInHierarchy || m.state.resetFlag)
+                {
+                    m.Reset();
+                    m.joint.gameObject.SetActive(true);
+                }
+                else
+                {
+                    if (activeState != State.Frozen) m.MoveToTarget();
+                }
+            }
+
+            if (activeMode == Mode.Kinematic) m.SetKinematic(true);
+
+            if (activeState == State.Dead)
+            {
+                m.ResetTargetLocalPosition();
+                m.SetMuscleRotation(muscleWeight * stateSettings.deadMuscleWeight, muscleSpring, muscleDamper + stateSettings.deadMuscleDamper);
+            }
+
+            m.state.resetFlag = false;
+            m.ClearVelocities();
+
+            m.state.pinWeightMlp = 1;
+            m.state.muscleWeightMlp = 1;
+            m.state.muscleDamperMlp = 1;
+            m.state.maxForceMlp = 1;
+            m.state.mappingWeightMlp = 1f;
+
+            UpdateInternalCollisions(m);
+            m.IgnoreAngularLimits(!angularLimits);
+
+            foreach (BehaviourBase b in behaviours) b.OnMuscleReconnected(m);
+            if (OnMuscleReconnected != null) OnMuscleReconnected(m);
+        }
+
+        private void AddIndexesRecursive(int index, ref int[] indexes) {
 			int l = indexes.Length;
 			Array.Resize(ref indexes, indexes.Length + 1 + muscles[index].childIndexes.Length);
 			indexes[l] = index;
@@ -443,14 +811,6 @@ namespace RootMotion.Dynamics {
 			for (int i = 0; i < muscles[index].childIndexes.Length; i++) {
 				AddIndexesRecursive(muscles[index].childIndexes[i], ref indexes);
 			}
-		}
-
-		// Are all the muscles parented to the PuppetMaster Transform?
-		private bool HierarchyIsFlat() {
-			foreach (Muscle m in muscles) {
-				if (m.joint.transform.parent != transform) return false;
-			}
-			return true;
 		}
 
 		// Disconnects a joint without destroying it

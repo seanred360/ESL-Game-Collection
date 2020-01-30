@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// Grounding for LimbIK, CCD and/or FABRIK solvers.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page11.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page9.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Grounder/Grounder IK")]
 	public class GrounderIK: Grounder {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page11.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page9.html");
 		}
 		
 		// Open the Script Reference URL
@@ -121,7 +121,7 @@ namespace RootMotion.FinalIK {
 				// Root rotation
 				if (characterRoot != null && rootRotationSpeed > 0f && rootRotationWeight > 0f) {
 					Vector3 normal = solver.GetLegsPlaneNormal();
-
+                    
 					// Root rotation weight
 					if (rootRotationWeight < 1f) {
 						normal = Vector3.Slerp(Vector3.up, normal, rootRotationWeight);
@@ -240,6 +240,7 @@ namespace RootMotion.FinalIK {
 			// Only do this after the last IK solver has finished
 			solvedFeet ++;
 			if (solvedFeet < feet.Length) return;
+            solved = false;
 
 			for (int i = 0; i < feet.Length; i++) {
 				feet[i].rotation = Quaternion.Slerp(Quaternion.identity, solver.legs[i].rotationOffset, weight) * footRotations[i];

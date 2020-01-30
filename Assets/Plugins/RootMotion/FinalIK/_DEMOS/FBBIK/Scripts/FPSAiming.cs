@@ -18,17 +18,17 @@ namespace RootMotion.Demos {
 		[Range(0f, 180f)] public float maxAngle = 80f; // The maximum angular offset of the aiming direction from the character forward. Character will be rotated to comply.
 		public Vector3 aimOffset; // Can be used to adjust the aiming angle
 
-		[SerializeField] bool animatePhysics; // Is Animate Physiscs turned on for the character?
-		[SerializeField] Transform gun; // The gun that the character is holding
-		[SerializeField] Transform gunTarget; // The copy of the gun that has been parented to the camera
-		[SerializeField] FullBodyBipedIK ik; // Reference to the FBBIK component
-		[SerializeField] AimIK gunAim; // Reference to the AimIK component
-		[SerializeField] CameraControllerFPS cam; // Reference to the FPS camera
-		[SerializeField] Recoil recoil; // The recoil component (optional)
-		[SerializeField] [Range(0f, 1f)] float cameraRecoilWeight = 0.5f; // How much of the recoil motion is added to the camera?
+        public bool animatePhysics; // Is Animate Physiscs turned on for the character?
+        public Transform gun; // The gun that the character is holding
+        public Transform gunTarget; // The copy of the gun that has been parented to the camera
+        public FullBodyBipedIK ik; // Reference to the FBBIK component
+        public AimIK gunAim; // Reference to the AimIK component
+        public CameraControllerFPS cam; // Reference to the FPS camera
+        public Recoil recoil; // The recoil component (optional)
+        [Range(0f, 1f)] public float cameraRecoilWeight = 0.5f; // How much of the recoil motion is added to the camera?
 
-		private Vector3 gunTargetDefaultLocalPosition;
-		private Quaternion gunTargetDefaultLocalRotation;
+        public Vector3 gunTargetDefaultLocalPosition;
+		public Vector3 gunTargetDefaultLocalRotation;
 		private Vector3 camDefaultLocalPosition;
 		private Vector3 camRelativeToGunTarget;
 		private bool updateFrame;
@@ -36,7 +36,7 @@ namespace RootMotion.Demos {
 		void Start() {
 			// Remember some default local positions
 			gunTargetDefaultLocalPosition = gunTarget.localPosition;
-			gunTargetDefaultLocalRotation = gunTarget.localRotation;
+			gunTargetDefaultLocalRotation = gunTarget.localEulerAngles;
 			camDefaultLocalPosition = cam.transform.localPosition;
 
 			// Disable the camera and IK components so we can handle their execution order
@@ -95,7 +95,7 @@ namespace RootMotion.Demos {
 
 			// Interpolate the gunTarget from the current animated position of the gun to the position fixed to the camera
 			gunTarget.position = Vector3.Lerp(gun.position, gunTarget.parent.TransformPoint(gunTargetDefaultLocalPosition), sW);
-			gunTarget.rotation = Quaternion.Lerp(gun.rotation, gunTarget.parent.rotation * gunTargetDefaultLocalRotation, sW);
+			gunTarget.rotation = Quaternion.Lerp(gun.rotation, gunTarget.parent.rotation * Quaternion.Euler(gunTargetDefaultLocalRotation), sW);
 
 			// Get the current positions of the hands relative to the gun
 			Vector3 leftHandRelativePosition = gun.InverseTransformPoint(ik.solver.leftHandEffector.bone.position);

@@ -44,8 +44,9 @@ namespace RootMotion.FinalIK {
 				stepProgress = 1f;
 			}
 
-			public void StepTo(Vector3 p, Quaternion rootRotation) {
-				stepFrom = position;
+			public void StepTo(Vector3 p, Quaternion rootRotation, float stepThreshold) {
+                if (Vector3.Magnitude(p - stepTo) < stepThreshold && Quaternion.Angle(rootRotation, stepToRootRot) < 25f) return;
+                stepFrom = position;
 				stepTo = p;
 				stepFromRot = rotation;
 				stepToRootRot = rootRotation;

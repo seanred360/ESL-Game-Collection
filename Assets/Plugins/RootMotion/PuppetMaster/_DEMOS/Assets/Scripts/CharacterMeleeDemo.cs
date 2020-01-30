@@ -59,8 +59,8 @@ namespace RootMotion.Demos {
 							booster.Boost(puppet);
 						}
 
-						if (propRoot.currentProp is PropMelee) {
-							(propRoot.currentProp as PropMelee).StartAction(actions[i].duration);
+						if (propMuscle.currentProp is PuppetMasterPropMelee) {
+							(propMuscle.currentProp as PuppetMasterPropMelee).StartAction(actions[i].duration);
 						}
 
 						lastActionTime = Time.time;
@@ -84,13 +84,13 @@ namespace RootMotion.Demos {
 			//if (!Input.GetKey(action.keyCode)) return false;
 
 			if (action.requiredPropTypes.Length > 0) {
-				if (propRoot.currentProp == null && action.requiredPropTypes[0] == -1) return true;
-				if (propRoot.currentProp == null) return false;
+				if (propMuscle.currentProp == null && action.requiredPropTypes[0] == -1) return true;
+				if (propMuscle.currentProp == null) return false;
 
 				bool incl = false;
 
 				for (int i = 0; i < action.requiredPropTypes.Length; i++) {
-					if (action.requiredPropTypes[i] == propRoot.currentProp.propType) {
+					if (action.requiredPropTypes[i] == propMuscle.currentProp.propType) {
 						incl = true;
 						break;
 					}

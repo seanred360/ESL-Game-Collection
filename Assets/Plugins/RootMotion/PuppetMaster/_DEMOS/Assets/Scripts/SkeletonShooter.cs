@@ -14,8 +14,10 @@ namespace RootMotion.Demos {
 		public float force = 10f;
 		public ParticleSystem particles;
 
-		// Update is called once per frame
+        // Update is called once per frame
 		void Update () {
+            //Debug.Log(puppetMaster.GetMuscle(head).state.muscleWeightMlp);
+
 			if (Input.GetMouseButtonDown(0)) {
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				
@@ -28,9 +30,9 @@ namespace RootMotion.Demos {
 					if (broadcaster != null) {
 						broadcaster.Hit(unpin, ray.direction * force, hit.point);
 
-						// Remove the muscle and its children
-						broadcaster.puppetMaster.RemoveMuscleRecursive(broadcaster.puppetMaster.muscles[broadcaster.muscleIndex].joint, true, true, removeMuscleMode);
-					} else {
+                        // Remove the muscle and its children
+                        broadcaster.puppetMaster.RemoveMuscleRecursive(broadcaster.puppetMaster.muscles[broadcaster.muscleIndex].joint, true, true, removeMuscleMode);
+                    } else {
 						// Not a muscle (any more)
 						//var joint = hit.collider.attachedRigidbody.GetComponent<ConfigurableJoint>();
 						//if (joint != null) Destroy(joint);

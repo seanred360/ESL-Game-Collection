@@ -70,10 +70,10 @@ using System.Collections;
 		#endregion Main Interface
 
 		public Vector3 defaultLocalDirection, defaultChildDirection;
-		[System.NonSerializedAttribute] public float clampF = 0.505f;
-
-		//private IKSolver.Node node1, node2, node3;
-		private int chainIndex1;
+        [System.NonSerializedAttribute] public float clampF = 0.505f;
+        
+        //private IKSolver.Node node1, node2, node3;
+        private int chainIndex1;
 		private int nodeIndex1;
 		private int chainIndex2;
 		private int nodeIndex2;

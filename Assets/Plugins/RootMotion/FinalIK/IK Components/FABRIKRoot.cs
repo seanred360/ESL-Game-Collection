@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// %IK system for multiple branched %FABRIK chains.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page5.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page7.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/FABRIK Root")]
 	public class FABRIKRoot : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page5.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page7.html");
 		}
 		
 		// Open the Script Reference URL

@@ -11,7 +11,7 @@ namespace RootMotion.Demos {
 	public abstract class PickUp2Handed : MonoBehaviour {
 		
 		// GUI for testing
-		[SerializeField] int GUIspace;
+		public int GUIspace;
 
 		void OnGUI() {
 			GUILayout.BeginHorizontal();

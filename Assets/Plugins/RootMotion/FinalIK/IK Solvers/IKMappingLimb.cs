@@ -48,11 +48,15 @@ namespace RootMotion.FinalIK {
 		/// </summary>
 		[Range(0f, 1f)]
 		public float weight = 1f; // Added in 0.2
-		
-		/// <summary>
-		/// Determines whether this IKMappingLimb is valid
-		/// </summary>
-		public override bool IsValid(IKSolver solver, ref string message) {
+        /// <summary>
+        /// Disable this to maintain original sampled rotations of the limb bones relative to each other.
+        /// </summary>
+        [System.NonSerializedAttribute] public bool updatePlaneRotations = true;
+
+        /// <summary>
+        /// Determines whether this IKMappingLimb is valid
+        /// </summary>
+        public override bool IsValid(IKSolver solver, ref string message) {
 			if (!base.IsValid(solver, ref message)) return false;
 			
 			if (!BoneIsValid(bone1, solver, ref message)) return false;
@@ -142,11 +146,11 @@ namespace RootMotion.FinalIK {
 		 * Presolving the bones and maintaining rotation
 		 * */
 		public void ReadPose() {
-			boneMap1.UpdatePlane(true, true);
-			boneMap2.UpdatePlane(true, false);
+            boneMap1.UpdatePlane(updatePlaneRotations, true);
+            boneMap2.UpdatePlane(updatePlaneRotations, false);
 
-			// Clamping weights
-			weight = Mathf.Clamp(weight, 0f, 1f);
+            // Clamping weights
+            weight = Mathf.Clamp(weight, 0f, 1f);
 
 			// Define plane points for the bone maps
 			boneMap3.MaintainRotation();

@@ -35,10 +35,16 @@ namespace RootMotion.FinalIK {
 		/// </summary>
 		public DOF rotationDOF;
 
-		/// <summary>
-		/// The first bone of the finger.
-		/// </summary>
-		[Tooltip("The first bone of the finger.")]
+        [Tooltip("If enabled, keeps bone1 twist angle fixed relative to bone2.")]
+        /// <summary>
+        /// If enabled, keeps bone1 twist angle fixed relative to bone2.
+        /// </summary>
+        public bool fixBone1Twist;
+
+        /// <summary>
+        /// The first bone of the finger.
+        /// </summary>
+        [Tooltip("The first bone of the finger.")]
 		public Transform bone1;
 		/// <summary>
 		/// The second bone of the finger.
@@ -108,6 +114,7 @@ namespace RootMotion.FinalIK {
 		private Quaternion bone3DefaultLocalRotation;
 		private Vector3 bone1Axis;
 		private Vector3 tipAxis;
+        private Vector3 bone1TwistAxis;
 
 		// Initiates the LimbIK solver
 		public void Initiate(Transform hand, int index) {
@@ -129,7 +136,12 @@ namespace RootMotion.FinalIK {
 			bone1Axis = Quaternion.Inverse(bone1.rotation) * axisWorld;
 			tipAxis = Quaternion.Inverse(tip.rotation) * axisWorld;
 
-			IKPosition = tip.position;
+            Vector3 normal = bone2.position - bone1.position;
+            Vector3 tangent = -Vector3.Cross(tip.position - bone1.position, bone2.position - bone1.position);
+            Vector3.OrthoNormalize(ref normal, ref tangent);
+            bone1TwistAxis = Quaternion.Inverse(bone1.rotation) * tangent;
+
+            IKPosition = tip.position;
 			IKRotation = tip.rotation;
 
 			if (bone3 != null) {
@@ -196,11 +208,22 @@ namespace RootMotion.FinalIK {
 				}
 			}
 
-			// Update the LimbIK solver
-			solver.IKPositionWeight = w;
+            // Update the LimbIK solver
+            solver.bendNormal = -Vector3.Cross(tip.position - bone1.position, bone2.position - bone1.position);
+            solver.IKPositionWeight = w;
 			solver.IKRotationWeight = rotationWeight;
 			solver.bendModifierWeight = rotationWeight;
 			solver.Update();
+
+            if (fixBone1Twist)
+            {
+                Quaternion bone2Rotation = bone2.rotation;
+                Quaternion space = Quaternion.LookRotation(bone1.rotation * bone1TwistAxis, bone2.position - bone1.position);
+                Vector3 bone1Twist = Quaternion.Inverse(space) * solver.bendNormal;
+                float angle = Mathf.Atan2(bone1Twist.x, bone1Twist.z) * Mathf.Rad2Deg;
+                bone1.rotation = Quaternion.AngleAxis(angle, bone2.position - bone1.position) * bone1.rotation;
+                bone2.rotation = bone2Rotation;
+            }
         }
     }
 

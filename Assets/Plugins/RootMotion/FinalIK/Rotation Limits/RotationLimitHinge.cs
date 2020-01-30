@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// The hinge rotation limit limits the rotation to 1 degree of freedom around Axis. This rotation limit is additive which means the limits can exceed 360 degrees.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page12.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page14.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Rotation Limits/Rotation Limit Hinge")]
 	public class RotationLimitHinge : RotationLimit {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		private void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page12.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page14.html");
 		}
 		
 		// Open the Script Reference URL

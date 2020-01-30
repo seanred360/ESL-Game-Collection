@@ -90,7 +90,7 @@ namespace RootMotion.Demos {
 			Vector3 f = animator.deltaRotation * Vector3.forward;
 			deltaAngle += Mathf.Atan2(f.x, f.z) * Mathf.Rad2Deg;
 
-			characterController.Move(animator.deltaPosition, animator.deltaRotation);
+            characterController.Move(animator.deltaPosition, animator.deltaRotation);
 		}
 	}
 }

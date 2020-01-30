@@ -11,8 +11,22 @@ namespace RootMotion.FinalIK {
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Interaction System/Interaction Object")]
 	public class InteractionObject : MonoBehaviour {
 
-		// Open a video tutorial video
-		[ContextMenu("TUTORIAL VIDEO (PART 1: BASICS)")]
+        // Open the User Manual URL
+        [ContextMenu("User Manual")]
+        void OpenUserManual()
+        {
+            Application.OpenURL("http://www.root-motion.com/finalikdox/html/page10.html");
+        }
+
+        // Open the Script Reference URL
+        [ContextMenu("Scrpt Reference")]
+        void OpenScriptReference()
+        {
+            Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_interaction_object.html");
+        }
+
+        // Open a video tutorial video
+        [ContextMenu("TUTORIAL VIDEO (PART 1: BASICS)")]
 		void OpenTutorial1() {
 			Application.OpenURL("https://www.youtube.com/watch?v=r5jiZnsDH3M");
 		}
@@ -214,7 +228,8 @@ namespace RootMotion.FinalIK {
 				RotateBoneWeight, // Rotating the bone after FBBIK is finished
 				Push, // FBIKChain.push
 				PushParent, // FBIKChain.pushParent
-				PoserWeight // Weight of hand/generic Poser
+				PoserWeight, // Weight of hand/generic Poser
+                BendGoalWeight // Weight of the bend goal
 			}
 			
 			/// <summary>
@@ -444,7 +459,7 @@ namespace RootMotion.FinalIK {
 		private InteractionTarget[] targets = new InteractionTarget[0];
 
 		// Initiate this Interaction Object
-		void Awake() {
+		void Start() {
 			Initiate();
 		}
 
@@ -478,7 +493,10 @@ namespace RootMotion.FinalIK {
 			case WeightCurve.Type.PushParent:
 				solver.GetChain(effector).pushParent = Mathf.Lerp(solver.GetChain(effector).pushParent, value, weight);
 				return;
-			}
+            case WeightCurve.Type.BendGoalWeight:
+                solver.GetChain(effector).bendConstraint.weight = Mathf.Lerp(solver.GetChain(effector).bendConstraint.weight, value, weight);
+                return;
+            }
 		}
 
 		// Gets the interaction target Transform
@@ -503,18 +521,6 @@ namespace RootMotion.FinalIK {
 				if (multipliers[i].result == weightCurveType) return i;
 			}
 			return -1;
-		}
-
-		// Open the User Manual URL
-		[ContextMenu("User Manual")]
-		private void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page10.html");
-		}
-		
-		// Open the Script Reference URL
-		[ContextMenu("Scrpt Reference")]
-		private void OpenScriptReference() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_interaction_object.html");
 		}
 	}
 }

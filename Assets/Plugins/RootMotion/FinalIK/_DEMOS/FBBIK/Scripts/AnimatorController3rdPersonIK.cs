@@ -53,14 +53,17 @@ namespace RootMotion.Demos {
 			// Sample something from the current pose of the character
 			Read();
 
-			// AimIK pass
-			AimIK();
-			
-			// FBBIK pass - put the left hand back to where it was relative to the right hand before AimIK solved
-			FBBIK();
-			
-			// Rotate the head to look at the aim target
-			HeadLookAt(aimTarget);
+            // AimIK pass
+            AimIK();
+
+            // FBBIK pass - put the left hand back to where it was relative to the right hand before AimIK solved
+            FBBIK();
+
+            // AimIK pass
+            AimIK();
+
+            // Rotate the head to look at the aim target
+            HeadLookAt(aimTarget);
 		}
 
 		private void Read() {

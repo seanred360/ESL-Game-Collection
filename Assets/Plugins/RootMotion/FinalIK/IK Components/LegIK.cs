@@ -2,27 +2,28 @@
 using System.Collections;
 
 namespace RootMotion.FinalIK {
-	
-	// TODO [HelpURL("http://www.root-motion.com/finalikdox/html/page9.html")]
+
+    /// <summary>
+    /// Leg %IK solver component.
+    /// </summary>
+    [HelpURL("http://www.root-motion.com/finalikdox/html/page11.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/Leg IK")]
 	public class LegIK : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Debug.Log ("No User Manual page for this component yet, sorry."); // TODO
-			//Application.OpenURL("http://www.root-motion.com/finalikdox/html/page9.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page11.html");
 		}
 		
 		// Open the Script Reference URL
 		[ContextMenu("Scrpt Reference")]
 		protected override void OpenScriptReference() {
-			Debug.Log ("No Script Reference for this component yet, sorry."); // TODO
-			//Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_trigonometric_i_k.html");
-		}
-		
-		// Link to the Final IK Google Group
-		[ContextMenu("Support Group")]
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_leg_i_k.html");
+        }
+
+        // Link to the Final IK Google Group
+        [ContextMenu("Support Group")]
 		void SupportGroup() {
 			Application.OpenURL("https://groups.google.com/forum/#!forum/final-ik");
 		}

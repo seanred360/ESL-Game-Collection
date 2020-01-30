@@ -72,16 +72,24 @@ namespace RootMotion {
 		/// Returns the local axis of the Transform that aligns the most with a direction.
 		/// </summary>
 		public static Vector3 GetAxisVectorToDirection(Transform t, Vector3 direction) {
-			direction = direction.normalized;
-			Vector3 axis = Vector3.right;
-			
-			float dotX = Mathf.Abs(Vector3.Dot(Vector3.Normalize(t.right), direction));
-			float dotY = Mathf.Abs(Vector3.Dot(Vector3.Normalize(t.up), direction));
-			if (dotY > dotX) axis = Vector3.up;
-			float dotZ = Mathf.Abs(Vector3.Dot(Vector3.Normalize(t.forward), direction));
-			if (dotZ > dotX && dotZ > dotY) axis = Vector3.forward;
-			
-			return axis;
+            return GetAxisVectorToDirection(t.rotation, direction);
 		}
-	}
+
+        /// <summary>
+		/// Returns the local axis of a rotation space that aligns the most with a direction.
+		/// </summary>
+		public static Vector3 GetAxisVectorToDirection(Quaternion r, Vector3 direction)
+        {
+            direction = direction.normalized;
+            Vector3 axis = Vector3.right;
+
+            float dotX = Mathf.Abs(Vector3.Dot(Vector3.Normalize(r * Vector3.right), direction));
+            float dotY = Mathf.Abs(Vector3.Dot(Vector3.Normalize(r * Vector3.up), direction));
+            if (dotY > dotX) axis = Vector3.up;
+            float dotZ = Mathf.Abs(Vector3.Dot(Vector3.Normalize(r * Vector3.forward), direction));
+            if (dotZ > dotX && dotZ > dotY) axis = Vector3.forward;
+
+            return axis;
+        }
+    }
 }

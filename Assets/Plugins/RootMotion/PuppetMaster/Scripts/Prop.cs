@@ -25,7 +25,15 @@ namespace RootMotion.Dynamics {
 		/// </summary>
 		public ConfigurableJoint muscle;
 
-		[Tooltip("The muscle properties that will be applied to the Muscle on pickup.")]
+        /*
+        [Tooltip("Ignore collisions with these bones (Humanoid only)")]
+        /// <summary>
+        /// Ignore collisions with these Humanoid bones. This will automatically find the Muscles for the Muscle Props Internal Collision Ignores below when the prop is picked up.
+        /// </summary>
+        public HumanBodyBones[] internalCollisionIgnores;
+        */
+
+        [Tooltip("The muscle properties that will be applied to the Muscle on pickup.")]
 		/// <summary>
 		/// The muscle properties that will be applied to the Muscle.
 		/// </summary>
@@ -57,20 +65,34 @@ namespace RootMotion.Dynamics {
 		/// </summary>
 		[Range(0f, 1f)] public float additionalPinWeight = 1f;
 
-		/// <summary>
-		/// Is this prop picked up and connected to a PropRoot?
-		/// </summary>
-		public bool isPickedUp { get { return propRoot != null; }}
+        [LargeHeader("Materials")]
+
+        [Tooltip("If assigned, sets prop colliders to this PhysicMaterial when picked up.")]
+        /// <summary>
+        /// If assigned, sets prop colliders to this PhysicMaterial when picked up.
+        /// </summary>
+        public PhysicMaterial pickedUpMaterial;
+
+        [Tooltip("If assigned, sets prop colliders to this PhysicMaterial when dropped.")]
+        /// <summary>
+        /// If assigned, sets prop colliders to this PhysicMaterial when dropped.
+        /// </summary>
+        public PhysicMaterial droppedMaterial;
+
+        /// <summary>
+        /// Is this prop picked up and connected to a PropRoot?
+        /// </summary>
+        public bool isPickedUp { get { return propRoot != null; }}
 
 		/// <summary>
 		/// Returns the PropRoot that this prop is connected to if it is picked up. If this returns null, the prop is not picked up.
 		/// </summary>
 		public PropRoot propRoot { get; private set; }
 
-		#endregion User Interface
+        #endregion User Interface
 
-		// Picking up/dropping props is done by simply changing PropRoot.currentProp
-		public void PickUp(PropRoot propRoot) {
+        // Picking up/dropping props is done by simply changing PropRoot.currentProp
+        public void PickUp(PropRoot propRoot) {
 			muscle.xMotion = xMotion;
 			muscle.yMotion = yMotion;
 			muscle.zMotion = zMotion;
@@ -85,29 +107,37 @@ namespace RootMotion.Dynamics {
 				if (!c.isTrigger) c.gameObject.layer = muscle.gameObject.layer;
 			}
 
-			OnPickUp(propRoot);
+            SetMaterial(pickedUpMaterial);
+
+            OnPickUp(propRoot);
 		}
 
 		// Picking up/dropping props is done by simply changing PropRoot.currentProp
 		public void Drop() {
 			this.propRoot = null;
 
-			OnDrop();
+            SetMaterial(droppedMaterial);
+
+            OnDrop();
 		}
 
 		public void StartPickedUp(PropRoot propRoot) {
 			this.propRoot = propRoot;
 		}
 
-		protected virtual void OnPickUp(PropRoot propRoot) {}
+        public bool initiated { get; private set; }
+
+        protected virtual void OnPickUp(PropRoot propRoot) {}
 		protected virtual void OnDrop() {}
 		protected virtual void OnStart() {}
 	
 		private ConfigurableJointMotion xMotion, yMotion, zMotion, angularXMotion, angularYMotion, angularZMotion;
 		private Collider[] colliders = new Collider[0];
 
-		void Start() {
-			if (transform.position != muscle.transform.position) {
+        void Start() {
+            Debug.LogWarning("PropRoot and Prop system is deprecated. Please see the 'Prop' demo to learn about the new easier and much more performance-efficient PropMuscle and PuppetMasterProp system.", transform);
+
+            if (transform.position != muscle.transform.position) {
 				Debug.LogError("Prop target position must match exactly with it's muscle's position!", transform);
 			}
 
@@ -123,6 +153,8 @@ namespace RootMotion.Dynamics {
 			if (!isPickedUp) ReleaseJoint();
 
 			OnStart();
+
+            initiated = true;
 		}
 
 		private void ReleaseJoint() {
@@ -144,8 +176,18 @@ namespace RootMotion.Dynamics {
 			muscle.angularZMotion = ConfigurableJointMotion.Free;
 		}
 
-		// Just making sure this GameObject's position and rotation matches with the muscle's in the Editor.
-		void OnDrawGizmos() {
+        private void SetMaterial(PhysicMaterial material)
+        {
+            if (material == null) return;
+
+            foreach (Collider c in colliders)
+            {
+                c.sharedMaterial = material;
+            }
+        }
+
+        // Just making sure this GameObject's position and rotation matches with the muscle's in the Editor.
+        void OnDrawGizmos() {
 			if (muscle == null) return;
 			if (Application.isPlaying) return;
 

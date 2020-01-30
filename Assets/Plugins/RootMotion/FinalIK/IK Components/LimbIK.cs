@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// %IK component for IKSolverLimb.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page7.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page12.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/Limb IK")]
 	public class LimbIK : IK {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page7.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page12.html");
 		}
 		
 		// Open the Script Reference URL

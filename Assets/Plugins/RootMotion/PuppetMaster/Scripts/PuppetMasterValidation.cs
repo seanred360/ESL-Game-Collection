@@ -12,18 +12,18 @@ namespace RootMotion.Dynamics {
 		/// </summary>
 		public bool IsValid(bool log) {
 			if (muscles == null) {
-				if (log) Debug.LogWarning("PuppetMaster Muscles is null.", transform);
+				if (log) Debug.LogError("PuppetMaster Muscles is null.", transform);
 				return false;
 			}
 			
 			if (muscles.Length == 0) {
-				if (log) Debug.LogWarning("PuppetMaster has no muscles.", transform);
+				if (log) Debug.LogError("PuppetMaster has no muscles.", transform);
 				return false;
 			}
 			
 			for (int i = 0; i < muscles.Length; i++) {
 				if (muscles[i] == null) {
-					if (log) Debug.LogWarning("Muscle is null, PuppetMaster muscle setup is invalid.", transform);
+					if (log) Debug.LogError("Muscle is null, PuppetMaster muscle setup is invalid.", transform);
 					return false;
 				}
 				
@@ -31,12 +31,12 @@ namespace RootMotion.Dynamics {
 			}
 
 			if (targetRoot == null) {
-				if (log) Debug.LogWarning("'Target Root' of PuppetMaster is null.");
+				if (log) Debug.LogError("'Target Root' of PuppetMaster is null.");
 				return false;
 			}
 
 			if (targetRoot.position != transform.position) {
-				if (log) Debug.LogWarning("The position of the animated character (Target) must match with the position of the PuppetMaster when initiating PuppetMaster. If you are creating the Puppet in runtime, make sure you don't move the Target to another position immediatelly after instantiation. Move the Root Transform instead.");
+				if (log) Debug.LogError("The position of the animated character (Target) must match with the position of the PuppetMaster when initiating PuppetMaster. If you are creating the Puppet in runtime, make sure you don't move the Target to another position immediatelly after instantiation. Move the Root Transform instead.");
 				return false;
 			}
 
@@ -48,7 +48,7 @@ namespace RootMotion.Dynamics {
 			*/
 
 			if (targetRoot == null) {
-				if (log) Debug.LogWarning("Invalid PuppetMaster setup. (targetRoot not found)", transform);
+				if (log) Debug.LogError("Invalid PuppetMaster setup. (targetRoot not found)", transform);
 				return false;
 			}
 
@@ -56,7 +56,7 @@ namespace RootMotion.Dynamics {
 				for (int c = 0; c < muscles.Length; c++) {
 					if (i != c) {
 						if (muscles[i] == muscles[c] || muscles[i].joint == muscles[c].joint) {
-							if (log) Debug.LogWarning("Joint " + muscles[i].joint.name + " is used by multiple muscles (indexes " + i + " and " + c + "), PuppetMaster muscle setup is invalid.", transform);
+							if (log) Debug.LogError("Joint " + muscles[i].joint.name + " is used by multiple muscles (indexes " + i + " and " + c + "), PuppetMaster muscle setup is invalid.", transform);
 							return false;
 						}
 					}
@@ -66,7 +66,7 @@ namespace RootMotion.Dynamics {
 			if (muscles[0].joint.connectedBody != null && muscles.Length > 1) {
 				for (int i = 1; i < muscles.Length; i++) {
 					if (muscles[i].joint.GetComponent<Rigidbody>() == muscles[0].joint.connectedBody) {
-						if (log) Debug.LogWarning("The first muscle needs to be the one that all the others are connected to (the hips).", transform);
+						if (log) Debug.LogError("The first muscle needs to be the one that all the others are connected to (the hips).", transform);
 						return false;
 					}
 				}
@@ -74,7 +74,7 @@ namespace RootMotion.Dynamics {
 
 			for (int i = 0; i < muscles.Length; i++) {
 				if (Vector3.SqrMagnitude(muscles[i].joint.transform.position - muscles[i].target.position) > 0.001f) {
-					if (log) Debug.LogWarning("The position of each muscle needs to match with the position of it's target. Muscle '" + muscles[i].joint.name + "' position does not match with it's target. Right-click on the PuppetMaster component's header and select 'Fix Muscle Positions' from the context menu.", muscles[i].joint.transform);
+					if (log) Debug.LogError("The position of each muscle needs to match with the position of it's target. Muscle '" + muscles[i].joint.name + "' position does not match with it's target. Right-click on the PuppetMaster component's header and select 'Fix Muscle Positions' from the context menu.", muscles[i].joint.transform);
 					return false;
 				}
 			}

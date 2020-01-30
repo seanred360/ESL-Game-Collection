@@ -13,17 +13,21 @@ public class Skeleton : MonoBehaviour {
 	bool leftLegRemoved, rightLegRemoved;
 
 	void Start() {
-		// Register to get a call from PM when a muscle is removed
-		puppetMaster.OnMuscleRemoved += OnMuscleRemoved;
+		// Register to get a call from PM when a muscle is removed or disconnected
+		puppetMaster.OnMuscleRemoved += OnMuscleDisconnected;
+        puppetMaster.OnMuscleDisconnected += OnMuscleDisconnected;
 	}
 
 	public void OnRebuild() {
-		puppetMaster.state = PuppetMaster.State.Alive;
+		//puppetMaster.state = PuppetMaster.State.Alive;
 		animator.SetFloat("Legs", 2);
+        animator.Play("Move", 0, 0f);
+        leftLegRemoved = false;
+        rightLegRemoved = false;
 	}
 
 	// Called by PM when a muscle is removed (once for each removed muscle)
-	void OnMuscleRemoved(Muscle m) {
+	void OnMuscleDisconnected(Muscle m) {
 		bool isLeft = false;
 
 		// If one of the legs is missing, play the "jump on one leg" animation. If both, set PM state to Dead.
@@ -31,13 +35,17 @@ public class Skeleton : MonoBehaviour {
 			if (isLeft) leftLegRemoved = true;
 			else rightLegRemoved = true;
 
-			if (leftLegRemoved && rightLegRemoved) puppetMaster.state = PuppetMaster.State.Dead;
-			else {
-				animator.SetFloat("Legs", 1);
-			}
+            if (leftLegRemoved && rightLegRemoved)
+            {
+               puppetMaster.state = PuppetMaster.State.Dead;
+            }
+            else
+            {
+                animator.SetFloat("Legs", 1);
+            }
 		}
 	}
-
+    
 	// Is the muscle a leg and if so, is it left or right?
 	private bool IsLegMuscle(Muscle m, out bool isLeft) {
 		isLeft = false;

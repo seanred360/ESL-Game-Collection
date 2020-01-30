@@ -8,10 +8,10 @@ namespace RootMotion.Demos {
 	/// </summary>
 	[RequireComponent(typeof(Animator))]
 	public class CharacterAnimationSimple: CharacterAnimationBase {
-		
-		[SerializeField] CharacterThirdPerson characterController;
-		[SerializeField] float pivotOffset; // Offset of the rotating pivot point from the root
-		[SerializeField] AnimationCurve moveSpeed; // The moving speed relative to input forward
+
+        public CharacterThirdPerson characterController;
+        public float pivotOffset; // Offset of the rotating pivot point from the root
+        public AnimationCurve moveSpeed; // The moving speed relative to input forward
 
 		private Animator animator;
 		

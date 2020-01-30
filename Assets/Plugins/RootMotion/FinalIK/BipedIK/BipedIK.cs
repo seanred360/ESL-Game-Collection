@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// %IK system for standard biped characters that is designed to replicate and enhance the behaviour of the Unity's built-in character %IK setup.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page2.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page4.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/IK/Biped IK")]
 	public class BipedIK : SolverManager {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		private void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page2.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page4.html");
 		}
 		
 		// Open the Script Reference URL

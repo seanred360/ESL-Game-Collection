@@ -47,10 +47,42 @@ namespace RootMotion {
 			return Vector3.Project(v, tangent) * weight;
 		}
 
-		/// <summary>
-		/// Clamps the direction to clampWeight from normalDirection, clampSmoothing is the number of sine smoothing iterations applied on the result.
-		/// </summary>
-		public static Vector3 ClampDirection(Vector3 direction, Vector3 normalDirection, float clampWeight, int clampSmoothing, out bool changed) {
+        /// <summary>
+        /// Clamps the direction to clampWeight from normalDirection, clampSmoothing is the number of sine smoothing iterations applied on the result.
+        /// </summary>
+        public static Vector3 ClampDirection(Vector3 direction, Vector3 normalDirection, float clampWeight, int clampSmoothing)
+        {
+            if (clampWeight <= 0) return direction;
+
+            if (clampWeight >= 1f) return normalDirection;
+
+            // Getting the angle between direction and normalDirection
+            float angle = Vector3.Angle(normalDirection, direction);
+            float dot = 1f - (angle / 180f);
+
+            if (dot > clampWeight) return direction;
+           
+            // Clamping the target
+            float targetClampMlp = clampWeight > 0 ? Mathf.Clamp(1f - ((clampWeight - dot) / (1f - dot)), 0f, 1f) : 1f;
+
+            // Calculating the clamp multiplier
+            float clampMlp = clampWeight > 0 ? Mathf.Clamp(dot / clampWeight, 0f, 1f) : 1f;
+
+            // Sine smoothing iterations
+            for (int i = 0; i < clampSmoothing; i++)
+            {
+                float sinF = clampMlp * Mathf.PI * 0.5f;
+                clampMlp = Mathf.Sin(sinF);
+            }
+
+            // Slerping the direction (don't use Lerp here, it breaks it)
+            return Vector3.Slerp(normalDirection, direction, clampMlp * targetClampMlp);
+        }
+
+        /// <summary>
+        /// Clamps the direction to clampWeight from normalDirection, clampSmoothing is the number of sine smoothing iterations applied on the result.
+        /// </summary>
+        public static Vector3 ClampDirection(Vector3 direction, Vector3 normalDirection, float clampWeight, int clampSmoothing, out bool changed) {
 			changed = false;
 
 			if (clampWeight <= 0) return direction;
@@ -149,5 +181,21 @@ namespace RootMotion {
 
 			return planePosition + Vector3.Project(point - planePosition, tangent);
 		}
+
+        /// <summary>
+        /// Same as Transform.TransformPoint(), but not using scale.
+        /// </summary>
+        public static Vector3 TransformPointUnscaled(Transform t, Vector3 point)
+        {
+            return t.position + t.rotation * point;
+        }
+
+        /// <summary>
+        /// Same as Transform.InverseTransformPoint(), but not using scale.
+        /// </summary>
+        public static Vector3 InverseTransformPointUnscaled(Transform t, Vector3 point)
+        {
+            return Quaternion.Inverse(t.rotation) * (point - t.position);
+        }
 	}
 }

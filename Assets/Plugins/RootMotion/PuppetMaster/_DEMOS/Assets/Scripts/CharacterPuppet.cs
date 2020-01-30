@@ -8,7 +8,7 @@ namespace RootMotion.Demos {
 
 		[Header("Puppet")]
 		
-		public PropRoot propRoot;
+		public PropMuscle propMuscle;
 
 		public BehaviourPuppet puppet { get; private set; }
 
@@ -42,7 +42,8 @@ namespace RootMotion.Demos {
 		protected override bool Jump() {
 			if (puppet.state != BehaviourPuppet.State.Puppet) return false;
 
-			return base.Jump();
-		}
-	}
+            return base.Jump();
+        }
+
+    }
 }

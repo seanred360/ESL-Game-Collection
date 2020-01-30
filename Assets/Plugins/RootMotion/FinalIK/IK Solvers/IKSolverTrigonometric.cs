@@ -355,7 +355,7 @@ namespace RootMotion.FinalIK {
 			float x = (directionSqrMag + bone1.sqrMag - bone2.sqrMag) / 2f / directionMagnitude;
 			float y = (float)Math.Sqrt(Mathf.Clamp(bone1.sqrMag - x * x, 0, Mathf.Infinity));
 			
-			Vector3 yDirection = Vector3.Cross(direction, bendNormal);
+			Vector3 yDirection = Vector3.Cross(direction / directionMagnitude, bendNormal);
 			return Quaternion.LookRotation(direction, yDirection) * new Vector3(0f, y, x);
 		}
 	}

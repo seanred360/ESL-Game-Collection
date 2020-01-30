@@ -62,11 +62,11 @@ namespace RootMotion.FinalIK {
 			
 			lastLocalDirection = localDirection;
 		}
-		
-		/*
+
+        /*
 		 * Solve the CCD algorithm
 		 * */
-		private void Solve(Vector3 targetPosition) {
+        protected void Solve(Vector3 targetPosition) {
 			// 2D
 			if (XY) {
 				for (int i = bones.Length - 2; i > -1; i--) {

@@ -91,6 +91,7 @@ namespace RootMotion.Dynamics {
 			if (!enabled) return;
 			if (puppetMaster == null) return;
 			if (collision.collider.transform.root == transform.root) return; // @todo make sure characters are not stacked to the same root
+            if (puppetMaster.muscles[muscleIndex].state.isDisconnected) return;
 			
 			foreach (BehaviourBase behaviour in puppetMaster.behaviours) {
 				behaviour.OnMuscleCollision(new MuscleCollision(muscleIndex, collision));
@@ -101,9 +102,10 @@ namespace RootMotion.Dynamics {
 			if (!enabled) return;
 			if (puppetMaster == null) return;
 			if (PuppetMasterSettings.instance != null && !PuppetMasterSettings.instance.collisionStayMessages) return;
-			if (collision.collider.transform.root == transform.root) return; 
+			if (collision.collider.transform.root == transform.root) return;
+            if (puppetMaster.muscles[muscleIndex].state.isDisconnected) return;
 
-			foreach (BehaviourBase behaviour in puppetMaster.behaviours) {
+            foreach (BehaviourBase behaviour in puppetMaster.behaviours) {
 				behaviour.OnMuscleCollision(new MuscleCollision(muscleIndex, collision, true));
 			}
 		}
@@ -112,9 +114,10 @@ namespace RootMotion.Dynamics {
 			if (!enabled) return;
 			if (puppetMaster == null) return;
 			if (PuppetMasterSettings.instance != null && !PuppetMasterSettings.instance.collisionExitMessages) return;
-			if (collision.collider.transform.root == transform.root) return; 
+			if (collision.collider.transform.root == transform.root) return;
+            if (puppetMaster.muscles[muscleIndex].state.isDisconnected) return;
 
-			foreach (BehaviourBase behaviour in puppetMaster.behaviours) {
+            foreach (BehaviourBase behaviour in puppetMaster.behaviours) {
 				behaviour.OnMuscleCollisionExit(new MuscleCollision(muscleIndex, collision));
 			}
 		}

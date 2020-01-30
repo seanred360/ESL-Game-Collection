@@ -9,7 +9,7 @@ namespace RootMotion.Demos {
 	[RequireComponent(typeof(AnimatorController3rdPerson))]
 	public class CharacterController3rdPerson: MonoBehaviour {
 
-		[SerializeField] CameraController cam; // The camera
+		public CameraController cam; // The camera
 
 		private AnimatorController3rdPerson animatorController; // The Animator controller
 

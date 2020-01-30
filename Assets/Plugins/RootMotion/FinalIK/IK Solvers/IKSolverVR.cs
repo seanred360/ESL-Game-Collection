@@ -154,13 +154,16 @@ namespace RootMotion.FinalIK {
 		
 		public override void FixTransforms() {
 			if (!initiated) return;
+            if (LOD >= 2) return;
 
 			for (int i = 1; i < solverTransforms.Length; i++) {
 				if (solverTransforms[i] != null) {
 					bool isPelvis = i == 1;
-					bool isArm = i > 5 && i < 14;
-					bool isLeg = i >= 14;
-					if (isPelvis || isArm || isLeg) {
+					
+                    bool isArmStretchable = i == 8 || i == 9 || i == 12 || i == 13;
+                    bool isLegStretchable = (i >= 15 && i <= 17) || (i >= 19 && i <= 21);
+
+                    if (isPelvis || isArmStretchable || isLegStretchable) {
 						solverTransforms[i].localPosition = defaultLocalPositions[i - 1];
 					}
 					solverTransforms[i].localRotation = defaultLocalRotations[i - 1];
@@ -291,34 +294,94 @@ namespace RootMotion.FinalIK {
 
 		protected override void OnUpdate() {
 			if (IKPositionWeight > 0f) {
-				UpdateSolverTransforms();
+                if (LOD < 2)
+                {
+                    bool read = false;
 
-				Read(readPositions, readRotations, hasChest, hasNeck, hasShoulders, hasToes, hasLegs);
-				Solve();
-				Write();
+                    if (lastLOD != LOD)
+                    {
+                        if (lastLOD == 2)
+                        {
+                            spine.faceDirection = rootBone.readRotation * Vector3.forward;
 
-				WriteTransforms();
+                            if (hasLegs)
+                            {
+                                // Teleport to the current position/rotation if resuming from culled LOD with locomotion enabled
+                                if (locomotion.weight > 0f)
+                                {
+                                    root.position = new Vector3(spine.headTarget.position.x, root.position.y, spine.headTarget.position.z);
+                                    Vector3 forward = spine.faceDirection;
+                                    forward.y = 0f;
+                                    root.rotation = Quaternion.LookRotation(forward, root.up);
+
+                                    UpdateSolverTransforms();
+                                    Read(readPositions, readRotations, hasChest, hasNeck, hasShoulders, hasToes, hasLegs);
+                                    read = true;
+
+                                    locomotion.Reset(readPositions, readRotations);
+                                }
+
+                                raycastOriginPelvis = spine.pelvis.readPosition;
+                            }
+                        }
+                    }
+
+                    if (!read)
+                    {
+                        UpdateSolverTransforms();
+                        Read(readPositions, readRotations, hasChest, hasNeck, hasShoulders, hasToes, hasLegs);
+                    }
+
+                    Solve();
+                    Write();
+
+                    WriteTransforms();
+                }
+                else
+                {
+                    // Culled
+                    if (locomotion.weight > 0f)
+                    {
+                        root.position = new Vector3(spine.headTarget.position.x, root.position.y, spine.headTarget.position.z);
+                        Vector3 forward = spine.headTarget.rotation * spine.anchorRelativeToHead * Vector3.forward;
+                        forward.y = 0f;
+                        root.rotation = Quaternion.LookRotation(forward, root.up);
+                    }
+                }
 			}
-		}
+
+            lastLOD = LOD;
+        }
 
 		private void WriteTransforms() {
 			for (int i = 0; i < solverTransforms.Length; i++) {
 				if (solverTransforms[i] != null) {
 					bool isRootOrPelvis = i < 2;
-					bool isArm = i > 5 && i < 14;
-					bool isLeg = i >= 14;
+                    bool isArmStretchable = i == 8 || i == 9 || i == 12 || i == 13;
+                    bool isLegStretchable = (i >= 15 && i <= 17) || (i >= 19 && i <= 21);
+                    if (LOD > 0)
+                    {
+                        isArmStretchable = false;
+                        isLegStretchable = false;
+                    }
 
-					if (isRootOrPelvis) {
+                    if (isRootOrPelvis) {
 						solverTransforms[i].position = V3Tools.Lerp(solverTransforms[i].position, GetPosition(i), IKPositionWeight);
 					}
 
-					if (isArm || isLeg) {
-						solverTransforms[i].position = V3Tools.Lerp(solverTransforms[i].position, GetPosition(i), IKPositionWeight);
-					}
-
+					if (isArmStretchable || isLegStretchable) {
+                        if (IKPositionWeight < 1f) { 
+                            Vector3 localPosition = solverTransforms[i].localPosition;
+                            solverTransforms[i].position = V3Tools.Lerp(solverTransforms[i].position, GetPosition(i), IKPositionWeight);
+                            solverTransforms[i].localPosition = Vector3.Project(solverTransforms[i].localPosition, localPosition);
+                        } else
+                        {
+                            solverTransforms[i].position = V3Tools.Lerp(solverTransforms[i].position, GetPosition(i), IKPositionWeight);
+                        }
+                    }
 
 					solverTransforms[i].rotation = QuaTools.Lerp(solverTransforms[i].rotation, GetRotation(i), IKPositionWeight);
-				}
+                }
 			}
 		}
 
@@ -362,9 +425,15 @@ namespace RootMotion.FinalIK {
 			}
 		}
 
+        private int lastLOD;
+
 		private void Solve() {
-			// Pre-Solving
-			spine.PreSolve();
+            spine.SetLOD(LOD);
+            foreach (Arm arm in arms) arm.SetLOD(LOD);
+            if (hasLegs) foreach (Leg leg in legs) leg.SetLOD(LOD);
+
+            // Pre-Solving
+            spine.PreSolve();
 			foreach (Arm arm in arms) arm.PreSolve();
 			if (hasLegs) foreach (Leg leg in legs) leg.PreSolve();
 
@@ -433,7 +502,7 @@ namespace RootMotion.FinalIK {
                 {
                     leg.ApplyOffsets();
                 }
-                if (!plantFeet)
+                if (!plantFeet || LOD > 0)
                 {
                     spine.InverseTranslateToHead(legs, false, false, bodyOffset, 1f);
 
@@ -509,13 +578,19 @@ namespace RootMotion.FinalIK {
 			return solvedRotations[index];
 		}
 
-		#endregion Generic API
+        #endregion Generic API
 
-		[Tooltip("If true, will keep the toes planted even if head target is out of reach.")]
-		/// <summary>
-		/// If true, will keep the toes planted even if head target is out of reach.
-		/// </summary>
-		public bool plantFeet = true;
+        [Tooltip("LOD 0: Full quality solving. LOD 1: Shoulder solving, stretching plant feet disabled, spine solving quality reduced. This provides about 30% of performance gain. LOD 2: Culled, but updating root position and rotation if locomotion is enabled.")]
+        /// <summary>
+        /// LOD 0: Full quality solving. LOD 1: Shoulder solving, stretching plant feet disabled, spine solving quality reduced. This provides about 30% of performance gain. LOD 2: Culled, but updating root position and rotation if locomotion is enabled.
+        /// </summary>
+        [Range(0, 2)] public int LOD = 0;
+
+		[Tooltip("If true, will keep the toes planted even if head target is out of reach, so this can cause the camera to exit the head if it is too high for the model to reach. Enabling this increases the cost of the solver as the legs will have to be solved multiple times.")]
+        /// <summary>
+        /// If true, will keep the toes planted even if head target is out of reach, so this can cause the camera to exit the head if it is too high for the model to reach. Enabling this increases the cost of the solver as the legs will have to be solved multiple times.
+        /// </summary>
+        public bool plantFeet = true;
 
 		/// <summary>
 		/// Gets the root bone.

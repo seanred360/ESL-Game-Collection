@@ -23,9 +23,9 @@ namespace RootMotion.Demos {
 			Transform ragdoll = GameObject.Instantiate(ragdollPrefab, transform.position, transform.rotation) as Transform;
 			ragdoll.name = instanceName;
 
-			// This will duplicate the ragdoll character, remove the ragdoll components from the original and use it as the animated target.
+            // This will duplicate the ragdoll character, remove the ragdoll components from the original and use it as the animated target.
 			PuppetMaster.SetUp(ragdoll, characterControllerLayer, ragdollLayer);
-
+            
 			Debug.Log("A ragdoll was successfully converted to a Puppet.");
 		}
 	}

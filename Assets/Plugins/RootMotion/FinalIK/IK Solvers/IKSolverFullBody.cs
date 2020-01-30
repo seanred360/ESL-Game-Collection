@@ -88,6 +88,7 @@ namespace RootMotion.FinalIK {
 			for (int i = 0; i < chain.Length; i++) {
 				for (int n = 0; n < chain[i].nodes.Length; n++) {
 					pointArray[added] = chain[i].nodes[n] as IKSolver.Node;
+                    added++;
 				}
 			}
 

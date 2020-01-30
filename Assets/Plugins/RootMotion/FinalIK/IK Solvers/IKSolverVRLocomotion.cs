@@ -67,9 +67,9 @@ namespace RootMotion.FinalIK {
 			/// </summary>
 			public float rootSpeed = 20f;
 
-			[Tooltip("The speed of steps.")]
+			[Tooltip("The speed of moving a foot to the next position.")]
 			/// <summary>
-			/// The speed of steps
+			/// The speed of moving a foot to the next position.
 			/// </summary>
 			public float stepSpeed = 3f;
 
@@ -110,9 +110,9 @@ namespace RootMotion.FinalIK {
 			public Vector3 offset;
 
 			[HideInInspector] public bool blockingEnabled;
-			[HideInInspector] public LayerMask blockingLayers;
-			[HideInInspector] public float raycastRadius = 0.2f;
-			[HideInInspector] public float raycastHeight = 0.2f;
+            [HideInInspector] public LayerMask blockingLayers;
+            [HideInInspector] public float raycastRadius = 0.2f;
+            [HideInInspector] public float raycastHeight = 0.2f;
 
 			[Tooltip("Called when the left foot has finished a step.")]
 			/// <summary>
@@ -211,10 +211,11 @@ namespace RootMotion.FinalIK {
 				Vector3 forwardY = V3Tools.ExtractVertical(forward, rootUp, 1f);
 				forward -= forwardY;
 				Quaternion forwardRotation = Quaternion.LookRotation(forward, rootUp);
+                if (spine.rootHeadingOffset != 0f) forwardRotation = Quaternion.AngleAxis(spine.rootHeadingOffset, rootUp) * forwardRotation;
 
-				//centerOfMass = Vector3.Lerp(spine.pelvis.solverPosition, spine.head.solverPosition, 0.25f) + rootBone.solverRotation * offset;
+                //centerOfMass = Vector3.Lerp(spine.pelvis.solverPosition, spine.head.solverPosition, 0.25f) + rootBone.solverRotation * offset;
 
-				float pelvisMass = 1f;
+                float pelvisMass = 1f;
 				float headMass = 1f;
 				float armMass = 0.2f;
 				float totalMass = pelvisMass + headMass + 2f * armMass;
@@ -317,7 +318,7 @@ namespace RootMotion.FinalIK {
 					if (stepLegIndex != -1) {
 						Vector3 stepTo = centerOfMassVGroundLevel + rootBone.solverRotation * footsteps[stepLegIndex].characterSpaceOffset;
 						footsteps[stepLegIndex].stepSpeed = UnityEngine.Random.Range(stepSpeed, stepSpeed * 1.5f);
-						footsteps[stepLegIndex].StepTo(stepTo, forwardRotation);
+						footsteps[stepLegIndex].StepTo(stepTo, forwardRotation, stepThreshold);
 					}
 				}
 

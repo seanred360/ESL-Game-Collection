@@ -9,10 +9,10 @@ namespace RootMotion.Demos {
 	/// </summary>
 	public class HitReactionVRIKTrigger: MonoBehaviour {
 
-		[SerializeField] HitReactionVRIK hitReaction;
-		[SerializeField] float hitForce = 1f;
+        public HitReactionVRIK hitReaction;
+        public float hitForce = 1f;
 
-		private string colliderName;
+        private string colliderName;
 
 		void Update() {
 			// On left mouse button...

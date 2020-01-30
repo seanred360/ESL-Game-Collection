@@ -6,29 +6,26 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// Grounding for FBBIK characters.
 	/// </summary>
-	// TODO [HelpURL("https://www.youtube.com/watch?v=9MiZiaJorws&index=6&list=PLVxSIA1OaTOu8Nos3CalXbJ2DrKnntMv6")]
+	[HelpURL("https://www.youtube.com/watch?v=9MiZiaJorws&index=6&list=PLVxSIA1OaTOu8Nos3CalXbJ2DrKnntMv6")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Grounder/Grounder VRIK")]
 	public class GrounderVRIK: Grounder {
 
 		// Open a video tutorial video
 		[ContextMenu("TUTORIAL VIDEO")]
 		void OpenTutorial() {
-			// TODO
-			//Application.OpenURL("https://www.youtube.com/watch?v=9MiZiaJorws&index=6&list=PLVxSIA1OaTOu8Nos3CalXbJ2DrKnntMv6");
+			Application.OpenURL("https://www.youtube.com/watch?v=9MiZiaJorws&index=6&list=PLVxSIA1OaTOu8Nos3CalXbJ2DrKnntMv6");
 		}
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
-			// TODO
-			//Application.OpenURL("http://www.root-motion.com/finalikdox/html/page11.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page9.html");
 		}
 		
 		// Open the Script Reference URL
 		[ContextMenu("Scrpt Reference")]
 		protected override void OpenScriptReference() {
-			// TODO
-			//Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_grounder_f_b_b_i_k.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_grounder_v_r_i_k.html");
 		}
 
 		#region Main Interface

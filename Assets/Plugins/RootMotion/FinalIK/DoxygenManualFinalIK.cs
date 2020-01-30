@@ -1,5 +1,4 @@
 /*! \mainpage
-
  \image html FABRIK.png
  
  Welcome to Final %IK, the ultimate collection of inverse kinematics solutions for Unity.
@@ -7,27 +6,33 @@
 \section contains Final IK Contains 
 
  - Full Body %IK system for biped characters
+ - VRIK - High speed full body solver dedicated to Virtual Reality avatars.
+ - Baker - tool for baking your IK procedures, animation adjustments, Timeline and Mecanim layers to Humanoid, Generic or Legacy animation clips
  - Biped %IK - alternate to Unity's built-in Avatar %IK system that provides more flexibility and works in Unity Free with the same API
  - CCD (Cyclic Coordinate Descent) %IK
  - Multi-effector %FABRIK (Forward and Backward Reaching %IK) 
- - Look-At %IK
- - Aim %IK
- - Limb %IK
+ - LookAt %IK - look-at solver for bipeds
+ - Aim %IK - for aiming weapons, looking at objects
+ - Limb %IK - 3 joint solver for arms and legs
+ - Arm IK - 4 joint solver for the arms
+ - Leg IK - 4 joint solver for the legs
  - Rotation constraints - Angular, Polygonal (Reach Cone), Spline and Hinge rotation limits that work with CCD, %FABRIK and Aim solvers
  - Interaction System - simple tool for creating procedural IK interactions
  - Grounder - automatic vertical foot placement and alignment correction system
+ - CCDIKJ, AimIKJ - Multithreaded solvers based on AnimationJobs
 
 \section technicaloverview Technical Overview
 
+ - Full source code included
  - Does NOT require Unity Pro
  - Does NOT require, but works with Mecanim
- - Written in C#, all scripts are namespaced under %RootMotion and %RootMotion.FinalIK to avoid any naming conflicts with Your existing assets.
- - Tested on Standalone, Web Player, IOS and Android
+ - Written in C#, all scripts are namespaced under %RootMotion and %RootMotion.FinalIK to avoid any naming conflicts with Your existing assets
+ - Tested on Standalone, Web Player, IOS, Android and VR
  - Custom undoable inspectors and scene view handles
  - Warning system to safeguard from null references and invalid setups (will not overflow your console with warnings)
  - Optimized for great performance
  - Modular, easily extendable. Compose your own custom character rigs
- - User manual, HTML documentation, fully documented code
+ - User manual, HTML documentation, fully documented code, YouTube video tutorials
  - Demo scenes and example scripts for all components
  - Tested on a wide range of characters
  
@@ -48,6 +53,8 @@
 \image html AimIK.png "The AimIK solver in action"
 
 <b>Getting started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/7__IafZGwvI" frameborder="0" allowfullscreen></iframe>\endhtmlonly
 	- Set up your character's Animator/Animation to play an aiming forward animation/pose
 	- Add the AimIK component to your character
 	- Assign the spine bones to "Bones" in the component, one by one in descending order (parents first).
@@ -184,7 +191,161 @@ That line is telling AimIK that whatever the direction of the weapon in the anim
 "Character.forward" is the direction that the weapon is aimed at (keep it in character space so the effect rotates with the character) in the normal aiming animation without any recoil, so If you were currently playing an "aim right" animation, you should set it to "character.right" instead.
 */
 
-/*! \page page2 Biped IK
+/*! \page page2 Arm IK
+ArmIK is a wrapper component for VRIK's 4-joint biped arm solver.
+
+<b>Component variables:</b>
+    - <b>ArmIK.fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance.
+
+<b>Wrapper variables:</b>
+    - <b>ArmIK.solver.chest</b> - the last spine bone, that the arm bones must be parented to.
+    - <b>ArmIK.solver.shoulder</b> - the shoulder bone.
+    - <b>ArmIK.solver.upperArm</b> - the upper arm bone.
+    - <b>ArmIK.solver.forearm</b> - the forearm bone
+    - <b>ArmIK.solver.hand</b> - the hand bone.
+    - <b>ArmIK.solver.IKPositionWeight</b> - positional weight of the hand target. Note that if you have nulled the target, the hand will still be pulled to the last position of the target until you set this value to 0.
+    - <b>ArmIK.solver.IKRotationWeight</b> - rotational weight of the hand target. Note that if you have nulled the target, the hand will still be rotated to the last rotation of the target until you set this value to 0.
+    
+<b>Solver variables:</b>
+    - <b>ArmIK.solver.arm.target</b> - the hand target. This should not be the hand controller itself, but a child GameObject parented to it so you could adjust it's position/rotation to match the orientation of the hand bone. The best practice for setup would be to move the hand controller to the avatar's hand as it it was held by the avatar, duplicate the avatar's hand bone and parent it to the hand controller. Then assign the duplicate to this slot.
+    - <b>ArmIK.solver.arm.bendGoal</b> - the elbow will be bent towards this Transform if 'Bend Goal Weight' > 0.
+    - <b>ArmIK.solver.arm.shoulderRotationMode</b> - different techniques for shoulder bone rotation.
+    - <b>ArmIK.solver.arm.shoulderRotationWeight</b> - the weight of shoulder rotation.
+    - <b>ArmIK.solver.arm.shoulderTwistWeight</b> - the weight of twisting the shoulders backwards when arms are lifted up.
+    - <b>ArmIK.solver.arm.bendGoalWeight</b> - if greater than 0, will bend the elbow towards the 'Bend Goal' Transform.
+    - <b>ArmIK.solver.arm.swivelOffset</b> - angular offset of the elbow bending direction.
+    - <b>ArmIK.solver.arm.wristToPalmAxis</b> - local axis of the hand bone that points from the wrist towards the palm. Used for defining hand bone orientation. If you have copied VRIK component from another avatar that has different bone orientations, right-click on VRIK header and select "Guess Hand Orientations" from the context menu.
+    - <b>ArmIK.solver.arm.palmToThumbAxis</b> - local axis of the hand bone that points from the palm towards the thumb. Used for defining hand bone orientation If you have copied VRIK component from another avatar that has different bone orientations, right-click on VRIK header and select 'Guess Hand Orientations' from the context menu..
+    - <b>ArmIK.solver.arm.armLengthMlp</b> - use this to make the arm shorter/longer. Works by displacement of hand and forearm localPosition.
+    - <b>ArmIK.solver.arm.stretchCurve</b> - evaluates stretching of the arm by target distance relative to arm length. Value at time 1 represents stretching amount at the point where distance to the target is equal to arm length. Value at time 2 represents stretching amount at the point where distance to the target is double the arm length. Value represents the amount of stretching. Linear stretching would be achieved with a linear curve going up by 45 degrees. Increase the range of stretching by moving the last key up and right at the same amount. Smoothing in the curve can help reduce elbow snapping (start stretching the arm slightly before target distance reaches arm length). To get a good optimal value for this curve, please go to the 'VRIK (Basic)' demo scene and copy the stretch curve over from the Pilot character.
+   
+\image html ArmIKComponent.png
+
+
+<b>Script References:</b>
+	- <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_i_k_solver_arm.html">Solver </a> 
+	- <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_arm_i_k.html">Component</a> 
+*/
+
+/*! \page page3 Baker
+Baker is a universal tool for recording Humanoid, Generic and Legacy animation clips. Baker.cs is an abstract base class extended by HumanoidBaker.cs and GenericBaker.cs.
+<BR>
+<b>Baker allows you to:</b>
+    - Edit animation clips
+    - bake IK into animation
+    - combine animation layers
+    - bake InteractionSystem interactions
+    - bake ragdoll physics
+    - blend ragdoll physics with animation (PuppetMaster)
+    - bake Timeline
+    - fix Humanoid retargeting problems (hand, foot positions)
+    - bake outsourced Humanoid animation to specific character model to avoid using Foot IK for performance
+    - bake motion capture
+    - reduce animation memory footprint with Baker's advanced keyframe reduction tools
+
+<b>Getting started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/yF7EyomgZKo" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+    - Add the HumanoidBaker or GenericBaker component to the same GameObject as your character's Animator.
+    - Click on the button beneath "Save To Folder" to choose a folder for the baked animation clips.
+    - Play the scene.
+    - Click on the bake button.
+
+<b>Animation Clips Mode</b>
+<BR>AnimationClips mode can be used to bake a batch of AnimationClips directly without the need of setting up an AnimatorController. 
+<BR>Set the Baker to "Animation Clips" mode and add some animation clips to the "Animation Clips" array. "Append Name" is a string that will be added to each clip's name for the saved clip. For example if your animation clip names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+
+<b>Animation States Mode</b>
+<BR>AnimationStates mode can be used to bake a batch of Mecanim Animation States. This is useful for when you need to set up a more complex rig with layers and AvatarMasks in Mecanim.
+<BR>Set the Baker to "Animation States" mode and add the Animation State names (only from the base layer) you wish to bake to the "Animation States" array. "Append Name" is a string that will be added to each state's name for the saved clip. For example if your animation state names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+
+<b>Playable Director Mode</b>
+<BR>Bakes a PlayableDirector with a Timeline asset. Set the Baker to "Playable Director" mode and make sure the GameObject has a valid PlayableDirector.
+
+<b>Realtime Mode</b>
+<BR>Useful for baking an arbitrary range of animation, such as ragdoll simulation or an InteractionSystem interaction, in real-time.
+
+\code
+using RootMotion;
+
+public class MyBakingTool {
+
+    public Baker baker;
+    public float bakeDuration = 5f;
+
+    void Start()
+    {
+        baker.mode = Baker.Mode.Realtime;
+        StartCoroutine(BakeDuration(bakeDuration));
+    }
+
+    private IEnumerator BakeDuration(float duration) 
+    {
+        baker.StartBaking();
+
+        yield return new WaitForSeconds(duration);
+        baker.StopBaking();
+    }
+}
+\endcode
+
+
+<b>Keyframe Reduction</b>
+<BR> While developing a mobile game and running low on RAM, the quality of your animation will suffer a lot should you try to increase the keyframe reduction error thresholds in animation import settings.
+The most noticable problem will be with the feet starting to float around in idle animations as there are not enough keyframes to make them appear properly planted. Idle animations are also usually the longest and most memory consuming.
+Unity actually already contains a solution for this problem, but it is simply not implemented in the keyframe reduction options. That solution is the humanoid "Foot IK" system ("Foot IK" toggle in the Animator, previewable by enabling the "IK" toggle in the Animation Preview Window), that is normally used for fixing Humanoid retargeting problems.
+Foot IK works by storing position and rotation channels of the foot bottoms from the original animation clip, then running a pass of IK on the legs of the retargeted character (that has different leg bone lenghts) to properly plant the feet.
+Unity keyfame reduction options do not allow you to define different parameters for those IK curves and so they will be reduced just the same as the muscle channels, causing the feet to float even if you had "Foot IK" enabled.
+
+
+Baker allows you define "Key Reduction Error" and "IK Key Reduction Error" separately, hence apply extreme key reduction to muscle channels that take most of the memory while maintaining normal reduction for the IK channels.
+It also allows you to bake muscle channels at a lower frame rate than the IK channels by increasing the value of "Muscle Frame Rate Div". Those options can help you achieve better animation quality for a memory cost that is multiple times lower.
+The same technique can be used for hand IK, making sure your 2-handed prop animations do not suffer from keyframe reduction.
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/sH7OnpOQCg8" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+
+<b>Changing AnimationClipSettings</b>
+<BR> When you first bake an animation clip, Baker will apply the default settings. If you modified the settings of the animation clip manually and baked again, Baker will maintain those modified settings so you will not have to apply them again.
+
+<b>HumanoidBaker variables</b>
+    - <b>frameRate</b> - in AnimationClips, AnimationStates or PlayableDirector mode - the frame rate at which the animation clip will be sampled. In Realtime mode - the frame rate at which the pose will be sampled. With the latter, the frame rate is not guaranteed if the player is not able to reach it.
+    - <b>keyReductionError</b> - maximum allowed error for keyframe reduction.
+    - <b>IKKeyReductionError</b> - max keyframe reduction error for the Root.Q/T, LeftFoot IK and RightFoot IK channels. Having a larger error value for 'Key Reduction Error' and a smaller one for this enables you to optimize clip data size without the floating feet effect by enabling 'Foot IK' in the Animator.
+    - <b>muscleFrameRateDiv</b> - frame rate divider for the muscle curves. If you had 'Frame Rate' set to 30, and this value set to 3, the muscle curves will be baked at 10 fps. Only the Root Q/T and Hand and Foot IK curves will be baked at 30. This enables you to optimize clip data size without the floating feet effect by enabling 'Foot IK' in the Animator.
+    - <b>bakeHandIK</b> - should the hand IK curves be added to the animation? Disable this if the original hand positions are not important when using the clip on another character via Humanoid retargeting.
+    - <b>mode</b> - AnimationClips mode can be used to bake a batch of AnimationClips directly without the need of setting up an AnimatorController. AnimationStates mode is useful for when you need to set up a more complex rig with layers and AvatarMasks in Mecanim. PlayableDirector mode bakes a Timeline. Realtime mode is for continuous baking of gameplay, ragdoll phsysics or PuppetMaster dynamics.
+    - <b>loop</b> - sets the baked animation clip to loop time and matches the last frame keys with the first. Note that when overwriting a previously baked clip, AnimationClipSettings will be copied from the existing clip.
+    - <b>animationClips</b> - AnimationClips to bake.
+    - <b>animationStates</b> - the name of the AnimationStates (must be on the base layer) to bake in the Animator (Right-click on this component header and select 'Find Animation States' to have Baker fill those in automatically, required that state names match with the names of the clips used in them).
+    - <b>appendName</b> - string that will be added to each clip or animation state name for the saved clip. For example if your animation state/clip names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+    - <b>saveToFolder</b> - the folder to save the baked AnimationClips to.
+
+\image html HumanoidBakerComponent.png
+
+<b>GenericBaker variables</b>
+    - <b>frameRate</b> - in AnimationClips, AnimationStates or PlayableDirector mode - the frame rate at which the animation clip will be sampled. In Realtime mode - the frame rate at which the pose will be sampled. With the latter, the frame rate is not guaranteed if the player is not able to reach it.
+    - <b>keyReductionError</b> - maximum allowed error for keyframe reduction.
+    - <b>markAsLegacy</b> - if true, produced AnimationClips will be marked as Legacy and usable with the Legacy animation system.
+    - <b>root</b> - root Transform of the hierarchy to bake.
+    - <b>rootNode</b> - root node used for root motion.
+    - <b>ignoreList</b> - list of Transforms to ignore, rotation curves will not be baked for these Transforms.
+    - <b>bakePositionList</b> - localPosition curves will be baked for these Transforms only. If you are baking a character, the pelvis bone should be added to this array.
+    - <b>mode</b> - AnimationClips mode can be used to bake a batch of AnimationClips directly without the need of setting up an AnimatorController. AnimationStates mode is useful for when you need to set up a more complex rig with layers and AvatarMasks in Mecanim. PlayableDirector mode bakes a Timeline. Realtime mode is for continuous baking of gameplay, ragdoll phsysics or PuppetMaster dynamics.
+    - <b>loop</b> - sets the baked animation clip to loop time and matches the last frame keys with the first. Note that if you are overwriting a previously baked clip, AnimationClipSettings will be copied from the existing clip.
+    - <b>animationClips</b> - AnimationClips to bake.
+    - <b>animationStates</b> - the name of the AnimationStates (must be on the base layer) to bake in the Animator (Right-click on this component header and select 'Find Animation States' to have Baker fill those in automatically, required that state names match with the names of the clips used in them).
+    - <b>appendName</b> - string that will be added to each clip or animation state name for the saved clip. For example if your animation state/clip names were 'Idle' and 'Walk', then with '_Baked' as Append Name, the Baker will create 'Idle_Baked' and 'Walk_Baked' animation clips.
+    - <b>saveToFolder</b> - the folder to save the baked AnimationClips to.
+
+\image html GenericBakerComponent.png
+
+
+<b>Script References:</b>
+	- <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_humanoid_baker.html">HumanoidBaker</a> 
+	- <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_generic_baker.html">GenericBaker</a> 
+*/
+
+/*! \page page4 Biped IK
 
 %IK system for standard biped characters that is designed to replicate and enhance the behaviour of the Unity's built-in character %IK setup.
 
@@ -235,20 +396,20 @@ so unless you have named your bones in Chinese, you should have BipedIK ready fo
 	- <b>references</b> - references to the character bones that BipedIK needs to build it's solver.
 	
 <b>Solver variables:</b>
-	- <a href="page7.html">Left Foot</a>
-	- <a href="page7.html">Right Foot</a>
-	- <a href="page7.html">Left Hand</a>
-	- <a href="page7.html">Right Hand</a>
-	- <a href="page4.html">Spine</a> 
+	- <a href="page12.html">Left Foot</a>
+	- <a href="page12.html">Right Foot</a>
+	- <a href="page12.html">Left Hand</a>
+	- <a href="page12.html">Right Hand</a>
+	- <a href="page5.html">Spine</a> 
 	- <a href="page1.html">Aim</a> 
-	- <a href="page8.html">Look At</a> 
+	- <a href="page13.html">Look At</a> 
 	- <b>Pelvis</b> - Pos Offset and Rot Offset can be used to offset the pelvis of the character from it's animated position/rotation. Pos Weight and Rot Weight can be used to translate and rotate the pelvis to bipedIK.solvers.pelvis.position and bipedIK.solvers.pelvis.rotation.
 
 
 \image html BipedIKComponent.png
 */
 
-/*! \page page3 CCD IK
+/*! \page page5 CCD IK
 CCD (Cyclic Coordinate Descent) is one of the simplest and most popular inverse kinematics methods that has been extensively used in the computer games industry. The main idea behind the solver is to align one joint with the end effector and the target at a time, so that the last bone of the chain iteratively gets closer to the target.
 CCD is very fast and reliable even with rotation limits applied. CCD tends to overemphasise the rotations of the bones closer to the target position (a very long CCD chain would just roll in around it's target). Reducing bone weight down the hierarchy will compensate for this effect.
 It is designed to handle serial chains, thus, it is difficult to extend to problems with multiple end effectors (in this case go with FABRIK). It also takes a lot of iterations to fully extend the chain.
@@ -298,7 +459,7 @@ but a fundamental handicap of the CCD algorithm (remember, no IK algorithm is pe
 
 */
 
-/*! \page page4 FABRIK
+/*! \page page6 FABRIK
 Forward and Backward Reaching Inverse Kinematics solver based on the paper: 
 <BR><a href="http://andreasaristidou.com/publications/FABRIK.pdf">"FABRIK: A fast, iterative solver for the inverse kinematics problem." </a> 
 <BR>Aristidou, A., Lasenby, J. Department of Engineering, University of Cambridge, Cambridge CB2 1PZ, UK.
@@ -350,7 +511,7 @@ but a fundamental handicap of the FABRIK algorithm (remember, no IK algorithm is
 \image html FABRIKComponent.png
 */
 
-/*! \page page5 FABRIK Root
+/*! \page page7 FABRIK Root
 Multi-effector FABRIK system.
 <BR>FABRIKRoot is a component that connects FABRIK chains together to form extremely complicated %IK systems with multiple branches, end-effectors and rotation limits.
 
@@ -396,7 +557,7 @@ Multi-effector FABRIK system.
 
 */
 
-/*! \page page6 Full Body Biped IK
+/*! \page page8 Full Body Biped IK
 Final %IK includes an extremely flexible and powerful high speed lightweight FBIK solver for biped characters.
 
 FullBodyBipedIK maps any biped character to a low resolution multi-effector IK rig, solves it, and maps the result back to the character. 
@@ -450,6 +611,9 @@ This is done each frame in LateUpdate, after Mecanim/Legacy is done animating, s
 		- FullBodyBipedIK considers all elbows and knees as 3 DOF joints with swing rotation constrained to the range of a hemisphere (Since 0.22, used to be 1 DOF). That allows for full accuracy mapping of all biped rigs, the only known limitation is that the limbs can't be inverted (broken from the knee/elbow).
 
 <b>Getting started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/7__IafZGwvI" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/tgRMsTphjJo" frameborder="0" allowfullscreen></iframe>\endhtmlonly
 		- Add the FullBodyBipedIK component to the root of your character (the same GameObject that has the Animator/Animation component)
 		- Make sure the auto-detected biped references are correct
 		- Make sure the Root Node was correctly detected. It should be one of the bones in the lower spine.
@@ -619,177 +783,112 @@ Final IK 0.5 introduced the FBBIKHeadEffector component that enables us to use t
 
 */
 
-/*! \page page7 Limb IK
-LimbIK extends TrigonometricIK to specialize on the 3-segmented hand and leg character limb types.
+/*! \page page9 Grounder
+Grounder is an automatic vertical foot placement and alignment correction system.
 
-LimbIK comes with multiple <b>Bend Modifiers:</b>
-	  - Animation: tries to maintain bend direction as it is in the animation
-	  - Target: rotates the bend direction with the target IKRotation
-	  - Parent: rotates the bend direction along with the parent Transform (pelvis or clavicle)
-	  - Arm: keeps the arm bent in a biometrically natural and relaxed way (also most expensive of the above).
-	  - Goal: bends the arm towards the "Bend Goal" Transform.
+<b>How does it work?</b>
 
-NOTE: Bend Modifiers are only applied if Bend Modfier Weight is greater than 0.
-		
-The IKSolverLimb.maintainRotationWeight property allows to maintain the world space rotation of the last bone fixed as it was before solving the limb. 
-<BR>This is most useful when we need to reposition a foot, but maintain it's rotation as it was animated to ensure proper alignment with the ground surface.
+The solver works on a very basic principle: The characters are animated on planar ground. The height and rotation of the feet, as they are animated, should only be offset by the difference of ground height at their ingame positions from the root height.
 
-<b>Getting started:</b>
-	- Add the LimbIK component to the root of your character (the character should be facing it's forward direction)
-	- Assign the limb bones to bone1, bone2 and bone3 in the LimbIK component (bones can be skipped, which means you can also use LimbIK on a 4-segment limb).
-	- Press Play
+Let's sample a frame in the animation, where the character's left foot y position is 0.1. Ingame, the Grounding solver will make some raycasting to find the real ground height at the left foot's position.
+Let's say that the raycasting returns 0.2. If the character's ingame y position is 0, the ground height at the foot's position relative to the character root is 0.2.
+The foot must be vertically offset by that exact value, ending up at 0.3.
 
-<b>Getting started with scripting:</b>
+This approach guarantees minimal interference with the animation, because the feet will only be offset when the ground height at their positions differ from the character root's height.
+If that offset is negative, meaning ground height at the foot position is lower, then the solver needs to pull down the character from the pelvis so that the feet could reach their offset targets.
 
-\code
-	public LimbIK limbIK;
-	
-	void LateUpdate () {
-		// Changing the target position, rotation and weights
-		limbIK.solver.IKPosition = something;
-		limbIK.solver.IKRotation = something;
-		limbIK.solver.IKPositionWeight = something;
-		limbIK.solver.IKRotationWeight = something;
-
-		// Changing the automatic bend modifier
-		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Animation; // Will maintain the bending direction as it is animated.
-		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Target; // Will bend the limb with the target rotation
-		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Parent; // Will bend the limb with the parent bone (pelvis or shoulder)
-
-		// Will try to maintain the bend direction in the most biometrically relaxed way for the arms. 
-		// Will not work for the legs.
-		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Arm; 
-	}
-\endcode
-
-<b>Adding LimbIK in runtime:</b>
-- Add the LimbIK component via script
-- Call LimbIK.solver.SetChain()
-
-\image html LimbIK.png
-
-<b>Component variables:</b>
-	- <b>fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
-
-<b>Solver variables:</b>
-	- <b>bone1</b> - the first bone (upper arm or thigh)
-	- <b>bone2</b> - the second bone (forearm or calf)
-	- <b>bone3</b> - the third bone (hand or foot)
-	- <b>target</b> - the target Transform. If assigned, solver IKPosition and IKRotation will be automatically set to the position of the target
-	- <b>positionWeight</b> - the weight of solving to the target position (IKPosition)
-	- <b>rotationWeight</b> - the weight of solving to the target rotation (IKRotation)
-	- <b>bendNormal</b> - normal of the plane defined by the positions of the bones. When the limb bends, the second bone will always be positioned somewhere on that plane
-	- <b>AvatarIKGoal</b> - the <a href="http://docs.unity3d.com/ScriptReference/AvatarIKGoal.html">AvatarIKGoal</a> of this solver. This is only used by the "Arm" bend modifier
-	- <b>maintainRotationWeight</b> - weight of maintaining the rotation of the third bone as it was before solving
-	- <b>bendModifier</b> - a selection of automatic modifiers of the bend normal
-	- <b>bendModifierWeight</b> - the weight of the bend modifier
-
-\image html LimbIKComponent.png
-*/
-
-/*! \page page8 Look At IK
-LookAt IK can be used on any character or other hierarchy of bones to rotate a set of bones to face a target. 
-<BR>Note that if LookAtIK does not fit you requirements, you can also use AimIK, that is very similar, but provides a different set of parameters, to make characters (especially non-biped) look at targets.
+\image html GrounderHowItWorks.png
 
 <b>Getting started:</b>
-		- Add the LookAtIK component to the root GameObject. That GameObject's forward axis will be the forward direction.
-		- Assing Spine, head and eye bones to the component.
-		- Press Play
 
-<b>Getting started with scripting:</b>
-
-\code
-	public LookAtIK lookAt;
-	
-	void LateUpdate () {
-		lookAt.solver.IKPositionWeight = 1f; // The master weight
-		
-		lookAt.solver.IKPosition = something; // Changing the look at target
-
-		// Changing the weights of individual body parts
-		lookAt.solver.bodyWeight = 1f;
-		lookAt.solver.headWeight = 1f;
-		lookAt.solver.eyesWeight = 1f;
-
-		// Changing the clamp weight of individual body parts
-		lookAt.solver.clampWeight = 1f;
-		lookAt.solver.clampWeightHead = 1f;
-		lookAt.solver.clampWeightEyes = 1f;
-	}
-\endcode
-
-<b>Adding LookAtIK in runtime:</b>
-- Add the LookAtIK component via script
-- Call LookAtIK.solver.SetChain()
-
-\image html LookAtIK.png
-
-<b>Component variables:</b>
-	- <b>fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/9MiZiaJorws" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+		- Create an empty GameObject, parent it to the root of the character, set it's localPosition and localRotation to zero,
+		- Add GrounderFBBIK, GrounderBipedIK, GrounderIK or GrounderQuadruped depending on the type of the character to that GameObject.
+		- Assign all the empty fields and the ground layers in the Grounder component
+		- Make sure the character collider's layer is not in the walkable layers
 
 <b>Solver variables:</b>
-	- <b>target</b> - the target Transform. If assigned, solver IKPosition will be automatically set to the position of the target
-	- <b>weight</b> - the master weight of the solver (multiplies all the other weights)
-	- <b>bodyWeight</b> - the weight of rotating the spine bones
-	- <b>headWeight</b> - the weight of rotating the head bone
-	- <b>eyesWeight</b> - the weight of rotating the eye bones
-	- <b>clampWeight</b> - clamping rotation of the spine bones. 0 is free rotation, 1 is completely clamped to zero effect
-	- <b>clampWeightHead</b> - clamping rotation of the head bone. 0 is free rotation, 1 is completely clamped to zero effect
-	- <b>clampWeightEyes</b> - clamping rotation of the eye bones. 0 is free rotation, 1 is completely clamped to zero effect
-	- <b>clampSmoothing</b> - the number of sine smoothing iterations applied to clamping to make it smoother
-	- <b>spineWeightCurve</b> - normalized weight distribution between the spine bones. The first spine bone is at "time" 0, the last spine bone is at 1
-	- <b>head</b> - the head bone
-	- <b>spine</b> - the spine bones in descending order (parents first), bones can be skipped
-	- <b>eyes</b> - the eye bones
+		- <b>layers</b> - the layers to walk on. Make sure to exclude the character's own layer.
+		- <b>maxStep</b> - maximum offset for the feet. Note that the foot's animated height is subtracted from that range, meaning if the foot height relative to the root is already animated at 0.4, and the max step is 0.5, it can only be offset by 0.1.
+		- <b>heightOffset</b> - offsets the character from the original animated height, this might be useful for minor corrections in that matter.
+		- <b>footSpeed</b> - the interpolation speed of the foot. Increasing it will increase accuracy with the cost of smoothness (range: 0 - inf).
+		- <b>footRadius</b> - the size of the feet. This has no effect with the fastest quality settings (range: 0.0001 - inf).
+		- <b>prediction</b> - the prediction magnitude. The prediction is based on the velocity vector of the feet. Increasing this value makes the feet look for obstacles farther on their path, but with the cost of smoothness (range: 0 - inf).
+		- <b>footRotationWeight</b> - the weight off offsetting the rotation of the feet (range: 0 - 1).
+		- <b>footRotationSpeed</b> - the speed of interpolating the foot offset (range: 0 - inf).
+		- <b>maxFootRotationAngle</b> - the maximum angle of foot offset (range: 0 - 90).
+		- <b>rotateSolver</b> - if true, will use the character's local up vector as the vertical vector for the solver and the character will be able to walk on walls and ceilings. Leave this off when not needed for performance considerations.
+		- <b>pelvisSpeed</b> - the interpolation speed of the pelvis. Increasing this will make the character's body move up/down faster. If you don't want the pelvis to move (usually spider types) set this to zero (range: 0 - inf).
+		- <b>pelvisDamper</b> - dampering the vertical motion of the character's root. This is only useful when the root is moving too violently because of the physics and you wish to make the vertical movement smoother (range: 0 - 1).
+		- <b>lowerPelvisWeight</b> - the weight of moving the pelvis down to the lowest foot. This moves the pelvis down when the character walks down the stairs and needs to reach a lower step.
+		- <b>liftPelvisWeight</b> - the weight of moving the pelvis up to the highest foot. This moves the pelvis up when the character steps on a higher obstacle. Use this when the character is crouching.
+		- <b>rootSphereCastRadius</b> - the radius of the root sphere cast. This has no effect with the "Fastest" and "Simple" quality settings.
+		- <b>quality</b> - the quality mainly determines the weight of ray/sphere/acpsule casting. The Fastest will only make a single raycast for each foot, plus a raycast for the root. Simple will make 3 raycasts for each foot, plus a raycast for the root.
+The Best quality settings means 1 raycast and a capsule cast for each foot and a sphere cast for the root.
 
-\image html LookAtIKComponent.png
+<BR>
+\section grounders Grounder Components
 
-*/
+\subsection fbbik GrounderFBBIK
 
-/*! \page page9 Trigonometric IK
-Trigonometric IK is the most basic IK solver that is based on the Law of Cosines and solves a 3-segmented bone hierarchy.
-(IKSolverLimb extends IKSolverTrigonometric just to add a couple of extra parameters like the bend modifiers)
-
-<b>Getting started:</b>
-		- Add the TrigonometricIK component to the first bone.
-		- Assign bone1, bone2 and bone3 in the TrigonometricIK component
-		- Press Play
-
-<b>Getting started with scripting:</b>
-
-\code
-	public TrigonometricIK trig;
-	
-	void LateUpdate () {
-		// Changing the target position, rotation and weights
-		trig.solver.IKPosition = something;
-		trig.solver.IKRotation = something;
-		trig.solver.IKPositionWeight = something;
-		trig.solver.IKRotationWeight = something;
-
-		trig.solver.SetBendGoalPosition(Vector goalPosition); // Sets the bend goal to a point in world space 
-	}
-\endcode
-
-<b>Adding TrigonometricIK in runtime:</b>
-- Add the TrigonometricIK component via script
-- Call TrigonometricIK.solver.SetChain()
-
-\image html TrigonometricIK.png
+GrounderFBBIK uses the FullBodyBipedIK component for offsetting the feet and optionally bending the spine. This is most useful if your character already has some FBBIK functionality and you need the component anyway.
+GrounderFBBIK uses the positionOffset of the effectors so you can still pin the feet without a problem if necessary.
 
 <b>Component variables:</b>
-	- <b>fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
+		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
+		- <b>spineBend</b> - the amount of bending the spine. The spine will be bent only when the character is facing a slope or stairs. Negative value will invert the effect.
+		- <b>spineSpeed</b> - the speed of bending the spine (range: 0 - inf).
+		- <b>spine</b> - the FBBIK effectors involved in bending the spine and their horizontal/vertical weights.
 
-<b>Solver variables:</b>
-	- <b>bone1</b> - the first bone (upper arm or thigh)
-	- <b>bone2</b> - the second bone (forearm or calf)
-	- <b>bone3</b> - the third bone (hand or foot)
-	- <b>target</b> - the target Transform. If assigned, solver IKPosition and IKRotation will be automatically set to the position of the target
-	- <b>positionWeight</b> - the weight of solving to the target position (IKPosition)
-	- <b>rotationWeight</b> - the weight of solving to the target rotation (IKRotation)
-	- <b>bendNormal</b> - normal of the plane defined by the positions of the bones. When the limb bends, the second bone will always be positioned somewhere on that plane
+\image html GrounderFBBIKComponent.png
 
-\image html TrigonometricIKComponent.png
+\subsection bipedIK GrounderBipedIK
+
+GrounderBipedIK uses the BipedIK component for offsetting the feet and optionally bending the spine. With BipedIK you will not have to manually set up the IK components for the limbs.
+
+<b>Component variables:</b>
+		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
+		- <b>spineBend</b> - the amount of bending the spine. The spine will be bent only when the character is facing a slope or stairs. Negative value will invert the effect.
+		- <b>spineSpeed</b> - the speed of bending the spine (range: 0f - inf).
+
+\image html GrounderBipedIKComponent.png
+
+\subsection ik GrounderIK
+
+GrounderIK can use any number and combination of CCD, FABRIK, LimbIK, or TrigonometricIK components for offsetting the limbs. This is most useful for spider/bot types of characters that have more than 2 legs connected to a single hub.
+
+<b>Component variables:</b>
+		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
+		- <b>legs</b> - the IK components. Can be any number or combination of CCD, FABRIK, LimbIK or TrigonometricIK connected to the same pelvis.
+		- <b>pelvis</b> - the pelvis Transform. This should be the upmost common parent of the legs and the spine.
+		- <b>characterRoot</b> - this is only necessary if you wish to use the root rotation functionality. Root rotation will rotate the character root to the ground normal.
+		- <b>rootRotationWeight</b> - the weight of root rotation (range: 0 - 1).
+		- <b>rootRotationSpeed</b> - the speed of root rotation interpolation (range: 0 - inf).
+		- <b>maxRootRotationAngle</b> - the maximum angle of rotating the characterRoot.up from the default Vector3.up (range: 0 - 90).
+
+\image html GrounderIKComponent.png
+
+\subsection quadruped GrounderQuadruped
+
+GrounderQuadruped uses 2 Grounding solvers. That means 2 hubs that can have any number of legs.
+
+<b>Component variables:</b>
+		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
+		- <b>forelegSolver</b> - the Grounding solver for the forelegs.
+		- <b>characterRoot</b> - this is only necessary if you wish to use the root rotation functionality. Root rotation will rotate the character root up or down depending on the ground.
+		- <b>rootRotationWeight</b> - the weight of root rotation. If the quadruped is standing on an edge and leaning down with the forelegs entering the ground, you need to increase this value and also the root rotation limits (range: 0 - 1).
+		- <b>rootRotationSpeed</b> - the speed of root rotation interpolation (range: 0 - inf).
+		- <b>minRootRotation</b> - the maximum angle of rotating the quadruped downwards (going downhill, range: -90 - 0).
+		- <b>maxRootRotation</b> - the maximum angle of rotating the quadruped upwards (going uphill, range: 0 - 90).
+		- <b>pelvis</b> - the pelvis Transform. This should be the upmost common parent of the legs and the spine.
+		- <b>lastSpineBone</b> - the last bone in the spine that is the common parent of the forelegs.
+		- <b>maxLegOffset</b> - the maximum offset of the legs from their animated positions. This enables you to set maxStep higher without the feet getting inverted (range: 0 - inf).
+		- <b>maxForelegOffset</b> - the maximum offset of the forelegs from their animated positions. This enables you to set maxStep higher without the forefeet getting inverted (range: 0 - inf).
+		- <b>head</b> - the head Transform, if you wish to maintain it's rotation as animated.
+		- <b>maintainHeadRotationWeight</b> - the weight of maintaining the head's rotation as animated (range: 0 - 1).
+
+\image html GrounderQuadrupedComponent.png
+
 */
 
 /*! \page page10 Interaction System
@@ -800,6 +899,11 @@ The Interaction System is designed for the easy setup of full body IK interactio
 It requires a character with FullBodyBipedIK and consists of 3 main components: <b>InteractionSystem, InteractionObject</b> and <b>InteractionTarget.</b>
 
 <b>Getting started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/r5jiZnsDH3M" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+<BR>\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/eP9-zycoHLk" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+<BR>\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/sQfB2RcT1T4" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+<BR>\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/-TDZpNjt2mk" frameborder="0" allowfullscreen></iframe>\endhtmlonly
 	- Add the InteractionSystem component to a FBBIK character
 	- Add the InteractionObject component to an object you wish to interact with
 	- Create a PositionWeight weight curve, that consists of 3 keyframes {(0, 0), (1, 1), (2, 0)}, where x is horizontal and y is vertical value.
@@ -993,113 +1097,161 @@ See the Interaction Trigger demo scene and the UserControlInteractions.cs script
 	\image html InteractionTriggerRightHandOrbit.png "Valid positions of the character with 'Orbit'"
 */
 
-/*! \page page11 Grounder
-Grounder is an automatic vertical foot placement and alignment correction system.
+/*! \page page11 Leg IK
+LegIK is a wrapper component for VRIK's 4-joint biped leg solver.
 
-<b>How does it work?</b>
+<b>Component variables:</b>
+    - <b>LegIK.fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance.
 
-The solver works on a very basic principle: The characters are animated on planar ground. The height and rotation of the feet, as they are animated, should only be offset by the difference of ground height at their ingame positions from the root height.
+<b>Wrapper variables:</b>
+    - <b>LegIK.solver.pelvis</b> - the pelvis bone.
+    - <b>LegIK.solver.thigh</b> - the upper leg bone.
+    - <b>LegIK.solver.calf</b> - the lower leg bone.
+    - <b>LegIK.solver.foot</b> - the foot bone
+    - <b>LegIK.solver.toe</b> - the toe bone.
+    - <b>LegIK.solver.IKPositionWeight</b> - positional weight of the toe/foot target. Note that if you have nulled the target, the foot will still be pulled to the last position of the target until you set this value to 0.
+    - <b>LegIK.solver.IKRotationWeight</b> - rotational weight of the toe/foot target. Note that if you have nulled the target, the foot will still be rotated to the last rotation of the target until you set this value to 0.
+    
+<b>Solver variables:</b>
+    - <b>LegIK.solver.leg.target</b> - the foot/toe target. This should not be the foot tracker itself, but a child GameObject parented to it so you could adjust it's position/rotation to match the orientation of the foot/toe bone. If a toe bone is assigned in the References, the solver will match the toe bone to this target. If no toe bone assigned, foot bone will be used instead.
+    - <b>LegIK.solver.leg.bendGoal</b> - the knee will be bent towards this Transform if 'Bend Goal Weight' > 0.
+    - <b>LegIK.solver.leg.bendGoalWeight</b> - if greater than 0, will bend the knee towards the 'Bend Goal' Transform.
+    - <b>LegIK.solver.leg.swivelOffset</b> - angular offset of knee bending direction.
+    - <b>LegIK.solver.leg.bendToTargetWeight</b> - if 0, the bend plane will be locked to the rotation of the pelvis and rotating the foot will have no effect on the knee direction. If 1, to the target rotation of the leg so that the knee will bend towards the forward axis of the foot. Values in between will be slerped between the two.
+    - <b>LegIK.solver.leg.legLengthMlp</b> - use this to make the leg shorter/longer. Works by displacement of foot and calf localPosition.
+    - <b>LegIK.solver.leg.stretchCurve</b> - evaluates stretching of the leg by target distance relative to leg length. Value at time 1 represents stretching amount at the point where distance to the target is equal to leg length. Value at time 1 represents stretching amount at the point where distance to the target is double the leg length. Value represents the amount of stretching. Linear stretching would be achieved with a linear curve going up by 45 degrees. Increase the range of stretching by moving the last key up and right at the same amount. Smoothing in the curve can help reduce knee snapping (start stretching the arm slightly before target distance reaches leg length). To get a good optimal value for this curve, please go to the 'VRIK (Basic)' demo scene and copy the stretch curve over from the Pilot character.
 
-Let's sample a frame in the animation, where the character's left foot y position is 0.1. Ingame, the Grounding solver will make some raycasting to find the real ground height at the left foot's position.
-Let's say that the raycasting returns 0.2. If the character's ingame y position is 0, the ground height at the foot's position relative to the character root is 0.2.
-The foot must be vertically offset by that exact value, ending up at 0.3.
+\image html LegIKComponent.png
+*/
 
-This approach guarantees minimal interference with the animation, because the feet will only be offset when the ground height at their positions differ from the character root's height.
-If that offset is negative, meaning ground height at the foot position is lower, then the solver needs to pull down the character from the pelvis so that the feet could reach their offset targets.
+/*! \page page12 Limb IK
+LimbIK extends TrigonometricIK to specialize on the 3-segmented hand and leg character limb types.
 
-\image html GrounderHowItWorks.png
+LimbIK comes with multiple <b>Bend Modifiers:</b>
+	  - Animation: tries to maintain bend direction as it is in the animation
+	  - Target: rotates the bend direction with the target IKRotation
+	  - Parent: rotates the bend direction along with the parent Transform (pelvis or clavicle)
+	  - Arm: keeps the arm bent in a biometrically natural and relaxed way (also most expensive of the above).
+	  - Goal: bends the arm towards the "Bend Goal" Transform.
+
+NOTE: Bend Modifiers are only applied if Bend Modfier Weight is greater than 0.
+		
+The IKSolverLimb.maintainRotationWeight property allows to maintain the world space rotation of the last bone fixed as it was before solving the limb. 
+<BR>This is most useful when we need to reposition a foot, but maintain it's rotation as it was animated to ensure proper alignment with the ground surface.
 
 <b>Getting started:</b>
-		- Create an empty GameObject, parent it to the root of the character, set it's localPosition and localRotation to zero,
-		- Add GrounderFBBIK, GrounderBipedIK, GrounderIK or GrounderQuadruped depending on the type of the character to that GameObject.
-		- Assign all the empty fields and the ground layers in the Grounder component
-		- Make sure the character collider's layer is not in the walkable layers
+	- Add the LimbIK component to the root of your character (the character should be facing it's forward direction)
+	- Assign the limb bones to bone1, bone2 and bone3 in the LimbIK component (bones can be skipped, which means you can also use LimbIK on a 4-segment limb).
+	- Press Play
+
+<b>Getting started with scripting:</b>
+
+\code
+	public LimbIK limbIK;
+	
+	void LateUpdate () {
+		// Changing the target position, rotation and weights
+		limbIK.solver.IKPosition = something;
+		limbIK.solver.IKRotation = something;
+		limbIK.solver.IKPositionWeight = something;
+		limbIK.solver.IKRotationWeight = something;
+
+		// Changing the automatic bend modifier
+		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Animation; // Will maintain the bending direction as it is animated.
+		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Target; // Will bend the limb with the target rotation
+		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Parent; // Will bend the limb with the parent bone (pelvis or shoulder)
+
+		// Will try to maintain the bend direction in the most biometrically relaxed way for the arms. 
+		// Will not work for the legs.
+		limbIK.solver.bendModifier = IKSolverLimb.BendModifier.Arm; 
+	}
+\endcode
+
+<b>Adding LimbIK in runtime:</b>
+- Add the LimbIK component via script
+- Call LimbIK.solver.SetChain()
+
+\image html LimbIK.png
+
+<b>Component variables:</b>
+	- <b>fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
 
 <b>Solver variables:</b>
-		- <b>layers</b> - the layers to walk on. Make sure to exclude the character's own layer.
-		- <b>maxStep</b> - maximum offset for the feet. Note that the foot's animated height is subtracted from that range, meaning if the foot height relative to the root is already animated at 0.4, and the max step is 0.5, it can only be offset by 0.1.
-		- <b>heightOffset</b> - offsets the character from the original animated height, this might be useful for minor corrections in that matter.
-		- <b>footSpeed</b> - the interpolation speed of the foot. Increasing it will increase accuracy with the cost of smoothness (range: 0 - inf).
-		- <b>footRadius</b> - the size of the feet. This has no effect with the fastest quality settings (range: 0.0001 - inf).
-		- <b>prediction</b> - the prediction magnitude. The prediction is based on the velocity vector of the feet. Increasing this value makes the feet look for obstacles farther on their path, but with the cost of smoothness (range: 0 - inf).
-		- <b>footRotationWeight</b> - the weight off offsetting the rotation of the feet (range: 0 - 1).
-		- <b>footRotationSpeed</b> - the speed of interpolating the foot offset (range: 0 - inf).
-		- <b>maxFootRotationAngle</b> - the maximum angle of foot offset (range: 0 - 90).
-		- <b>rotateSolver</b> - if true, will use the character's local up vector as the vertical vector for the solver and the character will be able to walk on walls and ceilings. Leave this off when not needed for performance considerations.
-		- <b>pelvisSpeed</b> - the interpolation speed of the pelvis. Increasing this will make the character's body move up/down faster. If you don't want the pelvis to move (usually spider types) set this to zero (range: 0 - inf).
-		- <b>pelvisDamper</b> - dampering the vertical motion of the character's root. This is only useful when the root is moving too violently because of the physics and you wish to make the vertical movement smoother (range: 0 - 1).
-		- <b>lowerPelvisWeight</b> - the weight of moving the pelvis down to the lowest foot. This moves the pelvis down when the character walks down the stairs and needs to reach a lower step.
-		- <b>liftPelvisWeight</b> - the weight of moving the pelvis up to the highest foot. This moves the pelvis up when the character steps on a higher obstacle. Use this when the character is crouching.
-		- <b>rootSphereCastRadius</b> - the radius of the root sphere cast. This has no effect with the "Fastest" and "Simple" quality settings.
-		- <b>quality</b> - the quality mainly determines the weight of ray/sphere/acpsule casting. The Fastest will only make a single raycast for each foot, plus a raycast for the root. Simple will make 3 raycasts for each foot, plus a raycast for the root.
-The Best quality settings means 1 raycast and a capsule cast for each foot and a sphere cast for the root.
+	- <b>bone1</b> - the first bone (upper arm or thigh)
+	- <b>bone2</b> - the second bone (forearm or calf)
+	- <b>bone3</b> - the third bone (hand or foot)
+	- <b>target</b> - the target Transform. If assigned, solver IKPosition and IKRotation will be automatically set to the position of the target
+	- <b>positionWeight</b> - the weight of solving to the target position (IKPosition)
+	- <b>rotationWeight</b> - the weight of solving to the target rotation (IKRotation)
+	- <b>bendNormal</b> - normal of the plane defined by the positions of the bones. When the limb bends, the second bone will always be positioned somewhere on that plane
+	- <b>AvatarIKGoal</b> - the <a href="http://docs.unity3d.com/ScriptReference/AvatarIKGoal.html">AvatarIKGoal</a> of this solver. This is only used by the "Arm" bend modifier
+	- <b>maintainRotationWeight</b> - weight of maintaining the rotation of the third bone as it was before solving
+	- <b>bendModifier</b> - a selection of automatic modifiers of the bend normal
+	- <b>bendModifierWeight</b> - the weight of the bend modifier
 
-<BR>
-\section grounders Grounder Components
+\image html LimbIKComponent.png
+*/
 
-\subsection fbbik GrounderFBBIK
+/*! \page page13 Look At IK
+LookAt IK can be used on any character or other hierarchy of bones to rotate a set of bones to face a target. 
+<BR>Note that if LookAtIK does not fit you requirements, you can also use AimIK, that is very similar, but provides a different set of parameters, to make characters (especially non-biped) look at targets.
 
-GrounderFBBIK uses the FullBodyBipedIK component for offsetting the feet and optionally bending the spine. This is most useful if your character already has some FBBIK functionality and you need the component anyway.
-GrounderFBBIK uses the positionOffset of the effectors so you can still pin the feet without a problem if necessary.
+<b>Getting started:</b>
+		- Add the LookAtIK component to the root GameObject. That GameObject's forward axis will be the forward direction.
+		- Assing Spine, head and eye bones to the component.
+		- Press Play
 
-<b>Component variables:</b>
-		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
-		- <b>spineBend</b> - the amount of bending the spine. The spine will be bent only when the character is facing a slope or stairs. Negative value will invert the effect.
-		- <b>spineSpeed</b> - the speed of bending the spine (range: 0 - inf).
-		- <b>spine</b> - the FBBIK effectors involved in bending the spine and their horizontal/vertical weights.
+<b>Getting started with scripting:</b>
 
-\image html GrounderFBBIKComponent.png
+\code
+	public LookAtIK lookAt;
+	
+	void LateUpdate () {
+		lookAt.solver.IKPositionWeight = 1f; // The master weight
+		
+		lookAt.solver.IKPosition = something; // Changing the look at target
 
-\subsection bipedIK GrounderBipedIK
+		// Changing the weights of individual body parts
+		lookAt.solver.bodyWeight = 1f;
+		lookAt.solver.headWeight = 1f;
+		lookAt.solver.eyesWeight = 1f;
 
-GrounderBipedIK uses the BipedIK component for offsetting the feet and optionally bending the spine. With BipedIK you will not have to manually set up the IK components for the limbs.
+		// Changing the clamp weight of individual body parts
+		lookAt.solver.clampWeight = 1f;
+		lookAt.solver.clampWeightHead = 1f;
+		lookAt.solver.clampWeightEyes = 1f;
+	}
+\endcode
 
-<b>Component variables:</b>
-		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
-		- <b>spineBend</b> - the amount of bending the spine. The spine will be bent only when the character is facing a slope or stairs. Negative value will invert the effect.
-		- <b>spineSpeed</b> - the speed of bending the spine (range: 0f - inf).
+<b>Adding LookAtIK in runtime:</b>
+- Add the LookAtIK component via script
+- Call LookAtIK.solver.SetChain()
 
-\image html GrounderBipedIKComponent.png
-
-\subsection ik GrounderIK
-
-GrounderIK can use any number and combination of CCD, FABRIK, LimbIK, or TrigonometricIK components for offsetting the limbs. This is most useful for spider/bot types of characters that have more than 2 legs connected to a single hub.
-
-<b>Component variables:</b>
-		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
-		- <b>legs</b> - the IK components. Can be any number or combination of CCD, FABRIK, LimbIK or TrigonometricIK connected to the same pelvis.
-		- <b>pelvis</b> - the pelvis Transform. This should be the upmost common parent of the legs and the spine.
-		- <b>characterRoot</b> - this is only necessary if you wish to use the root rotation functionality. Root rotation will rotate the character root to the ground normal.
-		- <b>rootRotationWeight</b> - the weight of root rotation (range: 0 - 1).
-		- <b>rootRotationSpeed</b> - the speed of root rotation interpolation (range: 0 - inf).
-		- <b>maxRootRotationAngle</b> - the maximum angle of rotating the characterRoot.up from the default Vector3.up (range: 0 - 90).
-
-\image html GrounderIKComponent.png
-
-\subsection quadruped GrounderQuadruped
-
-GrounderQuadruped uses 2 Grounding solvers. That means 2 hubs that can have any number of legs.
+\image html LookAtIK.png
 
 <b>Component variables:</b>
-		- <b>weight</b> - the master weight. The effect of the Grounder can be smoothly faded out for better performance when not needed.
-		- <b>forelegSolver</b> - the Grounding solver for the forelegs.
-		- <b>characterRoot</b> - this is only necessary if you wish to use the root rotation functionality. Root rotation will rotate the character root up or down depending on the ground.
-		- <b>rootRotationWeight</b> - the weight of root rotation. If the quadruped is standing on an edge and leaning down with the forelegs entering the ground, you need to increase this value and also the root rotation limits (range: 0 - 1).
-		- <b>rootRotationSpeed</b> - the speed of root rotation interpolation (range: 0 - inf).
-		- <b>minRootRotation</b> - the maximum angle of rotating the quadruped downwards (going downhill, range: -90 - 0).
-		- <b>maxRootRotation</b> - the maximum angle of rotating the quadruped upwards (going uphill, range: 0 - 90).
-		- <b>pelvis</b> - the pelvis Transform. This should be the upmost common parent of the legs and the spine.
-		- <b>lastSpineBone</b> - the last bone in the spine that is the common parent of the forelegs.
-		- <b>maxLegOffset</b> - the maximum offset of the legs from their animated positions. This enables you to set maxStep higher without the feet getting inverted (range: 0 - inf).
-		- <b>maxForelegOffset</b> - the maximum offset of the forelegs from their animated positions. This enables you to set maxStep higher without the forefeet getting inverted (range: 0 - inf).
-		- <b>head</b> - the head Transform, if you wish to maintain it's rotation as animated.
-		- <b>maintainHeadRotationWeight</b> - the weight of maintaining the head's rotation as animated (range: 0 - 1).
+	- <b>fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
 
-\image html GrounderQuadrupedComponent.png
+<b>Solver variables:</b>
+	- <b>target</b> - the target Transform. If assigned, solver IKPosition will be automatically set to the position of the target
+	- <b>weight</b> - the master weight of the solver (multiplies all the other weights)
+	- <b>bodyWeight</b> - the weight of rotating the spine bones
+	- <b>headWeight</b> - the weight of rotating the head bone
+	- <b>eyesWeight</b> - the weight of rotating the eye bones
+	- <b>clampWeight</b> - clamping rotation of the spine bones. 0 is free rotation, 1 is completely clamped to zero effect
+	- <b>clampWeightHead</b> - clamping rotation of the head bone. 0 is free rotation, 1 is completely clamped to zero effect
+	- <b>clampWeightEyes</b> - clamping rotation of the eye bones. 0 is free rotation, 1 is completely clamped to zero effect
+	- <b>clampSmoothing</b> - the number of sine smoothing iterations applied to clamping to make it smoother
+	- <b>spineWeightCurve</b> - normalized weight distribution between the spine bones. The first spine bone is at "time" 0, the last spine bone is at 1
+	- <b>head</b> - the head bone
+	- <b>spine</b> - the spine bones in descending order (parents first), bones can be skipped
+	- <b>eyes</b> - the eye bones
+
+\image html LookAtIKComponent.png
 
 */
 
-/*! \page page12 Rotation Limits
+/*! \page page14 Rotation Limits
   
   All rotation limits and other Final %IK components are Quaternion and Axis-Angle based to ensure consistency, continuity and to minimize singularity issues. Final %IK does not contain a single Euler operation. 
   <BR>All rotation limits are based on local rotations and use the initial local rotation as reference just like Physics joints. This makes them axis-independent and intuitive to set up.
@@ -1148,7 +1300,217 @@ GrounderQuadruped uses 2 Grounding solvers. That means 2 hubs that can have any 
 
 */
 
-/*! \page page13 Extending Final IK
+/*! \page page15 Trigonometric IK
+Trigonometric IK is the most basic IK solver that is based on the Law of Cosines and solves a 3-segmented bone hierarchy.
+(IKSolverLimb extends IKSolverTrigonometric just to add a couple of extra parameters like the bend modifiers)
+
+<b>Getting started:</b>
+		- Add the TrigonometricIK component to the first bone.
+		- Assign bone1, bone2 and bone3 in the TrigonometricIK component
+		- Press Play
+
+<b>Getting started with scripting:</b>
+
+\code
+	public TrigonometricIK trig;
+	
+	void LateUpdate () {
+		// Changing the target position, rotation and weights
+		trig.solver.IKPosition = something;
+		trig.solver.IKRotation = something;
+		trig.solver.IKPositionWeight = something;
+		trig.solver.IKRotationWeight = something;
+
+		trig.solver.SetBendGoalPosition(Vector goalPosition); // Sets the bend goal to a point in world space 
+	}
+\endcode
+
+<b>Adding TrigonometricIK in runtime:</b>
+- Add the TrigonometricIK component via script
+- Call TrigonometricIK.solver.SetChain()
+
+\image html TrigonometricIK.png
+
+<b>Component variables:</b>
+	- <b>fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
+
+<b>Solver variables:</b>
+	- <b>bone1</b> - the first bone (upper arm or thigh)
+	- <b>bone2</b> - the second bone (forearm or calf)
+	- <b>bone3</b> - the third bone (hand or foot)
+	- <b>target</b> - the target Transform. If assigned, solver IKPosition and IKRotation will be automatically set to the position of the target
+	- <b>positionWeight</b> - the weight of solving to the target position (IKPosition)
+	- <b>rotationWeight</b> - the weight of solving to the target rotation (IKRotation)
+	- <b>bendNormal</b> - normal of the plane defined by the positions of the bones. When the limb bends, the second bone will always be positioned somewhere on that plane
+
+\image html TrigonometricIKComponent.png
+*/
+
+/*! \page page16 VRIK
+VRIK is a high speed full body solver dedicated to animating VR avatars. The solver was originally developed for the game "Dead and Buried" by Oculus Studios.
+<BR>A detailed description of the inner workings of VRIK can be found in <a href="http://root-motion.com/2016/06/inverse-kinematics-in-dead-and-buried/">this article originally published in Oculus Developer Blog.</a> 
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/4DjwC-0aoKE" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+
+
+<b>Getting started:</b>
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/6Pfx7lYQiIA" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+	- Add VRIK to your character root. If it is a Humanoid, References will be automatically filled in using the Animator. If not, the bones used by the solvers will have to be manually assigned to the "References".
+	- Move the camera to the avatar's eyes, move hand controllers to the avatar's hands as if they were worn by the avatar.
+	- Make duplicates of the avatar's head and hand bones.
+	- Parent the duplicates to the camera/hand controllers.
+	- Assign the duplicates as Head/Hand Targets in VRIK.
+    - VRIK samples the pose of the avatar at Start to find out which way to bend the limbs. Make sure that the elbow/knee bones are rotated so that the limbs are slightly bent in their natural bending directions, they must not be completely straight.
+    - Examples of VRIK setup for Oculus and SteamVR can be found in "Plugins/RootMotion/FinalIK/_Integration". Oculus/SteamVR utilities packages from the Asset Store are required to run these demos.
+
+<b>Performance:</b>
+
+VRIK is about 2-3 times faster than FullBodyBipedIK. In Dead and Buried 2, it was used on 6 avatars simultaneously visible on screen and running on Oculus Quest hardware. 
+Since Final IK v1.9 VRIK has a 3-level LOD system with level 1 providing roughly 30% gain and level 2 solver disabled with only the root position and rotation updated if the built-in locomotion solver was used.
+
+\htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/5b_87OuPJxE" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+
+
+<b>Adding VRIK component in run-time:</b>
+
+\code
+	void LateUpdate () {
+		var ik = gameObject.AddComponent<VRIK>();
+        ik.AutoDetectReferences();
+	}
+\endcode
+
+<b>Using VRIK with Rotation Limits:</b>
+<BR> VRIK has it's own set of built-in constraints and RotationLimits can not be used in the solving process. It is possible however to apply RotationLimits on top of VRIK for instance to make sure that the hand bones do not bend unnaturally beyond reasonable limits.
+To do this, we would have to disable the rotation limits in Start to take control of their updating, then update them after VRIK using the VRIK.solver.OnPostUpdate delegate::
+
+\code
+public VRIK ik;
+public RotationLimit[] rotationLimits;
+
+void Start() {
+    foreach (RotationLimit limit in rotationLimits) {
+        limit.enabled = false;
+    }
+
+    ik.solver.OnPostUpdate += AfterVRIK;
+}
+
+private void AfterVRIK() {
+    foreach (RotationLimit limit in rotationLimits) {
+        limit.Apply();
+    }
+}
+\endcode
+
+<b>Calibration:</b>
+<BR> Please take a look at the "VRIK (Calibration)" demo on how to use the VRIKCalibrator to help with calibrating avatars to head and hand controllers plus additional trackers on the body and feet.
+If you only need to calibrate the size of the avatar, it is easiest to do so by having the player stand up straight, then comparing the height of the head target to the height of the avatar's head bone:
+
+\code
+float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
+ik.references.root.localScale *= sizeF;
+\endcode
+
+<b>Locomotion:</b>
+<BR> The built-in procedural locomotion was developed in the early days of VR and designed for foot shuffling around a few square meters space. It does not work well for room-scale or thumbstick locomotion. 
+For that it would be best to use an animated approach - make a simple 8-direction strafing animation blend tree and use that to make the character follow the horizontal direction towards the HMD by root motion or scripted transformation.
+
+<b>Component variables:</b>
+	- <b>VRIK.fixTransforms</b> - if true, will fix all the Transforms used by the solver to their initial state in each Update. This prevents potential problems with unanimated bones and animator culling with a small cost of performance
+    - <b>VRIK.references</b> - bone mapping. Right-click on the component header and select 'Auto-detect References' of fill in manually if not a Humanoid character. Chest, neck, shoulder and toe bones are optional. VRIK also supports legless characters. If you do not wish to use legs, leave all leg references empty.
+
+\image html VRIKComponent.png
+
+<b>Solver variables:</b>
+	- <b>VRIK.solver.IKPositionWeight</b> - master weight of the solver.
+	- <b>VRIK.solver.LOD</b> - LOD 0: Full quality solving. LOD 1: Shoulder solving, stretching plant feet disabled, spine solving quality reduced. This provides about 30% of performance gain. LOD 2: Culled, but updating root position and rotation if locomotion is enabled.
+	- <b>VRIK.solver.plantFeet</b> - if true, will keep the toes planted even if head target is out of reach, so this can cause the camera to exit the head if it is too high for the model to reach. Enabling this increases the cost of the solver as the legs will have to be solved multiple times.
+
+\image html VRIKSolver.png
+
+<b>Spine variables:</b>
+	- <b>VRIK.solver.spine.headTarget</b> - the head target. This should not be the camera Transform itself, but a child GameObject parented to it so you could adjust it's position/rotation to match the orientation of the head bone. The best practice for setup would be to move the camera to the avatar's eyes, duplicate the avatar's head bone and parent it to the camera. Then assign the duplicate to this slot.
+	- <b>VRIK.solver.spine.pelvisTarget</b> - the pelvis target (optional), useful for seated rigs or if you had an additional tracker on the backpack or belt are. The best practice for setup would be to duplicate the avatar's pelvis bone and parenting it to the pelvis tracker. Then assign the duplicate to this slot.
+	- <b>VRIK.solver.spine.positionWeight</b> - positional weight of the head target. Note that if you have nulled the headTarget, the head will still be pulled to the last position of the headTarget until you set this value to 0.
+    - <b>VRIK.solver.spine.rotationWeight</b> - rotational weight of the head target. Note that if you have nulled the headTarget, the head will still be rotated to the last rotation of the headTarget until you set this value to 0.
+    - <b>VRIK.solver.spine.pelvisPositionWeight</b> - positional weight of the pelvis target. Note that if you have nulled the pelvisTarget, the pelvis will still be pulled to the last position of the pelvisTarget until you set this value to 0.
+    - <b>VRIK.solver.spine.pelvisRotationWeight</b> - Rotational weight of the pelvis target. Note that if you have nulled the pelvisTarget, the pelvis will still be rotated to the last rotation of the pelvisTarget until you set this value to 0.
+    - <b>VRIK.solver.spine.chestGoal</b> - if chestGoalWeight is greater than 0, the chest will be turned towards this Transform.
+    - <b>VRIK.solver.spine.chestGoalWeight</b> - weight of turning the chest towards the chestGoal.
+    - <b>VRIK.solver.spine.minHeadHeight</b> - minimum height of the head from the root of the character.
+    - <b>VRIK.solver.spine.bodyPosStiffness</b> - determines how much the body will follow the position of the head.
+    - <b>VRIK.solver.spine.bodyRotStiffness</b> - determines how much the body will follow the rotation of the head.
+    - <b>VRIK.solver.spine.neckStiffness</b> - determines how much the chest will rotate to the rotation of the head.
+    - <b>VRIK.solver.spine.rotateChestByHands</b> - the amount of rotation applied to the chest based on hand positions.
+    - <b>VRIK.solver.spine.chestClampWeight</b> - clamps chest rotation. Value of 0.5 allows 90 degrees of rotation for the chest relative to the head. Value of 0 allows 180 degrees and value of 1 means the chest will be locked relative to the head.
+    - <b>VRIK.solver.spine.headClampWeight</b> - clamps head rotation. Value of 0.5 allows 90 degrees of rotation for the head relative to the headTarget. Value of 0 allows 180 degrees and value of 1 means head rotation will be locked to the target.
+    - <b>VRIK.solver.spine.moveBodyBackWhenCrouching</b> - moves the body horizontally along -character.forward axis by that value when the player is crouching.
+    - <b>VRIK.solver.spine.maintainPelvisPosition</b> - how much will the pelvis maintain it's animated position?
+    - <b>VRIK.solver.spine.maxRootAngle</b> - will automatically rotate the root of the character if the head target has turned past this angle.
+    - <b>VRIK.solver.spine.rootHeadingOffset</b> - angular offset for root heading. Adjust this value to turn the root relative to the HMD around the vertical axis. Usefulf for fighting or shooting games where you would sometimes want the avatar to stand at an angled stance.
+
+\image html VRIKSpine.png
+
+<b>Arm variables:</b>
+	- <b>VRIK.solver.leftArm.target</b> - the hand target. This should not be the hand controller itself, but a child GameObject parented to it so you could adjust it's position/rotation to match the orientation of the hand bone. The best practice for setup would be to move the hand controller to the avatar's hand as it it was held by the avatar, duplicate the avatar's hand bone and parent it to the hand controller. Then assign the duplicate to this slot.
+    - <b>VRIK.solver.leftArm.bendGoal</b> - the elbow will be bent towards this Transform if 'Bend Goal Weight' > 0.
+    - <b>VRIK.solver.leftArm.positionWeight</b> - positional weight of the hand target. Note that if you have nulled the target, the hand will still be pulled to the last position of the target until you set this value to 0.
+    - <b>VRIK.solver.leftArm.rotationWeight</b> - rotational weight of the hand target. Note that if you have nulled the target, the hand will still be rotated to the last rotation of the target until you set this value to 0.
+    - <b>VRIK.solver.leftArm.shoulderRotationMode</b> - different techniques for shoulder bone rotation.
+    - <b>VRIK.solver.leftArm.shoulderRotationWeight</b> - the weight of shoulder rotation.
+    - <b>VRIK.solver.leftArm.shoulderTwistWeight</b> - the weight of twisting the shoulders backwards when arms are lifted up.
+    - <b>VRIK.solver.leftArm.bendGoalWeight</b> - if greater than 0, will bend the elbow towards the 'Bend Goal' Transform.
+    - <b>VRIK.solver.leftArm.swivelOffset</b> - angular offset of the elbow bending direction.
+    - <b>VRIK.solver.leftArm.wristToPalmAxis</b> - local axis of the hand bone that points from the wrist towards the palm. Used for defining hand bone orientation. If you have copied VRIK component from another avatar that has different bone orientations, right-click on VRIK header and select "Guess Hand Orientations" from the context menu.
+    - <b>VRIK.solver.leftArm.palmToThumbAxis</b> - local axis of the hand bone that points from the palm towards the thumb. Used for defining hand bone orientation If you have copied VRIK component from another avatar that has different bone orientations, right-click on VRIK header and select 'Guess Hand Orientations' from the context menu..
+    - <b>VRIK.solver.leftArm.armLengthMlp</b> - use this to make the arm shorter/longer. Works by displacement of hand and forearm localPosition.
+    - <b>VRIK.solver.leftArm.stretchCurve</b> - evaluates stretching of the arm by target distance relative to arm length. Value at time 1 represents stretching amount at the point where distance to the target is equal to arm length. Value at time 2 represents stretching amount at the point where distance to the target is double the arm length. Value represents the amount of stretching. Linear stretching would be achieved with a linear curve going up by 45 degrees. Increase the range of stretching by moving the last key up and right at the same amount. Smoothing in the curve can help reduce elbow snapping (start stretching the arm slightly before target distance reaches arm length). To get a good optimal value for this curve, please go to the 'VRIK (Basic)' demo scene and copy the stretch curve over from the Pilot character.
+
+\image html VRIKArm.png
+
+<b>Leg variables:</b>
+	- <b>VRIK.solver.leftLeg.target</b> - the foot/toe target. This should not be the foot tracker itself, but a child GameObject parented to it so you could adjust it's position/rotation to match the orientation of the foot/toe bone. If a toe bone is assigned in the References, the solver will match the toe bone to this target. If no toe bone assigned, foot bone will be used instead.
+    - <b>VRIK.solver.leftLeg.bendGoal</b> - the knee will be bent towards this Transform if 'Bend Goal Weight' > 0.
+    - <b>VRIK.solver.leftLeg.positionWeight</b> - positional weight of the toe/foot target. Note that if you have nulled the target, the foot will still be pulled to the last position of the target until you set this value to 0.
+    - <b>VRIK.solver.leftLeg.rotationWeight</b> - rotational weight of the toe/foot target. Note that if you have nulled the target, the foot will still be rotated to the last rotation of the target until you set this value to 0.
+    - <b>VRIK.solver.leftLeg.bendGoalWeight</b> - if greater than 0, will bend the knee towards the 'Bend Goal' Transform.
+    - <b>VRIK.solver.leftLeg.swivelOffset</b> - angular offset of knee bending direction.
+    - <b>VRIK.solver.leftLeg.bendToTargetWeight</b> - if 0, the bend plane will be locked to the rotation of the pelvis and rotating the foot will have no effect on the knee direction. If 1, to the target rotation of the leg so that the knee will bend towards the forward axis of the foot. Values in between will be slerped between the two.
+    - <b>VRIK.solver.leftLeg.legLengthMlp</b> - use this to make the leg shorter/longer. Works by displacement of foot and calf localPosition.
+    - <b>VRIK.solver.leftLeg.stretchCurve</b> - evaluates stretching of the leg by target distance relative to leg length. Value at time 1 represents stretching amount at the point where distance to the target is equal to leg length. Value at time 1 represents stretching amount at the point where distance to the target is double the leg length. Value represents the amount of stretching. Linear stretching would be achieved with a linear curve going up by 45 degrees. Increase the range of stretching by moving the last key up and right at the same amount. Smoothing in the curve can help reduce knee snapping (start stretching the arm slightly before target distance reaches leg length). To get a good optimal value for this curve, please go to the 'VRIK (Basic)' demo scene and copy the stretch curve over from the Pilot character.
+
+\image html VRIKLeg.png
+
+<b>Locomotion variables:</b>
+    - <b>VRIK.solver.locomotion.weight</b> - used for blending in/out of procedural locomotion.
+    - <b>VRIK.solver.locomotion.footDistance</b> - tries to maintain this distance between the legs.
+    - <b>VRIK.solver.locomotion.stepThreshold</b> - makes a step only if step target position is at least this far from the current footstep or the foot does not reach the current footstep anymore or footstep angle is past the 'Angle Threshold'.
+    - <b>VRIK.solver.locomotion.angleThreshold</b> - makes a step only if step target position is at least 'Step Threshold' far from the current footstep or the foot does not reach the current footstep anymore or footstep angle is past this value.
+    - <b>VRIK.solver.locomotion.comAngleMlp</b> - multiplies angle of the center of mass - center of pressure vector. Larger value makes the character step sooner if losing balance.
+    - <b>VRIK.solver.locomotion.maxVelocity</b> - maximum magnitude of head/hand target velocity used in prediction.
+    - <b>VRIK.solver.locomotion.velocityFactor</b> - the amount of head/hand target velocity prediction.
+    - <b>VRIK.solver.locomotion.maxLegStretch</b> - how much can a leg be extended before it is forced to step to another position? 1 means fully stretched.
+    - <b>VRIK.solver.locomotion.rootSpeed</b> - the speed of lerping the root of the character towards the horizontal mid-point of the footsteps.
+    - <b>VRIK.solver.locomotion.stepSpeed</b> - the speed of moving a foot to the next position.
+    - <b>VRIK.solver.locomotion.stepHeight</b> - the height of the foot by normalized step progress (0 - 1).
+    - <b>VRIK.solver.locomotion.heelHeight</b> - the height offset of the heel by normalized step progress (0 - 1).
+    - <b>VRIK.solver.locomotion.relaxLegTwistMinAngle</b> - rotates the foot while the leg is not stepping to relax the twist rotation of the leg if ideal rotation is past this angle.
+    - <b>VRIK.solver.locomotion.relaxLegTwistSpeed</b> - the speed of rotating the foot while the leg is not stepping to relax the twist rotation of the leg.
+    - <b>VRIK.solver.locomotion.stepInterpolation</b> - tnterpolation mode of the step.
+    - <b>VRIK.solver.locomotion.offset</b> - offset for the approximated center of mass.
+
+\image html VRIKLocomotion.png
+
+
+<b>Script References:</b>
+	- <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_i_k_solver_v_r.html">Solver </a> 
+	- <a href="http://www.root-motion.com/finalikdox/html/class_root_motion_1_1_final_i_k_1_1_v_r_i_k.html">Component</a> 
+
+*/
+
+/*! \page page17 Extending Final IK
 The %IK solvers and rotation limits of FinalIK were built from the ground up with extendability in mind. 
 <BR>Some of the components of FinalIK, such as BipedIK, are essentially little more than just collections of %IK solvers.
 
@@ -1216,6 +1578,10 @@ public class RotationLimitCustom: RotationLimit {
   		When creating more complex %IK systems, you will probably need full control over the updating order of your solvers. To do that, you can just disable their components and manage their solvers from an external script.
   		<BR>All %IK components extend from the abstract IK class and all %IK solvers extend from the abstract IKSolver class. This enables you to easily handle or replace the solvers even without needing to know the specific type of the solver.
   		<BR>Controlling the updating order of multiple %IK components:
+
+        \htmlonly <iframe width="854" height="480" src="https://www.youtube.com/embed/VhXuMoGA1D0" frameborder="0" allowfullscreen></iframe>\endhtmlonly
+        <BR>
+
 \code
 using RootMotion.FinalIK;
 
@@ -1268,14 +1634,14 @@ void LateUpdate() {
 
 */
 
-/*! \page page14 FAQ
+/*! \page page18 FAQ
 
 \section FullBodyBipedIK
 
 <b>- Can I use FBBIK to create animation clips for my character, how does it save the animation clips?</b>
 <BR>FBBIK is not designed for animation authoring, but for runtime animation modification, meaning it will run on top of whatever animation you have to provide you more flexibility and accuracy when interacting with ingame objects and other character. 
 <BR>For example if your character is climbing a wall, you can apply Full Body IK on top of it to make sure your hands and feet always remain fixed to the ledges.
-<BR>That doesn't mean you can't write a system that records the animation that has been modified with FBBIK to create customised animation clips for different characters.
+<BR>Since Final IK v1.9 the package includes a baking tool that can be used to create Humanoid, Generic and Legacy animation clips from your custom IK procedures, Timeline, Mecanim layer setup, etc...
 
 <b>- Hope that this will not only work with a special 3d program. Is there any information on how to export from a 3D animation package?</b>
 <BR>Final IK has nothing to do with any 3D animation packages. You would animate and export your animation clips just like you are doing it now, 
@@ -1298,7 +1664,7 @@ void LateUpdate() {
 <BR>Yes, we can!
 
 <b>- Can I remove/add limbs to or from FBBIK?</b>
-<BR>No, not yet at least. In the current beta version, you can't detach a limb AND continue using Full Body IK. You can disable FBBIK and then detach the limb (which is fine in 99% of the use cases because the character would usually just die), but you can't use the solver after you have deleted the bones.
+<BR>No, not yet at least. In the current version, you can't detach a limb AND continue using Full Body IK. You can disable FBBIK and then detach the limb (which is fine in 99% of the use cases because the character would usually just die), but you can't use the solver after you have deleted the bones.
 If there is a way to get rid of the limb geometry, but maintain the bones, then there is no problem, but remember, no removing the bones. I hope to overcome that limitation in the full release. Same goes for adding extra limbs. You can still use a seperate CCD/FABRIK or Limb IK component on the extra limb if you need to.
 
 <b>- Can it actually work perfectly upside down?</b>
@@ -1315,25 +1681,10 @@ If there is a way to get rid of the limb geometry, but maintain the bones, then 
 <BR>Yes FABRIK theoretically can be used to simulate cloth or hair. But in a future release, I'm planning to include Particle IK, which would probably be more suitable for this, as it is the de facto standard for those kinds of simulations. 
 
 <b>- Does Final IK work with 2D?</b>
-<BR>While you can constrain most of the solvers to 2D with Rotation Limits, there are no dedicated 2D solvers yet.
-
-\section Pricing
-
-<b>- Do you have any plans to go for Asset Store's "Daily Deals"?</b>
-<BR> Yes, but not in the near future, at least not until it's out of the Beta. 
-<BR> If I did, the ones who took the risk to buy the unrated, unreviewed initial Beta version would feel scammed. They need to get a good head start with this.
-
-<b>- Will you increase the price when Final IK reaches 1.0?</b>
-<BR> I don't know yet, sorry </BR>
+<BR>AimIK, CCDIK, FABRIK, TrigonometricIK, LimbIK, ArmIK and LegIK can be constrained to 2D. FullBodyBipedIK and VRIK can not be used on 2D characters.
  */
 
-/*! \page page15 3rd Party Support
+/*! \page page19 3rd Party Support
 
-\section PlayMaker
-
-<a href="http://www.root-motion.com/3rdpartysupport/Playmaker.unitypackage">PlayMaker actions for all FinalIK IK components and the Interaction System </a>
-
-\section UMA
-
-See the <a href="http://www.root-motion.com/finalikdox/html/page6.html">FullBodyBipedIK page</a> to learn how to set up FBBIK for UMA characters in runtime.
+Itegration packages to 3rd party assets can be found in "Assets/Plugins/RootMotion/FinalIK/_Integration".
  */

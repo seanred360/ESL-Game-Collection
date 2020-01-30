@@ -6,14 +6,14 @@ namespace RootMotion.FinalIK {
 	/// <summary>
 	/// Simple angular rotation limit.
 	/// </summary>
-	[HelpURL("http://www.root-motion.com/finalikdox/html/page12.html")]
+	[HelpURL("http://www.root-motion.com/finalikdox/html/page14.html")]
 	[AddComponentMenu("Scripts/RootMotion.FinalIK/Rotation Limits/Rotation Limit Angle")]
 	public class RotationLimitAngle : RotationLimit {
 
 		// Open the User Manual URL
 		[ContextMenu("User Manual")]
 		private void OpenUserManual() {
-			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page12.html");
+			Application.OpenURL("http://www.root-motion.com/finalikdox/html/page14.html");
 		}
 		
 		// Open the Script Reference URL

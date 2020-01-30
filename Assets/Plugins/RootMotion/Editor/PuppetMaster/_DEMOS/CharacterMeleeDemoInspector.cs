@@ -26,6 +26,9 @@ namespace RootMotion.Demos {
 				
 				if (replace != null) {
 					if (GUILayout.Button("Replace")) {
+                        Debug.Log("PropMuscle needs to be set up manually and assigned as 'Prop Muscle' in the CharacterMeleeDemo component on the character.");
+
+                        /* TODO Update to PropMuscle
 						PropRoot propRoot = script.propRoot;
 						Vector3 localPosition = propRoot.transform.localPosition;
 						Quaternion localRotation = propRoot.transform.localRotation;
@@ -41,10 +44,10 @@ namespace RootMotion.Demos {
 						propRoot.transform.localRotation = localRotation;
 						propRoot.puppetMaster = puppetMaster;
 						propRoot.connectTo = GetRigidbody(puppetMaster, animator.GetBoneTransform(HumanBodyBones.RightLowerArm));
-
+                        
 						Debug.Log("You probably need to adjust the localPosition and localRotation of the Prop Root to match this character's hand.");
-
-						UserControlAI[] userControls = (UserControlAI[])GameObject.FindObjectsOfType<UserControlAI>();
+                        */
+                        UserControlAI[] userControls = (UserControlAI[])GameObject.FindObjectsOfType<UserControlAI>();
 						foreach (UserControlAI ai in userControls) {
 							if (ai.moveTarget == null) {
 								ai.moveTarget = script.transform.parent.GetComponentInChildren<PuppetMaster>().muscles[0].joint.transform;

@@ -21,7 +21,7 @@ namespace RootMotion.Demos
             {
                 agent.SetDestination(target.position);
 
-                animator.SetFloat("Forward", agent.velocity.magnitude);
+                animator.SetFloat("Forward", agent.velocity.magnitude * 0.25f);
             }
         }
     }
