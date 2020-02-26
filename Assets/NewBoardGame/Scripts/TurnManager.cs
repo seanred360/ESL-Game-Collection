@@ -7,26 +7,21 @@ using Cinemachine;
 
 namespace NBG
 {
-    public enum TurnState { START, MOVE, FINISH }
-
     public class TurnManager : MonoBehaviour
     {
-
-        public TurnState turn;
         public Dice3d dice;
         public GameObject RollPhaseUI;
         public PlayerMover[] players;
         public Button rollButton;
         public ShowModelController showModelController;
         int currentPlayerIndex;
-        public CinemachineStateDrivenCamera stateCam;
+        public CinemachineStateDrivenCamera stateDrivenCamera;
         public CinemachineVirtualCamera[] vCams;
 
         private void Start()
         {
-            vCams = stateCam.GetComponentsInChildren<CinemachineVirtualCamera>();
-            if(players.Length <= 0) { players = GameObject.FindObjectsOfType<PlayerMover>(); }
-            turn = TurnState.START;
+            vCams = stateDrivenCamera.GetComponentsInChildren<CinemachineVirtualCamera>();
+            if (players.Length <= 0) { players = GameObject.FindObjectsOfType<PlayerMover>(); }
             ChangeCameraTarget(players[0]);
             StartCoroutine(StartDicePhase(players[0]));
         }
@@ -47,13 +42,12 @@ namespace NBG
             {
                 yield return null;
             }
- 
+
             dice.StartCoroutine(dice.StopRollDice(2f, player));
             yield return new WaitForSeconds(2f);
 
             rollButton.interactable = true;
             RollPhaseUI.SetActive(false);
-            turn = TurnState.MOVE;
             while (players[currentPlayerIndex].finishedTurn == false) { yield return null; }
 
             yield return new WaitForSeconds(3f);
@@ -73,8 +67,9 @@ namespace NBG
             {
                 cam.m_Follow = player.transform;
             }
-            stateCam.m_AnimatedTarget = player.GetComponent<Animator>();
-            //stateCam.GetComponentInChildren<CinemachineVirtualCamera>().m_Follow = player.transform;
+            
+            stateDrivenCamera.m_AnimatedTarget = player.GetComponent<Animator>();
+            //stateDrivenCamera.GetComponentInChildren<CinemachineVirtualCamera>().m_Follow = player.transform;
         }
     }
 }

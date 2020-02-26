@@ -63,9 +63,8 @@ public class PlayerMover : MonoBehaviour
             //star event logic
             if (currentNode.GetComponent<BoardNode>().nodeType == BoardNode.NodeType.starEvent)
             {
-                while (!eventComplete) { yield return new WaitForSeconds(2f); eventComplete = true; }
-                eventComplete = false;
-                remainingMoves +=1; Debug.Log("star event");
+                yield return StartCoroutine(StarEvent());
+                remainingMoves += 1;
             }
         }
 
@@ -100,6 +99,11 @@ public class PlayerMover : MonoBehaviour
         }
         while (isMoving) { yield return null; }
         finishedTurn = true;
+    }
+
+    IEnumerator StarEvent()
+    {
+        yield return new WaitForSeconds(2f);
     }
 
     bool HasNotArrived(Vector3 arrivalPos, float movementSpeed)
