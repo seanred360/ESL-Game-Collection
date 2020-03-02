@@ -9,7 +9,7 @@ public class Dice3d : MonoBehaviour
     public Transform[] sides;
     public Transform currentSide, dice;
     public GameObject smokeParticle;
-    int numberRolled = 5;
+    int numberRolled;
     AudioSource audio;
     Animator anim;
     public Vector3[] rotations;
@@ -35,13 +35,14 @@ public class Dice3d : MonoBehaviour
         numberRolled = num;
     }
 
-    public IEnumerator StopRollDice(float waitTime,PlayerMover player)
+    public int StopRollDice()
     {
         audio.Stop();
         anim.enabled = false;
         dice.DORotate(rotations[numberRolled - 1], 0.5f);
-        yield return new WaitForSeconds(waitTime);
-        player.StartMove(numberRolled, 1, 8f);
+        return numberRolled;
+        //yield return new WaitForSeconds(waitTime);
+        //player.StartMove(numberRolled, 1, 8f);
     }
 
     //            // 6 = (270,0,180)
