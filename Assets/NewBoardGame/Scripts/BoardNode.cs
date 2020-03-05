@@ -9,10 +9,14 @@ public class BoardNode : MonoBehaviour
 
     public NodeType nodeType;
     public Transform spring, standingTarget;
-    public Transform cage;
+    public Transform roadBlock;
+    public TimelinePlaybackManager timelinePlaybackManager;
+    public bool isCompleted;
 
     private void Awake()
     {
+        if(timelinePlaybackManager == null) { timelinePlaybackManager = GetComponent<TimelinePlaybackManager>(); }
+
         if(nodeType == NodeType.plusTwo)
         {
             spring = transform.Find("Spring");
@@ -21,8 +25,7 @@ public class BoardNode : MonoBehaviour
         }
         if (nodeType == NodeType.stop)
         {
-            cage = transform.Find("Cage");
-            cage.gameObject.SetActive(false);
+            roadBlock = transform.Find("RoadBlock");
         }
     }
 }

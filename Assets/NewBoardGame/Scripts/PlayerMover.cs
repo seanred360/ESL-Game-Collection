@@ -8,12 +8,13 @@ public class PlayerMover : MonoBehaviour
     public Transform currentNode;
     int currentNodeIndex;
     public int numberRolled;
-    public bool isMoving, finishedTurn = false, eventComplete;
+    public bool isMoving, finishedTurn = false;
     PlayerLauncher playerLauncher;
     PlayerEffectsHandler playerEffectsHandler;
     Animator anim;
     TurnManager turnManager;
     public bool chanceEventSuccess;
+    public bool eventComplete;
 
     private void Awake()
     {
@@ -58,19 +59,26 @@ public class PlayerMover : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             remainingMoves--;
 
+            BoardNode curBoardNode = currentNode.GetComponent<BoardNode>();
             //stop node logic///////////////////////////////////////////////////////////////////////////////////////////////
-            if(currentNode.GetComponent<BoardNode>().nodeType == BoardNode.NodeType.stop)
+            if ( curBoardNode.nodeType == BoardNode.NodeType.stop && curBoardNode.isCompleted == false )
             {
-                currentNode.gameObject.GetComponent<BoardNode>().cage.gameObject.SetActive(true);
-                anim.SetBool("isTalking", true);
-                yield return StartCoroutine(turnManager.EventDiceRoll(this));
-                anim.SetBool("isTalking", false);
+                anim.SetBool("isWalking", false);
+                //anim.SetBool("isIdle", true);
+                isMoving = false;
+                curBoardNode.timelinePlaybackManager.currentPlayer = this;
+                curBoardNode.timelinePlaybackManager.timelines[0].Play();
 
-                yield return new WaitForSeconds(2f);
-                ///TO DO  success animation or fail animation////////////
-                /////////////////////////////////////////////////////////
-                ///
-                if(chanceEventSuccess == false) { remainingMoves = 0; }
+                while (!eventComplete) { yield return null; }
+                eventComplete = false; /////////reset value for next time
+
+                yield return new WaitForSeconds(1f);
+
+                /////// event fail
+                if (chanceEventSuccess == false) { StartCoroutine(MovePlayer(1, -1, 3f)); yield break; }
+
+                ////// event success
+                else { curBoardNode.roadBlock.gameObject.SetActive(false); curBoardNode.isCompleted = true;}
             }
 
             //star event logic//////////////////////////////////////////////////////////////////////////////////////
@@ -116,10 +124,10 @@ public class PlayerMover : MonoBehaviour
 
     IEnumerator StarEvent()
     {
-        turnManager.dialogueBox.SetActive(true);
-        eventComplete = false;
+        var starTimeline = currentNode.GetComponent<BoardNode>().timelinePlaybackManager;
+        starTimeline.PlayTimeline(0);
         anim.SetBool("isTalking", true);
-        while (eventComplete == false) { yield return null; }
+        while (starTimeline.timelinePlaying) { yield return null; }
         anim.SetBool("isTalking", false);
     }
 
