@@ -67,6 +67,7 @@ namespace NBG
             foreach(CinemachineVirtualCamera cam in vCams)
             {
                 cam.m_Follow = player.transform;
+                cam.m_LookAt = player.transform;
             }
             
             stateDrivenCamera.m_AnimatedTarget = player.GetComponent<Animator>();
@@ -77,32 +78,6 @@ namespace NBG
            if (players[currentPlayerIndex].eventComplete == false) { players[currentPlayerIndex].eventComplete = true; }
            else { players[currentPlayerIndex].eventComplete = false; }
         }
-
-        //public IEnumerator EventDiceRoll(PlayerMover player)
-        //{
-        //    RollPhaseUI.SetActive(true);
-        //    showModelController.EnableModel(players[currentPlayerIndex].name);
-        //    yield return new WaitForSeconds(1f); // wait for dice animation, prevents a scaling bug
-
-        //    while (rollButton.interactable == true)///////// wait for button press
-        //    {
-        //        yield return null;
-        //    }
-
-        //    int numRolled = dice.StopRollDice();
-
-        //    if (numRolled == 4 || numRolled == 5 || numRolled == 6)
-        //    {
-        //        player.chanceEventSuccess = true;
-        //        print("get out of jail");
-        //    }
-        //    else { player.chanceEventSuccess = false; print("stuck in jail");  }
-
-        //    while (rollButton.interactable == true)
-        //    {
-        //        yield return null;
-        //    }
-        //}
     }
 }
 

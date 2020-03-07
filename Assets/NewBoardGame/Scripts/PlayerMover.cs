@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using NBG;
+using System;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerMover : MonoBehaviour
     TurnManager turnManager;
     public bool chanceEventSuccess;
     public bool eventComplete;
+
 
     private void Awake()
     {
@@ -38,57 +40,92 @@ public class PlayerMover : MonoBehaviour
 
     IEnumerator MovePlayer(int remainingMoves, int dir, float movementSpeed)
     {
-        if (isMoving)
-        {
-            yield break;
-        }
-        isMoving = true;
-        finishedTurn = false;
+        //if (isMoving)
+        //{
+        //    yield break;
+        //}
+        //isMoving = true;
+        //finishedTurn = false;
         anim.SetBool("isWalking", true);
 
-        while (remainingMoves > 0)
+        UpdateNodeIndex(1, dir);
+
+        Vector3 nextPos = currentRoute.childNodeList[currentNodeIndex].position;
+        transform.LookAt(nextPos);
+
+        //yield until reached next node////////////////////////////////////////////////////////////////////
+        while (HasNotArrived(nextPos, movementSpeed)) { yield return null; }
+
+        yield return new WaitForSeconds(0.01f);
+        remainingMoves--;
+
+        BoardNode curBoardNode = currentNode.GetComponent<BoardNode>();
+        if (curBoardNode.nodeType == BoardNode.NodeType.stop && curBoardNode.isCompleted == false) { yield return StartCoroutine(EventNodeRoutine(remainingMoves, dir, movementSpeed)); yield break; }
+
+        if( remainingMoves > 0 ) { StartCoroutine(MovePlayer( remainingMoves, dir, movementSpeed )); }
+        else
+        { FinishMove(dir); }
+            //BoardNode curBoardNode = currentNode.GetComponent<BoardNode>();
+            ////stop node logic///////////////////////////////////////////////////////////////////////////////////////////////
+            //if ( curBoardNode.nodeType == BoardNode.NodeType.stop && curBoardNode.isCompleted == false )
+            //{
+            //    anim.SetBool("isWalking", false);
+            //    //anim.SetBool("isIdle", true);
+            //    isMoving = false;
+            //    curBoardNode.timelinePlaybackManager.currentPlayer = this;
+            //    curBoardNode.timelinePlaybackManager.timelines[0].Play();
+
+            //    while (!eventComplete) { yield return null; }
+            //    eventComplete = false; /////////reset value for next time
+
+            //    yield return new WaitForSeconds(1f);
+
+            //    /////// event fail
+            //    if (chanceEventSuccess == false) { StartCoroutine(MovePlayer(1, -1, 3f)); yield break; }
+
+            //    ////// event success
+            //    else { curBoardNode.roadBlock.gameObject.SetActive(false); curBoardNode.isCompleted = true;}
+            //}
+
+            ////star event logic//////////////////////////////////////////////////////////////////////////////////////
+            //if (currentNode.GetComponent<BoardNode>().nodeType == BoardNode.NodeType.starEvent)
+            //{
+            //    yield return StartCoroutine(StarEvent());
+            //    remainingMoves += 1;
+            //}
+        
+
+        //anim.SetBool("isWalking", false);
+        //isMoving = false;
+        //StartCoroutine(BonusRollMove(dir));
+    }
+
+    IEnumerator EventNodeRoutine(int remainingMoves, int dir, float movementSpeed)
+    {
+        BoardNode curBoardNode = currentNode.GetComponent<BoardNode>();
+        //stop node logic///////////////////////////////////////////////////////////////////////////////////////////////
+        if (curBoardNode.nodeType == BoardNode.NodeType.stop && curBoardNode.isCompleted == false)
         {
-            UpdateNodeIndex(1, dir);
+            //anim.SetBool("isWalking", false);
+            isMoving = false;
+            curBoardNode.timelinePlaybackManager.currentPlayer = this;
+            curBoardNode.timelinePlaybackManager.timelines[0].Play();
 
-            Vector3 nextPos = currentRoute.childNodeList[currentNodeIndex].position;
-            transform.LookAt(nextPos);
+            while (!eventComplete) { yield return null; }
+            eventComplete = false; /////////reset value for next time
 
-            //yield until reached next node////////////////////////////////////////////////////////////////////
-            while (HasNotArrived(nextPos, movementSpeed)) { yield return null; }
+            yield return new WaitForSeconds(1f);
 
-            yield return new WaitForSeconds(0.01f);
-            remainingMoves--;
+            /////// event fail
+            if (chanceEventSuccess == false) { StartCoroutine(MovePlayer(1, -1, 3f)); }
 
-            BoardNode curBoardNode = currentNode.GetComponent<BoardNode>();
-            //stop node logic///////////////////////////////////////////////////////////////////////////////////////////////
-            if ( curBoardNode.nodeType == BoardNode.NodeType.stop && curBoardNode.isCompleted == false )
-            {
-                anim.SetBool("isWalking", false);
-                //anim.SetBool("isIdle", true);
-                isMoving = false;
-                curBoardNode.timelinePlaybackManager.currentPlayer = this;
-                curBoardNode.timelinePlaybackManager.timelines[0].Play();
-
-                while (!eventComplete) { yield return null; }
-                eventComplete = false; /////////reset value for next time
-
-                yield return new WaitForSeconds(1f);
-
-                /////// event fail
-                if (chanceEventSuccess == false) { StartCoroutine(MovePlayer(1, -1, 3f)); yield break; }
-
-                ////// event success
-                else { curBoardNode.roadBlock.gameObject.SetActive(false); curBoardNode.isCompleted = true;}
-            }
-
-            //star event logic//////////////////////////////////////////////////////////////////////////////////////
-            if (currentNode.GetComponent<BoardNode>().nodeType == BoardNode.NodeType.starEvent)
-            {
-                yield return StartCoroutine(StarEvent());
-                remainingMoves += 1;
-            }
+            ////// event success
+            else { curBoardNode.roadBlock.gameObject.SetActive(false); curBoardNode.isCompleted = true; StartCoroutine(MovePlayer(remainingMoves, dir, movementSpeed)); }
         }
+    }
 
+    private void FinishMove(int dir)
+    {
         anim.SetBool("isWalking", false);
         isMoving = false;
         StartCoroutine(BonusRollMove(dir));
