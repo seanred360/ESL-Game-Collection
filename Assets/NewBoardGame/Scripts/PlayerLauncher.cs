@@ -31,6 +31,11 @@ public class PlayerLauncher : MonoBehaviour {
         StartCoroutine(Launch(_target));
     }
 
+    public void StartLaunchNormalRoutine(Transform _target)
+    {
+        StartCoroutine(LaunchNormal(_target));
+    } 
+
     IEnumerator Launch(Transform _target)
     {
         rb.isKinematic = false;
@@ -45,6 +50,18 @@ public class PlayerLauncher : MonoBehaviour {
         transform.localScale = new Vector3(1, 1, 1); //un squish the player
         _spring.SetActive(false);
 
+        // launch the player
+        target = _target;
+        Physics.gravity = Vector3.up * gravity;
+        rb.useGravity = true;
+        rb.velocity = CalculateLaunchData().initialVelocity;
+        yield return new WaitForSeconds(_time);
+        rb.isKinematic = true;
+    }
+
+    IEnumerator LaunchNormal(Transform _target)
+    {
+        rb.isKinematic = false;
         // launch the player
         target = _target;
         Physics.gravity = Vector3.up * gravity;

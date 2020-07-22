@@ -51,7 +51,7 @@ namespace NBG
             RollPhaseUI.SetActive(false);
             while (players[currentPlayerIndex].finishedTurn == false) { yield return null; }
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
             FinishTurn();
         }
 

@@ -4,7 +4,7 @@ public class BoardNode : MonoBehaviour
 {
     public enum NodeType
     {
-        normal, stop, plusTwo, minusTwo, starEvent
+        normal, stop, plusTwo, minusTwo, starEvent, riverEvent
     }
 
     public NodeType nodeType;

@@ -1,202 +1,591 @@
 fileFormatVersion: 2
 guid: 3c43fd8e82d99ca4e8937940b3d846c5
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: paper peach_GO/paper peach_GO
-    100002: paper peach_GO/paper peach_GO/bangs
-    100004: paper peach_GO/paper peach_GO/Chest
-    100006: paper peach_GO/paper peach_GO/Crown
-    100008: paper peach_GO/paper peach_GO/DressFoldLeft
-    100010: paper peach_GO/paper peach_GO/DressFoldLeft_1
-    100012: paper peach_GO/paper peach_GO/DressFoldMid
-    100014: paper peach_GO/paper peach_GO/DressFoldRight
-    100016: paper peach_GO/paper peach_GO/DressHipLeftBottom
-    100018: paper peach_GO/paper peach_GO/DressHipLeftTop
-    100020: paper peach_GO/paper peach_GO/DressHipRightBottom
-    100022: paper peach_GO/paper peach_GO/DressHipRightTop
-    100024: paper peach_GO/paper peach_GO/Ear
-    100026: paper peach_GO/paper peach_GO/Earring
-    100028: paper peach_GO/paper peach_GO/Face
-    100030: paper peach_GO/paper peach_GO/HairLeft
-    100032: paper peach_GO/paper peach_GO/HairLeftBottom
-    100034: paper peach_GO/paper peach_GO/HairLeftBottom2
-    100036: paper peach_GO/paper peach_GO/HairRight
-    100038: paper peach_GO/paper peach_GO/HairRightBottom
-    100040: paper peach_GO/paper peach_GO/HairSideBurn
-    100042: paper peach_GO/paper peach_GO/LeftArm
-    100044: paper peach_GO/paper peach_GO/LeftGlove
-    100046: paper peach_GO/paper peach_GO/LeftShoulder
-    100048: paper peach_GO/paper peach_GO/RightArm
-    100050: paper peach_GO/paper peach_GO/RightGlove
-    100052: paper peach_GO/paper peach_GO/RightShoulder
-    100054: paper peach_GO/paper peach_GO/bone_1
-    100056: paper peach_GO/paper peach_GO/bone_1/bone_2
-    100058: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7
-    100060: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_8
-    100062: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_9
-    100064: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_10
-    100066: paper peach_GO/paper peach_GO/bone_1/bone_3
-    100068: paper peach_GO/paper peach_GO/bone_1/bone_3/bone_4
-    100070: paper peach_GO/paper peach_GO/bone_1/bone_5
-    100072: paper peach_GO/paper peach_GO/bone_1/bone_5/bone_6
-    100074: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11
-    100076: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11/bone_12
-    100078: paper peach_GO/paper peach_GO/bone_1/bone_13
-    100080: paper peach_GO/paper peach_GO/bone_1/bone_14
-    100082: paper peach_GO/paper peach_GO/bone_1/bone_15
-    100084: paper peach_GO/paper peach_GO/bone_1/bone_16
-    100086: paper peach_GO/paper peach_GO/bone_1/bone_17
-    100088: paper peach_GO/paper peach_GO/bone_1/bone_18
-    100090: paper peach_GO/paper peach_GO/bone_1/bone_19
-    100092: paper peach_GO/paper peach_GO/bone_1/bone_20
-    100094: paper peach_GO/paper peach_GO/FaceKissy
-    100096: paper peach_GO/paper peach_GO/HurtFace
-    100098: paper peach_GO/paper peach_GO/LeftGloveOpenPalm
-    100100: paper peach_GO/paper peach_GO/RightGloveOpenPalm
-    400000: paper peach_GO/paper peach_GO/Transform
-    400002: paper peach_GO/paper peach_GO/bangs/Transform
-    400004: paper peach_GO/paper peach_GO/Chest/Transform
-    400006: paper peach_GO/paper peach_GO/Crown/Transform
-    400008: paper peach_GO/paper peach_GO/DressFoldLeft/Transform
-    400010: paper peach_GO/paper peach_GO/DressFoldLeft_1/Transform
-    400012: paper peach_GO/paper peach_GO/DressFoldMid/Transform
-    400014: paper peach_GO/paper peach_GO/DressFoldRight/Transform
-    400016: paper peach_GO/paper peach_GO/DressHipLeftBottom/Transform
-    400018: paper peach_GO/paper peach_GO/DressHipLeftTop/Transform
-    400020: paper peach_GO/paper peach_GO/DressHipRightBottom/Transform
-    400022: paper peach_GO/paper peach_GO/DressHipRightTop/Transform
-    400024: paper peach_GO/paper peach_GO/Ear/Transform
-    400026: paper peach_GO/paper peach_GO/Earring/Transform
-    400028: paper peach_GO/paper peach_GO/Face/Transform
-    400030: paper peach_GO/paper peach_GO/HairLeft/Transform
-    400032: paper peach_GO/paper peach_GO/HairLeftBottom/Transform
-    400034: paper peach_GO/paper peach_GO/HairLeftBottom2/Transform
-    400036: paper peach_GO/paper peach_GO/HairRight/Transform
-    400038: paper peach_GO/paper peach_GO/HairRightBottom/Transform
-    400040: paper peach_GO/paper peach_GO/HairSideBurn/Transform
-    400042: paper peach_GO/paper peach_GO/LeftArm/Transform
-    400044: paper peach_GO/paper peach_GO/LeftGlove/Transform
-    400046: paper peach_GO/paper peach_GO/LeftShoulder/Transform
-    400048: paper peach_GO/paper peach_GO/RightArm/Transform
-    400050: paper peach_GO/paper peach_GO/RightGlove/Transform
-    400052: paper peach_GO/paper peach_GO/RightShoulder/Transform
-    400054: paper peach_GO/paper peach_GO/bone_1/Transform
-    400056: paper peach_GO/paper peach_GO/bone_1/bone_2/Transform
-    400058: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/Transform
-    400060: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_8/Transform
-    400062: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_9/Transform
-    400064: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_10/Transform
-    400066: paper peach_GO/paper peach_GO/bone_1/bone_3/Transform
-    400068: paper peach_GO/paper peach_GO/bone_1/bone_3/bone_4/Transform
-    400070: paper peach_GO/paper peach_GO/bone_1/bone_5/Transform
-    400072: paper peach_GO/paper peach_GO/bone_1/bone_5/bone_6/Transform
-    400074: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11/Transform
-    400076: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11/bone_12/Transform
-    400078: paper peach_GO/paper peach_GO/bone_1/bone_13/Transform
-    400080: paper peach_GO/paper peach_GO/bone_1/bone_14/Transform
-    400082: paper peach_GO/paper peach_GO/bone_1/bone_15/Transform
-    400084: paper peach_GO/paper peach_GO/bone_1/bone_16/Transform
-    400086: paper peach_GO/paper peach_GO/bone_1/bone_17/Transform
-    400088: paper peach_GO/paper peach_GO/bone_1/bone_18/Transform
-    400090: paper peach_GO/paper peach_GO/bone_1/bone_19/Transform
-    400092: paper peach_GO/paper peach_GO/bone_1/bone_20/Transform
-    400094: paper peach_GO/paper peach_GO/FaceKissy/Transform
-    400096: paper peach_GO/paper peach_GO/HurtFace/Transform
-    400098: paper peach_GO/paper peach_GO/LeftGloveOpenPalm/Transform
-    400100: paper peach_GO/paper peach_GO/RightGloveOpenPalm/Transform
-    2800000: paper peach
-    11400000: paper peach_GO/paper peach_GO/bangs/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: paper peach_GO/paper peach_GO/Chest/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400004: paper peach_GO/paper peach_GO/Crown/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: paper peach_GO/paper peach_GO/DressFoldLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: paper peach_GO/paper peach_GO/DressFoldLeft_1/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: paper peach_GO/paper peach_GO/DressFoldMid/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400012: paper peach_GO/paper peach_GO/DressFoldRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400014: paper peach_GO/paper peach_GO/DressHipLeftBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400016: paper peach_GO/paper peach_GO/DressHipLeftTop/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400018: paper peach_GO/paper peach_GO/DressHipRightBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400020: paper peach_GO/paper peach_GO/DressHipRightTop/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400022: paper peach_GO/paper peach_GO/Ear/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400024: paper peach_GO/paper peach_GO/Earring/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400026: paper peach_GO/paper peach_GO/Face/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400028: paper peach_GO/paper peach_GO/HairLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400030: paper peach_GO/paper peach_GO/HairLeftBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400032: paper peach_GO/paper peach_GO/HairLeftBottom2/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400034: paper peach_GO/paper peach_GO/HairRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400036: paper peach_GO/paper peach_GO/HairRightBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400038: paper peach_GO/paper peach_GO/HairSideBurn/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400040: paper peach_GO/paper peach_GO/LeftArm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400042: paper peach_GO/paper peach_GO/LeftGlove/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400044: paper peach_GO/paper peach_GO/LeftShoulder/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400046: paper peach_GO/paper peach_GO/RightArm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400048: paper peach_GO/paper peach_GO/RightGlove/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400050: paper peach_GO/paper peach_GO/RightShoulder/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400052: paper peach_GO/paper peach_GO/HurtFace/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400054: paper peach_GO/paper peach_GO/FaceKissy/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400056: paper peach_GO/paper peach_GO/LeftGloveOpenPalm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400058: paper peach_GO/paper peach_GO/RightGloveOpenPalm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: paper peach_GO/paper peach_GO/bangs/SpriteRenderer
-    21200002: paper peach_GO/paper peach_GO/Chest/SpriteRenderer
-    21200004: paper peach_GO/paper peach_GO/Crown/SpriteRenderer
-    21200006: paper peach_GO/paper peach_GO/DressFoldLeft/SpriteRenderer
-    21200008: paper peach_GO/paper peach_GO/DressFoldLeft_1/SpriteRenderer
-    21200010: paper peach_GO/paper peach_GO/DressFoldMid/SpriteRenderer
-    21200012: paper peach_GO/paper peach_GO/DressFoldRight/SpriteRenderer
-    21200014: paper peach_GO/paper peach_GO/DressHipLeftBottom/SpriteRenderer
-    21200016: paper peach_GO/paper peach_GO/DressHipLeftTop/SpriteRenderer
-    21200018: paper peach_GO/paper peach_GO/DressHipRightBottom/SpriteRenderer
-    21200020: paper peach_GO/paper peach_GO/DressHipRightTop/SpriteRenderer
-    21200022: paper peach_GO/paper peach_GO/Ear/SpriteRenderer
-    21200024: paper peach_GO/paper peach_GO/Earring/SpriteRenderer
-    21200026: paper peach_GO/paper peach_GO/Face/SpriteRenderer
-    21200028: paper peach_GO/paper peach_GO/HairLeft/SpriteRenderer
-    21200030: paper peach_GO/paper peach_GO/HairLeftBottom/SpriteRenderer
-    21200032: paper peach_GO/paper peach_GO/HairLeftBottom2/SpriteRenderer
-    21200034: paper peach_GO/paper peach_GO/HairRight/SpriteRenderer
-    21200036: paper peach_GO/paper peach_GO/HairRightBottom/SpriteRenderer
-    21200038: paper peach_GO/paper peach_GO/HairSideBurn/SpriteRenderer
-    21200040: paper peach_GO/paper peach_GO/LeftArm/SpriteRenderer
-    21200042: paper peach_GO/paper peach_GO/LeftGlove/SpriteRenderer
-    21200044: paper peach_GO/paper peach_GO/LeftShoulder/SpriteRenderer
-    21200046: paper peach_GO/paper peach_GO/RightArm/SpriteRenderer
-    21200048: paper peach_GO/paper peach_GO/RightGlove/SpriteRenderer
-    21200050: paper peach_GO/paper peach_GO/RightShoulder/SpriteRenderer
-    21200052: paper peach_GO/paper peach_GO/FaceKissy/SpriteRenderer
-    21200054: paper peach_GO/paper peach_GO/HurtFace/SpriteRenderer
-    21200056: paper peach_GO/paper peach_GO/LeftGloveOpenPalm/SpriteRenderer
-    21200058: paper peach_GO/paper peach_GO/RightGloveOpenPalm/SpriteRenderer
-    21300000: a9259ece0e03a8b4c90726a75a8192a8
-    21300002: f03b09ad44c25254290414810c8907f6
-    21300004: c24281547098aad4f981997527775269
-    21300006: 5ae1624b7e8ff7f41adb93b570b9e0dc
-    21300008: 92eafacfaa66bda42926bd57fd824157
-    21300010: 08dc3f4b7fea9c84fbdfca70a286bb3a
-    21300012: f47d7a3ceedcb2041a61dc94d026796a
-    21300014: d9ef487d02a5604439961da495e6ca86
-    21300016: 439a099e16b707441a31ab7b0dbd8ca3
-    21300018: f8a34e681bb6ca0419bb22f6e2f73423
-    21300020: 0c7e94a0d1d828c4481bf5fc208e720e
-    21300022: 66803cb626d0b2a4585729b5fbf8efb0
-    21300024: 3becf05b82a278b4baa3289986ef6213
-    21300026: 4aa12495a554f2f42ad92da5fb211c7e
-    21300028: 2d740bd58e838fd4880fe00ffdd8dbd0
-    21300030: 7ed8dbc61f68d8f4c81ad947343e9b15
-    21300032: 8322524564e261842808d4c75544bcf1
-    21300034: 70bb30d7105cc7d488b596fce61b03b5
-    21300036: ba7c9d64696443649bc5c8d3a46c536f
-    21300038: 0ec75586f5c359f469f507ff52c276a5
-    21300040: 6db0375020f3c07459b1b5a896cdffe2
-    21300042: 7eb26551a38eed64d80aa30e2f28c6c6
-    21300044: 90df75e4c33d1d14a8aa2d262ef2fcfe
-    21300046: 6e4cda8f2cbff1347bab3d492b3cecfa
-    21300048: 2c0749fc2e5ce5b4498e25b9f2f754db
-    21300050: f7a8ea2d67b9daf4993082404961d4f2
-    21300052: f0a6c52063bccbc44937477b286ff5d6
-    21300054: 0ecc4a052a7d24b41aa82ae4bbe4dbdb
-    21300056: 3bf681da3961a464f9d394d0fb2a0e1f
-    21300058: 5a5f1d745d42c7d42bc01c53dc52f430
-    100100000: paper peach_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: paper peach_GO/paper peach_GO
+  - first:
+      1: 100002
+    second: paper peach_GO/paper peach_GO/bangs
+  - first:
+      1: 100004
+    second: paper peach_GO/paper peach_GO/Chest
+  - first:
+      1: 100006
+    second: paper peach_GO/paper peach_GO/Crown
+  - first:
+      1: 100008
+    second: paper peach_GO/paper peach_GO/DressFoldLeft
+  - first:
+      1: 100010
+    second: paper peach_GO/paper peach_GO/DressFoldLeft_1
+  - first:
+      1: 100012
+    second: paper peach_GO/paper peach_GO/DressFoldMid
+  - first:
+      1: 100014
+    second: paper peach_GO/paper peach_GO/DressFoldRight
+  - first:
+      1: 100016
+    second: paper peach_GO/paper peach_GO/DressHipLeftBottom
+  - first:
+      1: 100018
+    second: paper peach_GO/paper peach_GO/DressHipLeftTop
+  - first:
+      1: 100020
+    second: paper peach_GO/paper peach_GO/DressHipRightBottom
+  - first:
+      1: 100022
+    second: paper peach_GO/paper peach_GO/DressHipRightTop
+  - first:
+      1: 100024
+    second: paper peach_GO/paper peach_GO/Ear
+  - first:
+      1: 100026
+    second: paper peach_GO/paper peach_GO/Earring
+  - first:
+      1: 100028
+    second: paper peach_GO/paper peach_GO/Face
+  - first:
+      1: 100030
+    second: paper peach_GO/paper peach_GO/HairLeft
+  - first:
+      1: 100032
+    second: paper peach_GO/paper peach_GO/HairLeftBottom
+  - first:
+      1: 100034
+    second: paper peach_GO/paper peach_GO/HairLeftBottom2
+  - first:
+      1: 100036
+    second: paper peach_GO/paper peach_GO/HairRight
+  - first:
+      1: 100038
+    second: paper peach_GO/paper peach_GO/HairRightBottom
+  - first:
+      1: 100040
+    second: paper peach_GO/paper peach_GO/HairSideBurn
+  - first:
+      1: 100042
+    second: paper peach_GO/paper peach_GO/LeftArm
+  - first:
+      1: 100044
+    second: paper peach_GO/paper peach_GO/LeftGlove
+  - first:
+      1: 100046
+    second: paper peach_GO/paper peach_GO/LeftShoulder
+  - first:
+      1: 100048
+    second: paper peach_GO/paper peach_GO/RightArm
+  - first:
+      1: 100050
+    second: paper peach_GO/paper peach_GO/RightGlove
+  - first:
+      1: 100052
+    second: paper peach_GO/paper peach_GO/RightShoulder
+  - first:
+      1: 100054
+    second: paper peach_GO/paper peach_GO/bone_1
+  - first:
+      1: 100056
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2
+  - first:
+      1: 100058
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7
+  - first:
+      1: 100060
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_8
+  - first:
+      1: 100062
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_9
+  - first:
+      1: 100064
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_10
+  - first:
+      1: 100066
+    second: paper peach_GO/paper peach_GO/bone_1/bone_3
+  - first:
+      1: 100068
+    second: paper peach_GO/paper peach_GO/bone_1/bone_3/bone_4
+  - first:
+      1: 100070
+    second: paper peach_GO/paper peach_GO/bone_1/bone_5
+  - first:
+      1: 100072
+    second: paper peach_GO/paper peach_GO/bone_1/bone_5/bone_6
+  - first:
+      1: 100074
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11
+  - first:
+      1: 100076
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11/bone_12
+  - first:
+      1: 100078
+    second: paper peach_GO/paper peach_GO/bone_1/bone_13
+  - first:
+      1: 100080
+    second: paper peach_GO/paper peach_GO/bone_1/bone_14
+  - first:
+      1: 100082
+    second: paper peach_GO/paper peach_GO/bone_1/bone_15
+  - first:
+      1: 100084
+    second: paper peach_GO/paper peach_GO/bone_1/bone_16
+  - first:
+      1: 100086
+    second: paper peach_GO/paper peach_GO/bone_1/bone_17
+  - first:
+      1: 100088
+    second: paper peach_GO/paper peach_GO/bone_1/bone_18
+  - first:
+      1: 100090
+    second: paper peach_GO/paper peach_GO/bone_1/bone_19
+  - first:
+      1: 100092
+    second: paper peach_GO/paper peach_GO/bone_1/bone_20
+  - first:
+      1: 100094
+    second: paper peach_GO/paper peach_GO/FaceKissy
+  - first:
+      1: 100096
+    second: paper peach_GO/paper peach_GO/HurtFace
+  - first:
+      1: 100098
+    second: paper peach_GO/paper peach_GO/LeftGloveOpenPalm
+  - first:
+      1: 100100
+    second: paper peach_GO/paper peach_GO/RightGloveOpenPalm
+  - first:
+      4: 400000
+    second: paper peach_GO/paper peach_GO/Transform
+  - first:
+      4: 400002
+    second: paper peach_GO/paper peach_GO/bangs/Transform
+  - first:
+      4: 400004
+    second: paper peach_GO/paper peach_GO/Chest/Transform
+  - first:
+      4: 400006
+    second: paper peach_GO/paper peach_GO/Crown/Transform
+  - first:
+      4: 400008
+    second: paper peach_GO/paper peach_GO/DressFoldLeft/Transform
+  - first:
+      4: 400010
+    second: paper peach_GO/paper peach_GO/DressFoldLeft_1/Transform
+  - first:
+      4: 400012
+    second: paper peach_GO/paper peach_GO/DressFoldMid/Transform
+  - first:
+      4: 400014
+    second: paper peach_GO/paper peach_GO/DressFoldRight/Transform
+  - first:
+      4: 400016
+    second: paper peach_GO/paper peach_GO/DressHipLeftBottom/Transform
+  - first:
+      4: 400018
+    second: paper peach_GO/paper peach_GO/DressHipLeftTop/Transform
+  - first:
+      4: 400020
+    second: paper peach_GO/paper peach_GO/DressHipRightBottom/Transform
+  - first:
+      4: 400022
+    second: paper peach_GO/paper peach_GO/DressHipRightTop/Transform
+  - first:
+      4: 400024
+    second: paper peach_GO/paper peach_GO/Ear/Transform
+  - first:
+      4: 400026
+    second: paper peach_GO/paper peach_GO/Earring/Transform
+  - first:
+      4: 400028
+    second: paper peach_GO/paper peach_GO/Face/Transform
+  - first:
+      4: 400030
+    second: paper peach_GO/paper peach_GO/HairLeft/Transform
+  - first:
+      4: 400032
+    second: paper peach_GO/paper peach_GO/HairLeftBottom/Transform
+  - first:
+      4: 400034
+    second: paper peach_GO/paper peach_GO/HairLeftBottom2/Transform
+  - first:
+      4: 400036
+    second: paper peach_GO/paper peach_GO/HairRight/Transform
+  - first:
+      4: 400038
+    second: paper peach_GO/paper peach_GO/HairRightBottom/Transform
+  - first:
+      4: 400040
+    second: paper peach_GO/paper peach_GO/HairSideBurn/Transform
+  - first:
+      4: 400042
+    second: paper peach_GO/paper peach_GO/LeftArm/Transform
+  - first:
+      4: 400044
+    second: paper peach_GO/paper peach_GO/LeftGlove/Transform
+  - first:
+      4: 400046
+    second: paper peach_GO/paper peach_GO/LeftShoulder/Transform
+  - first:
+      4: 400048
+    second: paper peach_GO/paper peach_GO/RightArm/Transform
+  - first:
+      4: 400050
+    second: paper peach_GO/paper peach_GO/RightGlove/Transform
+  - first:
+      4: 400052
+    second: paper peach_GO/paper peach_GO/RightShoulder/Transform
+  - first:
+      4: 400054
+    second: paper peach_GO/paper peach_GO/bone_1/Transform
+  - first:
+      4: 400056
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400058
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/Transform
+  - first:
+      4: 400060
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_8/Transform
+  - first:
+      4: 400062
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_7/bone_9/Transform
+  - first:
+      4: 400064
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_10/Transform
+  - first:
+      4: 400066
+    second: paper peach_GO/paper peach_GO/bone_1/bone_3/Transform
+  - first:
+      4: 400068
+    second: paper peach_GO/paper peach_GO/bone_1/bone_3/bone_4/Transform
+  - first:
+      4: 400070
+    second: paper peach_GO/paper peach_GO/bone_1/bone_5/Transform
+  - first:
+      4: 400072
+    second: paper peach_GO/paper peach_GO/bone_1/bone_5/bone_6/Transform
+  - first:
+      4: 400074
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11/Transform
+  - first:
+      4: 400076
+    second: paper peach_GO/paper peach_GO/bone_1/bone_2/bone_11/bone_12/Transform
+  - first:
+      4: 400078
+    second: paper peach_GO/paper peach_GO/bone_1/bone_13/Transform
+  - first:
+      4: 400080
+    second: paper peach_GO/paper peach_GO/bone_1/bone_14/Transform
+  - first:
+      4: 400082
+    second: paper peach_GO/paper peach_GO/bone_1/bone_15/Transform
+  - first:
+      4: 400084
+    second: paper peach_GO/paper peach_GO/bone_1/bone_16/Transform
+  - first:
+      4: 400086
+    second: paper peach_GO/paper peach_GO/bone_1/bone_17/Transform
+  - first:
+      4: 400088
+    second: paper peach_GO/paper peach_GO/bone_1/bone_18/Transform
+  - first:
+      4: 400090
+    second: paper peach_GO/paper peach_GO/bone_1/bone_19/Transform
+  - first:
+      4: 400092
+    second: paper peach_GO/paper peach_GO/bone_1/bone_20/Transform
+  - first:
+      4: 400094
+    second: paper peach_GO/paper peach_GO/FaceKissy/Transform
+  - first:
+      4: 400096
+    second: paper peach_GO/paper peach_GO/HurtFace/Transform
+  - first:
+      4: 400098
+    second: paper peach_GO/paper peach_GO/LeftGloveOpenPalm/Transform
+  - first:
+      4: 400100
+    second: paper peach_GO/paper peach_GO/RightGloveOpenPalm/Transform
+  - first:
+      28: 2800000
+    second: paper peach
+  - first:
+      114: 11400000
+    second: paper peach_GO/paper peach_GO/bangs/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: paper peach_GO/paper peach_GO/Chest/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400004
+    second: paper peach_GO/paper peach_GO/Crown/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: paper peach_GO/paper peach_GO/DressFoldLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: paper peach_GO/paper peach_GO/DressFoldLeft_1/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: paper peach_GO/paper peach_GO/DressFoldMid/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400012
+    second: paper peach_GO/paper peach_GO/DressFoldRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400014
+    second: paper peach_GO/paper peach_GO/DressHipLeftBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400016
+    second: paper peach_GO/paper peach_GO/DressHipLeftTop/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400018
+    second: paper peach_GO/paper peach_GO/DressHipRightBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400020
+    second: paper peach_GO/paper peach_GO/DressHipRightTop/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400022
+    second: paper peach_GO/paper peach_GO/Ear/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400024
+    second: paper peach_GO/paper peach_GO/Earring/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400026
+    second: paper peach_GO/paper peach_GO/Face/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400028
+    second: paper peach_GO/paper peach_GO/HairLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400030
+    second: paper peach_GO/paper peach_GO/HairLeftBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400032
+    second: paper peach_GO/paper peach_GO/HairLeftBottom2/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400034
+    second: paper peach_GO/paper peach_GO/HairRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400036
+    second: paper peach_GO/paper peach_GO/HairRightBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400038
+    second: paper peach_GO/paper peach_GO/HairSideBurn/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400040
+    second: paper peach_GO/paper peach_GO/LeftArm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400042
+    second: paper peach_GO/paper peach_GO/LeftGlove/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400044
+    second: paper peach_GO/paper peach_GO/LeftShoulder/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400046
+    second: paper peach_GO/paper peach_GO/RightArm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400048
+    second: paper peach_GO/paper peach_GO/RightGlove/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400050
+    second: paper peach_GO/paper peach_GO/RightShoulder/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400052
+    second: paper peach_GO/paper peach_GO/HurtFace/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400054
+    second: paper peach_GO/paper peach_GO/FaceKissy/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400056
+    second: paper peach_GO/paper peach_GO/LeftGloveOpenPalm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400058
+    second: paper peach_GO/paper peach_GO/RightGloveOpenPalm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: paper peach_GO/paper peach_GO/bangs/SpriteRenderer
+  - first:
+      212: 21200002
+    second: paper peach_GO/paper peach_GO/Chest/SpriteRenderer
+  - first:
+      212: 21200004
+    second: paper peach_GO/paper peach_GO/Crown/SpriteRenderer
+  - first:
+      212: 21200006
+    second: paper peach_GO/paper peach_GO/DressFoldLeft/SpriteRenderer
+  - first:
+      212: 21200008
+    second: paper peach_GO/paper peach_GO/DressFoldLeft_1/SpriteRenderer
+  - first:
+      212: 21200010
+    second: paper peach_GO/paper peach_GO/DressFoldMid/SpriteRenderer
+  - first:
+      212: 21200012
+    second: paper peach_GO/paper peach_GO/DressFoldRight/SpriteRenderer
+  - first:
+      212: 21200014
+    second: paper peach_GO/paper peach_GO/DressHipLeftBottom/SpriteRenderer
+  - first:
+      212: 21200016
+    second: paper peach_GO/paper peach_GO/DressHipLeftTop/SpriteRenderer
+  - first:
+      212: 21200018
+    second: paper peach_GO/paper peach_GO/DressHipRightBottom/SpriteRenderer
+  - first:
+      212: 21200020
+    second: paper peach_GO/paper peach_GO/DressHipRightTop/SpriteRenderer
+  - first:
+      212: 21200022
+    second: paper peach_GO/paper peach_GO/Ear/SpriteRenderer
+  - first:
+      212: 21200024
+    second: paper peach_GO/paper peach_GO/Earring/SpriteRenderer
+  - first:
+      212: 21200026
+    second: paper peach_GO/paper peach_GO/Face/SpriteRenderer
+  - first:
+      212: 21200028
+    second: paper peach_GO/paper peach_GO/HairLeft/SpriteRenderer
+  - first:
+      212: 21200030
+    second: paper peach_GO/paper peach_GO/HairLeftBottom/SpriteRenderer
+  - first:
+      212: 21200032
+    second: paper peach_GO/paper peach_GO/HairLeftBottom2/SpriteRenderer
+  - first:
+      212: 21200034
+    second: paper peach_GO/paper peach_GO/HairRight/SpriteRenderer
+  - first:
+      212: 21200036
+    second: paper peach_GO/paper peach_GO/HairRightBottom/SpriteRenderer
+  - first:
+      212: 21200038
+    second: paper peach_GO/paper peach_GO/HairSideBurn/SpriteRenderer
+  - first:
+      212: 21200040
+    second: paper peach_GO/paper peach_GO/LeftArm/SpriteRenderer
+  - first:
+      212: 21200042
+    second: paper peach_GO/paper peach_GO/LeftGlove/SpriteRenderer
+  - first:
+      212: 21200044
+    second: paper peach_GO/paper peach_GO/LeftShoulder/SpriteRenderer
+  - first:
+      212: 21200046
+    second: paper peach_GO/paper peach_GO/RightArm/SpriteRenderer
+  - first:
+      212: 21200048
+    second: paper peach_GO/paper peach_GO/RightGlove/SpriteRenderer
+  - first:
+      212: 21200050
+    second: paper peach_GO/paper peach_GO/RightShoulder/SpriteRenderer
+  - first:
+      212: 21200052
+    second: paper peach_GO/paper peach_GO/FaceKissy/SpriteRenderer
+  - first:
+      212: 21200054
+    second: paper peach_GO/paper peach_GO/HurtFace/SpriteRenderer
+  - first:
+      212: 21200056
+    second: paper peach_GO/paper peach_GO/LeftGloveOpenPalm/SpriteRenderer
+  - first:
+      212: 21200058
+    second: paper peach_GO/paper peach_GO/RightGloveOpenPalm/SpriteRenderer
+  - first:
+      213: 21300000
+    second: a9259ece0e03a8b4c90726a75a8192a8
+  - first:
+      213: 21300002
+    second: f03b09ad44c25254290414810c8907f6
+  - first:
+      213: 21300004
+    second: c24281547098aad4f981997527775269
+  - first:
+      213: 21300006
+    second: 5ae1624b7e8ff7f41adb93b570b9e0dc
+  - first:
+      213: 21300008
+    second: 92eafacfaa66bda42926bd57fd824157
+  - first:
+      213: 21300010
+    second: 08dc3f4b7fea9c84fbdfca70a286bb3a
+  - first:
+      213: 21300012
+    second: f47d7a3ceedcb2041a61dc94d026796a
+  - first:
+      213: 21300014
+    second: d9ef487d02a5604439961da495e6ca86
+  - first:
+      213: 21300016
+    second: 439a099e16b707441a31ab7b0dbd8ca3
+  - first:
+      213: 21300018
+    second: f8a34e681bb6ca0419bb22f6e2f73423
+  - first:
+      213: 21300020
+    second: 0c7e94a0d1d828c4481bf5fc208e720e
+  - first:
+      213: 21300022
+    second: 66803cb626d0b2a4585729b5fbf8efb0
+  - first:
+      213: 21300024
+    second: 3becf05b82a278b4baa3289986ef6213
+  - first:
+      213: 21300026
+    second: 4aa12495a554f2f42ad92da5fb211c7e
+  - first:
+      213: 21300028
+    second: 2d740bd58e838fd4880fe00ffdd8dbd0
+  - first:
+      213: 21300030
+    second: 7ed8dbc61f68d8f4c81ad947343e9b15
+  - first:
+      213: 21300032
+    second: 8322524564e261842808d4c75544bcf1
+  - first:
+      213: 21300034
+    second: 70bb30d7105cc7d488b596fce61b03b5
+  - first:
+      213: 21300036
+    second: ba7c9d64696443649bc5c8d3a46c536f
+  - first:
+      213: 21300038
+    second: 0ec75586f5c359f469f507ff52c276a5
+  - first:
+      213: 21300040
+    second: 6db0375020f3c07459b1b5a896cdffe2
+  - first:
+      213: 21300042
+    second: 7eb26551a38eed64d80aa30e2f28c6c6
+  - first:
+      213: 21300044
+    second: 90df75e4c33d1d14a8aa2d262ef2fcfe
+  - first:
+      213: 21300046
+    second: 6e4cda8f2cbff1347bab3d492b3cecfa
+  - first:
+      213: 21300048
+    second: 2c0749fc2e5ce5b4498e25b9f2f754db
+  - first:
+      213: 21300050
+    second: f7a8ea2d67b9daf4993082404961d4f2
+  - first:
+      213: 21300052
+    second: f0a6c52063bccbc44937477b286ff5d6
+  - first:
+      213: 21300054
+    second: 0ecc4a052a7d24b41aa82ae4bbe4dbdb
+  - first:
+      213: 21300056
+    second: 3bf681da3961a464f9d394d0fb2a0e1f
+  - first:
+      213: 21300058
+    second: 5a5f1d745d42c7d42bc01c53dc52f430
+  - first:
+      1001: 100100000
+    second: paper peach_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -254,6 +643,7 @@ ScriptedImporter:
     maxTextureSizeSet: 0
     compressionQualitySet: 0
     textureFormatSet: 0
+    applyGammaDecoding: 0
   spriteImportData:
   - name: 
     originalName: 
@@ -267,6 +657,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -290,6 +681,7 @@ ScriptedImporter:
       width: 58
       height: 55
     spriteID: a9259ece0e03a8b4c90726a75a8192a8
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 27.179016, y: -48.460785, z: 0}
@@ -606,6 +998,7 @@ ScriptedImporter:
       width: 100
       height: 78
     spriteID: f03b09ad44c25254290414810c8907f6
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 2.1790314, y: -44.460785, z: 0}
@@ -1013,6 +1406,7 @@ ScriptedImporter:
       width: 27
       height: 42
     spriteID: c24281547098aad4f981997527775269
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: -31.820984, y: -16.460785, z: 0}
@@ -1401,6 +1795,7 @@ ScriptedImporter:
       width: 22
       height: 23
     spriteID: 5ae1624b7e8ff7f41adb93b570b9e0dc
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: -41.820984, y: -10.460785, z: 0}
@@ -1624,6 +2019,7 @@ ScriptedImporter:
       width: 28
       height: 28
     spriteID: 92eafacfaa66bda42926bd57fd824157
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: -40.820984, y: -22.460785, z: 0}
@@ -1880,6 +2276,7 @@ ScriptedImporter:
       width: 48
       height: 67
     spriteID: 08dc3f4b7fea9c84fbdfca70a286bb3a
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 5.601837, y: 54.15555, z: 0}
@@ -2271,6 +2668,7 @@ ScriptedImporter:
       width: 25
       height: 30
     spriteID: f47d7a3ceedcb2041a61dc94d026796a
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 1.5470276, y: 37.910004, z: 0}
@@ -2557,6 +2955,7 @@ ScriptedImporter:
       width: 67
       height: 71
     spriteID: d9ef487d02a5604439961da495e6ca86
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 57.17903, y: -50.460785, z: 0}
@@ -2944,6 +3343,7 @@ ScriptedImporter:
       width: 83
       height: 93
     spriteID: 439a099e16b707441a31ab7b0dbd8ca3
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 30.179031, y: -1.4607849, z: 0}
@@ -3266,6 +3666,7 @@ ScriptedImporter:
       width: 89
       height: 41
     spriteID: f8a34e681bb6ca0419bb22f6e2f73423
+    internalID: 0
     spriteBone:
     - name: bone_18
       position: {x: 12.1409, y: 23.164124, z: 0}
@@ -3758,6 +4159,7 @@ ScriptedImporter:
       width: 85
       height: 46
     spriteID: 0c7e94a0d1d828c4481bf5fc208e720e
+    internalID: 0
     spriteBone:
     - name: bone_17
       position: {x: 10.634705, y: 28.312729, z: 0}
@@ -4219,6 +4621,7 @@ ScriptedImporter:
       width: 46
       height: 41
     spriteID: 66803cb626d0b2a4585729b5fbf8efb0
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 41.147705, y: 37.069427, z: 0}
@@ -4685,6 +5088,7 @@ ScriptedImporter:
       width: 38
       height: 37
     spriteID: 3becf05b82a278b4baa3289986ef6213
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 33.147705, y: 23.069427, z: 0}
@@ -5029,6 +5433,7 @@ ScriptedImporter:
       width: 66
       height: 87
     spriteID: 4aa12495a554f2f42ad92da5fb211c7e
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 16.147705, y: 7.0694275, z: 0}
@@ -5403,6 +5808,7 @@ ScriptedImporter:
       width: 86
       height: 124
     spriteID: 2d740bd58e838fd4880fe00ffdd8dbd0
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 38.147705, y: 123.06943, z: 0}
@@ -5762,6 +6168,7 @@ ScriptedImporter:
       width: 83
       height: 123
     spriteID: 7ed8dbc61f68d8f4c81ad947343e9b15
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: -14.852295, y: 121.06943, z: 0}
@@ -6152,6 +6559,7 @@ ScriptedImporter:
       width: 94
       height: 131
     spriteID: 8322524564e261842808d4c75544bcf1
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: -36.852295, y: 121.06943, z: 0}
@@ -6530,6 +6938,7 @@ ScriptedImporter:
       width: 71
       height: 127
     spriteID: 70bb30d7105cc7d488b596fce61b03b5
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 70.147705, y: 122.06943, z: 0}
@@ -6898,6 +7307,7 @@ ScriptedImporter:
       width: 49
       height: 50
     spriteID: ba7c9d64696443649bc5c8d3a46c536f
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 19.547028, y: 23.910004, z: 0}
@@ -7209,6 +7619,7 @@ ScriptedImporter:
       width: 49
       height: 61
     spriteID: 0ec75586f5c359f469f507ff52c276a5
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 33.47937, y: 47.69818, z: 0}
@@ -7600,6 +8011,7 @@ ScriptedImporter:
       width: 26
       height: 29
     spriteID: 6db0375020f3c07459b1b5a896cdffe2
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 12.502869, y: 35.917847, z: 0}
@@ -7866,6 +8278,7 @@ ScriptedImporter:
       width: 46
       height: 46
     spriteID: 7eb26551a38eed64d80aa30e2f28c6c6
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 15.502869, y: 23.917847, z: 0}
@@ -8188,6 +8601,7 @@ ScriptedImporter:
       width: 61
       height: 44
     spriteID: 90df75e4c33d1d14a8aa2d262ef2fcfe
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 15.179016, y: -107.460785, z: 0}
@@ -8562,6 +8976,7 @@ ScriptedImporter:
       width: 93
       height: 93
     spriteID: 6e4cda8f2cbff1347bab3d492b3cecfa
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: -10.820969, y: 84.539215, z: 0}
@@ -8952,6 +9367,7 @@ ScriptedImporter:
       width: 93
       height: 130
     spriteID: 2c0749fc2e5ce5b4498e25b9f2f754db
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: -9.820969, y: 73.539215, z: 0}
@@ -9332,6 +9748,7 @@ ScriptedImporter:
       width: 56
       height: 117
     spriteID: f7a8ea2d67b9daf4993082404961d4f2
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 48.17903, y: 46.539215, z: 0}
@@ -9700,6 +10117,7 @@ ScriptedImporter:
       width: 83
       height: 93
     spriteID: f0a6c52063bccbc44937477b286ff5d6
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 30.179031, y: -1.4607849, z: 0}
@@ -10022,6 +10440,7 @@ ScriptedImporter:
       width: 83
       height: 93
     spriteID: 0ecc4a052a7d24b41aa82ae4bbe4dbdb
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 30.179031, y: -1.4607849, z: 0}
@@ -10344,6 +10763,7 @@ ScriptedImporter:
       width: 55
       height: 61
     spriteID: 3bf681da3961a464f9d394d0fb2a0e1f
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 5.601837, y: 50.15555, z: 0}
@@ -10707,6 +11127,7 @@ ScriptedImporter:
       width: 54
       height: 68
     spriteID: 5a5f1d745d42c7d42bc01c53dc52f430
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 43.47937, y: 53.69818, z: 0}
@@ -11044,6 +11465,10 @@ ScriptedImporter:
   importedTextureWidth: 512
   importedTextureHeight: 512
   documentSize: {x: 488, y: 565}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 512
   textureActualHeight: 512
   spritePackingTag: 
@@ -11371,6 +11796,8 @@ ScriptedImporter:
         height: 55
       spriteId: a9259ece0e03a8b4c90726a75a8192a8
       bones: 0100000006000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 213
         y: 352
@@ -11378,6 +11805,8 @@ ScriptedImporter:
         height: 78
       spriteId: f03b09ad44c25254290414810c8907f6
       bones: 0100000007000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 247
         y: 324
@@ -11385,6 +11814,8 @@ ScriptedImporter:
         height: 42
       spriteId: c24281547098aad4f981997527775269
       bones: 010000000b000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 257
         y: 318
@@ -11392,6 +11823,8 @@ ScriptedImporter:
         height: 23
       spriteId: 5ae1624b7e8ff7f41adb93b570b9e0dc
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 256
         y: 330
@@ -11399,6 +11832,8 @@ ScriptedImporter:
         height: 28
       spriteId: 92eafacfaa66bda42926bd57fd824157
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 264
         y: 204
@@ -11406,6 +11841,8 @@ ScriptedImporter:
         height: 67
       spriteId: 08dc3f4b7fea9c84fbdfca70a286bb3a
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 264
         y: 208
@@ -11413,6 +11850,8 @@ ScriptedImporter:
         height: 61
       spriteId: 3bf681da3961a464f9d394d0fb2a0e1f
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 261
         y: 253
@@ -11420,6 +11859,8 @@ ScriptedImporter:
         height: 30
       spriteId: f47d7a3ceedcb2041a61dc94d026796a
       bones: 04000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 158
         y: 358
@@ -11427,6 +11868,8 @@ ScriptedImporter:
         height: 71
       spriteId: d9ef487d02a5604439961da495e6ca86
       bones: 0100000008000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 185
         y: 309
@@ -11434,6 +11877,8 @@ ScriptedImporter:
         height: 93
       spriteId: 439a099e16b707441a31ab7b0dbd8ca3
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 185
         y: 309
@@ -11441,6 +11886,8 @@ ScriptedImporter:
         height: 93
       spriteId: f0a6c52063bccbc44937477b286ff5d6
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 185
         y: 309
@@ -11448,6 +11895,8 @@ ScriptedImporter:
         height: 93
       spriteId: 0ecc4a052a7d24b41aa82ae4bbe4dbdb
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 215
         y: 211
@@ -11455,6 +11904,8 @@ ScriptedImporter:
         height: 41
       spriteId: f8a34e681bb6ca0419bb22f6e2f73423
       bones: 11000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 216
         y: 218
@@ -11462,6 +11913,8 @@ ScriptedImporter:
         height: 46
       spriteId: 0c7e94a0d1d828c4481bf5fc208e720e
       bones: 10000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 170
         y: 210
@@ -11469,6 +11922,8 @@ ScriptedImporter:
         height: 41
       spriteId: 66803cb626d0b2a4585729b5fbf8efb0
       bones: 0000000013000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 178
         y: 224
@@ -11476,6 +11931,8 @@ ScriptedImporter:
         height: 37
       spriteId: 3becf05b82a278b4baa3289986ef6213
       bones: 0000000012000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 195
         y: 240
@@ -11483,6 +11940,8 @@ ScriptedImporter:
         height: 87
       spriteId: 4aa12495a554f2f42ad92da5fb211c7e
       bones: 00000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 173
         y: 124
@@ -11490,6 +11949,8 @@ ScriptedImporter:
         height: 124
       spriteId: 2d740bd58e838fd4880fe00ffdd8dbd0
       bones: 000000000d000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 226
         y: 126
@@ -11497,6 +11958,8 @@ ScriptedImporter:
         height: 123
       spriteId: 7ed8dbc61f68d8f4c81ad947343e9b15
       bones: 000000000e000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 248
         y: 126
@@ -11504,6 +11967,8 @@ ScriptedImporter:
         height: 131
       spriteId: 8322524564e261842808d4c75544bcf1
       bones: 000000000f000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 141
         y: 125
@@ -11511,6 +11976,8 @@ ScriptedImporter:
         height: 127
       spriteId: 70bb30d7105cc7d488b596fce61b03b5
       bones: 000000000c000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 243
         y: 267
@@ -11518,6 +11985,8 @@ ScriptedImporter:
         height: 50
       spriteId: ba7c9d64696443649bc5c8d3a46c536f
       bones: 04000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 146
         y: 210
@@ -11525,6 +11994,8 @@ ScriptedImporter:
         height: 68
       spriteId: 5a5f1d745d42c7d42bc01c53dc52f430
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 156
         y: 216
@@ -11532,6 +12003,8 @@ ScriptedImporter:
         height: 61
       spriteId: 0ec75586f5c359f469f507ff52c276a5
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 180
         y: 256
@@ -11539,6 +12012,8 @@ ScriptedImporter:
         height: 29
       spriteId: 6db0375020f3c07459b1b5a896cdffe2
       bones: 02000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 177
         y: 268
@@ -11546,6 +12021,8 @@ ScriptedImporter:
         height: 46
       spriteId: 7eb26551a38eed64d80aa30e2f28c6c6
       bones: 02000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 200
         y: 415
@@ -11553,6 +12030,8 @@ ScriptedImporter:
         height: 44
       spriteId: 90df75e4c33d1d14a8aa2d262ef2fcfe
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 226
         y: 223
@@ -11560,6 +12039,8 @@ ScriptedImporter:
         height: 93
       spriteId: 6e4cda8f2cbff1347bab3d492b3cecfa
       bones: 010000000a000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 225
         y: 234
@@ -11567,6 +12048,8 @@ ScriptedImporter:
         height: 130
       spriteId: 2c0749fc2e5ce5b4498e25b9f2f754db
       bones: 010000000a000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 167
         y: 261
@@ -11574,48 +12057,12 @@ ScriptedImporter:
         height: 117
       spriteId: f7a8ea2d67b9daf4993082404961d4f2
       bones: 0100000009000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
-  boneGOs:
-  - go: {fileID: 100054, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 0
-  - go: {fileID: 100056, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 1
-  - go: {fileID: 100066, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 2
-  - go: {fileID: 100068, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 3
-  - go: {fileID: 100070, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 4
-  - go: {fileID: 100072, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 5
-  - go: {fileID: 100058, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 6
-  - go: {fileID: 100060, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 7
-  - go: {fileID: 100062, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 8
-  - go: {fileID: 100064, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 9
-  - go: {fileID: 100074, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 10
-  - go: {fileID: 100076, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 11
-  - go: {fileID: 100078, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 12
-  - go: {fileID: 100080, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 13
-  - go: {fileID: 100082, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 14
-  - go: {fileID: 100084, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 15
-  - go: {fileID: 100086, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 16
-  - go: {fileID: 100088, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 17
-  - go: {fileID: 100090, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 18
-  - go: {fileID: 100092, guid: 3c43fd8e82d99ca4e8937940b3d846c5, type: 3}
-    index: 19
+    characterGroups: []
   generateGOHierarchy: 0
   textureAssetName: paper peach
   prefabAssetName: paper peach_GO
+  spriteLibAssetName: paper peach Sprite Lib
+  secondarySpriteTextures: []

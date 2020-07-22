@@ -1,87 +1,246 @@
 fileFormatVersion: 2
 guid: 2aa7bd62921ffef4c8e8d31ba710f10b
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: paper goombella2_GO/paper goombella2_GO
-    100002: paper goombella2_GO/paper goombella2_GO/Body
-    100004: paper goombella2_GO/paper goombella2_GO/Eyes
-    100006: paper goombella2_GO/paper goombella2_GO/EyesClosed
-    100008: paper goombella2_GO/paper goombella2_GO/Hair
-    100010: paper goombella2_GO/paper goombella2_GO/HatBottom
-    100012: paper goombella2_GO/paper goombella2_GO/HatTop
-    100014: paper goombella2_GO/paper goombella2_GO/LeftFoot
-    100016: paper goombella2_GO/paper goombella2_GO/RightFoot
-    100018: paper goombella2_GO/paper goombella2_GO/bone_1
-    100020: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2
-    100022: paper goombella2_GO/paper goombella2_GO/bone_1/bone_4
-    100024: paper goombella2_GO/paper goombella2_GO/bone_1/bone_5
-    100026: paper goombella2_GO/paper goombella2_GO/Face
-    100028: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2/bone_3
-    100030: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth
-    100032: paper goombella2_GO/paper goombella2_GO/SadEyes
-    100034: paper goombella2_GO/paper goombella2_GO/EyesWinky
-    100036: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall
-    400000: paper goombella2_GO/paper goombella2_GO/Transform
-    400002: paper goombella2_GO/paper goombella2_GO/Body/Transform
-    400004: paper goombella2_GO/paper goombella2_GO/Eyes/Transform
-    400006: paper goombella2_GO/paper goombella2_GO/EyesClosed/Transform
-    400008: paper goombella2_GO/paper goombella2_GO/Hair/Transform
-    400010: paper goombella2_GO/paper goombella2_GO/HatBottom/Transform
-    400012: paper goombella2_GO/paper goombella2_GO/HatTop/Transform
-    400014: paper goombella2_GO/paper goombella2_GO/LeftFoot/Transform
-    400016: paper goombella2_GO/paper goombella2_GO/RightFoot/Transform
-    400018: paper goombella2_GO/paper goombella2_GO/bone_1/Transform
-    400020: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2/Transform
-    400022: paper goombella2_GO/paper goombella2_GO/bone_1/bone_4/Transform
-    400024: paper goombella2_GO/paper goombella2_GO/bone_1/bone_5/Transform
-    400026: paper goombella2_GO/paper goombella2_GO/Face/Transform
-    400028: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2/bone_3/Transform
-    400030: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth/Transform
-    400032: paper goombella2_GO/paper goombella2_GO/SadEyes/Transform
-    400034: paper goombella2_GO/paper goombella2_GO/EyesWinky/Transform
-    400036: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall/Transform
-    2800000: paper goombella2
-    11400000: paper goombella2_GO/paper goombella2_GO/Body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400004: paper goombella2_GO/paper goombella2_GO/SadEyes/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: paper goombella2_GO/paper goombella2_GO/Hair/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: paper goombella2_GO/paper goombella2_GO/HatBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: paper goombella2_GO/paper goombella2_GO/HatTop/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400012: paper goombella2_GO/paper goombella2_GO/LeftFoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400014: paper goombella2_GO/paper goombella2_GO/RightFoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400016: paper goombella2_GO/paper goombella2_GO/Eyes/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400018: paper goombella2_GO/paper goombella2_GO/EyesClosed/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400020: paper goombella2_GO/paper goombella2_GO/Face/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400022: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400024: paper goombella2_GO/paper goombella2_GO/EyesWinky/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: paper goombella2_GO/paper goombella2_GO/Body/SpriteRenderer
-    21200002: paper goombella2_GO/paper goombella2_GO/Eyes/SpriteRenderer
-    21200004: paper goombella2_GO/paper goombella2_GO/EyesClosed/SpriteRenderer
-    21200006: paper goombella2_GO/paper goombella2_GO/Hair/SpriteRenderer
-    21200008: paper goombella2_GO/paper goombella2_GO/HatBottom/SpriteRenderer
-    21200010: paper goombella2_GO/paper goombella2_GO/HatTop/SpriteRenderer
-    21200012: paper goombella2_GO/paper goombella2_GO/LeftFoot/SpriteRenderer
-    21200014: paper goombella2_GO/paper goombella2_GO/RightFoot/SpriteRenderer
-    21200016: paper goombella2_GO/paper goombella2_GO/Face/SpriteRenderer
-    21200018: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth/SpriteRenderer
-    21200020: paper goombella2_GO/paper goombella2_GO/SadEyes/SpriteRenderer
-    21200022: paper goombella2_GO/paper goombella2_GO/EyesWinky/SpriteRenderer
-    21200024: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall/SpriteRenderer
-    21300000: c28e02eb9f5a31340b75c920dc495193
-    21300002: a405a7ad30ae0234f9321354c265d6c6
-    21300004: 43790a45e3805f14f9aba3d98f329514
-    21300006: b7a13b86ec3618849a92215e2dd833db
-    21300008: 7ee6ee2d051709046b00cc6eed3c42ee
-    21300010: b6c1f28852141a64d8d317e7d6fcc478
-    21300012: 04532db77c09b9a49b85a96421588229
-    21300014: 1af6048b6f935014d89c3f9a55a7ee41
-    21300016: 05936b68ebc6f5a439ad6e720bc4863c
-    21300018: e9ba7f0729347754c935cd0295abc336
-    21300020: 7141c8635eddba346ae81781cfbd5a70
-    21300022: 6975a1b9dd714664e8b218accc184611
-    21300024: 2567ee495c40a22418c5546e55940d65
-    100100000: paper goombella2_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: paper goombella2_GO/paper goombella2_GO
+  - first:
+      1: 100002
+    second: paper goombella2_GO/paper goombella2_GO/Body
+  - first:
+      1: 100004
+    second: paper goombella2_GO/paper goombella2_GO/Eyes
+  - first:
+      1: 100006
+    second: paper goombella2_GO/paper goombella2_GO/EyesClosed
+  - first:
+      1: 100008
+    second: paper goombella2_GO/paper goombella2_GO/Hair
+  - first:
+      1: 100010
+    second: paper goombella2_GO/paper goombella2_GO/HatBottom
+  - first:
+      1: 100012
+    second: paper goombella2_GO/paper goombella2_GO/HatTop
+  - first:
+      1: 100014
+    second: paper goombella2_GO/paper goombella2_GO/LeftFoot
+  - first:
+      1: 100016
+    second: paper goombella2_GO/paper goombella2_GO/RightFoot
+  - first:
+      1: 100018
+    second: paper goombella2_GO/paper goombella2_GO/bone_1
+  - first:
+      1: 100020
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2
+  - first:
+      1: 100022
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_4
+  - first:
+      1: 100024
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_5
+  - first:
+      1: 100026
+    second: paper goombella2_GO/paper goombella2_GO/Face
+  - first:
+      1: 100028
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2/bone_3
+  - first:
+      1: 100030
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth
+  - first:
+      1: 100032
+    second: paper goombella2_GO/paper goombella2_GO/SadEyes
+  - first:
+      1: 100034
+    second: paper goombella2_GO/paper goombella2_GO/EyesWinky
+  - first:
+      1: 100036
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall
+  - first:
+      4: 400000
+    second: paper goombella2_GO/paper goombella2_GO/Transform
+  - first:
+      4: 400002
+    second: paper goombella2_GO/paper goombella2_GO/Body/Transform
+  - first:
+      4: 400004
+    second: paper goombella2_GO/paper goombella2_GO/Eyes/Transform
+  - first:
+      4: 400006
+    second: paper goombella2_GO/paper goombella2_GO/EyesClosed/Transform
+  - first:
+      4: 400008
+    second: paper goombella2_GO/paper goombella2_GO/Hair/Transform
+  - first:
+      4: 400010
+    second: paper goombella2_GO/paper goombella2_GO/HatBottom/Transform
+  - first:
+      4: 400012
+    second: paper goombella2_GO/paper goombella2_GO/HatTop/Transform
+  - first:
+      4: 400014
+    second: paper goombella2_GO/paper goombella2_GO/LeftFoot/Transform
+  - first:
+      4: 400016
+    second: paper goombella2_GO/paper goombella2_GO/RightFoot/Transform
+  - first:
+      4: 400018
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/Transform
+  - first:
+      4: 400020
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400022
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_4/Transform
+  - first:
+      4: 400024
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_5/Transform
+  - first:
+      4: 400026
+    second: paper goombella2_GO/paper goombella2_GO/Face/Transform
+  - first:
+      4: 400028
+    second: paper goombella2_GO/paper goombella2_GO/bone_1/bone_2/bone_3/Transform
+  - first:
+      4: 400030
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth/Transform
+  - first:
+      4: 400032
+    second: paper goombella2_GO/paper goombella2_GO/SadEyes/Transform
+  - first:
+      4: 400034
+    second: paper goombella2_GO/paper goombella2_GO/EyesWinky/Transform
+  - first:
+      4: 400036
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall/Transform
+  - first:
+      28: 2800000
+    second: paper goombella2
+  - first:
+      114: 11400000
+    second: paper goombella2_GO/paper goombella2_GO/Body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400004
+    second: paper goombella2_GO/paper goombella2_GO/SadEyes/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: paper goombella2_GO/paper goombella2_GO/Hair/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: paper goombella2_GO/paper goombella2_GO/HatBottom/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: paper goombella2_GO/paper goombella2_GO/HatTop/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400012
+    second: paper goombella2_GO/paper goombella2_GO/LeftFoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400014
+    second: paper goombella2_GO/paper goombella2_GO/RightFoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400016
+    second: paper goombella2_GO/paper goombella2_GO/Eyes/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400018
+    second: paper goombella2_GO/paper goombella2_GO/EyesClosed/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400020
+    second: paper goombella2_GO/paper goombella2_GO/Face/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400022
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400024
+    second: paper goombella2_GO/paper goombella2_GO/EyesWinky/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: paper goombella2_GO/paper goombella2_GO/Body/SpriteRenderer
+  - first:
+      212: 21200002
+    second: paper goombella2_GO/paper goombella2_GO/Eyes/SpriteRenderer
+  - first:
+      212: 21200004
+    second: paper goombella2_GO/paper goombella2_GO/EyesClosed/SpriteRenderer
+  - first:
+      212: 21200006
+    second: paper goombella2_GO/paper goombella2_GO/Hair/SpriteRenderer
+  - first:
+      212: 21200008
+    second: paper goombella2_GO/paper goombella2_GO/HatBottom/SpriteRenderer
+  - first:
+      212: 21200010
+    second: paper goombella2_GO/paper goombella2_GO/HatTop/SpriteRenderer
+  - first:
+      212: 21200012
+    second: paper goombella2_GO/paper goombella2_GO/LeftFoot/SpriteRenderer
+  - first:
+      212: 21200014
+    second: paper goombella2_GO/paper goombella2_GO/RightFoot/SpriteRenderer
+  - first:
+      212: 21200016
+    second: paper goombella2_GO/paper goombella2_GO/Face/SpriteRenderer
+  - first:
+      212: 21200018
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouth/SpriteRenderer
+  - first:
+      212: 21200020
+    second: paper goombella2_GO/paper goombella2_GO/SadEyes/SpriteRenderer
+  - first:
+      212: 21200022
+    second: paper goombella2_GO/paper goombella2_GO/EyesWinky/SpriteRenderer
+  - first:
+      212: 21200024
+    second: paper goombella2_GO/paper goombella2_GO/FaceOpenMouthSmall/SpriteRenderer
+  - first:
+      213: 21300000
+    second: c28e02eb9f5a31340b75c920dc495193
+  - first:
+      213: 21300002
+    second: a405a7ad30ae0234f9321354c265d6c6
+  - first:
+      213: 21300004
+    second: 43790a45e3805f14f9aba3d98f329514
+  - first:
+      213: 21300006
+    second: b7a13b86ec3618849a92215e2dd833db
+  - first:
+      213: 21300008
+    second: 7ee6ee2d051709046b00cc6eed3c42ee
+  - first:
+      213: 21300010
+    second: b6c1f28852141a64d8d317e7d6fcc478
+  - first:
+      213: 21300012
+    second: 04532db77c09b9a49b85a96421588229
+  - first:
+      213: 21300014
+    second: 1af6048b6f935014d89c3f9a55a7ee41
+  - first:
+      213: 21300016
+    second: 05936b68ebc6f5a439ad6e720bc4863c
+  - first:
+      213: 21300018
+    second: e9ba7f0729347754c935cd0295abc336
+  - first:
+      213: 21300020
+    second: 7141c8635eddba346ae81781cfbd5a70
+  - first:
+      213: 21300022
+    second: 6975a1b9dd714664e8b218accc184611
+  - first:
+      213: 21300024
+    second: 2567ee495c40a22418c5546e55940d65
+  - first:
+      1001: 100100000
+    second: paper goombella2_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -139,6 +298,7 @@ ScriptedImporter:
     maxTextureSizeSet: 0
     compressionQualitySet: 0
     textureFormatSet: 0
+    applyGammaDecoding: 0
   spriteImportData:
   - name: 
     originalName: 
@@ -152,6 +312,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -175,6 +336,7 @@ ScriptedImporter:
       width: 79
       height: 51
     spriteID: a405a7ad30ae0234f9321354c265d6c6
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 36.456512, y: -35.72463, z: 0}
@@ -548,6 +710,7 @@ ScriptedImporter:
       width: 87
       height: 39
     spriteID: b7a13b86ec3618849a92215e2dd833db
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 40.456512, y: -22.724628, z: 0}
@@ -939,6 +1102,7 @@ ScriptedImporter:
       width: 34
       height: 23
     spriteID: 7ee6ee2d051709046b00cc6eed3c42ee
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 2.6594238, y: 13.072472, z: 0}
@@ -1246,6 +1410,7 @@ ScriptedImporter:
       width: 38
       height: 28
     spriteID: b6c1f28852141a64d8d317e7d6fcc478
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 15.45652, y: 4.3381653, z: 0}
@@ -1566,6 +1731,7 @@ ScriptedImporter:
       width: 34
       height: 22
     spriteID: 04532db77c09b9a49b85a96421588229
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 24.123184, y: 12.0386505, z: 0}
@@ -1862,6 +2028,7 @@ ScriptedImporter:
       width: 66
       height: 82
     spriteID: 1af6048b6f935014d89c3f9a55a7ee41
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 19.876812, y: 72.34302, z: 0}
@@ -2276,6 +2443,7 @@ ScriptedImporter:
       width: 65
       height: 39
     spriteID: 05936b68ebc6f5a439ad6e720bc4863c
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 34.456516, y: -18.72464, z: 0}
@@ -2748,6 +2916,7 @@ ScriptedImporter:
       width: 77
       height: 67
     spriteID: 7141c8635eddba346ae81781cfbd5a70
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 34.456516, y: 5.27536, z: 0}
@@ -3090,6 +3259,7 @@ ScriptedImporter:
       width: 60
       height: 43
     spriteID: c28e02eb9f5a31340b75c920dc495193
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 29.456512, y: -18.724628, z: 0}
@@ -3607,6 +3777,7 @@ ScriptedImporter:
       width: 65
       height: 39
     spriteID: 43790a45e3805f14f9aba3d98f329514
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 34.456516, y: -18.72464, z: 0}
@@ -4069,6 +4240,7 @@ ScriptedImporter:
       width: 77
       height: 67
     spriteID: e9ba7f0729347754c935cd0295abc336
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 34.456516, y: 5.2753754, z: 0}
@@ -4411,6 +4583,7 @@ ScriptedImporter:
       width: 57
       height: 43
     spriteID: 6975a1b9dd714664e8b218accc184611
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 26.456516, y: -18.72464, z: 0}
@@ -4919,6 +5092,7 @@ ScriptedImporter:
       width: 77
       height: 76
     spriteID: 2567ee495c40a22418c5546e55940d65
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 34.456516, y: 5.2753716, z: 0}
@@ -5226,6 +5400,10 @@ ScriptedImporter:
   importedTextureWidth: 256
   importedTextureHeight: 512
   documentSize: {x: 109, y: 116}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 256
   textureActualHeight: 512
   spritePackingTag: 
@@ -5359,6 +5537,8 @@ ScriptedImporter:
         height: 43
       spriteId: c28e02eb9f5a31340b75c920dc495193
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 7
         y: 46
@@ -5366,6 +5546,8 @@ ScriptedImporter:
         height: 39
       spriteId: 43790a45e3805f14f9aba3d98f329514
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 15
         y: 46
@@ -5373,6 +5555,8 @@ ScriptedImporter:
         height: 43
       spriteId: 6975a1b9dd714664e8b218accc184611
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 7
         y: 46
@@ -5380,6 +5564,8 @@ ScriptedImporter:
         height: 39
       spriteId: 05936b68ebc6f5a439ad6e720bc4863c
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 5
         y: 63
@@ -5387,6 +5573,8 @@ ScriptedImporter:
         height: 51
       spriteId: a405a7ad30ae0234f9321354c265d6c6
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 7
         y: 22
@@ -5394,6 +5582,8 @@ ScriptedImporter:
         height: 67
       spriteId: e9ba7f0729347754c935cd0295abc336
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 7
         y: 22
@@ -5401,6 +5591,8 @@ ScriptedImporter:
         height: 67
       spriteId: 7141c8635eddba346ae81781cfbd5a70
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 7
         y: 22
@@ -5408,6 +5600,8 @@ ScriptedImporter:
         height: 76
       spriteId: 2567ee495c40a22418c5546e55940d65
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 1
         y: 50
@@ -5415,6 +5609,8 @@ ScriptedImporter:
         height: 39
       spriteId: b7a13b86ec3618849a92215e2dd833db
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 53
         y: 0
@@ -5422,6 +5618,8 @@ ScriptedImporter:
         height: 23
       spriteId: 7ee6ee2d051709046b00cc6eed3c42ee
       bones: 04000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 26
         y: 4
@@ -5429,6 +5627,8 @@ ScriptedImporter:
         height: 28
       spriteId: b6c1f28852141a64d8d317e7d6fcc478
       bones: 00000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 4
         y: 2
@@ -5436,6 +5636,8 @@ ScriptedImporter:
         height: 22
       spriteId: 04532db77c09b9a49b85a96421588229
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 41
         y: 33
@@ -5443,18 +5645,12 @@ ScriptedImporter:
         height: 82
       spriteId: 1af6048b6f935014d89c3f9a55a7ee41
       bones: 02000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
-  boneGOs:
-  - go: {fileID: 100018, guid: 2aa7bd62921ffef4c8e8d31ba710f10b, type: 3}
-    index: 0
-  - go: {fileID: 100020, guid: 2aa7bd62921ffef4c8e8d31ba710f10b, type: 3}
-    index: 1
-  - go: {fileID: 100028, guid: 2aa7bd62921ffef4c8e8d31ba710f10b, type: 3}
-    index: 2
-  - go: {fileID: 100022, guid: 2aa7bd62921ffef4c8e8d31ba710f10b, type: 3}
-    index: 3
-  - go: {fileID: 100024, guid: 2aa7bd62921ffef4c8e8d31ba710f10b, type: 3}
-    index: 4
+    characterGroups: []
   generateGOHierarchy: 0
   textureAssetName: paper goombella2
   prefabAssetName: paper goombella2_GO
+  spriteLibAssetName: paper goombella2 Sprite Lib
+  secondarySpriteTextures: []

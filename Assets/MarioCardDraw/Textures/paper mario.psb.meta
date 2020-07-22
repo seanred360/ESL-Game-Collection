@@ -1,140 +1,405 @@
 fileFormatVersion: 2
 guid: 737878415514d414a9aa56628b8a311d
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: paper mario_GO/paper mario_GO
-    100002: paper mario_GO/paper mario_GO/body
-    100004: paper mario_GO/paper mario_GO/head
-    100006: paper mario_GO/paper mario_GO/leftarm
-    100008: paper mario_GO/paper mario_GO/leftfoot
-    100010: paper mario_GO/paper mario_GO/lefthand
-    100012: paper mario_GO/paper mario_GO/rightarm
-    100014: paper mario_GO/paper mario_GO/rightfoot
-    100016: paper mario_GO/paper mario_GO/righthand
-    100018: paper mario_GO/paper mario_GO/bone_1
-    100020: paper mario_GO/paper mario_GO/bone_1/bone_2
-    100022: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3
-    100024: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4
-    100026: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5
-    100028: paper mario_GO/paper mario_GO/bone_1/bone_6
-    100030: paper mario_GO/paper mario_GO/bone_1/bone_7
-    100032: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8
-    100034: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4/bone_9
-    100036: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8/bone_10
-    100038: paper mario_GO/paper mario_GO/HurtHead
-    100040: paper mario_GO/paper mario_GO/HitHead
-    100042: paper mario_GO/paper mario_GO/HurtHead2
-    100044: paper mario_GO/paper mario_GO/LeftHandOpen
-    100046: paper mario_GO/paper mario_GO/LeftHandSideways
-    100048: paper mario_GO/paper mario_GO/RightHandOpen
-    100050: paper mario_GO/paper mario_GO/OuchHead
-    100054: paper mario_GO/paper mario_GO/RightHandOpen_1
-    100056: paper mario_GO/paper mario_GO/ForewardBody
-    100058: paper mario_GO/paper mario_GO/ForewardHead
-    100060: paper mario_GO/paper mario_GO/LeftFootForeward
-    100062: paper mario_GO/paper mario_GO/LeftHandOpenPalm
-    100064: paper mario_GO/paper mario_GO/LeftThumbsUp
-    100066: paper mario_GO/paper mario_GO/RightArmBent
-    400000: paper mario_GO/paper mario_GO/Transform
-    400002: paper mario_GO/paper mario_GO/body/Transform
-    400004: paper mario_GO/paper mario_GO/head/Transform
-    400006: paper mario_GO/paper mario_GO/leftarm/Transform
-    400008: paper mario_GO/paper mario_GO/leftfoot/Transform
-    400010: paper mario_GO/paper mario_GO/lefthand/Transform
-    400012: paper mario_GO/paper mario_GO/rightarm/Transform
-    400014: paper mario_GO/paper mario_GO/rightfoot/Transform
-    400016: paper mario_GO/paper mario_GO/righthand/Transform
-    400018: paper mario_GO/paper mario_GO/bone_1/Transform
-    400020: paper mario_GO/paper mario_GO/bone_1/bone_2/Transform
-    400022: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/Transform
-    400024: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4/Transform
-    400026: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/Transform
-    400028: paper mario_GO/paper mario_GO/bone_1/bone_6/Transform
-    400030: paper mario_GO/paper mario_GO/bone_1/bone_7/Transform
-    400032: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8/Transform
-    400034: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4/bone_9/Transform
-    400036: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8/bone_10/Transform
-    400038: paper mario_GO/paper mario_GO/HurtHead/Transform
-    400040: paper mario_GO/paper mario_GO/HitHead/Transform
-    400042: paper mario_GO/paper mario_GO/HurtHead2/Transform
-    400044: paper mario_GO/paper mario_GO/LeftHandOpen/Transform
-    400046: paper mario_GO/paper mario_GO/LeftHandSideways/Transform
-    400048: paper mario_GO/paper mario_GO/RightHandOpen/Transform
-    400050: paper mario_GO/paper mario_GO/OuchHead/Transform
-    400054: paper mario_GO/paper mario_GO/RightHandOpen_1/Transform
-    400056: paper mario_GO/paper mario_GO/ForewardBody/Transform
-    400058: paper mario_GO/paper mario_GO/ForewardHead/Transform
-    400060: paper mario_GO/paper mario_GO/LeftFootForeward/Transform
-    400062: paper mario_GO/paper mario_GO/LeftHandOpenPalm/Transform
-    400064: paper mario_GO/paper mario_GO/LeftThumbsUp/Transform
-    400066: paper mario_GO/paper mario_GO/RightArmBent/Transform
-    2800000: paper mario
-    11400000: paper mario_GO/paper mario_GO/body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: paper mario_GO/paper mario_GO/head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400004: paper mario_GO/paper mario_GO/leftarm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: paper mario_GO/paper mario_GO/leftfoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: paper mario_GO/paper mario_GO/lefthand/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: paper mario_GO/paper mario_GO/rightarm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400012: paper mario_GO/paper mario_GO/rightfoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400014: paper mario_GO/paper mario_GO/righthand/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400016: paper mario_GO/paper mario_GO/HurtHead2/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400018: paper mario_GO/paper mario_GO/HitHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400020: paper mario_GO/paper mario_GO/LeftHandOpen/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400022: paper mario_GO/paper mario_GO/LeftHandSideways/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400024: paper mario_GO/paper mario_GO/RightHandOpen/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400026: paper mario_GO/paper mario_GO/HurtHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400028: paper mario_GO/paper mario_GO/OuchHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400030: paper mario_GO/paper mario_GO/ForewardHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400032: paper mario_GO/paper mario_GO/RightHandOpen_1/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400034: paper mario_GO/paper mario_GO/LeftHandOpenPalm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400036: paper mario_GO/paper mario_GO/LeftThumbsUp/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400038: paper mario_GO/paper mario_GO/LeftFootForeward/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: paper mario_GO/paper mario_GO/body/SpriteRenderer
-    21200002: paper mario_GO/paper mario_GO/head/SpriteRenderer
-    21200004: paper mario_GO/paper mario_GO/leftarm/SpriteRenderer
-    21200006: paper mario_GO/paper mario_GO/leftfoot/SpriteRenderer
-    21200008: paper mario_GO/paper mario_GO/lefthand/SpriteRenderer
-    21200010: paper mario_GO/paper mario_GO/rightarm/SpriteRenderer
-    21200012: paper mario_GO/paper mario_GO/rightfoot/SpriteRenderer
-    21200014: paper mario_GO/paper mario_GO/righthand/SpriteRenderer
-    21200016: paper mario_GO/paper mario_GO/HurtHead/SpriteRenderer
-    21200018: paper mario_GO/paper mario_GO/HitHead/SpriteRenderer
-    21200020: paper mario_GO/paper mario_GO/HurtHead2/SpriteRenderer
-    21200022: paper mario_GO/paper mario_GO/LeftHandOpen/SpriteRenderer
-    21200024: paper mario_GO/paper mario_GO/LeftHandSideways/SpriteRenderer
-    21200026: paper mario_GO/paper mario_GO/RightHandOpen/SpriteRenderer
-    21200028: paper mario_GO/paper mario_GO/OuchHead/SpriteRenderer
-    21200032: paper mario_GO/paper mario_GO/RightHandOpen_1/SpriteRenderer
-    21200034: paper mario_GO/paper mario_GO/ForewardBody/SpriteRenderer
-    21200036: paper mario_GO/paper mario_GO/ForewardHead/SpriteRenderer
-    21200038: paper mario_GO/paper mario_GO/LeftFootForeward/SpriteRenderer
-    21200040: paper mario_GO/paper mario_GO/LeftHandOpenPalm/SpriteRenderer
-    21200042: paper mario_GO/paper mario_GO/LeftThumbsUp/SpriteRenderer
-    21200044: paper mario_GO/paper mario_GO/RightArmBent/SpriteRenderer
-    21300000: b40739d355378624ab1562d0f4ac0f17
-    21300002: b2a49fd0c3fa07d40bfab9bc06f7b7db
-    21300004: 4364edeb590636242a366db05c8bc6fc
-    21300006: 836ce30c669551b49af715618261f2b9
-    21300008: 758ffcd6e7e7f5d4da352ca9f35e3835
-    21300010: fe1348fcde68cfa409b25bb4bce90c32
-    21300012: 5c41c0b09dfd5dd43885ccfcb712db8e
-    21300014: 8c4409c4dff124b4fa83b246376de396
-    21300016: bbb8203269251d240867a822827dbc1a
-    21300018: 422321d2cc3a65940949267c929fcdec
-    21300020: b218c20347760174680f16431b2fe8c8
-    21300022: 054a24e99c887a5449e2a955fa0764de
-    21300024: ca9e90f8148ded0479c55715072a9332
-    21300026: e2b635c24d143c44594e4e7f89db3e4c
-    21300028: b4dc0b3740c3d944cac04ffa1239bb62
-    21300030: 71101c5a64b2fee448b421accfafacbf
-    21300032: 86f2940fcc43efe488a2d87e99f151ea
-    21300034: e8799d17d9f8f204e8085922868362ab
-    21300036: b47be5a76b7e9d640b9d5af0c15f5603
-    21300038: d5f6dbdf650b2a244a664de205e8250b
-    21300040: 9bc0a403001134b46aea2d78c02b1a2e
-    21300042: 923a287c18058144c86ff5640045b085
-    100100000: paper mario_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: paper mario_GO/paper mario_GO
+  - first:
+      1: 100002
+    second: paper mario_GO/paper mario_GO/body
+  - first:
+      1: 100004
+    second: paper mario_GO/paper mario_GO/head
+  - first:
+      1: 100006
+    second: paper mario_GO/paper mario_GO/leftarm
+  - first:
+      1: 100008
+    second: paper mario_GO/paper mario_GO/leftfoot
+  - first:
+      1: 100010
+    second: paper mario_GO/paper mario_GO/lefthand
+  - first:
+      1: 100012
+    second: paper mario_GO/paper mario_GO/rightarm
+  - first:
+      1: 100014
+    second: paper mario_GO/paper mario_GO/rightfoot
+  - first:
+      1: 100016
+    second: paper mario_GO/paper mario_GO/righthand
+  - first:
+      1: 100018
+    second: paper mario_GO/paper mario_GO/bone_1
+  - first:
+      1: 100020
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2
+  - first:
+      1: 100022
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3
+  - first:
+      1: 100024
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4
+  - first:
+      1: 100026
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5
+  - first:
+      1: 100028
+    second: paper mario_GO/paper mario_GO/bone_1/bone_6
+  - first:
+      1: 100030
+    second: paper mario_GO/paper mario_GO/bone_1/bone_7
+  - first:
+      1: 100032
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8
+  - first:
+      1: 100034
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4/bone_9
+  - first:
+      1: 100036
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8/bone_10
+  - first:
+      1: 100038
+    second: paper mario_GO/paper mario_GO/HurtHead
+  - first:
+      1: 100040
+    second: paper mario_GO/paper mario_GO/HitHead
+  - first:
+      1: 100042
+    second: paper mario_GO/paper mario_GO/HurtHead2
+  - first:
+      1: 100044
+    second: paper mario_GO/paper mario_GO/LeftHandOpen
+  - first:
+      1: 100046
+    second: paper mario_GO/paper mario_GO/LeftHandSideways
+  - first:
+      1: 100048
+    second: paper mario_GO/paper mario_GO/RightHandOpen
+  - first:
+      1: 100050
+    second: paper mario_GO/paper mario_GO/OuchHead
+  - first:
+      1: 100054
+    second: paper mario_GO/paper mario_GO/RightHandOpen_1
+  - first:
+      1: 100056
+    second: paper mario_GO/paper mario_GO/ForewardBody
+  - first:
+      1: 100058
+    second: paper mario_GO/paper mario_GO/ForewardHead
+  - first:
+      1: 100060
+    second: paper mario_GO/paper mario_GO/LeftFootForeward
+  - first:
+      1: 100062
+    second: paper mario_GO/paper mario_GO/LeftHandOpenPalm
+  - first:
+      1: 100064
+    second: paper mario_GO/paper mario_GO/LeftThumbsUp
+  - first:
+      1: 100066
+    second: paper mario_GO/paper mario_GO/RightArmBent
+  - first:
+      4: 400000
+    second: paper mario_GO/paper mario_GO/Transform
+  - first:
+      4: 400002
+    second: paper mario_GO/paper mario_GO/body/Transform
+  - first:
+      4: 400004
+    second: paper mario_GO/paper mario_GO/head/Transform
+  - first:
+      4: 400006
+    second: paper mario_GO/paper mario_GO/leftarm/Transform
+  - first:
+      4: 400008
+    second: paper mario_GO/paper mario_GO/leftfoot/Transform
+  - first:
+      4: 400010
+    second: paper mario_GO/paper mario_GO/lefthand/Transform
+  - first:
+      4: 400012
+    second: paper mario_GO/paper mario_GO/rightarm/Transform
+  - first:
+      4: 400014
+    second: paper mario_GO/paper mario_GO/rightfoot/Transform
+  - first:
+      4: 400016
+    second: paper mario_GO/paper mario_GO/righthand/Transform
+  - first:
+      4: 400018
+    second: paper mario_GO/paper mario_GO/bone_1/Transform
+  - first:
+      4: 400020
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400022
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/Transform
+  - first:
+      4: 400024
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4/Transform
+  - first:
+      4: 400026
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/Transform
+  - first:
+      4: 400028
+    second: paper mario_GO/paper mario_GO/bone_1/bone_6/Transform
+  - first:
+      4: 400030
+    second: paper mario_GO/paper mario_GO/bone_1/bone_7/Transform
+  - first:
+      4: 400032
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8/Transform
+  - first:
+      4: 400034
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_3/bone_4/bone_9/Transform
+  - first:
+      4: 400036
+    second: paper mario_GO/paper mario_GO/bone_1/bone_2/bone_5/bone_8/bone_10/Transform
+  - first:
+      4: 400038
+    second: paper mario_GO/paper mario_GO/HurtHead/Transform
+  - first:
+      4: 400040
+    second: paper mario_GO/paper mario_GO/HitHead/Transform
+  - first:
+      4: 400042
+    second: paper mario_GO/paper mario_GO/HurtHead2/Transform
+  - first:
+      4: 400044
+    second: paper mario_GO/paper mario_GO/LeftHandOpen/Transform
+  - first:
+      4: 400046
+    second: paper mario_GO/paper mario_GO/LeftHandSideways/Transform
+  - first:
+      4: 400048
+    second: paper mario_GO/paper mario_GO/RightHandOpen/Transform
+  - first:
+      4: 400050
+    second: paper mario_GO/paper mario_GO/OuchHead/Transform
+  - first:
+      4: 400054
+    second: paper mario_GO/paper mario_GO/RightHandOpen_1/Transform
+  - first:
+      4: 400056
+    second: paper mario_GO/paper mario_GO/ForewardBody/Transform
+  - first:
+      4: 400058
+    second: paper mario_GO/paper mario_GO/ForewardHead/Transform
+  - first:
+      4: 400060
+    second: paper mario_GO/paper mario_GO/LeftFootForeward/Transform
+  - first:
+      4: 400062
+    second: paper mario_GO/paper mario_GO/LeftHandOpenPalm/Transform
+  - first:
+      4: 400064
+    second: paper mario_GO/paper mario_GO/LeftThumbsUp/Transform
+  - first:
+      4: 400066
+    second: paper mario_GO/paper mario_GO/RightArmBent/Transform
+  - first:
+      28: 2800000
+    second: paper mario
+  - first:
+      114: 11400000
+    second: paper mario_GO/paper mario_GO/body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: paper mario_GO/paper mario_GO/head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400004
+    second: paper mario_GO/paper mario_GO/leftarm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: paper mario_GO/paper mario_GO/leftfoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: paper mario_GO/paper mario_GO/lefthand/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: paper mario_GO/paper mario_GO/rightarm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400012
+    second: paper mario_GO/paper mario_GO/rightfoot/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400014
+    second: paper mario_GO/paper mario_GO/righthand/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400016
+    second: paper mario_GO/paper mario_GO/HurtHead2/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400018
+    second: paper mario_GO/paper mario_GO/HitHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400020
+    second: paper mario_GO/paper mario_GO/LeftHandOpen/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400022
+    second: paper mario_GO/paper mario_GO/LeftHandSideways/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400024
+    second: paper mario_GO/paper mario_GO/RightHandOpen/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400026
+    second: paper mario_GO/paper mario_GO/HurtHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400028
+    second: paper mario_GO/paper mario_GO/OuchHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400030
+    second: paper mario_GO/paper mario_GO/ForewardHead/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400032
+    second: paper mario_GO/paper mario_GO/RightHandOpen_1/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400034
+    second: paper mario_GO/paper mario_GO/LeftHandOpenPalm/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400036
+    second: paper mario_GO/paper mario_GO/LeftThumbsUp/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400038
+    second: paper mario_GO/paper mario_GO/LeftFootForeward/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: paper mario_GO/paper mario_GO/body/SpriteRenderer
+  - first:
+      212: 21200002
+    second: paper mario_GO/paper mario_GO/head/SpriteRenderer
+  - first:
+      212: 21200004
+    second: paper mario_GO/paper mario_GO/leftarm/SpriteRenderer
+  - first:
+      212: 21200006
+    second: paper mario_GO/paper mario_GO/leftfoot/SpriteRenderer
+  - first:
+      212: 21200008
+    second: paper mario_GO/paper mario_GO/lefthand/SpriteRenderer
+  - first:
+      212: 21200010
+    second: paper mario_GO/paper mario_GO/rightarm/SpriteRenderer
+  - first:
+      212: 21200012
+    second: paper mario_GO/paper mario_GO/rightfoot/SpriteRenderer
+  - first:
+      212: 21200014
+    second: paper mario_GO/paper mario_GO/righthand/SpriteRenderer
+  - first:
+      212: 21200016
+    second: paper mario_GO/paper mario_GO/HurtHead/SpriteRenderer
+  - first:
+      212: 21200018
+    second: paper mario_GO/paper mario_GO/HitHead/SpriteRenderer
+  - first:
+      212: 21200020
+    second: paper mario_GO/paper mario_GO/HurtHead2/SpriteRenderer
+  - first:
+      212: 21200022
+    second: paper mario_GO/paper mario_GO/LeftHandOpen/SpriteRenderer
+  - first:
+      212: 21200024
+    second: paper mario_GO/paper mario_GO/LeftHandSideways/SpriteRenderer
+  - first:
+      212: 21200026
+    second: paper mario_GO/paper mario_GO/RightHandOpen/SpriteRenderer
+  - first:
+      212: 21200028
+    second: paper mario_GO/paper mario_GO/OuchHead/SpriteRenderer
+  - first:
+      212: 21200032
+    second: paper mario_GO/paper mario_GO/RightHandOpen_1/SpriteRenderer
+  - first:
+      212: 21200034
+    second: paper mario_GO/paper mario_GO/ForewardBody/SpriteRenderer
+  - first:
+      212: 21200036
+    second: paper mario_GO/paper mario_GO/ForewardHead/SpriteRenderer
+  - first:
+      212: 21200038
+    second: paper mario_GO/paper mario_GO/LeftFootForeward/SpriteRenderer
+  - first:
+      212: 21200040
+    second: paper mario_GO/paper mario_GO/LeftHandOpenPalm/SpriteRenderer
+  - first:
+      212: 21200042
+    second: paper mario_GO/paper mario_GO/LeftThumbsUp/SpriteRenderer
+  - first:
+      212: 21200044
+    second: paper mario_GO/paper mario_GO/RightArmBent/SpriteRenderer
+  - first:
+      213: 21300000
+    second: b40739d355378624ab1562d0f4ac0f17
+  - first:
+      213: 21300002
+    second: b2a49fd0c3fa07d40bfab9bc06f7b7db
+  - first:
+      213: 21300004
+    second: 4364edeb590636242a366db05c8bc6fc
+  - first:
+      213: 21300006
+    second: 836ce30c669551b49af715618261f2b9
+  - first:
+      213: 21300008
+    second: 758ffcd6e7e7f5d4da352ca9f35e3835
+  - first:
+      213: 21300010
+    second: fe1348fcde68cfa409b25bb4bce90c32
+  - first:
+      213: 21300012
+    second: 5c41c0b09dfd5dd43885ccfcb712db8e
+  - first:
+      213: 21300014
+    second: 8c4409c4dff124b4fa83b246376de396
+  - first:
+      213: 21300016
+    second: bbb8203269251d240867a822827dbc1a
+  - first:
+      213: 21300018
+    second: 422321d2cc3a65940949267c929fcdec
+  - first:
+      213: 21300020
+    second: b218c20347760174680f16431b2fe8c8
+  - first:
+      213: 21300022
+    second: 054a24e99c887a5449e2a955fa0764de
+  - first:
+      213: 21300024
+    second: ca9e90f8148ded0479c55715072a9332
+  - first:
+      213: 21300026
+    second: e2b635c24d143c44594e4e7f89db3e4c
+  - first:
+      213: 21300028
+    second: b4dc0b3740c3d944cac04ffa1239bb62
+  - first:
+      213: 21300030
+    second: 71101c5a64b2fee448b421accfafacbf
+  - first:
+      213: 21300032
+    second: 86f2940fcc43efe488a2d87e99f151ea
+  - first:
+      213: 21300034
+    second: e8799d17d9f8f204e8085922868362ab
+  - first:
+      213: 21300036
+    second: b47be5a76b7e9d640b9d5af0c15f5603
+  - first:
+      213: 21300038
+    second: d5f6dbdf650b2a244a664de205e8250b
+  - first:
+      213: 21300040
+    second: 9bc0a403001134b46aea2d78c02b1a2e
+  - first:
+      213: 21300042
+    second: 923a287c18058144c86ff5640045b085
+  - first:
+      1001: 100100000
+    second: paper mario_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -192,6 +457,7 @@ ScriptedImporter:
     maxTextureSizeSet: 0
     compressionQualitySet: 0
     textureFormatSet: 0
+    applyGammaDecoding: 0
   spriteImportData:
   - name: 
     originalName: 
@@ -205,6 +471,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -228,6 +495,7 @@ ScriptedImporter:
       width: 151
       height: 138
     spriteID: b40739d355378624ab1562d0f4ac0f17
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 77.12537, y: 3.3469238, z: 0}
@@ -583,6 +851,7 @@ ScriptedImporter:
       width: 60
       height: 59
     spriteID: b2a49fd0c3fa07d40bfab9bc06f7b7db
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 31.48648, y: 47.088226, z: 0}
@@ -905,6 +1174,7 @@ ScriptedImporter:
       width: 42
       height: 75
     spriteID: 4364edeb590636242a366db05c8bc6fc
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 30.096764, y: 0.000018935945, z: 0}
@@ -1282,6 +1552,7 @@ ScriptedImporter:
       width: 64
       height: 46
     spriteID: 836ce30c669551b49af715618261f2b9
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 38.42975, y: 50.48065, z: 0}
@@ -1645,6 +1916,7 @@ ScriptedImporter:
       width: 96
       height: 88
     spriteID: 758ffcd6e7e7f5d4da352ca9f35e3835
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 53.401604, y: 20.378845, z: 0}
@@ -1956,6 +2228,7 @@ ScriptedImporter:
       width: 64
       height: 46
     spriteID: fe1348fcde68cfa409b25bb4bce90c32
+    internalID: 0
     spriteBone:
     - name: bone_7
       position: {x: 36.907837, y: 50.48175, z: 0}
@@ -2319,6 +2592,7 @@ ScriptedImporter:
       width: 60
       height: 60
     spriteID: 5c41c0b09dfd5dd43885ccfcb712db8e
+    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 37.493317, y: 47.087708, z: 0}
@@ -2641,6 +2915,7 @@ ScriptedImporter:
       width: 54
       height: 63
     spriteID: 8c4409c4dff124b4fa83b246376de396
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 45.02295, y: 55.61841, z: 0}
@@ -3046,6 +3321,7 @@ ScriptedImporter:
       width: 208
       height: 166
     spriteID: bbb8203269251d240867a822827dbc1a
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 94.12537, y: 2.3469238, z: 0}
@@ -3530,6 +3806,7 @@ ScriptedImporter:
       width: 149
       height: 125
     spriteID: 422321d2cc3a65940949267c929fcdec
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 76.12537, y: 2.3469238, z: 0}
@@ -3874,6 +4151,7 @@ ScriptedImporter:
       width: 146
       height: 130
     spriteID: b218c20347760174680f16431b2fe8c8
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 71.12537, y: 2.3469238, z: 0}
@@ -4229,6 +4507,7 @@ ScriptedImporter:
       width: 58
       height: 80
     spriteID: 054a24e99c887a5449e2a955fa0764de
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 24.48648, y: 69.088196, z: 0}
@@ -4601,6 +4880,7 @@ ScriptedImporter:
       width: 67
       height: 80
     spriteID: ca9e90f8148ded0479c55715072a9332
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 24.48648, y: 65.088196, z: 0}
@@ -4943,6 +5223,7 @@ ScriptedImporter:
       width: 59
       height: 74
     spriteID: e2b635c24d143c44594e4e7f89db3e4c
+    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 37.493317, y: 62.087708, z: 0}
@@ -5306,6 +5587,7 @@ ScriptedImporter:
       width: 124
       height: 136
     spriteID: b4dc0b3740c3d944cac04ffa1239bb62
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 49.125366, y: 12.346924, z: 0}
@@ -5650,6 +5932,7 @@ ScriptedImporter:
       width: 78
       height: 81
     spriteID: 71101c5a64b2fee448b421accfafacbf
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 29.48648, y: 66.08822, z: 0}
@@ -6004,6 +6287,7 @@ ScriptedImporter:
       width: 69
       height: 65
     spriteID: 86f2940fcc43efe488a2d87e99f151ea
+    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 46.493317, y: 53.087708, z: 0}
@@ -6406,6 +6690,7 @@ ScriptedImporter:
       width: 135
       height: 132
     spriteID: e8799d17d9f8f204e8085922868362ab
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 67.12537, y: 8.346924, z: 0}
@@ -6769,6 +7054,7 @@ ScriptedImporter:
       width: 93
       height: 65
     spriteID: b47be5a76b7e9d640b9d5af0c15f5603
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 24.48648, y: 53.08822, z: 0}
@@ -7101,6 +7387,7 @@ ScriptedImporter:
       width: 52
       height: 55
     spriteID: d5f6dbdf650b2a244a664de205e8250b
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 26.429749, y: 54.48065, z: 0}
@@ -7444,6 +7731,7 @@ ScriptedImporter:
       width: 93
       height: 88
     spriteID: 9bc0a403001134b46aea2d78c02b1a2e
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -7465,6 +7753,7 @@ ScriptedImporter:
       width: 52
       height: 69
     spriteID: 923a287c18058144c86ff5640045b085
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -7482,6 +7771,10 @@ ScriptedImporter:
   importedTextureWidth: 512
   importedTextureHeight: 1024
   documentSize: {x: 208, y: 289}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 512
   textureActualHeight: 1024
   spritePackingTag: 
@@ -7731,6 +8024,8 @@ ScriptedImporter:
         height: 138
       spriteId: b40739d355378624ab1562d0f4ac0f17
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 0
         y: 120
@@ -7738,6 +8033,8 @@ ScriptedImporter:
         height: 166
       spriteId: bbb8203269251d240867a822827dbc1a
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 18
         y: 120
@@ -7745,6 +8042,8 @@ ScriptedImporter:
         height: 125
       spriteId: 422321d2cc3a65940949267c929fcdec
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 23
         y: 120
@@ -7752,6 +8051,8 @@ ScriptedImporter:
         height: 130
       spriteId: b218c20347760174680f16431b2fe8c8
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 45
         y: 110
@@ -7759,6 +8060,8 @@ ScriptedImporter:
         height: 136
       spriteId: b4dc0b3740c3d944cac04ffa1239bb62
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 27
         y: 114
@@ -7766,6 +8069,8 @@ ScriptedImporter:
         height: 132
       spriteId: e8799d17d9f8f204e8085922868362ab
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 100
         y: 46
@@ -7773,6 +8078,8 @@ ScriptedImporter:
         height: 59
       spriteId: b2a49fd0c3fa07d40bfab9bc06f7b7db
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 102
         y: 27
@@ -7780,6 +8087,8 @@ ScriptedImporter:
         height: 81
       spriteId: 71101c5a64b2fee448b421accfafacbf
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 107
         y: 40
@@ -7787,6 +8096,8 @@ ScriptedImporter:
         height: 65
       spriteId: b47be5a76b7e9d640b9d5af0c15f5603
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 107
         y: 24
@@ -7794,6 +8105,8 @@ ScriptedImporter:
         height: 80
       spriteId: 054a24e99c887a5449e2a955fa0764de
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 107
         y: 28
@@ -7801,6 +8114,8 @@ ScriptedImporter:
         height: 80
       spriteId: ca9e90f8148ded0479c55715072a9332
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 109
         y: 52
@@ -7808,6 +8123,8 @@ ScriptedImporter:
         height: 75
       spriteId: 4364edeb590636242a366db05c8bc6fc
       bones: 0300000002000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 77
         y: 12
@@ -7815,6 +8132,8 @@ ScriptedImporter:
         height: 46
       spriteId: 836ce30c669551b49af715618261f2b9
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 89
         y: 8
@@ -7822,6 +8141,8 @@ ScriptedImporter:
         height: 55
       spriteId: d5f6dbdf650b2a244a664de205e8250b
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 45
         y: 43
@@ -7829,6 +8150,8 @@ ScriptedImporter:
         height: 88
       spriteId: 758ffcd6e7e7f5d4da352ca9f35e3835
       bones: 00000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 45
         y: 43
@@ -7836,6 +8159,8 @@ ScriptedImporter:
         height: 88
       spriteId: 9bc0a403001134b46aea2d78c02b1a2e
       bones: 
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 42
         y: 12
@@ -7843,6 +8168,8 @@ ScriptedImporter:
         height: 46
       spriteId: fe1348fcde68cfa409b25bb4bce90c32
       bones: 06000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 33
         y: 46
@@ -7850,6 +8177,8 @@ ScriptedImporter:
         height: 60
       spriteId: 5c41c0b09dfd5dd43885ccfcb712db8e
       bones: 07000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 33
         y: 31
@@ -7857,6 +8186,8 @@ ScriptedImporter:
         height: 74
       spriteId: e2b635c24d143c44594e4e7f89db3e4c
       bones: 07000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 24
         y: 40
@@ -7864,6 +8195,8 @@ ScriptedImporter:
         height: 65
       spriteId: 86f2940fcc43efe488a2d87e99f151ea
       bones: 07000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 48
         y: 58
@@ -7871,6 +8204,8 @@ ScriptedImporter:
         height: 69
       spriteId: 923a287c18058144c86ff5640045b085
       bones: 
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 41
         y: 62
@@ -7878,28 +8213,12 @@ ScriptedImporter:
         height: 63
       spriteId: 8c4409c4dff124b4fa83b246376de396
       bones: 0400000007000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
-  boneGOs:
-  - go: {fileID: 100018, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 0
-  - go: {fileID: 100020, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 1
-  - go: {fileID: 100022, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 2
-  - go: {fileID: 100024, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 3
-  - go: {fileID: 100026, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 4
-  - go: {fileID: 100028, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 5
-  - go: {fileID: 100030, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 6
-  - go: {fileID: 100032, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 7
-  - go: {fileID: 100034, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 8
-  - go: {fileID: 100036, guid: 737878415514d414a9aa56628b8a311d, type: 3}
-    index: 9
+    characterGroups: []
   generateGOHierarchy: 0
   textureAssetName: paper mario
   prefabAssetName: paper mario_GO
+  spriteLibAssetName: paper mario Sprite Lib
+  secondarySpriteTextures: []
