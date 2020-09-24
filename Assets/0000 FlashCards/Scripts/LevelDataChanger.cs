@@ -1,9 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelDataChanger : MonoBehaviour
 {
+    #region Singleton
+
+    public static LevelDataChanger instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of " + this.name + " found!");
+            return;
+        }
+        instance = this;
+    }
+
+    #endregion
+
     public void ChangeLevelNumber(int number)
     {
         LevelData.Singleton.ChangeLevelNumber(number);

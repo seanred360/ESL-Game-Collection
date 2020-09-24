@@ -590,7 +590,7 @@ namespace MemoryRepeatGame
                 {
                     //Show the game over screen
                     gameOverCanvas.gameObject.SetActive(true);
-                    gameoverBG.gameObject.SetActive(true);
+                    //gameoverBG.gameObject.SetActive(true);
                     iTween.ShakePosition(cam.gameObject, new Vector3(1f, 1f, 0), .3f);
 
                     //Write the score text, if it exists
@@ -721,6 +721,14 @@ namespace MemoryRepeatGame
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+        public void DisableTimer()
+        {
+            timeLeft = 999;
+            timerBar.gameObject.SetActive(false);
+            timerIcon.gameObject.SetActive(false);
+            timerText.gameObject.SetActive(false);
         }
     }
 }

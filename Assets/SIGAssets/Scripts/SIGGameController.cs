@@ -866,5 +866,13 @@ namespace ScrambledImageGame
             // Select the button that we pressed before pausing
             if (eventSystem) eventSystem.SetSelectedGameObject(buttonBeforePause);
         }
+
+        public void DisableTimer()
+        {
+            timeLeft = 999;
+            timerBar.gameObject.SetActive(false);
+            timerIcon.gameObject.SetActive(false);
+            timerText.gameObject.SetActive(false);
+        }
     }
 }

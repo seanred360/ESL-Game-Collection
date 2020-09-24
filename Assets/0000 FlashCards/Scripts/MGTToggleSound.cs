@@ -38,7 +38,7 @@ namespace MatchingGameTemplate.Types
         /// </summary>
         void Awake()
         {
-            if (!soundObject && soundObjectTag != string.Empty) soundObject = GameObject.FindGameObjectWithTag(soundObjectTag).transform;
+            if (!soundObject && soundObjectTag != string.Empty) { soundObject = GameObject.FindGameObjectWithTag(soundObjectTag).transform; }
             else { Debug.Log("No music object found, ignore if there isn't any music in the scene"); }
             // Get the current state of the sound from PlayerPrefs
             if (soundObject)

@@ -900,5 +900,13 @@ namespace TwoOfAKindGame
         {
             SceneManager.LoadScene(mainMenuLevelName);
         }
+
+        public void DisableTimer()
+        {
+            timeLeft = 999;
+            timerBar.gameObject.SetActive(false);
+            timerIcon.gameObject.SetActive(false);
+            timerText.gameObject.SetActive(false);
+        }
     }
 }
