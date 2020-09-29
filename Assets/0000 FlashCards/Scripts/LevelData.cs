@@ -6,7 +6,6 @@ public sealed class LevelData
     public string bookName;
     public string menuPath;
     public string wordGroupToUse;
-    public bool babyMode = false;
     public bool addWords = true;
     public bool addPhonics = true;
 
@@ -43,10 +42,5 @@ public sealed class LevelData
     public void DisableTheButtons()
     {
         ButtonController.DisableButton();
-    }
-
-    public void BabyModeOn(bool onOff)
-    {
-        LevelData.Singleton.babyMode = onOff;
     }
 }

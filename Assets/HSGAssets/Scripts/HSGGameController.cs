@@ -131,7 +131,6 @@ public class HSGGameController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
         _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
 
         Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
@@ -195,7 +194,7 @@ public class HSGGameController : MonoBehaviour
 
         // Get all the names of all the objects and place them in an array. We will use this later to assign correct and wrong answers for each object
         // Create a list of all possible answers in the game, based on all the objects in the game
-        allAnswers = new string[shapeList.Length];
+        allAnswers = new string[shapeList.Length]; 
 
         //Assign the answers into the list of answers for each object
         for (index = 0; index < allAnswers.Length; index++)
@@ -281,8 +280,6 @@ public class HSGGameController : MonoBehaviour
                 else Pause(true);
             }
         }
-        //babyMode = LevelNumber.babyMode;
-        babyMode = LevelData.Singleton.babyMode;
     }
 
     /// <summary>

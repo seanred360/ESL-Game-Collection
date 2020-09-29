@@ -286,8 +286,6 @@ namespace TwoOfAKindGame
                     else Pause(true);
                 }
             }
-            //babyMode = LevelNumber.babyMode;
-            babyMode = LevelData.Singleton.babyMode;
         }
 
         /// <summary>

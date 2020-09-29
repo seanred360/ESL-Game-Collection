@@ -278,8 +278,6 @@ namespace ScrambledImageGame
                 if (timeRunning == true) gridObject.eulerAngles = new Vector3((Input.mousePosition.y - Screen.height * 0.5f) * 0.01f, (Input.mousePosition.x - Screen.width * 0.5f) * -0.01f, 0);
                 else gridObject.eulerAngles = Vector3.zero;
             }
-            //babyMode = LevelNumber.babyMode;
-            babyMode = LevelData.Singleton.babyMode;
         }
 
         /// <summary>

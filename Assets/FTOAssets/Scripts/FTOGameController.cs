@@ -127,12 +127,8 @@ namespace FindTheObject
 
         public bool playWordSound = true;
 
-        public bool babyMode = false;
-
         void Awake()
         {
-            //babyMode = LevelNumber.babyMode;
-            babyMode = LevelData.Singleton.babyMode;
             // Activate the pause canvas early on, so it can detect info about sound volume state
             if (pauseCanvas) pauseCanvas.gameObject.SetActive(true);
         }
@@ -290,13 +286,6 @@ namespace FindTheObject
                     if (isPaused == true) Unpause();
                     else Pause(true);
                 }
-            }
-            if (babyMode)
-            {
-                timeLeft = 9999999;
-                timerText.gameObject.SetActive(false);
-                timerIcon.gameObject.SetActive(false);
-                timerBar.gameObject.SetActive(false);
             }
         }
 
@@ -543,8 +532,8 @@ namespace FindTheObject
             else if (textsList != null && textsList.Length > 0) transform.Find("ObjectIcon/Icon/Text").GetComponent<Text>().text = textsList[0];
 
             // Show the number of objects we have to find
-            //transform.Find("ObjectIcon/Text").GetComponent<Text>().text = numberOfHiddenObjects.ToString();
-            transform.Find("ObjectIcon/Text").GetComponent<Text>().text = transform.Find("ObjectIcon/Icon").GetComponent<Image>().sprite.name + " X" + numberOfHiddenObjects.ToString();
+            transform.Find("ObjectIcon/Text").GetComponent<Text>().text = numberOfHiddenObjects.ToString();
+            //transform.Find("ObjectIcon/Text").GetComponent<Text>().text = transform.Find("ObjectIcon/Icon").GetComponent<Image>().sprite.name + " X" + numberOfHiddenObjects.ToString();
 
             if (GetComponent<FTOTexts>())
             {
@@ -701,8 +690,8 @@ namespace FindTheObject
             numberOfHiddenObjects--;
 
             // Update the number of objects we have to find
-            //transform.Find("ObjectIcon/Text").GetComponent<Text>().text = numberOfHiddenObjects.ToString();
-            transform.Find("ObjectIcon/Text").GetComponent<Text>().text = transform.Find("ObjectIcon/Icon").GetComponent<Image>().sprite.name + " X" + numberOfHiddenObjects.ToString();
+            transform.Find("ObjectIcon/Text").GetComponent<Text>().text = numberOfHiddenObjects.ToString();
+            //transform.Find("ObjectIcon/Text").GetComponent<Text>().text = transform.Find("ObjectIcon/Icon").GetComponent<Image>().sprite.name + " X" + numberOfHiddenObjects.ToString();
 
             if (GetComponent<FTOTexts>())
                 transform.Find("ObjectIcon/Text").GetComponent<Text>().text = numberOfHiddenObjects.ToString();
@@ -871,6 +860,14 @@ namespace FindTheObject
         void MainMenu()
         {
             SceneManager.LoadScene(mainMenuLevelName);
+        }
+
+        public void DisableTimer()
+        {
+            timeLeft = 999;
+            timerBar.gameObject.SetActive(false);
+            timerIcon.gameObject.SetActive(false);
+            timerText.gameObject.SetActive(false);
         }
     }
 }

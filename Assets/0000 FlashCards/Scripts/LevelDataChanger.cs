@@ -42,11 +42,6 @@ public class LevelDataChanger : MonoBehaviour
         ButtonController.DisableButton();
     }
 
-    public void BabyModeOn(bool onOff)
-    {
-        LevelData.Singleton.babyMode = onOff;
-    }
-
     public void AddWords(bool onOff)
     {
         LevelData.Singleton.addWords = onOff;

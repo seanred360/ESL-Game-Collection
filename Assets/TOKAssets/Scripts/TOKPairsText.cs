@@ -14,7 +14,8 @@ namespace TwoOfAKindGame
 
         void Awake()
         {
-            _imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
+            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.ChangeWordGroupToUse;
 
             if (_imagePath == "0")
             {
