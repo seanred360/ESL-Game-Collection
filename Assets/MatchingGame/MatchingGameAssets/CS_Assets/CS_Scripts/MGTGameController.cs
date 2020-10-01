@@ -140,10 +140,12 @@ namespace MatchingGameTemplate
         private bool toggleSound25 = true;//sean
         public Transform starParticles;//sean
         private Vector3 spawnLocation;//sean
-        public GameObject mario;//sean
-        private Animator marioAnimator;//sean
-        public GameObject bowser;//sean
-        private Animator bowserAnimator;//sean
+        public MGPlayer player;//sean
+        private Animator playerAnimator;//sean
+        public GameObject enemy;//sean
+        private Animator enemyAnimator;//sean
+        HealthBarScript playerHealth;
+        HealthBarScript enemyHealth;
 
         // The button that will restart the game after game over
         public string confirmButton = "Submit";
@@ -165,17 +167,20 @@ namespace MatchingGameTemplate
         /// </summary>
         void Start()
         {
-            if (mario)//sean stops a bug if i dont use mario in the scene
+            if (player)//sean stops a bug if i dont use mario in the scene
             {
-                marioAnimator = mario.GetComponent<Animator>();//sean
+                playerAnimator = player.GetComponent<Animator>();//sean
+                playerHealth = player.playerHealth;
+
             }
-            if (bowser)//sean stops a bug if i dont use mario in the scene
+            if (enemy)//sean stops a bug if i dont use mario in the scene
             {
-                bowserAnimator = bowser.GetComponent<Animator>();//sean
+                enemyAnimator = enemy.GetComponent<Animator>();//sean
+                enemyHealth = enemy.GetComponent<HealthBarScript>();
             }
-            audiomanager = GetComponent<AudioManager>();//sean 
+            audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();//sean 
             audiomanager.PlayMusic(0);//sean plays the BGM from the audio array
-            // Disable multitouch so that we don't tap two answers at the same time ( prevents multi-answer cheating, thanks to Miguel Paolino for catching this bug )
+            // Disable multitouch so that we don't tap two answers at the same time ( prevents multi-answer cheating )
             Input.multiTouchEnabled = false;
 
             // Cache the current event system so we can position the cursor correctly
@@ -429,7 +434,7 @@ namespace MatchingGameTemplate
                     {
                         firstObject.GetComponent<Animator>().Play("PairCorrect");
                         selectedObject.GetComponent<Animator>().Play("PairCorrect");
-                        if (mario)
+                        if (player)
                         {
                             //marioAnimator.Play("Standing Clap");
                         }
@@ -463,13 +468,16 @@ namespace MatchingGameTemplate
                     {
                         firstObject.GetComponent<Animator>().Play("PairWrong");
                         selectedObject.GetComponent<Animator>().Play("PairWrong");
-                        if (bowser)
+                        if (enemy)
                         {
-                            bowserAnimator.Play("Unarmed-Attack-R2");//sean
+                            enemyAnimator.Play("Unarmed-Attack-R2");//sean
                         }
-                        healthBarScript.health -= 25;//sean
-                        if (healthBarScript.health == 0)//sean
+
+                        playerHealth.TakeDamage(25f);
+
+                        if (playerHealth.health == 0)//sean
                         {
+                            playerHealth.Die();
                             StartCoroutine(GameOver(1f));//sean
                         }
                     }

@@ -27,24 +27,24 @@ public class HitColliderScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            audiomanager.PlaySFX(Random.Range(0, audiomanager.SClips.Length));
-            if (healthBarScript.health > 0)//sean
-            {
-                StartCoroutine(GetHit());
-            }
-            else
-                marioAnimator.Play("Unarmed-Death1");
-        }
-        if (other.gameObject.tag == "Enemy")
-        {
-            StartCoroutine(GetHit2());
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        audiomanager.PlaySFX(Random.Range(0, audiomanager.SClips.Length));
+    //        if (healthBarScript.health > 0)//sean
+    //        {
+    //            StartCoroutine(GetHit());
+    //        }
+    //        else
+    //            marioAnimator.Play("Unarmed-Death1");
+    //    }
+    //    if (other.gameObject.tag == "Enemy")
+    //    {
+    //        StartCoroutine(GetHit2());
+    //    }
 
-    }
+    //}
 
     IEnumerator GetHit()//sean
     {
