@@ -1,5 +1,4 @@
 ﻿using UnityEngine.UI;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VocabPicLoader : MonoBehaviour
@@ -39,8 +38,7 @@ public class VocabPicLoader : MonoBehaviour
 
         for (int i = 0; i < words.Length; i++)
         {
-            GameObject newButton = Instantiate(buttonPrefab);
-            newButton.transform.SetParent(wordsButtonHolder, true);
+            GameObject newButton = Instantiate(buttonPrefab,wordsButtonHolder);
             newButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             newButton.GetComponent<Image>().sprite = words[i];
             newButton.gameObject.name = newButton.GetComponent<Image>().sprite.name;
@@ -62,8 +60,7 @@ public class VocabPicLoader : MonoBehaviour
 
         for (int i = 0; i < phonics.Length; i++)
         {
-            GameObject newButton = Instantiate(buttonPrefab);
-            newButton.transform.SetParent(phonicsButtonHolder, true);
+            GameObject newButton = Instantiate(buttonPrefab, phonicsButtonHolder);
             newButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             newButton.GetComponent<Image>().sprite = phonics[i];
             newButton.gameObject.name = newButton.GetComponent<Image>().sprite.name;

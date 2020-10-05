@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-namespace MatchingGameTemplate.Types
+namespace Flashcards
 {
 	/// <summary>
 	/// Toggles a sound source when clicked on. It also records the sound state (on/off) in a PlayerPrefs. 
@@ -28,15 +28,14 @@ namespace MatchingGameTemplate.Types
         [Tooltip("The volume when this sound button is toggled off")]
         public float volumeOff = 0;
 
-        /// <summary>
-        /// Awake is called when the script instance is being loaded.
-        /// Awake is used to initialize any variables or game state before the game starts. Awake is called only once during the 
-        /// lifetime of the script instance. Awake is called after all objects are initialized so you can safely speak to other 
-        /// objects or query them using eg. GameObject.FindWithTag. Each GameObject's Awake is called in a random order between objects. 
-        /// Because of this, you should use Awake to set up references between scripts, and use Start to pass any information back and forth. 
-        /// Awake is always called before any Start functions. This allows you to order initialization of scripts. Awake can not act as a coroutine.
-        /// </summary>
-        void Awake()
+        public Sprite onSprite, offSprite;
+
+        Image image;
+
+
+        private void Awake() => image = GetComponent<Image>();
+
+        void OnEnable()
         {
             //if (!soundObject && soundObjectTag != string.Empty) { soundObject = GameObject.FindGameObjectWithTag(soundObjectTag).transform; }
             if (!soundObject && soundObjectTag != string.Empty) { soundObject = GameObject.FindGameObjectWithTag(soundObjectTag).transform; }
@@ -64,15 +63,21 @@ namespace MatchingGameTemplate.Types
             // Set the sound in the PlayerPrefs
             PlayerPrefs.SetFloat(playerPref, currentState);
 
-            Color newColor = GetComponent<Image>().material.color;
+            Color newColor = image.material.color;
 
             // Update the graphics of the button image to fit the sound state
             if (currentState == volumeOn)
+            {
                 newColor.a = 1;
+                image.sprite = onSprite;
+            }
             else
+            {
                 newColor.a = 0.5f;
+                image.sprite = offSprite;
+            }
 
-            GetComponent<Image>().color = newColor;
+            image.color = newColor;
 
             // Set the value of the sound state to the source object
             if (soundObject)

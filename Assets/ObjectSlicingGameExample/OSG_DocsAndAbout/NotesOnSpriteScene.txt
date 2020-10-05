@@ -1,0 +1,49 @@
+The Sprite Scene.
+
+As I mentioned in the ChangeLog, a number of people have messaged me asking how to change the "Balls" from meshes to sprites,
+because they wanted to use sprites.  This is a pretty simple process.  In the ObjectSlicingGameExample folder, there is a new
+folder labelled OSG_SpriteUsageExample.  Inside of it are some new folders...
+Sprite_Scene,
+Sprite_Prefabs, 
+Sprite_UnityAnimations, and 
+Sprite_ExampleSprites Folder.
+
+There are only really a couple things to consider.  The "Meshes" could be animated falling, and spinning.  This would allow the 
+"insides" or "ball core" to show.  The falling animations would rotate on the x,y, and z axis.  When using a sprite, the rotation
+needs to be restricted to the z axis only.  If you make a circle sprite, and then just cut it horizontally, it will look pretty bland.
+You wouldn't be able to see the "insides" or the "ball core".  Since we are locked to rotating on one axis with a sprite, we have to 
+make the sprites a little more isometric, or at least be able to 'view' the bottom half from a new 'perspective'.  We make sure the
+'cuts' arent straight lines.  By allowing the 'halves' to protrude into the other halves, we can make a rounded cut, and show much more
+of the 'insides' of one of the halves.  Just see the Graphic labelled 'BestApproachForPrettySprites.jpg' for a visual reference.
+
+So... this is all I had to do.  I duplicated the Ball Prefabs (Whole, and Debris), the Animations, and the ChillModeScene.
+
+After that I started rebuilding the whole ball prefabs... I pulled the Blue Ball into the scene.  Deleted its Mesh Child, Created a new
+empty gameobject.  Then I added a "SpriteRenderer" component to the new empty.  Then I selected the "full ball" sprite, colored it accordingly,
+and moved onto the next.
+
+Next I did the same for each "halves" prefab.  Then I grabbed each of the updated 'Halves' prefabs and went to the GameObjects Animator, and selected the
+new "Duplicated Animation" for the new (single Axis Animations).  Then, I double clicked the duplicated controller, and made sure it's state was set to the new
+duplicate animation.  (This way all of our Duplicated GameObjects, Anims, Prefabs, etc... were all there own self contained pieces.  We don't want any changes to
+these prefabs effecting the regular project.  After everything was tied together properly, I loaded the Duplicated ChillModeScene, and went to the Pools GameObject.
+
+Once there I selected each color ball pool, and dropped the new Sprite Whole Ball GameObject(of each color), onto the pooledGameObject slot.  This way the duplicated
+chill mode scene would launch the new "Sprite Balls".  When cut the new Sprite Balls, would instantiate the new "Sprite Ball Halves", and those "Halves" use the duplicate
+animations/anim controllers.
+
+Then, I pulled Sprite Blue Ball Debris Halves (Horizontal, Vertical, 1Diagonal, and Diagonal) Prefabs into the scene, and opened the Animation Window... Then I expanded the 
+transform rotation properties, and Zeroed out all the rotations on the x, and y axis.  Leaving only z axis rotation.  Doing this once for those 4 will update those animations 
+(Which ALL of the new sprite debris halves use... so you don't have to do that for all of the prefabs (you get lucky there).
+
+And That’s It!...
+
+Use just sub the mesh/mesh renderer/material, for a sprite renderer (The "Colliders" are on the parent, and animations are all done to children that "hold" the mesh/sprite...
+And any 'reference' to the Object is done via GameObject, or the Parent Collider (which was left as a sphere collider (no need/reason to change it).
+
+Take a look at the Sprite Chill Mode Scene if you have any questions/want to see what I did.  Notice all of those Scenes objects have their own seperate prefabs, and everything...
+so you can inspect those too.
+
+Good Luck!
+
+Best Regards
+Brian

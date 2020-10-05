@@ -1,0 +1,18 @@
+If you extract the DoxyGenDocsForOSG.zip file it will generate a folder
+(zip file name), which contains a folder labelled "html". Inside of "html"
+there is a file named index.html...  If you launch this file with firefox,
+chrome, or whatever you use as your default broswer, it will open the Doxygen
+Docs for the Object Slicing Game.  I find making a shortcut to the index.html
+and placing it up one directory , or somewhere convient to be the best approach.
+Anyway... this will open the "off-line" docs page..
+
+There you can see the Classes, other Members, and the /// comments
+for the .cs files, etc...
+
+This can be useful.  There are also copies of the source files there, if you go to
+a specific file, and then click the link "Go to the source code of this file"
+and that will take you to a copy of the actual script, which will also contain 
+all of the // comments as well.  This is just a searchable form of the code for OSG... 
+which you can view without entering the IDE, if that is more convienent.  They
+are something I use in other projects were comments/instruction is key, and I 
+have just started including them in these examples as well.

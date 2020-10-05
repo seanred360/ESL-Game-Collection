@@ -1,0 +1,113 @@
+fileFormatVersion: 2
+guid: 6e80ba932b1bacb479b5075bc7b600c7
+timeCreated: 1463935557
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Sheath_LP.003
+    100004: Sheath_LP.008
+    100006: Sheath_LP.009
+    100008: Sheath_LP.010
+    100010: Sword_LP.002
+    100012: Sword_LP.010
+    100014: Sword_LP.011
+    100016: Sword_LP.012
+    400000: //RootNode
+    400002: Sheath_LP.003
+    400004: Sheath_LP.008
+    400006: Sheath_LP.009
+    400008: Sheath_LP.010
+    400010: Sword_LP.002
+    400012: Sword_LP.010
+    400014: Sword_LP.011
+    400016: Sword_LP.012
+    2300000: Sheath_LP.003
+    2300002: Sheath_LP.008
+    2300004: Sheath_LP.009
+    2300006: Sheath_LP.010
+    2300008: Sword_LP.002
+    2300010: Sword_LP.010
+    2300012: Sword_LP.011
+    2300014: Sword_LP.012
+    3300000: Sheath_LP.003
+    3300002: Sheath_LP.008
+    3300004: Sheath_LP.009
+    3300006: Sheath_LP.010
+    3300008: Sword_LP.002
+    3300010: Sword_LP.010
+    3300012: Sword_LP.011
+    3300014: Sword_LP.012
+    4300000: Sheath_LP.010
+    4300002: Sheath_LP.009
+    4300004: Sheath_LP.008
+    4300006: Sword_LP.012
+    4300008: Sword_LP.011
+    4300010: Sword_LP.010
+    4300012: Sheath_LP.003
+    4300014: Sword_LP.002
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 4
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

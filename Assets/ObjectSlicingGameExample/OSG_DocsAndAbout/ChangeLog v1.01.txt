@@ -1,0 +1,24 @@
+ChangeLog for Version 1.01 of SwingShip Example Game.
+
+1.) I created an Additional Scene that is not in the build settings / scene flow.  It shows the usage
+	of sprites, instead of meshes.  This has been asked about by several individuals.  This is the sort
+	of thing that I forget... To me everything is a GameObject (when referring to objects in lots of ways),
+	and I think Mesh vs SpriteRenderer.. whats the difference?... and so I forgot to be Specific, and show
+	how it can be done.  My apologies.  So... I set up a scene.  Duplicated the defaul "CutAnimations"(and
+	renamed them for sprite usage), since with a mesh we can rotate on any axis, but with a sprite rotating on
+	the y axis would result in showing that the sprite is "flat".  So the modified animations for sprites will
+	on turn on a camera/sprite friendly axis.  This means we have to be a little better about our art(making it
+	more isometric looking (like it has some depth.), and making sure sprites have the right draw order.)  If you
+	are trying to use sprites then this scene, and some extra documentation I am providing should help quite a bit.
+
+2.) Fixed an issue where RARELY if a player tries to exit/hit home button (when about to lose in Classic Mode), that an
+	array index out of range exception can occur.  This happens when resources are being destroyed and new loaded (behind fader)
+	and there is a final reference to something that doesn't exist.  I can only make this happen in 1 of 4 times, BUT
+	it still needed to be dealt with.  See the #region'd long exception explanation in DojoBoundaryController.cs for
+	more details.
+	
+That is the only changes to the base kit at this time...
+
+March 20th 2017
+Best Regards
+-Brian
