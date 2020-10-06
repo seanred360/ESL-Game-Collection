@@ -46,9 +46,6 @@ namespace Flashcards
             else
                 currentState = PlayerPrefs.GetFloat(playerPref, currentState);
 
-            // add the audio player so this button plays a toggle sound effect everytime you touch it
-            gameObject.AddComponent<AudioSource>();
-
             // Set the sound in the sound source
             SetSound();
         }
@@ -62,6 +59,7 @@ namespace Flashcards
 
             // Set the sound in the PlayerPrefs
             PlayerPrefs.SetFloat(playerPref, currentState);
+            PlayerPrefs.Save();
 
             Color newColor = image.material.color;
 
@@ -89,6 +87,12 @@ namespace Flashcards
         /// </summary>
         public void ToggleSound()
         {
+            if(gameObject.GetComponent<AudioSource>() == null)
+            {             
+                // add the audio player so this button plays a toggle sound effect everytime you touch it
+                gameObject.AddComponent<AudioSource>();
+            }
+
             // turn the volume on or off
             if (currentState == volumeOn)
             {
