@@ -17,7 +17,7 @@ namespace Flashcards
         public Transform soundObject;
 
         // The PlayerPrefs name of the sound
-        public string playerPref = "SoundVolume";
+        public string playerPref = "MusicVolume";
 
         // The index of the current value of the sound
         internal float currentState = 1;

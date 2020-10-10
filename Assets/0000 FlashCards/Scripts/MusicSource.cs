@@ -2,11 +2,11 @@
 
 public class MusicSource : MonoBehaviour
 {
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
-    private void OnEnable()
+    private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = PlayerPrefs.GetFloat("SoundVolume");
+        audioSource.volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 }
