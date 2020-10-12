@@ -20,7 +20,7 @@ public class BubbleBomb : MonoBehaviour
 
     private void Update()
     {
-        transform.position = transform.position + new Vector3(0, gameManager.speed * Time.deltaTime, 0);
+        transform.position = transform.position - new Vector3(0, gameManager.speed * Time.deltaTime, 0);
 
         gameManager.speed += (gameManager.acceleration * Time.deltaTime / 100);
         //Debug.Log( "current speed " + (gameManager.speed += (gameManager.acceleration * Time.deltaTime / 100)));

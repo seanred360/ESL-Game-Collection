@@ -1,17 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class BubbleGameController : MonoBehaviour
 {
+    public static BubbleGameController instance;
+
     public Transform[] spawnPoints;
     public Transform canvas;
     public GameObject endScreen, bubblePrefab, bombPrefab, finalBubble,changePlayersIcon,cam,BGM;
     public bool isMultiplayer;
     public AudioManager endSounds,audioManager;
-    public float spawnInterval;
+    public float spawnInterval = 5f;
     Vector2 chosenSpawn, previousSpawn;
     public int points,maxPoints = 45;
     bool gameover;
@@ -33,6 +35,17 @@ public class BubbleGameController : MonoBehaviour
 
     private void Awake()
     {
+        #region Singleton
+
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of " + this.name + " found!");
+            return;
+        }
+        instance = this;
+
+        #endregion
+
         _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
         Debug.Log(_imagePath);
 
@@ -171,7 +184,8 @@ public class BubbleGameController : MonoBehaviour
             clone.transform.SetParent(canvas);
             clone.transform.localScale = new Vector3(2, 2, 2);
             Destroy(clone, 8f);
-            spawnInterval = Random.Range(.5f, 2f);
+            spawnInterval = Random.Range(.5f, 1f);
+            //Debug.Log(spawnInterval);
             Invoke("SpawnBubble", spawnInterval);
         }
     }

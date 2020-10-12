@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Bubble : MonoBehaviour
@@ -15,20 +13,20 @@ public class Bubble : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<BubbleGameController>();
+        gameManager = BubbleGameController.instance;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         GetComponent<Image>().sprite = bubbles[Random.Range(0, bubbles.Length)];
         wordIndex = Random.Range(0, words.Length);
         wordObject.sprite = gameManager.sprites[wordIndex];
         gameObject.GetComponent<AudioSource>().clip = (Resources.Load<AudioClip>("Sounds/" + wordObject.sprite.name));
-        transform.localScale = new Vector3(1, 1, 1) * Random.Range(.3f,3f);
+        transform.localScale = new Vector3(1, 1, 1) * Random.Range(2f, 4f);
     }
 
     private void Update()
     {
-        transform.position = transform.position + new Vector3(0,gameManager.speed * Time.deltaTime, 0);
+        transform.position = transform.position - new Vector3(0,gameManager.speed * Time.deltaTime, 0);
 
-        gameManager.speed += (gameManager.acceleration * Time.deltaTime / 100);
+        gameManager.speed += (gameManager.acceleration * Time.deltaTime / 50);
         //Debug.Log( "current speed " + (gameManager.speed += (gameManager.acceleration * Time.deltaTime / 100)));
     }
 
