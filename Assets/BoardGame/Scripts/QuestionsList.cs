@@ -15,7 +15,6 @@ namespace BoardGame
 
         private Question currentQuestion;
         
-        public string _imagePath;
         public Sprite[] loadedSprites;
 
         [SerializeField]
@@ -24,23 +23,24 @@ namespace BoardGame
 
         private void Awake()
         {
-            string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-            Debug.Log(_imagePath);
-            if (_imagePath == "0")
-            {
-                _imagePath = "KBA/u1";
-                Debug.Log("Can't find image path");
-            }
-            Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-            loadedSprites = new Sprite[textures.Length];
-            for (int i = 0; i < textures.Length; i++)
-            {
-                loadedSprites[i] = (Sprite)textures[i];
-                Question blankQuestion = new Question();
-                blankQuestion.factSprite = loadedSprites[i];
-                blankQuestion.fact = loadedSprites[i].name;
-                unansweredQuestions.Add(blankQuestion);
-            }
+            loadedSprites = LevelDataChanger.instance.LoadSprites();
+            //string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+            //Debug.Log(_imagePath);
+            //if (_imagePath == "0")
+            //{
+            //    _imagePath = "KBA/u1";
+            //    Debug.Log("Can't find image path");
+            //}
+            //Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
+            //loadedSprites = new Sprite[textures.Length];
+            //for (int i = 0; i < textures.Length; i++)
+            //{
+            //    loadedSprites[i] = (Sprite)textures[i];
+            //    Question blankQuestion = new Question();
+            //    blankQuestion.factSprite = loadedSprites[i];
+            //    blankQuestion.fact = loadedSprites[i].name;
+            //    unansweredQuestions.Add(blankQuestion);
+            //}
         }
 
         void Start()

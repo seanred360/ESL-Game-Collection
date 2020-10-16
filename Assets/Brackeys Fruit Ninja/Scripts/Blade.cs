@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Blade : MonoBehaviour {
@@ -15,13 +13,13 @@ public class Blade : MonoBehaviour {
 
 	Rigidbody2D rb;
 	Camera cam;
-	CircleCollider2D circleCollider;
+	//CircleCollider2D circleCollider;
 
 	void Start ()
 	{
 		cam = Camera.main;
 		rb = GetComponent<Rigidbody2D>();
-		circleCollider = GetComponent<CircleCollider2D>();
+		//circleCollider = GetComponent<CircleCollider2D>();
 	}
 
 	// Update is called once per frame
@@ -49,10 +47,10 @@ public class Blade : MonoBehaviour {
 		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime;
 		if (velocity > minCuttingVelocity)
 		{
-			circleCollider.enabled = true;
+			//circleCollider.enabled = true;
 		} else
 		{
-			circleCollider.enabled = false;
+			//circleCollider.enabled = false;
 		}
 
 		previousPosition = newPosition;
@@ -63,7 +61,7 @@ public class Blade : MonoBehaviour {
 		isCutting = true;
 		currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
 		previousPosition = cam.ScreenToWorldPoint(Input.mousePosition);
-		circleCollider.enabled = false;
+		//circleCollider.enabled = false;
 	}
 
 	void StopCutting ()
@@ -71,7 +69,7 @@ public class Blade : MonoBehaviour {
 		isCutting = false;
 		currentBladeTrail.transform.SetParent(null);
 		Destroy(currentBladeTrail, 2f);
-		circleCollider.enabled = false;
+		//circleCollider.enabled = false;
 	}
 
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using ScrambledWordGame.Types;
 using System.Collections.Generic;
 
@@ -30,21 +29,22 @@ namespace ScrambledWordGame
 
         void Awake()
         {
-            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-            Debug.Log(_imagePath);
+            sprites = LevelDataChanger.instance.LoadSprites();
+            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+            //Debug.Log(_imagePath);
 
-            if (_imagePath == "0")
-            {
-                _imagePath = "KBA/u1";
-                Debug.Log("Can't find the image path");
-            }
+            //if (_imagePath == "0")
+            //{
+            //    _imagePath = "KBA/u1";
+            //    Debug.Log("Can't find the image path");
+            //}
 
-            UnityEngine.Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
-            sprites = new Sprite[loadedSprites.Length];
-            for (int i = 0; i < loadedSprites.Length; i++)
-            {
-                sprites[i] = (Sprite)loadedSprites[i];
-            }
+            //UnityEngine.Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+            //sprites = new Sprite[loadedSprites.Length];
+            //for (int i = 0; i < loadedSprites.Length; i++)
+            //{
+            //    sprites[i] = (Sprite)loadedSprites[i];
+            //}
 
             for (int i = 0; i < sprites.Length; i++)
             {

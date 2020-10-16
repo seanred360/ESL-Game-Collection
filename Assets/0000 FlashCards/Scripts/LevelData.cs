@@ -8,6 +8,7 @@ public sealed class LevelData
     public string wordGroupToUse;
     public bool addWords = true;
     public bool addPhonics = true;
+    public string ImagePath;
 
     public static LevelData Singleton
     {

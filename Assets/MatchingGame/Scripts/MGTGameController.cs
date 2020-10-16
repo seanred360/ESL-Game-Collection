@@ -473,13 +473,13 @@ namespace MatchingGameTemplate
                             enemyAnimator.Play("Unarmed-Attack-R2");//sean
                         }
 
-                        playerHealth.TakeDamage(25f);
+                        //playerHealth.TakeDamage(25f);
 
-                        if (playerHealth.health == 0)//sean
-                        {
-                            playerHealth.Die();
-                            StartCoroutine(GameOver(1f));//sean
-                        }
+                        //if (playerHealth.health == 0)//sean
+                        //{
+                        //    playerHealth.Die();
+                        //    StartCoroutine(GameOver(1f));//sean
+                        //}
                     }
 
                     //If there is a source and a sound, play it from the source

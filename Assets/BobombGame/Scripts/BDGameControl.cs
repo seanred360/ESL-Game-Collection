@@ -28,35 +28,54 @@ public class BDGameControl : MonoBehaviour
 
     private void Awake()
     {
-        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-        if (_imagePath == "0")
-            _imagePath = "KBA/u11/words";
+        //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+        //if (_imagePath == "0")
+        //    _imagePath = "KBA/u11/words";
  
-        object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-        loadedSprites = new Sprite[textures.Length];
-        for (int i = 0; i < textures.Length; i++)
-        {
-            loadedSprites[i] = (Sprite)textures[i];
-        }
+        //object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
+        //loadedSprites = new Sprite[textures.Length];
+        //for (int i = 0; i < textures.Length; i++)
+        //{
+        //    loadedSprites[i] = (Sprite)textures[i];
+        //}
 
-        for (int i = 0; i < textures.Length; i++)
+        //for (int i = 0; i < loadedSprites.Length; i++)
+        //{
+        //    vocabPics[i].GetComponent<Image>().sprite = loadedSprites[i];
+        //}
+
+        //Debug.Log("textures " + loadedSprites.Length + " bombs" + bombs.Length);
+        //if(loadedSprites.Length < bombs.Length)
+        //{
+        //    for (int i = loadedSprites.Length + 1; i < bombs.Length; i++)
+        //    {
+        //        Debug.Log("i" + i);
+        //        vocabPics[i].GetComponent<Image>().sprite = loadedSprites[Random.Range(0,loadedSprites.Length)];
+        //    }
+        //}
+        //ShufflePictures();
+    }
+    private void Start()
+    {
+        loadedSprites = LevelDataChanger.instance.LoadSprites();
+
+        for (int i = 0; i < loadedSprites.Length; i++)
         {
             vocabPics[i].GetComponent<Image>().sprite = loadedSprites[i];
         }
 
         Debug.Log("textures " + loadedSprites.Length + " bombs" + bombs.Length);
-        if(loadedSprites.Length < bombs.Length)
+        if (loadedSprites.Length < bombs.Length)
         {
             for (int i = loadedSprites.Length + 1; i < bombs.Length; i++)
             {
                 Debug.Log("i" + i);
-                vocabPics[i].GetComponent<Image>().sprite = loadedSprites[Random.Range(0,loadedSprites.Length)];
+                vocabPics[i].GetComponent<Image>().sprite = loadedSprites[Random.Range(0, loadedSprites.Length)];
             }
         }
         ShufflePictures();
-    }
-    private void Start()
-    {
+
+
         PickNumber();
         for (int i = 0; i < bombs.Length; i++)
         {

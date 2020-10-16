@@ -31,24 +31,27 @@ public class GumGameManager : MonoBehaviour
     {
         m_food = (Object.FindObjectsOfType<Food>() as Food[]).ToList();
 
-        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-        Debug.Log(_imagePath);
+        //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+        //Debug.Log(_imagePath);
 
-        if (_imagePath == "0")
-        {
-            _imagePath = "KBA/u1/phonics";
-            Debug.Log("Can't find the image path");
-        }
+        //if (_imagePath == "0")
+        //{
+        //    _imagePath = "KBA/u1/phonics";
+        //    Debug.Log("Can't find the image path");
+        //}
 
-        Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
-        sprites = new Sprite[loadedSprites.Length];
-        for (int i = 0; i < loadedSprites.Length; i++)
-        {
-            sprites[i] = (Sprite)loadedSprites[i];
-            unselectedSprites.Add(sprites[i]);
-        }
+        //Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+        //sprites = new Sprite[loadedSprites.Length];
+        //for (int i = 0; i < loadedSprites.Length; i++)
+        //{
+        //    sprites[i] = (Sprite)loadedSprites[i];
+        //    unselectedSprites.Add(sprites[i]);
+        //}
 
-        if(sprites.Length < 5) { m_food[0].gameObject.SetActive(false); m_food.RemoveAt(0);  }
+        sprites = LevelDataChanger.instance.LoadSprites();
+        unselectedSprites.AddRange(sprites);
+
+        if (sprites.Length < 5) { m_food[0].gameObject.SetActive(false); m_food.RemoveAt(0);  }
 
         // shuffle the words list to get different words every game
         for (int i = 0; i < m_food.Count; i++)

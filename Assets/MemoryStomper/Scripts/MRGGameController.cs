@@ -111,19 +111,20 @@ namespace MemoryRepeatGame
         public Camera cam;
         public AudioManager audioManager;
         public GameObject buttonPrefab;
-        public string _imagePath = "KBA/u1";
         public Sprite[] sprites;
 
 
         void Awake()
         {
-            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+            sprites = LevelDataChanger.instance.LoadSprites();
 
-            if (_imagePath == "0")
-            {
-                _imagePath = "KBA/u6";
-                Debug.Log("Can't find the image path");
-            }
+            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+
+            //if (_imagePath == "0")
+            //{
+            //    _imagePath = "KBA/u6";
+            //    Debug.Log("Can't find the image path");
+            //}
 
             //PlayerPrefs.DeleteKey(SceneManager.GetActiveScene().name + "HighScore");
             // Activate the pause canvas early on, so it can detect info about sound volume state
@@ -162,11 +163,10 @@ namespace MemoryRepeatGame
             // Assign the buttons holder which holds all the buttons
             if ( buttonsHolder == null && GameObject.Find("ButtonsHolder")) buttonsHolder = GameObject.Find("ButtonsHolder").transform;
 
-            Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
-            sprites = new Sprite[loadedSprites.Length];
-            for (int i = 0; i < loadedSprites.Length; i++)
+            //Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+            //sprites = new Sprite[loadedSprites.Length];
+            for (int i = 0; i < sprites.Length; i++)
             {
-                sprites[i] = (Sprite)loadedSprites[i];
                 GameObject newButton = Instantiate(buttonPrefab);
                 newButton.transform.SetParent(buttonsHolder);
                 newButton.GetComponent<Image>().sprite = sprites[i];

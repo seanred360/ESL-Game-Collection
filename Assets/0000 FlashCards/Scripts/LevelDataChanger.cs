@@ -51,4 +51,28 @@ public class LevelDataChanger : MonoBehaviour
     {
         LevelData.Singleton.addPhonics = onOff;
     }
+
+    public Sprite[] LoadSprites()
+    {
+        LevelData.Singleton.ImagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+        Debug.Log(LevelData.Singleton.ImagePath);
+
+        if (LevelData.Singleton.ImagePath == "0")
+        {
+            LevelData.Singleton.ImagePath = "KBA/u1/words";
+            Debug.Log("Can't find the image path");
+        }
+
+        Object[] loadedSprites = Resources.LoadAll(LevelData.Singleton.ImagePath, typeof(Sprite));
+        Sprite[] sprites = new Sprite[loadedSprites.Length];
+        for (int i = 0; i < loadedSprites.Length; i++)
+        {
+            sprites[i] = (Sprite)loadedSprites[i];
+            if (sprites[i].name.Length < 2)
+            {
+                sprites[i] = (Sprite)loadedSprites[i];
+            }
+        }
+        return sprites;
+    }
 }

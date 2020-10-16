@@ -9,34 +9,34 @@ namespace FindTheObject
     /// </summary>
     public class FTOImages : MonoBehaviour
     {
-        public Sprite[] images;
+        public Sprite[] sprites;
 
         public string _imagePath;
 
         void Awake()
         {
-            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
-            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-            Debug.Log(_imagePath);
+            sprites = LevelDataChanger.instance.LoadSprites();
 
-            if (_imagePath == "0")
-            {
-                _imagePath = "KBA/u1";
-                Debug.Log("Can't find the image path");
-            }
+            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+            //Debug.Log(_imagePath);
 
+            //if (_imagePath == "0")
+            //{
+            //    _imagePath = "KBA/u1";
+            //    Debug.Log("Can't find the image path");
+            //}
 
-            Debug.Log(_imagePath);
+            //Debug.Log(_imagePath);
 
-            object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-            images = new Sprite[textures.Length];
-            for (int i = 0; i < textures.Length; i++)
-            {
-                images[i] = (Sprite)textures[i];
-            }
+            //object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
+            //sprites = new Sprite[textures.Length];
+            //for (int i = 0; i < textures.Length; i++)
+            //{
+            //    sprites[i] = (Sprite)textures[i];
+            //}
 
             // If we have a game controller, assign the list of text pairs to it
-            if (GetComponent<FTOGameController>()) GetComponent<FTOGameController>().imagesList = images;
+            if (GetComponent<FTOGameController>()) GetComponent<FTOGameController>().imagesList = sprites;
         }
     }
 }

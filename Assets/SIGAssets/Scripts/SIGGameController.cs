@@ -22,7 +22,7 @@ namespace ScrambledImageGame
         public int increaseGridSize = 1;
 
         // A list of all the images the game. Each one of these is sliced into scrambled tiles.
-        internal Texture[] images;
+        internal Texture[] textures;
         internal Transform imageCurrent;
 
         // Holds the default image object that displays a part of the image in the grid ( "ImageObject" in the heirarchy )
@@ -200,13 +200,13 @@ namespace ScrambledImageGame
             //Assign the sound source for easier access
             if (GameObject.FindGameObjectWithTag(soundSourceTag)) soundSource = GameObject.FindGameObjectWithTag(soundSourceTag);
 
-            if (GetComponent<SIGImages>()) images = GetComponent<SIGImages>().images;
+            if (GetComponent<SIGImages>()) textures = GetComponent<SIGImages>().textures2d;
             else Debug.LogWarning("No images list found, please attach a SIGImages component to this gamecontroller");
 
-            if ( images.Length > 0 )
+            if ( textures.Length > 0 )
             {
                 // Randomize the list of images
-                if (randomizeList == true) images = ShuffleImages(images);
+                if (randomizeList == true) textures = ShuffleImages(textures);
 
                 // Create the first level
                 StartCoroutine("UpdateLevel");
@@ -340,7 +340,7 @@ namespace ScrambledImageGame
                 int randomIndex = UnityEngine.Random.Range(index, shuffledImages.Length);
 
                 // Assign a random question from the list
-                images[index] = shuffledImages[randomIndex];
+                textures[index] = shuffledImages[randomIndex];
 
                 // Assign the temporary question to the random question we chose
                 shuffledImages[randomIndex] = tempImage;
@@ -467,7 +467,7 @@ namespace ScrambledImageGame
             if (levelText) levelText.text = levelNamePrefix + " " + (currentLevel + 1).ToString();
 
             // Set the current image
-            imageObject.texture = images[currentLevel];
+            imageObject.texture = textures[currentLevel];
 
             // Slice the image into a grid based on the image grid size
             Vector2 tileSize = new Vector2(imageObject.rectTransform.sizeDelta.x / gridSize.x, imageObject.rectTransform.sizeDelta.y / gridSize.y);
@@ -716,7 +716,7 @@ namespace ScrambledImageGame
                 }
 
                 // If we reached the required images per level, level up
-                if ( currentLevel < images.Length - 1 )
+                if ( currentLevel < textures.Length - 1 )
                 {
                     // Level up
                     StartCoroutine("LevelUp", 0.2f);

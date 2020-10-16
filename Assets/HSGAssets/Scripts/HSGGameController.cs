@@ -104,8 +104,6 @@ public class HSGGameController : MonoBehaviour
     internal int objectIndex = 0;
 
     public GameObject levelNumberObject;
-    public string _imagePath = "KBA/u1";
-    public bool babyMode = false;
 
     void Awake()
     {
@@ -131,15 +129,8 @@ public class HSGGameController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-
-        Object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-        shapeList = new Sprite[textures.Length];
-        for (int i = 0; i < textures.Length; i++)
-        {
-            shapeList[i] = (Sprite)textures[i];
-        }
-
+        shapeList = LevelDataChanger.instance.LoadSprites();
+  
         // Disable multitouch so that we don't tap two answers at the same time
         Input.multiTouchEnabled = false;
 
@@ -325,13 +316,6 @@ public class HSGGameController : MonoBehaviour
     /// </summary>
     void UpdateTime()
     {
-        if (babyMode)
-        {
-            timeLeft = 99999999;
-            timerBar.gameObject.SetActive(false);
-            timerIcon.gameObject.SetActive(false);
-            timerText.gameObject.SetActive(false);
-        }
         // Update the time only if we have a timer icon canvas assigned
         if (timerIcon)
         {
@@ -481,7 +465,7 @@ public class HSGGameController : MonoBehaviour
         // Turn the object black
         //shapeHolder.GetComponent<Image>().name = picName;
         //if ((picName != "red") || (picName != "blue") || (picName != "yellow") || (picName != "green") || (picName != "black") || (picName != "orange"))
-        if (_imagePath != "KBA/u3" || _imagePath != "KBB/u8")
+        if (LevelData.instance.ImagePath != "KBA/u3" || LevelData.instance.ImagePath != "KBB/u8")
         {
             shapeHolder.GetComponent<Image>().color = Color.black;
         }

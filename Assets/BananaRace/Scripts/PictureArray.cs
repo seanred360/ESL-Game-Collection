@@ -28,23 +28,25 @@ public class PictureArray : MonoBehaviour {
 
     void Awake()
     {
-        _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+        sprites = LevelDataChanger.instance.LoadSprites();
+        unselectedSprites.AddRange(sprites);
+        //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
 
-        if (_imagePath == "0")
-        {
-            _imagePath = "KBA/u1";
-            Debug.Log("Can't find the image path");
-        }
+        //if (_imagePath == "0")
+        //{
+        //    _imagePath = "KBA/u1";
+        //    Debug.Log("Can't find the image path");
+        //}
 
-        if (buttonsHolder == null && GameObject.Find("ButtonsHolder")) buttonsHolder = GameObject.Find("ButtonsHolder").transform;
+        //if (buttonsHolder == null && GameObject.Find("ButtonsHolder")) buttonsHolder = GameObject.Find("ButtonsHolder").transform;
 
-        Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
-        sprites = new Sprite[loadedSprites.Length];
-        for (int i = 0; i < loadedSprites.Length; i++)
-        {
-            sprites[i] = (Sprite)loadedSprites[i];
-            unselectedSprites.Add(sprites[i]);
-        }
+        //Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+        //sprites = new Sprite[loadedSprites.Length];
+        //for (int i = 0; i < loadedSprites.Length; i++)
+        //{
+        //    sprites[i] = (Sprite)loadedSprites[i];
+        //    unselectedSprites.Add(sprites[i]);
+        //}
 
         for (int i = 0; i < sprites.Length; i++)
         {

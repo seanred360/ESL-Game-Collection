@@ -12,6 +12,7 @@ public class QuestionsList : MonoBehaviour
     public Question bomb;
     GameController gameController;
     public bool isKidsBeginner;
+    Sprite[] sprites;
 
     [SerializeField]
     public Text factText;
@@ -21,15 +22,16 @@ public class QuestionsList : MonoBehaviour
     {
         if(isKidsBeginner)
         {
-            string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-            if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
+            sprites = LevelDataChanger.instance.LoadSprites();
+            //string _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
+            //if (_imagePath == "0") { _imagePath = "KBA/u1"; Debug.Log("Can't find the image path"); }
 
-            Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
-            for (int i = 0; i < loadedSprites.Length; i++)
+            //Object[] loadedSprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+            for (int i = 0; i < sprites.Length; i++)
             {
                 Question question = new Question();
-                question.factSprite = (Sprite)loadedSprites[i];
-                question.fact = loadedSprites[i].name;
+                question.factSprite = (Sprite)sprites[i];
+                question.fact = sprites[i].name;
                 question.points = 1;
                 questions.Add(question);
             }

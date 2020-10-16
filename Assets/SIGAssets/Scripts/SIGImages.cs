@@ -9,29 +9,29 @@ namespace ScrambledImageGame
     /// </summary>
     public class SIGImages : MonoBehaviour
     {
-        public Texture2D[] images;
-        public Sprite[] loadedSprites;
+        public Texture2D[] textures2d;
+        public Sprite[] sprites;
         public string _imagePath = "KBA/u1";
 
         void Awake()
         {
-            //_imagePath = LevelNumber.bookName + LevelNumber.numberOfLevel;
-            _imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
-            if (_imagePath == "0")
-                _imagePath = "KBA/u1";
+            sprites = LevelDataChanger.instance.LoadSprites();
+            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel;
+            //if (_imagePath == "0")
+            //    _imagePath = "KBA/u1";
 
-            object[] sprites = Resources.LoadAll(_imagePath, typeof(Sprite));
-            loadedSprites = new Sprite[sprites.Length];
-            for (int i = 0; i < sprites.Length; i++)
-            {
-                loadedSprites[i] = (Sprite)sprites[i];
-            }
+            //object[] sprites = Resources.LoadAll(_imagePath, typeof(Sprite));
+            //loadedSprites = new Sprite[sprites.Length];
+            //for (int i = 0; i < sprites.Length; i++)
+            //{
+            //    loadedSprites[i] = (Sprite)sprites[i];
+            //}
 
-            object[] textures2d = loadedSprites;
-            images = new Texture2D[textures2d.Length];
+            //object[] textures2d = sprites;
+            textures2d = new Texture2D[sprites.Length];
             for(int i = 0; i < textures2d.Length; i++)
             {
-                images[i] = (Texture2D)textureFromSprite(loadedSprites[i]);
+                textures2d[i] = (Texture2D)textureFromSprite(sprites[i]);
             } 
         }
 
