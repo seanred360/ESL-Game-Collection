@@ -1,17 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FruitSpawner : MonoBehaviour {
 
-	public GameObject fruitPrefab;
+	public GameObject originalPrefab;
+	public GameObject[] prefabs;
 	public Transform[] spawnPoints;
+	public Sprite[] sprites;
+	ObjectPooler objectPooler;
 
 	public float minDelay = .1f;
 	public float maxDelay = 1f;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+		objectPooler = GetComponent<ObjectPooler>();
+	}
+
+    // Use this for initialization
+    void Start () 
+	{
 		StartCoroutine(SpawnFruits());
 	}
 
@@ -25,9 +33,10 @@ public class FruitSpawner : MonoBehaviour {
 			int spawnIndex = Random.Range(0, spawnPoints.Length);
 			Transform spawnPoint = spawnPoints[spawnIndex];
 
-			GameObject spawnedFruit = Instantiate(fruitPrefab, spawnPoint.position, spawnPoint.rotation);
+			GameObject spawnedFruit = objectPooler.GetPooledObject();
+			spawnedFruit.transform.position = spawnPoint.position;
+			spawnedFruit.SetActive(true);
 			Destroy(spawnedFruit, 5f);
 		}
 	}
-	
 }
