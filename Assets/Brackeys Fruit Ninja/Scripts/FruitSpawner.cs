@@ -14,7 +14,7 @@ public class FruitSpawner : MonoBehaviour {
 
     private void Awake()
     {
-		objectPooler = GetComponent<ObjectPooler>();
+		sprites = LevelDataChanger.instance.LoadSprites();
 	}
 
     // Use this for initialization
@@ -33,7 +33,10 @@ public class FruitSpawner : MonoBehaviour {
 			int spawnIndex = Random.Range(0, spawnPoints.Length);
 			Transform spawnPoint = spawnPoints[spawnIndex];
 
-			GameObject spawnedFruit = objectPooler.GetPooledObject();
+			//GameObject spawnedFruit = objectPooler.GetPooledObject();
+			GameObject spawnedFruit = Instantiate(originalPrefab);
+			spawnedFruit.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0,sprites.Length)];
+			spawnedFruit.AddComponent<BoxCollider2D>();
 			spawnedFruit.transform.position = spawnPoint.position;
 			spawnedFruit.SetActive(true);
 			Destroy(spawnedFruit, 5f);

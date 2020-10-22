@@ -1,3 +1,4 @@
+using SlicingGame;
 using UnityEngine;
 
 public class Fruit : MonoBehaviour {
@@ -17,6 +18,8 @@ public class Fruit : MonoBehaviour {
 		if (col.tag == "Blade")
 		{
 			Vector3 direction = (col.transform.position - transform.position).normalized;
+			if(col.tag == "Bomb") { GetComponent<DestroyBomb>().ActivateDestructionPerObjecType(); }
+			else
 			Destroy(gameObject,3f);
 		}
 	}
