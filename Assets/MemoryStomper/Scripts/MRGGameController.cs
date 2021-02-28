@@ -371,6 +371,12 @@ namespace MemoryRepeatGame
             //if (EventSystem.current) EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
         }
 
+        IEnumerator AvoidAccidentalPress(float delay)
+        {
+            for (index = 0; index < buttons.Length; index++) buttons[index].interactable = false;
+            yield return new WaitForSeconds(delay);
+            for (index = 0; index < buttons.Length; index++) buttons[index].interactable = true;
+        }
 
         /// <summary>
         /// Presses a button on the dial pad, playing the relevant note and checking if we are following the sequence or not
@@ -378,6 +384,8 @@ namespace MemoryRepeatGame
         /// <param name="sourceButton"></param>
         public void PressButton(Button sourceButton)
         {
+            StartCoroutine(AvoidAccidentalPress(.8f));
+
             // Find the index of the button we pressed so we can compare it in the sequence and play the correct pitch
             int buttonIndex = sourceButton.transform.GetSiblingIndex();
 
@@ -581,7 +589,7 @@ namespace MemoryRepeatGame
 
                 if (soundSource) soundSource.GetComponent<AudioSource>().pitch = 1;
 
-                if (timerIcon.GetComponent<Animation>()) timerIcon.GetComponent<Animation>().Stop();
+                if (timerIcon && timerIcon.GetComponent<Animation>()) timerIcon.GetComponent<Animation>().Stop();
 
                 yield return new WaitForSeconds(delay);
 

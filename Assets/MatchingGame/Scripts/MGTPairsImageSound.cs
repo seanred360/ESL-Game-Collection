@@ -10,7 +10,6 @@ namespace MatchingGameTemplate
     public class MGTPairsImageSound : MonoBehaviour
     {
         public List<PairImageSound> pairsImageSound = new List<PairImageSound>();
-        //public PairImageSound[] pairsImageSound;
         public Sprite[] sprites;
         public PairImageSound _1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14;
 
@@ -18,18 +17,6 @@ namespace MatchingGameTemplate
         {
             sprites = LevelDataChanger.instance.LoadSprites();
 
-            //_imagePath = LevelData.Singleton.bookName + LevelData.Singleton.numberOfLevel + LevelData.Singleton.wordGroupToUse;
-            //if (_imagePath == "0")
-            //    _imagePath = "KBA/u11";
-
-            //object[] textures = Resources.LoadAll(_imagePath, typeof(Sprite));
-            //loadedSprites = new Sprite[textures.Length];
-            //for (int i = 0; i < textures.Length; i++)
-            //{
-            //    loadedSprites[i] = (Sprite)textures[i];
-            //}
-
-            //ListResizer.Resize<PairImageSound>(pairsImageSound, loadedSprites.Length);
             _1.image = sprites[1];
             _1.sound = Resources.Load<AudioClip>("Sounds/" + sprites[1].name);
             _2.image = sprites[2];

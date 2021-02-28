@@ -354,15 +354,8 @@ namespace ScrambledImageGame
         /// </summary>
         void UpdateTime()
         {
-            if (babyMode)
-            {
-                timeLeft = 99999999;
-                timerBar.gameObject.SetActive(false);
-                timerIcon.gameObject.SetActive(false);
-                timerText.gameObject.SetActive(false);
-            }
             // Update the time only if we have a timer icon canvas assigned
-            if (timerIcon)
+            if (timerIcon.gameObject.activeSelf == true)
             {
                 // Update the timer circle, if we have one
                 if (timerBar)

@@ -112,6 +112,7 @@ namespace UnitySpriteCutter {
 
 				case GameObjectCreationMode.CUT_OFF_COPY:
 					secondSideResult = SpriteCutterGameObject.CreateAsInstantiatedCopyOf( input.gameObject, true );
+					GameObject.Destroy(secondSideResult.gameObject, .5f);
 					SpriteRenderer copiedSpriteRenderer = secondSideResult.gameObject.GetComponent<SpriteRenderer>();
 				    MeshRenderer copiedMeshRenderer = secondSideResult.gameObject.GetComponent<MeshRenderer>();
 					if ( copiedSpriteRenderer != null ) {

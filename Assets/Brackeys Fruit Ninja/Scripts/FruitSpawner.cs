@@ -36,7 +36,7 @@ public class FruitSpawner : MonoBehaviour {
 			//GameObject spawnedFruit = objectPooler.GetPooledObject();
 			GameObject spawnedFruit = Instantiate(originalPrefab);
 			spawnedFruit.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0,sprites.Length)];
-			spawnedFruit.AddComponent<BoxCollider2D>();
+			//spawnedFruit.AddComponent<BoxCollider2D>().isTrigger = true;
 			spawnedFruit.transform.position = spawnPoint.position;
 			spawnedFruit.SetActive(true);
 			Destroy(spawnedFruit, 5f);

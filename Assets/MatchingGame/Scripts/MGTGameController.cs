@@ -95,8 +95,9 @@ namespace MatchingGameTemplate
         internal float highScore = 0;
 
         [Tooltip("How many seconds are left before game is over")]
-        public float time = 10;
-        internal float timeLeft;
+        public float time = 0;
+        internal float currentTime;
+        float bestTime;
 
         //The canvas of the timer in the game, the UI object and its various parts
         internal GameObject timerIcon;
@@ -139,13 +140,13 @@ namespace MatchingGameTemplate
         private bool toggleSound50 = true;//sean
         private bool toggleSound25 = true;//sean
         public Transform starParticles;//sean
-        private Vector3 spawnLocation;//sean
-        public MGPlayer player;//sean
-        private Animator playerAnimator;//sean
-        public GameObject enemy;//sean
-        private Animator enemyAnimator;//sean
-        HealthBarScript playerHealth;
-        HealthBarScript enemyHealth;
+        //private Vector3 spawnLocation;//sean
+        //public MGPlayer player;//sean
+        //private Animator playerAnimator;//sean
+        //public GameObject enemy;//sean
+        //private Animator enemyAnimator;//sean
+        //HealthBarScript playerHealth;
+        //HealthBarScript enemyHealth;
 
         // The button that will restart the game after game over
         public string confirmButton = "Submit";
@@ -167,17 +168,18 @@ namespace MatchingGameTemplate
         /// </summary>
         void Start()
         {
-            if (player)//sean stops a bug if i dont use mario in the scene
-            {
-                playerAnimator = player.GetComponent<Animator>();//sean
-                playerHealth = player.playerHealth;
+            //if (player)//sean stops a bug if i dont use mario in the scene
+            //{
+            //    playerAnimator = player.GetComponent<Animator>();//sean
+            //    playerHealth = player.playerHealth;
 
-            }
-            if (enemy)//sean stops a bug if i dont use mario in the scene
-            {
-                enemyAnimator = enemy.GetComponent<Animator>();//sean
-                enemyHealth = enemy.GetComponent<HealthBarScript>();
-            }
+            //}
+            //if (enemy)//sean stops a bug if i dont use mario in the scene
+            //{
+            //    enemyAnimator = enemy.GetComponent<Animator>();//sean
+            //    enemyHealth = enemy.GetComponent<HealthBarScript>();
+            //}
+
             audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();//sean 
             audiomanager.PlayMusic(0);//sean plays the BGM from the audio array
             // Disable multitouch so that we don't tap two answers at the same time ( prevents multi-answer cheating )
@@ -220,7 +222,7 @@ namespace MatchingGameTemplate
             }
             
             // Set the maximum value of the timer
-            timeLeft = time;
+            //time = bestTime;
 
             //Assign the sound source for easier access
             if (GameObject.FindGameObjectWithTag(soundSourceTag)) soundSource = GameObject.FindGameObjectWithTag(soundSourceTag);
@@ -320,15 +322,13 @@ namespace MatchingGameTemplate
                     Vector2 worldPos;
                     screenPos = Input.mousePosition;
                     worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-                    spawnLocation = worldPos;
-                    SpawnStarParticles();
+                    SpawnStarParticles(worldPos);
                 }
 
-                // Count down the time until game over
-                if (timeLeft > 0)
+                if(!isGameOver)
                 {
-                    // Count down the time
-                    timeLeft -= Time.deltaTime;
+                    // Count up the time
+                    currentTime += Time.deltaTime;
                 }
 
                 // Update the timer
@@ -434,11 +434,6 @@ namespace MatchingGameTemplate
                     {
                         firstObject.GetComponent<Animator>().Play("PairCorrect");
                         selectedObject.GetComponent<Animator>().Play("PairCorrect");
-                        if (player)
-                        {
-                            //marioAnimator.Play("Standing Clap");
-                        }
-                        //StartCoroutine(GetHit2());//sean
                     }
 
                     // Add the bonus to the score
@@ -468,18 +463,6 @@ namespace MatchingGameTemplate
                     {
                         firstObject.GetComponent<Animator>().Play("PairWrong");
                         selectedObject.GetComponent<Animator>().Play("PairWrong");
-                        if (enemy)
-                        {
-                            enemyAnimator.Play("Unarmed-Attack-R2");//sean
-                        }
-
-                        //playerHealth.TakeDamage(25f);
-
-                        //if (playerHealth.health == 0)//sean
-                        //{
-                        //    playerHealth.Die();
-                        //    StartCoroutine(GameOver(1f));//sean
-                        //}
                     }
 
                     //If there is a source and a sound, play it from the source
@@ -646,19 +629,19 @@ namespace MatchingGameTemplate
                 if (timerBar)
                 {
                     // If the timer is running, display the fill amount left. Otherwise refill the amount back to 100%
-                    timerBar.fillAmount = timeLeft / time;
+                    timerBar.fillAmount = currentTime / highScore;
                 }
 
                 // Update the timer text, if we have one
                 if (timerText)
                 {
                     // If the timer is running, display the timer left. Otherwise hide the text
-                    timerText.text = Mathf.RoundToInt(timeLeft).ToString();
+                    timerText.text = Mathf.RoundToInt(currentTime).ToString();
                 }
 
                 // change the bomb timer animation
                 // 75 % time remaining
-                if ((timeLeft <= time*0.75) && (timeLeft >= time*0.50)) //sean
+                if ((currentTime <= highScore*0.75) && (currentTime >= highScore*0.50)) //sean
                 {
                     // Play the timer icon Animator
                     if (timerIcon.GetComponent<Animator>()) timerIcon.GetComponent<Animator>().Play("bobomb2");
@@ -671,7 +654,7 @@ namespace MatchingGameTemplate
                     }
                 }
                 // 50% time remaining
-                if ((timeLeft <= time * 0.50) && (timeLeft >= time * 0.25)) //sean
+                if ((currentTime <= highScore * 0.50) && (currentTime >= highScore * 0.25)) //sean
                 {
                     // Play the timer icon Animator
                     if (timerIcon.GetComponent<Animator>()) timerIcon.GetComponent<Animator>().Play("bobomb3");
@@ -685,7 +668,7 @@ namespace MatchingGameTemplate
                 }
                 // Time's up!
                 // 25 % time remaining
-                if ((timeLeft <= time * 0.25) && (timeLeft >= time * 0)) //sean
+                if ((currentTime <= highScore * 0.25) && (currentTime >= highScore * 0)) //sean
                 {
                     // Play the timer icon Animator
                     if (timerIcon.GetComponent<Animator>()) timerIcon.GetComponent<Animator>().Play("bobomb4");
@@ -699,19 +682,19 @@ namespace MatchingGameTemplate
                 }
 
                 // Time's up!
-                if (timeLeft <= 0)
-                {
-                    // Run the game over event
-                    StartCoroutine(GameOver(0.1f));
-                    GameObject.Find("Background").GetComponent<ChangeBG>().SetImage4();
-                    GameObject.Find("Background").GetComponent<Image>().color = new Color32(154, 120, 100, 255);
+                //if (time <= 0)
+                //{
+                //    // Run the game over event
+                //    StartCoroutine(GameOver(0.1f));
+                //    GameObject.Find("Background").GetComponent<ChangeBG>().SetImage4();
+                //    GameObject.Find("Background").GetComponent<Image>().color = new Color32(154, 120, 100, 255);
 
-                    // Play the timer icon Animator
-                    //if (timerIcon.GetComponent<Animator>()) timerIcon.GetComponent<Animator>().Play("bobomb5");
+                //    // Play the timer icon Animator
+                //    //if (timerIcon.GetComponent<Animator>()) timerIcon.GetComponent<Animator>().Play("bobomb5");
 
-                    //If there is a source and a sound, play it from the source
-                    if (soundSource && soundTimeUp) soundSource.GetComponent<AudioSource>().PlayOneShot(soundTimeUp);
-                }
+                //    //If there is a source and a sound, play it from the source
+                //    if (soundSource && soundTimeUp) soundSource.GetComponent<AudioSource>().PlayOneShot(soundTimeUp);
+                //}
             }
         }
 
@@ -1334,7 +1317,7 @@ namespace MatchingGameTemplate
             }
         }
 
-        void SpawnStarParticles()//sean
+        void SpawnStarParticles(Vector2 spawnLocation)//sean
         {
             if (Input.GetButtonDown("Fire1"))
             {
