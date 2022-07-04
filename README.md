@@ -62,9 +62,8 @@ This game was designed to help students remember vocabulary words. The Paper Mar
 
 ### Memory Stomper
 
-|                                                       |                                               |
-| :---------------------------------------------------: | :-------------------------------------------: |
-| ![screenshot](screenshots/preview-memory-stomper.png) | ![screenshot](screenshots/memory-stomper.gif) |
+![screenshot](screenshots/preview-memory-stomper.png)
+![screenshot](screenshots/memory-stomper.gif)
 
 #### How to play
 
@@ -72,9 +71,8 @@ The visual style of this game was inspired by [Rocky Hong's](https://www.rockyho
 
 ### Banana Race
 
-|                                                    |                                            |
-| :------------------------------------------------: | :----------------------------------------: |
-| ![screenshot](screenshots/preview-banana-race.png) | ![screenshot](screenshots/banana-race.gif) |
+![screenshot](screenshots/preview-banana-race.png)
+![screenshot](screenshots/banana-race.gif)
 
 #### How to play
 
